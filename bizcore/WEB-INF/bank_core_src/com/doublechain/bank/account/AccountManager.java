@@ -53,6 +53,16 @@ public interface AccountManager{
 
 	*/
 
+	//public  NameChangeEventManager getNameChangeEventManager(BankUserContext userContext, String accountId, String name, String changeRequestId ,String [] tokensExpr)  throws Exception;
+	
+	public  Account addNameChangeEvent(BankUserContext userContext, String accountId, String name, String changeRequestId , String [] tokensExpr)  throws Exception;
+	public  Account removeNameChangeEvent(BankUserContext userContext, String accountId, String nameChangeEventId, int nameChangeEventVersion,String [] tokensExpr)  throws Exception;
+	public  Account updateNameChangeEvent(BankUserContext userContext, String accountId, String nameChangeEventId, int nameChangeEventVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
+
+	/*
+
+	*/
+
 	//public  AccountChangeManager getAccountChangeManager(BankUserContext userContext, String accountId, String name, BigDecimal previousBalance, String type, BigDecimal amount, BigDecimal currentBalance, String changeRequestId ,String [] tokensExpr)  throws Exception;
 	
 	public  Account addAccountChange(BankUserContext userContext, String accountId, String name, BigDecimal previousBalance, String type, BigDecimal amount, BigDecimal currentBalance, String changeRequestId , String [] tokensExpr)  throws Exception;

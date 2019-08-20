@@ -149,6 +149,51 @@ public class BankChecker extends BaseChecker{
 		return this;
 	}	
 
+	public static final String  ID_OF_NAME_CHANGE_EVENT ="name_change_event.id";
+	public BankChecker checkIdOfNameChangeEvent(String id)
+	{
+		
+	 	checkStringLengthRange(id,2, 64,ID_OF_NAME_CHANGE_EVENT ); 		
+		
+		return this;
+	}	
+
+	public static final String  NAME_OF_NAME_CHANGE_EVENT ="name_change_event.name";
+	public BankChecker checkNameOfNameChangeEvent(String name)
+	{
+		
+	 	checkStringLengthRange(name,3, 32,NAME_OF_NAME_CHANGE_EVENT ); 		
+		
+		return this;
+	}	
+
+	public static final String  ACCOUNT_OF_NAME_CHANGE_EVENT ="name_change_event.account";
+	public BankChecker checkAccountIdOfNameChangeEvent(String accountId)
+	{
+		
+	 	checkIdOfNameChangeEvent(accountId ); 		
+		
+		return this;
+	}	
+
+	public static final String  CHANGE_REQUEST_OF_NAME_CHANGE_EVENT ="name_change_event.change_request";
+	public BankChecker checkChangeRequestIdOfNameChangeEvent(String changeRequestId)
+	{
+		
+	 	checkIdOfNameChangeEvent(changeRequestId ); 		
+		
+		return this;
+	}	
+
+	public static final String  VERSION_OF_NAME_CHANGE_EVENT ="name_change_event.version";
+	public BankChecker checkVersionOfNameChangeEvent(int version)
+	{
+		
+	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_NAME_CHANGE_EVENT ); 		
+		
+		return this;
+	}	
+
 	public static final String  ID_OF_ACCOUNT ="account.id";
 	public BankChecker checkIdOfAccount(String id)
 	{
@@ -1220,7 +1265,6 @@ public class BankChecker extends BaseChecker{
 		return this;
 	}	
 }
-
 
 
 

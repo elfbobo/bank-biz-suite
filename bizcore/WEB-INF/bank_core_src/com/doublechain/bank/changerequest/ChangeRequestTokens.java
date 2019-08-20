@@ -74,6 +74,7 @@ public class ChangeRequestTokens extends CommonTokens{
 		return start()
 			.withPlatform()
 			.withTransactionList()
+			.withNameChangeEventList()
 			.withAccountChangeList();
 	
 	}
@@ -175,6 +176,72 @@ public class ChangeRequestTokens extends CommonTokens{
 	
 	
 		
+	protected static final String NAME_CHANGE_EVENT_LIST = "nameChangeEventList";
+	public String getNameChangeEventList(){
+		return NAME_CHANGE_EVENT_LIST;
+	}
+	public ChangeRequestTokens withNameChangeEventList(){		
+		addSimpleOptions(NAME_CHANGE_EVENT_LIST);
+		return this;
+	}
+	public ChangeRequestTokens analyzeNameChangeEventList(){		
+		addSimpleOptions(NAME_CHANGE_EVENT_LIST+".anaylze");
+		return this;
+	}
+	public boolean analyzeNameChangeEventListEnabled(){		
+		
+		if(checkOptions(this.options(), NAME_CHANGE_EVENT_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+	}
+	public ChangeRequestTokens extractMoreFromNameChangeEventList(String idsSeperatedWithComma){		
+		addSimpleOptions(NAME_CHANGE_EVENT_LIST+".extractIds", idsSeperatedWithComma);
+		return this;
+	}
+	
+	
+	
+	
+	private int nameChangeEventListSortCounter = 0;
+	public ChangeRequestTokens sortNameChangeEventListWith(String field, String descOrAsc){		
+		addSortMoreOptions(NAME_CHANGE_EVENT_LIST,nameChangeEventListSortCounter++, field, descOrAsc);
+		return this;
+	}
+	private int nameChangeEventListSearchCounter = 0;
+	public ChangeRequestTokens searchNameChangeEventListWith(String field, String verb, String value){		
+		addSearchMoreOptions(NAME_CHANGE_EVENT_LIST,nameChangeEventListSearchCounter++, field, verb, value);
+		return this;
+	}
+	
+	public ChangeRequestTokens searchAllTextOfNameChangeEventList(String verb, String value){	
+		String field = "id|name";
+		addSearchMoreOptions(NAME_CHANGE_EVENT_LIST,nameChangeEventListSearchCounter++, field, verb, value);
+		return this;
+	}
+	
+	
+	
+	public ChangeRequestTokens rowsPerPageOfNameChangeEventList(int rowsPerPage){		
+		addSimpleOptions(NAME_CHANGE_EVENT_LIST+"RowsPerPage",rowsPerPage);
+		return this;
+	}
+	public ChangeRequestTokens currentPageNumberOfNameChangeEventList(int currentPageNumber){		
+		addSimpleOptions(NAME_CHANGE_EVENT_LIST+"CurrentPage",currentPageNumber);
+		return this;
+	}
+	public ChangeRequestTokens retainColumnsOfNameChangeEventList(String[] columns){		
+		addSimpleOptions(NAME_CHANGE_EVENT_LIST+"RetainColumns",columns);
+		return this;
+	}
+	public ChangeRequestTokens excludeColumnsOfNameChangeEventList(String[] columns){		
+		addSimpleOptions(NAME_CHANGE_EVENT_LIST+"ExcludeColumns",columns);
+		return this;
+	}
+	
+	
+		
 	protected static final String ACCOUNT_CHANGE_LIST = "accountChangeList";
 	public String getAccountChangeList(){
 		return ACCOUNT_CHANGE_LIST;
@@ -245,6 +312,7 @@ public class ChangeRequestTokens extends CommonTokens{
 	public  ChangeRequestTokens searchEntireObjectText(String verb, String value){
 		
 		searchAllTextOfTransactionList(verb, value);	
+		searchAllTextOfNameChangeEventList(verb, value);	
 		searchAllTextOfAccountChangeList(verb, value);	
 		return this;
 	}

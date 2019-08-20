@@ -204,6 +204,46 @@ public class BankCheckerManager extends BaseManagerImpl {
 		
 	}	 			
 	
+	public static final String  ID_OF_NAME_CHANGE_EVENT ="name_change_event.id";
+	protected void checkIdOfNameChangeEvent(BankUserContext userContext, String id, List<Message> messageList)
+	{
+		
+	 	checkStringLengthRange(id,2, 64,ID_OF_NAME_CHANGE_EVENT, messageList); 		
+		
+	}	 			
+	
+	public static final String  NAME_OF_NAME_CHANGE_EVENT ="name_change_event.name";
+	protected void checkNameOfNameChangeEvent(BankUserContext userContext, String name, List<Message> messageList)
+	{
+		
+	 	checkStringLengthRange(name,3, 32,NAME_OF_NAME_CHANGE_EVENT, messageList); 		
+		
+	}	 			
+	
+	public static final String  ACCOUNT_OF_NAME_CHANGE_EVENT ="name_change_event.account";
+	protected void checkAccountIdOfNameChangeEvent(BankUserContext userContext, String accountId, List<Message> messageList)
+	{
+		
+	 	checkIdOfNameChangeEvent(userContext,accountId, messageList); 		
+		
+	}	 			
+	
+	public static final String  CHANGE_REQUEST_OF_NAME_CHANGE_EVENT ="name_change_event.change_request";
+	protected void checkChangeRequestIdOfNameChangeEvent(BankUserContext userContext, String changeRequestId, List<Message> messageList)
+	{
+		
+	 	checkIdOfNameChangeEvent(userContext,changeRequestId, messageList); 		
+		
+	}	 			
+	
+	public static final String  VERSION_OF_NAME_CHANGE_EVENT ="name_change_event.version";
+	protected void checkVersionOfNameChangeEvent(BankUserContext userContext, int version, List<Message> messageList)
+	{
+		
+	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_NAME_CHANGE_EVENT, messageList); 		
+		
+	}	 			
+	
 	public static final String  ID_OF_ACCOUNT ="account.id";
 	protected void checkIdOfAccount(BankUserContext userContext, String id, List<Message> messageList)
 	{

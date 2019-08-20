@@ -25,7 +25,12 @@
 		change_request="$(change_request)"
 		
 	/>
-	
+	<name_change_event
+		name="new name"
+		account="$(account)"
+		change_request="$(change_request)"
+		
+	/>
 	
 	<account
 		name="张三账户|李四账户|银行账户"
@@ -45,8 +50,6 @@
 		type="存款|存款|取款"
 		amount="$123.00"
 		current_balance="$1312.00"
-		
-		
 		change_request="$(change_request)"
 		
 	/>

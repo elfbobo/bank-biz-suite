@@ -6,6 +6,7 @@ import com.terapico.caf.viewpage.SerializeScope;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.transaction.Transaction;
+import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.account.Account;
 import com.doublechain.bank.accountchange.AccountChange;
 import com.doublechain.bank.userdomain.UserDomain;
@@ -57,6 +58,16 @@ public class BankBaseViewScope {
 	/** 用于Transaction的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getTransactionSummaryScope() {
 		return TransactionBaseSummaryScope;
+	}
+
+	protected static SerializeScope NameChangeEventBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(NameChangeEvent.ID_PROPERTY)
+		.field(NameChangeEvent.NAME_PROPERTY)
+		;
+	/** 用于NameChangeEvent的子对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getNameChangeEventSummaryScope() {
+		return NameChangeEventBaseSummaryScope;
 	}
 
 	protected static SerializeScope AccountBaseSummaryScope = SerializeScope.INCLUDE()
@@ -309,6 +320,16 @@ public class BankBaseViewScope {
 		return TransactionBaseSecondaryListItemScope;
 	}
 
+	protected static SerializeScope NameChangeEventBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(NameChangeEvent.ID_PROPERTY)
+		.field(NameChangeEvent.NAME_PROPERTY)
+		;
+	/** 用于NameChangeEvent的父对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getNameChangeEventSecondaryListItemScope() {
+		return NameChangeEventBaseSecondaryListItemScope;
+	}
+
 	protected static SerializeScope AccountBaseSecondaryListItemScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(Account.ID_PROPERTY)
@@ -545,6 +566,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
 		.field(ChangeRequest.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(ChangeRequest.TRANSACTION_LIST, getTransactionSecondaryListItemScope())
+		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventSecondaryListItemScope())
 		.field(ChangeRequest.ACCOUNT_CHANGE_LIST, getAccountChangeSecondaryListItemScope())
 		;
 	/** 用于ChangeRequest对象的列表时需要序列化的属性列表 */
@@ -567,6 +589,18 @@ public class BankBaseViewScope {
 		return TransactionBaseListItemScope;
 	}
 
+	protected static SerializeScope NameChangeEventBaseListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(NameChangeEvent.ID_PROPERTY)
+		.field(NameChangeEvent.NAME_PROPERTY)
+		.field(NameChangeEvent.ACCOUNT_PROPERTY, getAccountSummaryScope())
+		.field(NameChangeEvent.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
+		;
+	/** 用于NameChangeEvent对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getNameChangeEventListItemScope() {
+		return NameChangeEventBaseListItemScope;
+	}
+
 	protected static SerializeScope AccountBaseListItemScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(Account.ID_PROPERTY)
@@ -577,6 +611,7 @@ public class BankBaseViewScope {
 		.field(Account.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(Account.TRANSACTION_LIST_AS_FROM_ACCOUNT, getTransactionSecondaryListItemScope())
 		.field(Account.TRANSACTION_LIST_AS_TO_ACCOUNT, getTransactionSecondaryListItemScope())
+		.field(Account.NAME_CHANGE_EVENT_LIST, getNameChangeEventSecondaryListItemScope())
 		.field(Account.ACCOUNT_CHANGE_LIST, getAccountChangeSecondaryListItemScope())
 		;
 	/** 用于Account对象的列表时需要序列化的属性列表 */
@@ -831,6 +866,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
 		.field(ChangeRequest.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(ChangeRequest.TRANSACTION_LIST, getTransactionListItemScope())
+		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventListItemScope())
 		.field(ChangeRequest.ACCOUNT_CHANGE_LIST, getAccountChangeListItemScope())
 		;
 	/** 用于ChangeRequest对象的详情页时需要序列化的属性列表 */
@@ -853,6 +889,18 @@ public class BankBaseViewScope {
 		return TransactionBaseDetailScope;
 	}
 
+	protected static SerializeScope NameChangeEventBaseDetailScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(NameChangeEvent.ID_PROPERTY)
+		.field(NameChangeEvent.NAME_PROPERTY)
+		.field(NameChangeEvent.ACCOUNT_PROPERTY, getAccountSummaryScope())
+		.field(NameChangeEvent.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
+		;
+	/** 用于NameChangeEvent对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getNameChangeEventDetailScope() {
+		return NameChangeEventBaseDetailScope;
+	}
+
 	protected static SerializeScope AccountBaseDetailScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(Account.ID_PROPERTY)
@@ -863,6 +911,7 @@ public class BankBaseViewScope {
 		.field(Account.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(Account.TRANSACTION_LIST_AS_FROM_ACCOUNT, getTransactionListItemScope())
 		.field(Account.TRANSACTION_LIST_AS_TO_ACCOUNT, getTransactionListItemScope())
+		.field(Account.NAME_CHANGE_EVENT_LIST, getNameChangeEventListItemScope())
 		.field(Account.ACCOUNT_CHANGE_LIST, getAccountChangeListItemScope())
 		;
 	/** 用于Account对象的详情页时需要序列化的属性列表 */

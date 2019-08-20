@@ -38,6 +38,16 @@ public interface ChangeRequestManager{
 
 	*/
 
+	//public  NameChangeEventManager getNameChangeEventManager(BankUserContext userContext, String changeRequestId, String name, String accountId ,String [] tokensExpr)  throws Exception;
+	
+	public  ChangeRequest addNameChangeEvent(BankUserContext userContext, String changeRequestId, String name, String accountId , String [] tokensExpr)  throws Exception;
+	public  ChangeRequest removeNameChangeEvent(BankUserContext userContext, String changeRequestId, String nameChangeEventId, int nameChangeEventVersion,String [] tokensExpr)  throws Exception;
+	public  ChangeRequest updateNameChangeEvent(BankUserContext userContext, String changeRequestId, String nameChangeEventId, int nameChangeEventVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
+
+	/*
+
+	*/
+
 	//public  AccountChangeManager getAccountChangeManager(BankUserContext userContext, String changeRequestId, String name, String accountId, BigDecimal previousBalance, String type, BigDecimal amount, BigDecimal currentBalance ,String [] tokensExpr)  throws Exception;
 	
 	public  ChangeRequest addAccountChange(BankUserContext userContext, String changeRequestId, String name, String accountId, BigDecimal previousBalance, String type, BigDecimal amount, BigDecimal currentBalance , String [] tokensExpr)  throws Exception;

@@ -8,11 +8,13 @@ import com.doublechain.bank.SmartList;
 import com.doublechain.bank.MultipleAccessKey;
 import com.doublechain.bank.BankUserContext;
 
+import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
 import com.doublechain.bank.accountchange.AccountChange;
 
 import com.doublechain.bank.transaction.TransactionDAO;
+import com.doublechain.bank.namechangeevent.NameChangeEventDAO;
 import com.doublechain.bank.platform.PlatformDAO;
 import com.doublechain.bank.accountchange.AccountChangeDAO;
 
@@ -53,12 +55,16 @@ public interface AccountDAO{
 
 	public TransactionDAO getTransactionDAO();
 		
+	public NameChangeEventDAO getNameChangeEventDAO();
+		
 	public AccountChangeDAO getAccountChangeDAO();
 		
 	
  	public SmartList<Account> requestCandidateAccountForTransactionAsFromAccount(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
  	public SmartList<Account> requestCandidateAccountForTransactionAsToAccount(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
+		
+ 	public SmartList<Account> requestCandidateAccountForNameChangeEvent(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
  	public SmartList<Account> requestCandidateAccountForAccountChange(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
@@ -76,6 +82,13 @@ public interface AccountDAO{
 	//disconnect Account with change_request in Transaction
 	public Account planToRemoveTransactionListAsToAccountWithChangeRequest(Account account, String changeRequestId, Map<String,Object> options)throws Exception;
 	public int countTransactionListAsToAccountWithChangeRequest(String accountId, String changeRequestId, Map<String,Object> options)throws Exception;
+	
+	public Account planToRemoveNameChangeEventList(Account account, String nameChangeEventIds[], Map<String,Object> options)throws Exception;
+
+
+	//disconnect Account with change_request in NameChangeEvent
+	public Account planToRemoveNameChangeEventListWithChangeRequest(Account account, String changeRequestId, Map<String,Object> options)throws Exception;
+	public int countNameChangeEventListWithChangeRequest(String accountId, String changeRequestId, Map<String,Object> options)throws Exception;
 	
 	public Account planToRemoveAccountChangeList(Account account, String accountChangeIds[], Map<String,Object> options)throws Exception;
 
@@ -100,6 +113,9 @@ public interface AccountDAO{
 	
 	// 需要一个加载引用我的对象的enhance方法:Transaction的toAccount的TransactionListAsToAccount
 	public SmartList<Transaction> loadOurTransactionListAsToAccount(BankUserContext userContext, List<Account> us, Map<String,Object> options) throws Exception;
+	
+	// 需要一个加载引用我的对象的enhance方法:NameChangeEvent的account的NameChangeEventList
+	public SmartList<NameChangeEvent> loadOurNameChangeEventList(BankUserContext userContext, List<Account> us, Map<String,Object> options) throws Exception;
 	
 	// 需要一个加载引用我的对象的enhance方法:AccountChange的account的AccountChangeList
 	public SmartList<AccountChange> loadOurAccountChangeList(BankUserContext userContext, List<Account> us, Map<String,Object> options) throws Exception;

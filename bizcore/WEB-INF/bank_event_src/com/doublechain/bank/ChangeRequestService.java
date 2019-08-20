@@ -161,18 +161,34 @@ public class ChangeRequestService extends BaseManagerImpl{
 		//CommonChangeRequest request = new CommonChangeRequest();
 		//request.getItemList().add(new ChangeRequestItem());
 		//service.process(null, request);
-		
+		Platform platform=new Platform().updateId("P000001").updateName("platform"); 
 		ChangeRequest req = new ChangeRequest()
 				.updateName("test cr")
-				.updatePlatform(new Platform().updateId("P000001"));
+				.updatePlatform(platform);
 				
 		Transaction tx = new Transaction().updateName("test tx")
-				.updateFromAccount(new Account().updateId("A000001"))
-				.updateToAccount(new Account().updateId("A000002"))
+				.updateFromAccount(new Account().updateId("A000001").updateName("acc name")
+						.updatePlatform(platform))
+				.updateToAccount(new Account().updateId("A000002").updateName("acc name")
+						.updatePlatform(platform))
 				.updateType("转账")
 				.updateAmount(new BigDecimal("10.87"));
 		
 		req.addTransaction(tx);
+		
+		
+		tx = new Transaction().updateName("test tx")
+				.updateFromAccount(new Account().updateId("A000002").updateName("acc name")
+						//.updateName("acc name2")
+						.updatePlatform(platform))
+				.updateToAccount(new Account().updateId("A000001")
+						//.updateName("acc name2")
+						.updatePlatform(platform))
+				.updateType("转账")
+				.updateAmount(new BigDecimal("10.87"));
+		
+		req.addTransaction(tx);
+		
 		
 		BankObjectChecker checker=new BankObjectChecker();
 		
@@ -189,7 +205,7 @@ public class ChangeRequestService extends BaseManagerImpl{
 			e.printStackTrace();
 		}
 		
-		
+		log("done");
 		
 	}
 	

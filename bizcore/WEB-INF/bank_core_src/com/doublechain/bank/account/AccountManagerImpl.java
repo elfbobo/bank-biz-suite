@@ -20,6 +20,7 @@ import com.doublechain.bank.BankUserContext;
 import com.doublechain.bank.BankCheckerManager;
 import com.doublechain.bank.CustomBankCheckerManager;
 
+import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
 import com.doublechain.bank.accountchange.AccountChange;
@@ -168,6 +169,10 @@ public class AccountManagerImpl extends CustomBankCheckerManager implements Acco
 		addAction(userContext, account, tokens,"account.removeTransaction","removeTransaction","removeTransaction/"+account.getId()+"/","transactionListAsToAccount","primary");
 		addAction(userContext, account, tokens,"account.updateTransaction","updateTransaction","updateTransaction/"+account.getId()+"/","transactionListAsToAccount","primary");
 		addAction(userContext, account, tokens,"account.copyTransactionFrom","copyTransactionFrom","copyTransactionFrom/"+account.getId()+"/","transactionListAsToAccount","primary");
+		addAction(userContext, account, tokens,"account.addNameChangeEvent","addNameChangeEvent","addNameChangeEvent/"+account.getId()+"/","nameChangeEventList","primary");
+		addAction(userContext, account, tokens,"account.removeNameChangeEvent","removeNameChangeEvent","removeNameChangeEvent/"+account.getId()+"/","nameChangeEventList","primary");
+		addAction(userContext, account, tokens,"account.updateNameChangeEvent","updateNameChangeEvent","updateNameChangeEvent/"+account.getId()+"/","nameChangeEventList","primary");
+		addAction(userContext, account, tokens,"account.copyNameChangeEventFrom","copyNameChangeEventFrom","copyNameChangeEventFrom/"+account.getId()+"/","nameChangeEventList","primary");
 		addAction(userContext, account, tokens,"account.addAccountChange","addAccountChange","addAccountChange/"+account.getId()+"/","accountChangeList","primary");
 		addAction(userContext, account, tokens,"account.removeAccountChange","removeAccountChange","removeAccountChange/"+account.getId()+"/","accountChangeList","primary");
 		addAction(userContext, account, tokens,"account.updateAccountChange","updateAccountChange","updateAccountChange/"+account.getId()+"/","accountChangeList","primary");
@@ -340,6 +345,7 @@ public class AccountManagerImpl extends CustomBankCheckerManager implements Acco
 		return tokens().allTokens()
 		.sortTransactionListAsFromAccountWith("id","desc")
 		.sortTransactionListAsToAccountWith("id","desc")
+		.sortNameChangeEventListWith("id","desc")
 		.sortAccountChangeListWith("id","desc")
 		.analyzeAllLists().done();
 
@@ -481,6 +487,24 @@ public class AccountManagerImpl extends CustomBankCheckerManager implements Acco
 				userContext.getDAOGroup().getAccountDAO().planToRemoveTransactionListAsToAccountWithChangeRequest(account, changeRequestId, this.emptyOptions());
 
 				account = saveAccount(userContext, account, tokens().withTransactionListAsToAccount().done());
+				return account;
+			}
+	}
+	//disconnect Account with change_request in NameChangeEvent
+	protected Account breakWithNameChangeEventByChangeRequest(BankUserContext userContext, String accountId, String changeRequestId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Account account = loadAccount(userContext, accountId, allTokens());
+
+			synchronized(account){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				userContext.getDAOGroup().getAccountDAO().planToRemoveNameChangeEventListWithChangeRequest(account, changeRequestId, this.emptyOptions());
+
+				account = saveAccount(userContext, account, tokens().withNameChangeEventList().done());
 				return account;
 			}
 	}
@@ -1011,6 +1035,245 @@ public class AccountManagerImpl extends CustomBankCheckerManager implements Acco
 			transactionAsToAccount.changeProperty(property, newValueExpr);
 			
 			account = saveAccount(userContext, account, tokens().withTransactionListAsToAccount().done());
+			return present(userContext,account, mergedAllTokens(tokensExpr));
+		}
+
+	}
+	/*
+
+	*/
+	
+
+
+
+	protected void checkParamsForAddingNameChangeEvent(BankUserContext userContext, String accountId, String name, String changeRequestId,String [] tokensExpr) throws Exception{
+		
+		
+
+		
+		
+		userContext.getChecker().checkIdOfAccount(accountId);
+
+		
+		userContext.getChecker().checkNameOfNameChangeEvent(name);
+		
+		userContext.getChecker().checkChangeRequestIdOfNameChangeEvent(changeRequestId);
+	
+		userContext.getChecker().throwExceptionIfHasErrors(AccountManagerException.class);
+
+	
+	}
+	public  Account addNameChangeEvent(BankUserContext userContext, String accountId, String name, String changeRequestId, String [] tokensExpr) throws Exception
+	{	
+		
+		checkParamsForAddingNameChangeEvent(userContext,accountId,name, changeRequestId,tokensExpr);
+		
+		NameChangeEvent nameChangeEvent = createNameChangeEvent(userContext,name, changeRequestId);
+		
+		Account account = loadAccount(userContext, accountId, allTokens());
+		synchronized(account){ 
+			//Will be good when the account loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			account.addNameChangeEvent( nameChangeEvent );		
+			account = saveAccount(userContext, account, tokens().withNameChangeEventList().done());
+			
+			userContext.getManagerGroup().getNameChangeEventManager().onNewInstanceCreated(userContext, nameChangeEvent);
+			return present(userContext,account, mergedAllTokens(tokensExpr));
+		}
+	}
+	protected void checkParamsForUpdatingNameChangeEventProperties(BankUserContext userContext, String accountId,String id,String name,String [] tokensExpr) throws Exception {
+		
+		userContext.getChecker().checkIdOfAccount(accountId);
+		userContext.getChecker().checkIdOfNameChangeEvent(id);
+		
+		userContext.getChecker().checkNameOfNameChangeEvent( name);
+
+		userContext.getChecker().throwExceptionIfHasErrors(AccountManagerException.class);
+		
+	}
+	public  Account updateNameChangeEventProperties(BankUserContext userContext, String accountId, String id,String name, String [] tokensExpr) throws Exception
+	{	
+		checkParamsForUpdatingNameChangeEventProperties(userContext,accountId,id,name,tokensExpr);
+
+		Map<String, Object> options = tokens()
+				.allTokens()
+				//.withNameChangeEventListList()
+				.searchNameChangeEventListWith(NameChangeEvent.ID_PROPERTY, "is", id).done();
+		
+		Account accountToUpdate = loadAccount(userContext, accountId, options);
+		
+		if(accountToUpdate.getNameChangeEventList().isEmpty()){
+			throw new AccountManagerException("NameChangeEvent is NOT FOUND with id: '"+id+"'");
+		}
+		
+		NameChangeEvent item = accountToUpdate.getNameChangeEventList().first();
+		
+		item.updateName( name );
+
+		
+		//checkParamsForAddingNameChangeEvent(userContext,accountId,name, code, used,tokensExpr);
+		Account account = saveAccount(userContext, accountToUpdate, tokens().withNameChangeEventList().done());
+		synchronized(account){ 
+			return present(userContext,account, mergedAllTokens(tokensExpr));
+		}
+	}
+	
+	
+	protected NameChangeEvent createNameChangeEvent(BankUserContext userContext, String name, String changeRequestId) throws Exception{
+
+		NameChangeEvent nameChangeEvent = new NameChangeEvent();
+		
+		
+		nameChangeEvent.setName(name);		
+		ChangeRequest  changeRequest = new ChangeRequest();
+		changeRequest.setId(changeRequestId);		
+		nameChangeEvent.setChangeRequest(changeRequest);
+	
+		
+		return nameChangeEvent;
+	
+		
+	}
+	
+	protected NameChangeEvent createIndexedNameChangeEvent(String id, int version){
+
+		NameChangeEvent nameChangeEvent = new NameChangeEvent();
+		nameChangeEvent.setId(id);
+		nameChangeEvent.setVersion(version);
+		return nameChangeEvent;			
+		
+	}
+	
+	protected void checkParamsForRemovingNameChangeEventList(BankUserContext userContext, String accountId, 
+			String nameChangeEventIds[],String [] tokensExpr) throws Exception {
+		
+		userContext.getChecker().checkIdOfAccount(accountId);
+		for(String nameChangeEventIdItem: nameChangeEventIds){
+			userContext.getChecker().checkIdOfNameChangeEvent(nameChangeEventIdItem);
+		}
+		
+		userContext.getChecker().throwExceptionIfHasErrors(AccountManagerException.class);
+		
+	}
+	public  Account removeNameChangeEventList(BankUserContext userContext, String accountId, 
+			String nameChangeEventIds[],String [] tokensExpr) throws Exception{
+			
+			checkParamsForRemovingNameChangeEventList(userContext, accountId,  nameChangeEventIds, tokensExpr);
+			
+			
+			Account account = loadAccount(userContext, accountId, allTokens());
+			synchronized(account){ 
+				//Will be good when the account loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				userContext.getDAOGroup().getAccountDAO().planToRemoveNameChangeEventList(account, nameChangeEventIds, allTokens());
+				account = saveAccount(userContext, account, tokens().withNameChangeEventList().done());
+				deleteRelationListInGraph(userContext, account.getNameChangeEventList());
+				return present(userContext,account, mergedAllTokens(tokensExpr));
+			}
+	}
+	
+	protected void checkParamsForRemovingNameChangeEvent(BankUserContext userContext, String accountId, 
+		String nameChangeEventId, int nameChangeEventVersion,String [] tokensExpr) throws Exception{
+		
+		userContext.getChecker().checkIdOfAccount( accountId);
+		userContext.getChecker().checkIdOfNameChangeEvent(nameChangeEventId);
+		userContext.getChecker().checkVersionOfNameChangeEvent(nameChangeEventVersion);
+		userContext.getChecker().throwExceptionIfHasErrors(AccountManagerException.class);
+	
+	}
+	public  Account removeNameChangeEvent(BankUserContext userContext, String accountId, 
+		String nameChangeEventId, int nameChangeEventVersion,String [] tokensExpr) throws Exception{
+		
+		checkParamsForRemovingNameChangeEvent(userContext,accountId, nameChangeEventId, nameChangeEventVersion,tokensExpr);
+		
+		NameChangeEvent nameChangeEvent = createIndexedNameChangeEvent(nameChangeEventId, nameChangeEventVersion);
+		Account account = loadAccount(userContext, accountId, allTokens());
+		synchronized(account){ 
+			//Will be good when the account loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			account.removeNameChangeEvent( nameChangeEvent );		
+			account = saveAccount(userContext, account, tokens().withNameChangeEventList().done());
+			deleteRelationInGraph(userContext, nameChangeEvent);
+			return present(userContext,account, mergedAllTokens(tokensExpr));
+		}
+		
+		
+	}
+	protected void checkParamsForCopyingNameChangeEvent(BankUserContext userContext, String accountId, 
+		String nameChangeEventId, int nameChangeEventVersion,String [] tokensExpr) throws Exception{
+		
+		userContext.getChecker().checkIdOfAccount( accountId);
+		userContext.getChecker().checkIdOfNameChangeEvent(nameChangeEventId);
+		userContext.getChecker().checkVersionOfNameChangeEvent(nameChangeEventVersion);
+		userContext.getChecker().throwExceptionIfHasErrors(AccountManagerException.class);
+	
+	}
+	public  Account copyNameChangeEventFrom(BankUserContext userContext, String accountId, 
+		String nameChangeEventId, int nameChangeEventVersion,String [] tokensExpr) throws Exception{
+		
+		checkParamsForCopyingNameChangeEvent(userContext,accountId, nameChangeEventId, nameChangeEventVersion,tokensExpr);
+		
+		NameChangeEvent nameChangeEvent = createIndexedNameChangeEvent(nameChangeEventId, nameChangeEventVersion);
+		Account account = loadAccount(userContext, accountId, allTokens());
+		synchronized(account){ 
+			//Will be good when the account loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			
+			
+			
+			account.copyNameChangeEventFrom( nameChangeEvent );		
+			account = saveAccount(userContext, account, tokens().withNameChangeEventList().done());
+			
+			userContext.getManagerGroup().getNameChangeEventManager().onNewInstanceCreated(userContext, (NameChangeEvent)account.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
+			return present(userContext,account, mergedAllTokens(tokensExpr));
+		}
+		
+	}
+	
+	protected void checkParamsForUpdatingNameChangeEvent(BankUserContext userContext, String accountId, String nameChangeEventId, int nameChangeEventVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
+		
+
+		
+		userContext.getChecker().checkIdOfAccount(accountId);
+		userContext.getChecker().checkIdOfNameChangeEvent(nameChangeEventId);
+		userContext.getChecker().checkVersionOfNameChangeEvent(nameChangeEventVersion);
+		
+
+		if(NameChangeEvent.NAME_PROPERTY.equals(property)){
+			userContext.getChecker().checkNameOfNameChangeEvent(parseString(newValueExpr));
+		}
+		
+	
+		userContext.getChecker().throwExceptionIfHasErrors(AccountManagerException.class);
+	
+	}
+	
+	public  Account updateNameChangeEvent(BankUserContext userContext, String accountId, String nameChangeEventId, int nameChangeEventVersion, String property, String newValueExpr,String [] tokensExpr)
+			throws Exception{
+		
+		checkParamsForUpdatingNameChangeEvent(userContext, accountId, nameChangeEventId, nameChangeEventVersion, property, newValueExpr,  tokensExpr);
+		
+		Map<String,Object> loadTokens = this.tokens().withNameChangeEventList().searchNameChangeEventListWith(NameChangeEvent.ID_PROPERTY, "eq", nameChangeEventId).done();
+		
+		
+		
+		Account account = loadAccount(userContext, accountId, loadTokens);
+		
+		synchronized(account){ 
+			//Will be good when the account loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			//account.removeNameChangeEvent( nameChangeEvent );	
+			//make changes to AcceleraterAccount.
+			NameChangeEvent nameChangeEventIndex = createIndexedNameChangeEvent(nameChangeEventId, nameChangeEventVersion);
+		
+			NameChangeEvent nameChangeEvent = account.findTheNameChangeEvent(nameChangeEventIndex);
+			if(nameChangeEvent == null){
+				throw new AccountManagerException(nameChangeEvent+" is NOT FOUND" );
+			}
+			
+			nameChangeEvent.changeProperty(property, newValueExpr);
+			
+			account = saveAccount(userContext, account, tokens().withNameChangeEventList().done());
 			return present(userContext,account, mergedAllTokens(tokensExpr));
 		}
 

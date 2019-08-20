@@ -222,6 +222,62 @@ public class ChangeRequestForm extends BaseForm {
 	}
 
 
+	public ChangeRequestForm nameChangeEventIdFieldForNameChangeEvent(String parameterName, String initValue){
+		FormField field =  idFromNameChangeEvent(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public ChangeRequestForm nameChangeEventIdFieldForNameChangeEvent(String initValue){
+		return nameChangeEventIdFieldForNameChangeEvent("nameChangeEventId",initValue);
+	}
+	public ChangeRequestForm nameChangeEventIdFieldForNameChangeEvent(){
+		return nameChangeEventIdFieldForNameChangeEvent("nameChangeEventId","");
+	}
+
+
+	public ChangeRequestForm nameFieldForNameChangeEvent(String parameterName, String initValue){
+		FormField field =  nameFromNameChangeEvent(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public ChangeRequestForm nameFieldForNameChangeEvent(String initValue){
+		return nameFieldForNameChangeEvent("name",initValue);
+	}
+	public ChangeRequestForm nameFieldForNameChangeEvent(){
+		return nameFieldForNameChangeEvent("name","");
+	}
+
+
+	public ChangeRequestForm accountIdFieldForNameChangeEvent(String parameterName, String initValue){
+		FormField field =  accountIdFromNameChangeEvent(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public ChangeRequestForm accountIdFieldForNameChangeEvent(String initValue){
+		return accountIdFieldForNameChangeEvent("accountId",initValue);
+	}
+	public ChangeRequestForm accountIdFieldForNameChangeEvent(){
+		return accountIdFieldForNameChangeEvent("accountId","");
+	}
+
+
+	public ChangeRequestForm changeRequestIdFieldForNameChangeEvent(String parameterName, String initValue){
+		FormField field =  changeRequestIdFromNameChangeEvent(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public ChangeRequestForm changeRequestIdFieldForNameChangeEvent(String initValue){
+		return changeRequestIdFieldForNameChangeEvent("changeRequestId",initValue);
+	}
+	public ChangeRequestForm changeRequestIdFieldForNameChangeEvent(){
+		return changeRequestIdFieldForNameChangeEvent("changeRequestId","");
+	}
+
+
 	public ChangeRequestForm accountChangeIdFieldForAccountChange(String parameterName, String initValue){
 		FormField field =  idFromAccountChange(parameterName, initValue);		
 		this.addFormField(field);

@@ -261,6 +261,58 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
+	protected FormField idFromNameChangeEvent(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("ID");
+		field.setLocaleKey("name_change_event.id");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写ID");
+		return field;
+	}
+
+	protected FormField nameFromNameChangeEvent(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("名称");
+		field.setLocaleKey("name_change_event.name");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写名称");
+		return field;
+	}
+
+	protected FormField accountIdFromNameChangeEvent(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("账户");
+		field.setLocaleKey("name_change_event.account");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("Account");
+		field.setRequired(true);
+		field.setPlaceholder("请填写账户");
+		return field;
+	}
+
+	protected FormField changeRequestIdFromNameChangeEvent(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("变更请求");
+		field.setLocaleKey("name_change_event.change_request");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("ChangeRequest");
+		field.setRequired(true);
+		field.setPlaceholder("请填写变更请求");
+		return field;
+	}
+
 	protected FormField idFromAccount(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("ID");
@@ -380,14 +432,14 @@ public class BaseForm extends GenericForm{
 
 	protected FormField previousBalanceFromAccountChange(String parameterName, String initValue){
 		FormField field = new FormField();
-		field.setLabel("以前的平衡");
+		field.setLabel("初期余额");
 		field.setLocaleKey("account_change.previous_balance");
 		field.setParameterName(parameterName);
 		field.setDefaultValue(initValue);
 		field.setFieldGroup("基本信息");
 		field.setType("money");
 		field.setRequired(true);
-		field.setPlaceholder("请填写以前的平衡");
+		field.setPlaceholder("请填写初期余额");
 		return field;
 	}
 

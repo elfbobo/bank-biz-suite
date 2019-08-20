@@ -115,6 +115,9 @@ public class BaseRelation{
 		String [] transactionRelatedObjectNames = {"from_account:Account","to_account:Account","change_request:ChangeRequest"};
 		addRelationIndex("Transaction",transactionRelatedObjectNames);
 
+		String [] nameChangeEventRelatedObjectNames = {"account:Account","change_request:ChangeRequest"};
+		addRelationIndex("NameChangeEvent",nameChangeEventRelatedObjectNames);
+
 		String [] accountRelatedObjectNames = {"platform:Platform"};
 		addRelationIndex("Account",accountRelatedObjectNames);
 
@@ -175,6 +178,8 @@ public class BaseRelation{
 		addGenericRelation("Transaction"                           ,TRUST_CHAIN_READ,"fromAccount");
 		addGenericRelation("Transaction"                           ,TRUST_CHAIN_READ,"toAccount");
 		addGenericRelation("Transaction"                           ,TRUST_CHAIN_READ,"changeRequest");
+		addGenericRelation("NameChangeEvent"                       ,TRUST_CHAIN_READ,"account");
+		addGenericRelation("NameChangeEvent"                       ,TRUST_CHAIN_READ,"changeRequest");
 		addGenericRelation("Account"                               ,TRUST_CHAIN_READ,"platform");
 		addGenericRelation("AccountChange"                         ,TRUST_CHAIN_READ,"account");
 		addGenericRelation("AccountChange"                         ,TRUST_CHAIN_READ,"changeRequest");

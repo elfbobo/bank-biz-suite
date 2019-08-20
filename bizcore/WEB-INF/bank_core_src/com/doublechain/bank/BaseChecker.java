@@ -11,12 +11,56 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Stack;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import com.terapico.caf.DateTime;
 
 public class BaseChecker {
 	protected BankUserContext userContext;
 	protected List<Message> messageList;
+	
+	Stack<String>positonsStack;
+	AtomicInteger baseEntityListArrayIndex = null; 
+	protected void endList(List<BaseEntity> transactionList) {
+		baseEntityListArrayIndex = null;
+		
+	}
+
+	protected void startList(List<BaseEntity> transactionList) {
+		
+		baseEntityListArrayIndex = new AtomicInteger();
+		
+	}
+	protected BaseEntity eachOfList(BaseEntity entity) {
+		if(baseEntityListArrayIndex != null) {
+			baseEntityListArrayIndex.incrementAndGet();
+		}
+		
+		return entity;
+		
+	}
+	protected void pushPosition(String value) {
+		if(positonsStack==null) {
+			positonsStack = new Stack<String>();
+		}
+		positonsStack.push(value);
+	}
+	protected void popPosition() {
+		if(positonsStack==null) {
+			return;
+		}
+		positonsStack.pop();
+	}
+	protected String currentPosition() {
+		if(positonsStack==null) {
+			return "";
+		}
+		return positonsStack.stream().collect( Collectors.joining( "." ) );
+		
+	}
+	
 	
 	public BankUserContext getUserContext() {
 		return userContext;
@@ -107,6 +151,7 @@ public class BaseChecker {
 	}
 	protected void packMessage(List<Message> messageList,String subject, String propertykey, Object[] parameters,String defaultMessage ){
 		Message errorMsg = new Message();
+		errorMsg.setSourcePosition(this.currentPosition());
 		errorMsg.setLevel("warning");
 		errorMsg.setSubject(subject);
  		errorMsg.setParameters(parameters);
@@ -469,10 +514,8 @@ public class BaseChecker {
 		
 		
 		if(userContext==null) {
-			
 			Class [] classes = {List.class};
 			throw  exceptionClazz.getDeclaredConstructor(classes).newInstance(messageList);
-
 		}
 		
 		

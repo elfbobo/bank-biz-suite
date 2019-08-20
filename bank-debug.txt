@@ -19,6 +19,12 @@ Amount|金额
 Type|类型
 Change Request|变更请求
 Version|版本
+Name Change Event|名字更改事件
+Id|ID
+Name|名称
+Account|账户
+Change Request|变更请求
+Version|版本
 Account|账户
 Id|ID
 Name|名称
@@ -31,7 +37,7 @@ Account Change|账户变更
 Id|ID
 Name|名称
 Account|账户
-Previous Balance|以前的平衡
+Previous Balance|初期余额
 Type|类型
 Amount|金额
 Current Balance|当前余额
@@ -163,6 +169,8 @@ Version|版本
 Transfer to Another Platform|转到平台
 Transfer to Another From Account|转帐
 Transfer to Another To Account|转入帐户
+Transfer to Another Change Request|转换到更改请求
+Transfer to Another Account|转到账户
 Transfer to Another Change Request|转换到更改请求
 Transfer to Another Platform|转到平台
 Transfer to Another Account|转到账户
