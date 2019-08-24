@@ -34,6 +34,7 @@ const menuData = {menuName:"账户", menuFor: "account",
   		subItems: [
   {name: 'transactionListAsFromAccount', displayName:'事务(交易清单从帐户)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   {name: 'transactionListAsToAccount', displayName:'事务(交易清单作为帐户)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'nameChangeEventList', displayName:'名字更改事件', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   {name: 'accountChangeList', displayName:'账户变更', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
@@ -68,9 +69,9 @@ const renderItemOfList=(account,targetComponent)=>{
       <DescriptionList  key={account.id} size="small" col="4">
         <Description term="ID">{account.id}</Description> 
         <Description term="名称">{account.name}</Description> 
-        <Description term="余额">{account.balance}</Description> 
-        <Description term="创建时间">{ moment(account.createTime).format('YYYY-MM-DD')}</Description> 
-        <Description term="更新时间">{ moment(account.updateTime).format('YYYY-MM-DD')}</Description> 
+        <Description term="余额"><div style={{"color":"red"}}>{account.balance}</div></Description> 
+        <Description term="创建时间"><div>{ moment(account.createTime).format('YYYY-MM-DD')}</div></Description> 
+        <Description term="更新时间"><div>{ moment(account.updateTime).format('YYYY-MM-DD')}</div></Description> 
 	
         
       </DescriptionList>

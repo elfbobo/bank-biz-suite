@@ -19,7 +19,7 @@ const testValues = {};
 /*
 const testValues = {
   name: '张三账户',
-  balance: '108.33',
+  balance: '102.81',
   platformId: 'P000001',
 }
 */
@@ -75,6 +75,7 @@ class AccountAssociateForm extends Component {
     const userContext = null
     
  const {TransactionModalTable} = GlobalComponents;
+ const {NameChangeEventModalTable} = GlobalComponents;
  const {AccountChangeModalTable} = GlobalComponents;
 
 
@@ -200,7 +201,7 @@ class AccountAssociateForm extends Component {
         </Card>
         
 	<TransactionModalTable data={data.transactionListAsFromAccount} owner={owner} />
-	<TransactionModalTable data={data.transactionListAsToAccount} owner={owner} />
+	<NameChangeEventModalTable data={data.nameChangeEventList} owner={owner} />
 	<AccountChangeModalTable data={data.accountChangeList} owner={owner} />
         
         

@@ -3,9 +3,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.math.BigDecimal;
 import com.terapico.caf.DateTime;
-import java.util.concurrent.atomic.AtomicInteger;
 public class BankObjectChecker extends BankChecker{
 
 	Set<BaseEntity> checkedObjectSet;
@@ -30,13 +30,59 @@ public class BankObjectChecker extends BankChecker{
 	public interface CheckerParameterFunction<P1,R> {
 		R apply(P1 valueToCheck);
 	}
-	
+	protected boolean isReferenceObject(BaseEntity target) {
+		
+		if(target.getId()==null) {
+			return false;
+		}
+		if(target.getId().isEmpty()) {
+			return false;
+		}
+		if(target.getVersion() > 0) {
+			return false;
+		}
+		
+		return true;
+		
+	}
+	protected boolean isNewObject(BaseEntity target) {
+		if(target.getVersion() > 0) {
+			return false;
+		}
+		if(target.getId()==null) {
+			return true;
+		}
+		if(!target.getId().isEmpty()) {
+			return false;
+		}
+		
+		
+		return true;
+		
+	}
 	public <T> BankChecker commonObjectPropertyCheck(BaseEntity target, String propertyName, CheckerParameterFunction<T,BankChecker> checkerFunction) {
 		
+		if(!target.isChanged()) {
+			return this;
+		}
+		if(!target.isChanged()) {
+			return this;
+		}
+		
+		if(isReferenceObject(target)&&!propertyName.equals("id")) {
+			//this is an object reference, so all other properties except id check will be ignored
+			//id will be checked in this case
+			//if(!propertyName.equals("id")) {
+			return this; //with an Id, but version is 0 regard as refencer
+			//}
+		}
+		if(isNewObject(target)&&propertyName.equals("id")) {
+			// ignore check id for new object
+			return this;
+		}
 		pushPosition(propertyName);
 		T valueToCheck=(T)target.propertyOf(propertyName);
 		checkerFunction.apply(valueToCheck);
-		System.out.println("checked: \t\t"+this.currentPosition());
 		popPosition();
 		
 		return this;
@@ -59,13 +105,11 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(platformAsBaseEntity);
-		if( platformAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(platformAsBaseEntity,"id",this::checkIdOfPlatform);
+		commonObjectPropertyCheck(platformAsBaseEntity,"id",this::checkIdOfPlatform);
 		commonObjectPropertyCheck(platformAsBaseEntity,"name",this::checkNameOfPlatform);
 		commonObjectPropertyCheck(platformAsBaseEntity,"version",this::checkVersionOfPlatform);
 		commonObjectPropertyCheck(platformAsBaseEntity,"changeRequestList",this::checkChangeRequestListOfPlatform);
 		commonObjectPropertyCheck(platformAsBaseEntity,"accountList",this::checkAccountListOfPlatform);
-		System.out.println("checked: "+ platformAsBaseEntity);
 		return this;
 
 	}
@@ -76,15 +120,13 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(changeRequestAsBaseEntity);
-		if( changeRequestAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(changeRequestAsBaseEntity,"id",this::checkIdOfChangeRequest);
+		commonObjectPropertyCheck(changeRequestAsBaseEntity,"id",this::checkIdOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"name",this::checkNameOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"platform",this::checkPlatformOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"version",this::checkVersionOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"transactionList",this::checkTransactionListOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"nameChangeEventList",this::checkNameChangeEventListOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"accountChangeList",this::checkAccountChangeListOfChangeRequest);
-		System.out.println("checked: "+ changeRequestAsBaseEntity);
 		return this;
 
 	}
@@ -95,8 +137,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(transactionAsBaseEntity);
-		if( transactionAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(transactionAsBaseEntity,"id",this::checkIdOfTransaction);
+		commonObjectPropertyCheck(transactionAsBaseEntity,"id",this::checkIdOfTransaction);
 		commonObjectPropertyCheck(transactionAsBaseEntity,"name",this::checkNameOfTransaction);
 		commonObjectPropertyCheck(transactionAsBaseEntity,"fromAccount",this::checkFromAccountOfTransaction);
 		commonObjectPropertyCheck(transactionAsBaseEntity,"toAccount",this::checkToAccountOfTransaction);
@@ -104,7 +145,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(transactionAsBaseEntity,"type",this::checkTypeOfTransaction);
 		commonObjectPropertyCheck(transactionAsBaseEntity,"changeRequest",this::checkChangeRequestOfTransaction);
 		commonObjectPropertyCheck(transactionAsBaseEntity,"version",this::checkVersionOfTransaction);
-		System.out.println("checked: "+ transactionAsBaseEntity);
 		return this;
 
 	}
@@ -115,13 +155,11 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(nameChangeEventAsBaseEntity);
-		if( nameChangeEventAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(nameChangeEventAsBaseEntity,"id",this::checkIdOfNameChangeEvent);
+		commonObjectPropertyCheck(nameChangeEventAsBaseEntity,"id",this::checkIdOfNameChangeEvent);
 		commonObjectPropertyCheck(nameChangeEventAsBaseEntity,"name",this::checkNameOfNameChangeEvent);
 		commonObjectPropertyCheck(nameChangeEventAsBaseEntity,"account",this::checkAccountOfNameChangeEvent);
 		commonObjectPropertyCheck(nameChangeEventAsBaseEntity,"changeRequest",this::checkChangeRequestOfNameChangeEvent);
 		commonObjectPropertyCheck(nameChangeEventAsBaseEntity,"version",this::checkVersionOfNameChangeEvent);
-		System.out.println("checked: "+ nameChangeEventAsBaseEntity);
 		return this;
 
 	}
@@ -132,8 +170,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(accountAsBaseEntity);
-		if( accountAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(accountAsBaseEntity,"id",this::checkIdOfAccount);
+		commonObjectPropertyCheck(accountAsBaseEntity,"id",this::checkIdOfAccount);
 		commonObjectPropertyCheck(accountAsBaseEntity,"name",this::checkNameOfAccount);
 		commonObjectPropertyCheck(accountAsBaseEntity,"balance",this::checkBalanceOfAccount);
 		commonObjectPropertyCheck(accountAsBaseEntity,"platform",this::checkPlatformOfAccount);
@@ -142,7 +179,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(accountAsBaseEntity,"transactionListAsToAccount",this::checkTransactionListAsToAccountOfAccount);
 		commonObjectPropertyCheck(accountAsBaseEntity,"nameChangeEventList",this::checkNameChangeEventListOfAccount);
 		commonObjectPropertyCheck(accountAsBaseEntity,"accountChangeList",this::checkAccountChangeListOfAccount);
-		System.out.println("checked: "+ accountAsBaseEntity);
 		return this;
 
 	}
@@ -153,8 +189,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(accountChangeAsBaseEntity);
-		if( accountChangeAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(accountChangeAsBaseEntity,"id",this::checkIdOfAccountChange);
+		commonObjectPropertyCheck(accountChangeAsBaseEntity,"id",this::checkIdOfAccountChange);
 		commonObjectPropertyCheck(accountChangeAsBaseEntity,"name",this::checkNameOfAccountChange);
 		commonObjectPropertyCheck(accountChangeAsBaseEntity,"account",this::checkAccountOfAccountChange);
 		commonObjectPropertyCheck(accountChangeAsBaseEntity,"previousBalance",this::checkPreviousBalanceOfAccountChange);
@@ -163,7 +198,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(accountChangeAsBaseEntity,"currentBalance",this::checkCurrentBalanceOfAccountChange);
 		commonObjectPropertyCheck(accountChangeAsBaseEntity,"changeRequest",this::checkChangeRequestOfAccountChange);
 		commonObjectPropertyCheck(accountChangeAsBaseEntity,"version",this::checkVersionOfAccountChange);
-		System.out.println("checked: "+ accountChangeAsBaseEntity);
 		return this;
 
 	}
@@ -174,13 +208,11 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(userDomainAsBaseEntity);
-		if( userDomainAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(userDomainAsBaseEntity,"id",this::checkIdOfUserDomain);
+		commonObjectPropertyCheck(userDomainAsBaseEntity,"id",this::checkIdOfUserDomain);
 		commonObjectPropertyCheck(userDomainAsBaseEntity,"name",this::checkNameOfUserDomain);
 		commonObjectPropertyCheck(userDomainAsBaseEntity,"version",this::checkVersionOfUserDomain);
 		commonObjectPropertyCheck(userDomainAsBaseEntity,"userWhiteListList",this::checkUserWhiteListListOfUserDomain);
 		commonObjectPropertyCheck(userDomainAsBaseEntity,"secUserList",this::checkSecUserListOfUserDomain);
-		System.out.println("checked: "+ userDomainAsBaseEntity);
 		return this;
 
 	}
@@ -191,13 +223,11 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(userWhiteListAsBaseEntity);
-		if( userWhiteListAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(userWhiteListAsBaseEntity,"id",this::checkIdOfUserWhiteList);
+		commonObjectPropertyCheck(userWhiteListAsBaseEntity,"id",this::checkIdOfUserWhiteList);
 		commonObjectPropertyCheck(userWhiteListAsBaseEntity,"userIdentity",this::checkUserIdentityOfUserWhiteList);
 		commonObjectPropertyCheck(userWhiteListAsBaseEntity,"userSpecialFunctions",this::checkUserSpecialFunctionsOfUserWhiteList);
 		commonObjectPropertyCheck(userWhiteListAsBaseEntity,"domain",this::checkDomainOfUserWhiteList);
 		commonObjectPropertyCheck(userWhiteListAsBaseEntity,"version",this::checkVersionOfUserWhiteList);
-		System.out.println("checked: "+ userWhiteListAsBaseEntity);
 		return this;
 
 	}
@@ -208,8 +238,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(secUserAsBaseEntity);
-		if( secUserAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(secUserAsBaseEntity,"id",this::checkIdOfSecUser);
+		commonObjectPropertyCheck(secUserAsBaseEntity,"id",this::checkIdOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"login",this::checkLoginOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"mobile",this::checkMobileOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"email",this::checkEmailOfSecUser);
@@ -224,7 +253,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(secUserAsBaseEntity,"version",this::checkVersionOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"userAppList",this::checkUserAppListOfSecUser);
 		commonObjectPropertyCheck(secUserAsBaseEntity,"loginHistoryList",this::checkLoginHistoryListOfSecUser);
-		System.out.println("checked: "+ secUserAsBaseEntity);
 		return this;
 
 	}
@@ -235,13 +263,11 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(secUserBlockingAsBaseEntity);
-		if( secUserBlockingAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"id",this::checkIdOfSecUserBlocking);
+		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"id",this::checkIdOfSecUserBlocking);
 		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"who",this::checkWhoOfSecUserBlocking);
 		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"comments",this::checkCommentsOfSecUserBlocking);
 		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"version",this::checkVersionOfSecUserBlocking);
 		commonObjectPropertyCheck(secUserBlockingAsBaseEntity,"secUserList",this::checkSecUserListOfSecUserBlocking);
-		System.out.println("checked: "+ secUserBlockingAsBaseEntity);
 		return this;
 
 	}
@@ -252,8 +278,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(userAppAsBaseEntity);
-		if( userAppAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(userAppAsBaseEntity,"id",this::checkIdOfUserApp);
+		commonObjectPropertyCheck(userAppAsBaseEntity,"id",this::checkIdOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"title",this::checkTitleOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"secUser",this::checkSecUserOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"appIcon",this::checkAppIconOfUserApp);
@@ -265,7 +290,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(userAppAsBaseEntity,"version",this::checkVersionOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"listAccessList",this::checkListAccessListOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"objectAccessList",this::checkObjectAccessListOfUserApp);
-		System.out.println("checked: "+ userAppAsBaseEntity);
 		return this;
 
 	}
@@ -276,8 +300,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(listAccessAsBaseEntity);
-		if( listAccessAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(listAccessAsBaseEntity,"id",this::checkIdOfListAccess);
+		commonObjectPropertyCheck(listAccessAsBaseEntity,"id",this::checkIdOfListAccess);
 		commonObjectPropertyCheck(listAccessAsBaseEntity,"name",this::checkNameOfListAccess);
 		commonObjectPropertyCheck(listAccessAsBaseEntity,"internalName",this::checkInternalNameOfListAccess);
 		commonObjectPropertyCheck(listAccessAsBaseEntity,"readPermission",this::checkReadPermissionOfListAccess);
@@ -287,7 +310,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(listAccessAsBaseEntity,"executionPermission",this::checkExecutionPermissionOfListAccess);
 		commonObjectPropertyCheck(listAccessAsBaseEntity,"app",this::checkAppOfListAccess);
 		commonObjectPropertyCheck(listAccessAsBaseEntity,"version",this::checkVersionOfListAccess);
-		System.out.println("checked: "+ listAccessAsBaseEntity);
 		return this;
 
 	}
@@ -298,8 +320,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(objectAccessAsBaseEntity);
-		if( objectAccessAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(objectAccessAsBaseEntity,"id",this::checkIdOfObjectAccess);
+		commonObjectPropertyCheck(objectAccessAsBaseEntity,"id",this::checkIdOfObjectAccess);
 		commonObjectPropertyCheck(objectAccessAsBaseEntity,"name",this::checkNameOfObjectAccess);
 		commonObjectPropertyCheck(objectAccessAsBaseEntity,"objectType",this::checkObjectTypeOfObjectAccess);
 		commonObjectPropertyCheck(objectAccessAsBaseEntity,"list1",this::checkList1OfObjectAccess);
@@ -313,7 +334,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(objectAccessAsBaseEntity,"list9",this::checkList9OfObjectAccess);
 		commonObjectPropertyCheck(objectAccessAsBaseEntity,"app",this::checkAppOfObjectAccess);
 		commonObjectPropertyCheck(objectAccessAsBaseEntity,"version",this::checkVersionOfObjectAccess);
-		System.out.println("checked: "+ objectAccessAsBaseEntity);
 		return this;
 
 	}
@@ -324,13 +344,11 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(loginHistoryAsBaseEntity);
-		if( loginHistoryAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(loginHistoryAsBaseEntity,"id",this::checkIdOfLoginHistory);
+		commonObjectPropertyCheck(loginHistoryAsBaseEntity,"id",this::checkIdOfLoginHistory);
 		commonObjectPropertyCheck(loginHistoryAsBaseEntity,"fromIp",this::checkFromIpOfLoginHistory);
 		commonObjectPropertyCheck(loginHistoryAsBaseEntity,"description",this::checkDescriptionOfLoginHistory);
 		commonObjectPropertyCheck(loginHistoryAsBaseEntity,"secUser",this::checkSecUserOfLoginHistory);
 		commonObjectPropertyCheck(loginHistoryAsBaseEntity,"version",this::checkVersionOfLoginHistory);
-		System.out.println("checked: "+ loginHistoryAsBaseEntity);
 		return this;
 
 	}
@@ -341,8 +359,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(genericFormAsBaseEntity);
-		if( genericFormAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(genericFormAsBaseEntity,"id",this::checkIdOfGenericForm);
+		commonObjectPropertyCheck(genericFormAsBaseEntity,"id",this::checkIdOfGenericForm);
 		commonObjectPropertyCheck(genericFormAsBaseEntity,"title",this::checkTitleOfGenericForm);
 		commonObjectPropertyCheck(genericFormAsBaseEntity,"description",this::checkDescriptionOfGenericForm);
 		commonObjectPropertyCheck(genericFormAsBaseEntity,"version",this::checkVersionOfGenericForm);
@@ -350,7 +367,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(genericFormAsBaseEntity,"formFieldMessageList",this::checkFormFieldMessageListOfGenericForm);
 		commonObjectPropertyCheck(genericFormAsBaseEntity,"formFieldList",this::checkFormFieldListOfGenericForm);
 		commonObjectPropertyCheck(genericFormAsBaseEntity,"formActionList",this::checkFormActionListOfGenericForm);
-		System.out.println("checked: "+ genericFormAsBaseEntity);
 		return this;
 
 	}
@@ -361,13 +377,11 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(formMessageAsBaseEntity);
-		if( formMessageAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(formMessageAsBaseEntity,"id",this::checkIdOfFormMessage);
+		commonObjectPropertyCheck(formMessageAsBaseEntity,"id",this::checkIdOfFormMessage);
 		commonObjectPropertyCheck(formMessageAsBaseEntity,"title",this::checkTitleOfFormMessage);
 		commonObjectPropertyCheck(formMessageAsBaseEntity,"form",this::checkFormOfFormMessage);
 		commonObjectPropertyCheck(formMessageAsBaseEntity,"level",this::checkLevelOfFormMessage);
 		commonObjectPropertyCheck(formMessageAsBaseEntity,"version",this::checkVersionOfFormMessage);
-		System.out.println("checked: "+ formMessageAsBaseEntity);
 		return this;
 
 	}
@@ -378,14 +392,12 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(formFieldMessageAsBaseEntity);
-		if( formFieldMessageAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(formFieldMessageAsBaseEntity,"id",this::checkIdOfFormFieldMessage);
+		commonObjectPropertyCheck(formFieldMessageAsBaseEntity,"id",this::checkIdOfFormFieldMessage);
 		commonObjectPropertyCheck(formFieldMessageAsBaseEntity,"title",this::checkTitleOfFormFieldMessage);
 		commonObjectPropertyCheck(formFieldMessageAsBaseEntity,"parameterName",this::checkParameterNameOfFormFieldMessage);
 		commonObjectPropertyCheck(formFieldMessageAsBaseEntity,"form",this::checkFormOfFormFieldMessage);
 		commonObjectPropertyCheck(formFieldMessageAsBaseEntity,"level",this::checkLevelOfFormFieldMessage);
 		commonObjectPropertyCheck(formFieldMessageAsBaseEntity,"version",this::checkVersionOfFormFieldMessage);
-		System.out.println("checked: "+ formFieldMessageAsBaseEntity);
 		return this;
 
 	}
@@ -396,8 +408,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(formFieldAsBaseEntity);
-		if( formFieldAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(formFieldAsBaseEntity,"id",this::checkIdOfFormField);
+		commonObjectPropertyCheck(formFieldAsBaseEntity,"id",this::checkIdOfFormField);
 		commonObjectPropertyCheck(formFieldAsBaseEntity,"label",this::checkLabelOfFormField);
 		commonObjectPropertyCheck(formFieldAsBaseEntity,"localeKey",this::checkLocaleKeyOfFormField);
 		commonObjectPropertyCheck(formFieldAsBaseEntity,"parameterName",this::checkParameterNameOfFormField);
@@ -415,7 +426,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(formFieldAsBaseEntity,"candidateValues",this::checkCandidateValuesOfFormField);
 		commonObjectPropertyCheck(formFieldAsBaseEntity,"suggestValues",this::checkSuggestValuesOfFormField);
 		commonObjectPropertyCheck(formFieldAsBaseEntity,"version",this::checkVersionOfFormField);
-		System.out.println("checked: "+ formFieldAsBaseEntity);
 		return this;
 
 	}
@@ -426,8 +436,7 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		markAsChecked(formActionAsBaseEntity);
-		if( formActionAsBaseEntity.getVersion() > 0 ) 
-			commonObjectPropertyCheck(formActionAsBaseEntity,"id",this::checkIdOfFormAction);
+		commonObjectPropertyCheck(formActionAsBaseEntity,"id",this::checkIdOfFormAction);
 		commonObjectPropertyCheck(formActionAsBaseEntity,"label",this::checkLabelOfFormAction);
 		commonObjectPropertyCheck(formActionAsBaseEntity,"localeKey",this::checkLocaleKeyOfFormAction);
 		commonObjectPropertyCheck(formActionAsBaseEntity,"actionKey",this::checkActionKeyOfFormAction);
@@ -435,7 +444,6 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(formActionAsBaseEntity,"url",this::checkUrlOfFormAction);
 		commonObjectPropertyCheck(formActionAsBaseEntity,"form",this::checkFormOfFormAction);
 		commonObjectPropertyCheck(formActionAsBaseEntity,"version",this::checkVersionOfFormAction);
-		System.out.println("checked: "+ formActionAsBaseEntity);
 		return this;
 
 	}

@@ -23,8 +23,6 @@ public class BankException extends Exception implements MessageContainer {
 		
 		for(Message message: getErrorMessageList()) {
 			stringBuilder.append(message.getBody());
-			stringBuilder.append(message.getSourcePosition());
-			stringBuilder.append(" ");
 		}
 		
 		

@@ -17,30 +17,16 @@ import java.util.stream.Collectors;
 
 import com.terapico.caf.DateTime;
 
+
 public class BaseChecker {
 	protected BankUserContext userContext;
 	protected List<Message> messageList;
 	
+	public BankUserContext getUserContext() {
+		return userContext;
+	}
 	Stack<String>positonsStack;
-	AtomicInteger baseEntityListArrayIndex = null; 
-	protected void endList(List<BaseEntity> transactionList) {
-		baseEntityListArrayIndex = null;
-		
-	}
-
-	protected void startList(List<BaseEntity> transactionList) {
-		
-		baseEntityListArrayIndex = new AtomicInteger();
-		
-	}
-	protected BaseEntity eachOfList(BaseEntity entity) {
-		if(baseEntityListArrayIndex != null) {
-			baseEntityListArrayIndex.incrementAndGet();
-		}
-		
-		return entity;
-		
-	}
+	
 	protected void pushPosition(String value) {
 		if(positonsStack==null) {
 			positonsStack = new Stack<String>();
@@ -60,11 +46,26 @@ public class BaseChecker {
 		return positonsStack.stream().collect( Collectors.joining( "." ) );
 		
 	}
-	
-	
-	public BankUserContext getUserContext() {
-		return userContext;
+	AtomicInteger baseEntityListArrayIndex = null; 
+	protected void endList(List<BaseEntity> transactionList) {
+		baseEntityListArrayIndex = null;
+		
 	}
+
+	protected void startList(List<BaseEntity> transactionList) {
+		
+		baseEntityListArrayIndex = new AtomicInteger();
+		
+	}
+	protected BaseEntity eachOfList(BaseEntity entity) {
+		if(baseEntityListArrayIndex != null) {
+			baseEntityListArrayIndex.incrementAndGet();
+		}
+		
+		return entity;
+		
+	}
+	
 	public void setUserContext(BankUserContext ctx){
 		this.userContext = ctx;
 	}
@@ -81,7 +82,6 @@ public class BaseChecker {
 		try {
 			return format.parse(doubleExpr).doubleValue();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			throw new NumberFormatException("The value: "+ doubleExpr +" is not for a number");
 		}
 		
@@ -151,13 +151,14 @@ public class BaseChecker {
 	}
 	protected void packMessage(List<Message> messageList,String subject, String propertykey, Object[] parameters,String defaultMessage ){
 		Message errorMsg = new Message();
-		errorMsg.setSourcePosition(this.currentPosition());
 		errorMsg.setLevel("warning");
 		errorMsg.setSubject(subject);
  		errorMsg.setParameters(parameters);
  		errorMsg.setBody(defaultMessage);
  		errorMsg.setPropertyKey(propertykey);
+    errorMsg.setSourcePosition(this.currentPosition());
  		messageList.add(errorMsg);
+    
 		return;
 	}
 	
@@ -511,20 +512,13 @@ public class BaseChecker {
 		if(messageList.isEmpty()){
 			return;
 		}
-		
-		
 		if(userContext==null) {
 			Class [] classes = {List.class};
 			throw  exceptionClazz.getDeclaredConstructor(classes).newInstance(messageList);
 		}
-		
-		
 		for(Message message: messageList){
 			String subject = message.getSubject();
 			String template = userContext.getLocaleKey(subject);
-			
-			
-			
 			if(template==null){
 				//not found, it is fine to use hard coded value
 				userContext.log("Check Result "+message.getBody());

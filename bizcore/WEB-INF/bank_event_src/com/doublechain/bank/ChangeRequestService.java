@@ -12,6 +12,7 @@ import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.changerequest.ChangeRequestManager;
 import com.doublechain.bank.changerequest.ChangeRequestManagerException;
 import com.doublechain.bank.changerequest.ChangeRequestTokens;
+import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -26,7 +27,7 @@ import com.squareup.okhttp.Response;
 import com.terapico.caf.Password;
 import com.terapico.uccaf.BaseUserContext;
 
-public class ChangeRequestService extends BaseManagerImpl{
+public class ChangeRequestService extends CustomBankCheckerManager{
 	@Override
 	public Object checkAccess(BaseUserContext baseUserContext, String methodName, Object[] parameters)
 			throws IllegalAccessException {
@@ -52,14 +53,21 @@ public class ChangeRequestService extends BaseManagerImpl{
 		userContext.getChecker().checkChangeRequestAsObject(request);
 		
 		
-		ChangeRequest newReq = userContext.getManagerGroup()
-			.getChangeRequestManager()
+		ChangeRequest newReq = changeRequestManagerOf(userContext)
 			.internalSaveChangeRequest(userContext, request);
 		
+		for(NameChangeEvent nv:request.getNameChangeEventList() ) {
+			Account a1 = accountManagerOf(userContext)
+					.loadAccount(userContext, nv.getAccount().getId(), new String[] {});
+			a1.updateName(nv.getName());
+			accountManagerOf(userContext).internalSaveAccount(userContext, a1);
+			
+		}
+		
 		for(Transaction tx:request.getTransactionList() ) {
-			Account a1 = userContext.getManagerGroup().getAccountManager().loadAccount(userContext, 
+			Account a1 = accountManagerOf(userContext).loadAccount(userContext, 
 					tx.getFromAccount().getId(), new String[] {});
-			Account a2 = userContext.getManagerGroup().getAccountManager().loadAccount(userContext, 
+			Account a2 = accountManagerOf(userContext).loadAccount(userContext, 
 					tx.getToAccount().getId(), new String[] {});
 			
 			
@@ -78,10 +86,10 @@ public class ChangeRequestService extends BaseManagerImpl{
 			a2.updateBalance(a2.getBalance().add(tx.getAmount()));
 			
 			
-			userContext.getManagerGroup().getAccountManager().internalSaveAccount(userContext, a1);
-			userContext.getManagerGroup().getAccountManager().internalSaveAccount(userContext, a2);
+			accountManagerOf(userContext).internalSaveAccount(userContext, a1);
+			accountManagerOf(userContext).internalSaveAccount(userContext, a2);
 			
-			
+			//userContext.getDAOGroup().getAccountDAO()
 			
 			
 		}
@@ -161,7 +169,8 @@ public class ChangeRequestService extends BaseManagerImpl{
 		//CommonChangeRequest request = new CommonChangeRequest();
 		//request.getItemList().add(new ChangeRequestItem());
 		//service.process(null, request);
-		Platform platform=new Platform().updateId("P000001").updateName("platform"); 
+
+		Platform  platform = Platform.refById("P000001");
 		ChangeRequest req = new ChangeRequest()
 				.updateName("test cr")
 				.updatePlatform(platform);
@@ -171,11 +180,26 @@ public class ChangeRequestService extends BaseManagerImpl{
 						.updatePlatform(platform))
 				.updateToAccount(new Account().updateId("A000002").updateName("acc name")
 						.updatePlatform(platform))
+				.updateFromAccount(Account.refById("A000001"))
+				.updateToAccount(Account.refById("A000002"))
 				.updateType("转账")
-				.updateAmount(new BigDecimal("10.87"));
+				
+				.updateAmount(new BigDecimal("21.00"));
+		
+		
+		
 		
 		req.addTransaction(tx);
 		
+		tx = new Transaction().updateName("test tx3")
+					.updateFromAccount(Account.refById("A000002"))
+					.updateToAccount(Account.refById("A000001"))
+					.updateType("转账")
+					.updateAmount(new BigDecimal("11.00"));
+			
+		req.addTransaction(tx);
+		
+
 		
 		tx = new Transaction().updateName("test tx")
 				.updateFromAccount(new Account().updateId("A000002").updateName("acc name")
@@ -188,20 +212,33 @@ public class ChangeRequestService extends BaseManagerImpl{
 				.updateAmount(new BigDecimal("10.87"));
 		
 		req.addTransaction(tx);
+
+		NameChangeEvent ne=new NameChangeEvent()
+				.updateAccount(Account.refById("A000001"))
+				.updateName("OLD NAME");
+		req.addNameChangeEvent(ne);
+		
+		
+		
 		
 		
 		BankObjectChecker checker=new BankObjectChecker();
 		
 		
-		checker.checkChangeRequestAsObject(req);
+		//checker.checkChangeRequestAsObject(req);
+		
+		
 		
 		
 		
 		try {
+			
+			String val = getObjectMapper().writeValueAsString(req);
+			log(val);
+			
 			checker.throwExceptionIfHasErrors(ChangeRequestManagerException.class);
-			//emitRequest(req);
+			emitRequest(req);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
