@@ -137,7 +137,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/userApp/${id}/list/QuickLinkList/Quick Link+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/userApp/${id}/list/QuickLinkList/????+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateQuickLink({ payload }, { call, put }) {
@@ -159,7 +159,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/userApp/${id}/list/QuickLinkList/Quick Link列表`, state: newPlayload }
+      const location = { pathname: `/userApp/${id}/list/QuickLinkList/??????`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextQuickLinkUpdateRow({ payload }, { call, put }) {
@@ -206,7 +206,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/userApp/${id}/list/ListAccessList/List Access+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/userApp/${id}/list/ListAccessList/????+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateListAccess({ payload }, { call, put }) {
@@ -228,7 +228,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/userApp/${id}/list/ListAccessList/List Access列表`, state: newPlayload }
+      const location = { pathname: `/userApp/${id}/list/ListAccessList/??????`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextListAccessUpdateRow({ payload }, { call, put }) {
@@ -275,7 +275,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/userApp/${id}/list/ObjectAccessList/Object Access+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/userApp/${id}/list/ObjectAccessList/????+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateObjectAccess({ payload }, { call, put }) {
@@ -297,7 +297,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/userApp/${id}/list/ObjectAccessList/Object Access列表`, state: newPlayload }
+      const location = { pathname: `/userApp/${id}/list/ObjectAccessList/??????`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextObjectAccessUpdateRow({ payload }, { call, put }) {

@@ -190,11 +190,7 @@ componentDidMount() {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
        <Col md={8} sm={24}>
-<<<<<<< HEAD
          <FormItem label="ID">
-=======
-         <FormItem label="Id">
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
            {getFieldDecorator('id')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -202,11 +198,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-<<<<<<< HEAD
-         <FormItem label="名称">
-=======
-         <FormItem label="Name">
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+         <FormItem label="??">
            {getFieldDecorator('name')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -253,11 +245,7 @@ componentDidMount() {
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
           <Col md={8} sm={24}>
-<<<<<<< HEAD
             <FormItem label="ID">
-=======
-            <FormItem label="Id">
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
               {getFieldDecorator('id')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -265,11 +253,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-<<<<<<< HEAD
-            <FormItem label="名称">
-=======
-            <FormItem label="Name">
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+            <FormItem label="??">
               {getFieldDecorator('name')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}

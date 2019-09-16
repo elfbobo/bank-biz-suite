@@ -145,15 +145,7 @@ class UserAppBizApp extends React.PureComponent {
         )}
         )}
 
-       		<SubMenu key="sub4" title={<span><Icon type="setting" /><span>{appLocaleName(userContext,"Setting")}</span></span>} >
-       			<Menu.Item key="profile">
-               		<Link to={`/userApp/${this.props.userApp.id}/permission`}><Icon type="safety-certificate" /><span>{appLocaleName(userContext,"Permission")}</span></Link>
-             	</Menu.Item>
-             	<Menu.Item key="permission">
-               		<Link to={`/userApp/${this.props.userApp.id}/profile`}><Icon type="cluster" /><span>{appLocaleName(userContext,"Profile")}</span></Link>
-             	</Menu.Item> 
-      
-        	</SubMenu>
+       		
         
            </Menu>
     )
@@ -167,7 +159,7 @@ class UserAppBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Quick Link",
+      name: "????",
       role: "quickLink",
       data: state._userApp.quickLinkList,
       metaInfo: state._userApp.quickLinkListMetaInfo,
@@ -216,7 +208,7 @@ class UserAppBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "List Access",
+      name: "????",
       role: "listAccess",
       data: state._userApp.listAccessList,
       metaInfo: state._userApp.listAccessListMetaInfo,
@@ -265,7 +257,7 @@ class UserAppBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Object Access",
+      name: "????",
       role: "objectAccess",
       data: state._userApp.objectAccessList,
       metaInfo: state._userApp.objectAccessListMetaInfo,
@@ -354,7 +346,7 @@ class UserAppBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '银行模拟平台'
+    const title = '??????'
     return title
   }
  

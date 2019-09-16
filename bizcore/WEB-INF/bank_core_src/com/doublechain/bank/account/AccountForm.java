@@ -422,7 +422,7 @@ public class AccountForm extends BaseForm {
 	
  	public AccountForm transferToAnotherPlatformAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherPlatform/accountId/");
 		this.addFormAction(action);
@@ -433,7 +433,7 @@ public class AccountForm extends BaseForm {
 
 	public AccountForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

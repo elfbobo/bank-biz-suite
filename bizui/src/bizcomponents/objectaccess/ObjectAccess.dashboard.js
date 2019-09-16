@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/objectAccess/${targetComponent.props.objectAccess.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/objectAccess/${targetComponent.props.objectAccess.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,21 +106,21 @@ const internalSummaryOf = (objectAccess,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{objectAccess.id}</Description> 
-<Description term="Name">{objectAccess.name}</Description> 
-<Description term="Object Type">{objectAccess.objectType}</Description> 
-<Description term="List1">{objectAccess.list1}</Description> 
-<Description term="List2">{objectAccess.list2}</Description> 
-<Description term="List3">{objectAccess.list3}</Description> 
-<Description term="List4">{objectAccess.list4}</Description> 
-<Description term="List5">{objectAccess.list5}</Description> 
-<Description term="List6">{objectAccess.list6}</Description> 
-<Description term="List7">{objectAccess.list7}</Description> 
-<Description term="List8">{objectAccess.list8}</Description> 
-<Description term="List9">{objectAccess.list9}</Description> 
-<Description term="App">{objectAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${objectAccess.app.displayName}(${objectAccess.app.id})`}
+<Description term="ID">{objectAccess.id}</Description> 
+<Description term="??">{objectAccess.name}</Description> 
+<Description term="??????">{objectAccess.objectType}</Description> 
+<Description term="??1">{objectAccess.list1}</Description> 
+<Description term="??2">{objectAccess.list2}</Description> 
+<Description term="??3">{objectAccess.list3}</Description> 
+<Description term="??4">{objectAccess.list4}</Description> 
+<Description term="??5">{objectAccess.list5}</Description> 
+<Description term="??6">{objectAccess.list6}</Description> 
+<Description term="??7">{objectAccess.list7}</Description> 
+<Description term="??8">{objectAccess.list8}</Description> 
+<Description term="??9">{objectAccess.list9}</Description> 
+<Description term="????">{objectAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${objectAccess.app.displayName}(${objectAccess.app.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"App","userApp",ObjectAccessService.requestCandidateApp,
+  showTransferModel(targetComponent,"????","userApp",ObjectAccessService.requestCandidateApp,
 	      ObjectAccessService.transferToAnotherApp,"anotherAppId",objectAccess.app?objectAccess.app.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -136,7 +161,7 @@ class ObjectAccessDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Object Access",cardsFor: "objectAccess",
+    const cardsData = {cardsName:"????",cardsFor: "objectAccess",
     	cardsSource: this.props.objectAccess,returnURL,displayName,
   		subItems: [
     

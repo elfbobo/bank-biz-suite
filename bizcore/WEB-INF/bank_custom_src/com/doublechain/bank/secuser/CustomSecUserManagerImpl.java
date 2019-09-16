@@ -170,7 +170,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
             String appId) throws Exception {
         SecUser user = cachedUser(userContext);
         if(user==null){
-            return errorLogin("对不起，你的会话过期，请重新登录");
+            return errorLogin("????????????????");
         }
         List<UserApp> userApps = user.getUserAppList();
         for (UserApp app : userApps) {
@@ -304,7 +304,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         
         parameters.put("passcode", code);
 
-        userContext.sendMessage("13880964614", "开心帮帮兔", "SMS_33585577", parameters);
+        userContext.sendMessage("13880964614", "?????", "SMS_33585577", parameters);
     }
     
     protected int getRandomVerificationCode(BankUserContext userContex, int length){
@@ -407,20 +407,20 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
             log("stored pass: "+user.getPwd());
             
             if (!user.getPwd().equals(hashedPassed)) {
-                this.addLoginHistory(userContext, user.getId(), userContext.getRemoteIP(), "密码错误", "x".split("."));
-                return errorLogin("密码错了!");
+                this.addLoginHistory(userContext, user.getId(), userContext.getRemoteIP(), "????", "x".split("."));
+                return errorLogin("????!");
             }
             
-            return loginTheSecUserInternal(userContext, user, "成功登陆");
+            return loginTheSecUserInternal(userContext, user, "????");
         } catch (SecUserNotFoundException e) {
-            return errorLogin("对不起，不认识你");
+            return errorLogin("????????");
         } catch (Exception e) {
-            return errorLogin("对不起, 系统出错，跟你没关系哈，你等会再试下" + e.getMessage());
+            return errorLogin("???, ??????????????????" + e.getMessage());
         }
 
     }
     /**
-     * 内部登录。使用场景是当通过其他方式（微信，短信码等）验证了用户身份后，直接使用secUser对象登录。
+     * ???????????????????????????????????????secUser?????
      */
     protected Object loginTheSecUserInternal(BankUserContext userContext, SecUser user, String loginComments) throws Exception {
 		// save it to Redis, then use it later
@@ -455,7 +455,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
     protected LoginForm showSessionExpired(BankUserContext userContext) {
 
         LoginForm form = new LoginForm();
-        form.addErrorMessage("登录过期了", null);
+        form.addErrorMessage("?????", null);
         // form.addErrorMessage(errorMessage, null);
         return form;
 
@@ -572,7 +572,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
         userContext.setDaoGroup(getDaoGroup());
         userContext.setEventService(this.getEventService());
         userContext.setManagerGroup(getManagerGroup());
-        // 原则上不要自己读取request的内容. 特殊情况下读取, 请注明原因. 以下为读取POST的body的例子.
+        // ?????????request???. ???????, ?????. ?????POST?body???.
 		//        ServletInputStream ins;
 		//        try {
 		//        	if (request.getMethod().equalsIgnoreCase("post")) {
@@ -634,10 +634,10 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
     	
     	SecUser userInDB = userContext.getManagerGroup().getSecUserManager().loadSecUser(userContext, user.getId(), tokens);
     	if(user.getLastLoginTime().after(userInDB.getLastLoginTime())) {
-    		//如果不一样，而且比缓存里面的用户更新一些
+    		//????????????????????
     		return "OK";
     	}
-    	//如果标记为已经处理过了，则不显示消息。
+    	//???????????????????
     	String key = getUserKey(userContext)+":loginfromotherip";
     	String fromIp = userInDB.getLoginHistoryList().first().getFromIp();
     	String proceedIp = (String)userContext.getCachedObject(key, String.class);
@@ -647,8 +647,8 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
     	}
 
     	userContext.putToCache(key,fromIp , 86400);
-    	return "有其他人用跟你同一个账号在"+fromIp+"登录";
-    	//有其他人登录
+    	return "?????????????"+fromIp+"??";
+    	//??????
     	
     	
     	
@@ -720,7 +720,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 
 		if (app == null) {
 			userContext.log("app is null!");
-			this.throwExceptionWithMessage("你没有管理该对象的权限，");
+			this.throwExceptionWithMessage("????????????");
 		}
 
 		if (isMe(app, objectType, objectId)) {
@@ -730,7 +730,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 			}
 
 		}
-		// 不是本级权限，需要查询关系
+		// ?????????????
 
 		List<String[]> relations = userContext.relationBetween(objectType, objectId, app.getObjectType(),
 				app.getObjectId());
@@ -738,7 +738,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 			return;
 		}
 
-		this.throwExceptionWithMessage("你没有管理该对象的权限，");
+		this.throwExceptionWithMessage("????????????");
 
 	}
 
@@ -805,7 +805,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 	}
 
 	protected ListAccess eval(ListAccess access, String value) {
-		// 其他的情况不改
+		// ???????
 		if (value.endsWith("Permission")) {
 			access.changeProperty(value, "true");
 		}
@@ -888,7 +888,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 		SecUser curUser = cachedUser(userContext);
 		
 		if(curUser==null) {
-			this.throwExceptionWithMessage("修改密码之前必须登录，如果当前您已经登录，请退出后再试");
+			this.throwExceptionWithMessage("???????????????????????????");
 		}
 		
 		
@@ -897,7 +897,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 		String hasedPassword = this.hashStringWithSHA256(currentPassword, curUser.getId());
 		
 		if (!hasedPassword.equals(curUser.getPwd())) {
-			throw new SecUserManagerException("当前密码输入错误, 请重新输入");
+			throw new SecUserManagerException("????????, ?????");
 		}
 		String newHasedPassword = this.hashStringWithSHA256(newPassword, curUser.getId());
 		curUser.updatePwd(newPassword);
@@ -921,7 +921,7 @@ public class CustomSecUserManagerImpl extends SecUserManagerImpl implements
 		String key = this.getCurrentAppKey(userContext);
 		UserApp userApp = (UserApp) userContext.getCachedObject(key, UserApp.class);
 		if (userApp == null) {
-			throwExceptionWithMessage("用户要访问此功能，至少需要登录，并且选择了一个确定的App");
+			throwExceptionWithMessage("??????????????????????????App");
 		}
 		String folderName = String.format("upload/%s/%s", userApp.getObjectType(), userApp.getObjectId());
 		Map<String, Object> ossToken = storageService.genToken(folderName);

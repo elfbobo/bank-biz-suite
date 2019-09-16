@@ -296,7 +296,7 @@ public class AccountChangeForm extends BaseForm {
 	
  	public AccountChangeForm transferToAnotherAccountAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherAccount/accountChangeId/");
 		this.addFormAction(action);
@@ -306,7 +306,7 @@ public class AccountChangeForm extends BaseForm {
  	
  	public AccountChangeForm transferToAnotherChangeRequestAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherChangeRequest/accountChangeId/");
 		this.addFormAction(action);
@@ -317,7 +317,7 @@ public class AccountChangeForm extends BaseForm {
 
 	public AccountChangeForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

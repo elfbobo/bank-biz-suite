@@ -67,7 +67,7 @@ public class UserDomain extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+	// disconnect from all, ?????????????????????????????
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -188,7 +188,7 @@ public class UserDomain extends BaseEntity implements  java.io.Serializable{
 		if(this.mUserWhiteListList == null){
 			this.mUserWhiteListList = new SmartList<UserWhiteList>();
 			this.mUserWhiteListList.setListInternalName (USER_WHITE_LIST_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mUserWhiteListList;	
@@ -243,7 +243,7 @@ public class UserDomain extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithUserWhiteList(UserWhiteList userWhiteList){
 		
 		if(userWhiteList == null){
@@ -295,7 +295,7 @@ public class UserDomain extends BaseEntity implements  java.io.Serializable{
 		if(this.mSecUserList == null){
 			this.mSecUserList = new SmartList<SecUser>();
 			this.mSecUserList.setListInternalName (SEC_USER_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mSecUserList;	
@@ -350,7 +350,7 @@ public class UserDomain extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithSecUser(SecUser secUser){
 		
 		if(secUser == null){

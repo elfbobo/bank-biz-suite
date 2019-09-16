@@ -282,7 +282,7 @@ public class ListAccessForm extends BaseForm {
 	
  	public ListAccessForm transferToAnotherAppAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherApp/listAccessId/");
 		this.addFormAction(action);
@@ -293,7 +293,7 @@ public class ListAccessForm extends BaseForm {
 
 	public ListAccessForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

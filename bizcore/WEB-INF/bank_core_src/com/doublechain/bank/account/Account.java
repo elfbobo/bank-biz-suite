@@ -81,7 +81,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+	// disconnect from all, ?????????????????????????????
 	public 	void clearFromAll(){
 		setPlatform( null );
 
@@ -352,7 +352,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
 		if(this.mTransactionListAsFromAccount == null){
 			this.mTransactionListAsFromAccount = new SmartList<Transaction>();
 			this.mTransactionListAsFromAccount.setListInternalName (TRANSACTION_LIST_AS_FROM_ACCOUNT );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mTransactionListAsFromAccount;	
@@ -407,7 +407,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithTransactionAsFromAccount(Transaction transaction){
 		
 		if(transaction == null){
@@ -459,7 +459,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
 		if(this.mTransactionListAsToAccount == null){
 			this.mTransactionListAsToAccount = new SmartList<Transaction>();
 			this.mTransactionListAsToAccount.setListInternalName (TRANSACTION_LIST_AS_TO_ACCOUNT );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mTransactionListAsToAccount;	
@@ -514,7 +514,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithTransactionAsToAccount(Transaction transaction){
 		
 		if(transaction == null){
@@ -566,7 +566,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
 		if(this.mNameChangeEventList == null){
 			this.mNameChangeEventList = new SmartList<NameChangeEvent>();
 			this.mNameChangeEventList.setListInternalName (NAME_CHANGE_EVENT_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mNameChangeEventList;	
@@ -621,7 +621,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithNameChangeEvent(NameChangeEvent nameChangeEvent){
 		
 		if(nameChangeEvent == null){
@@ -673,7 +673,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
 		if(this.mAccountChangeList == null){
 			this.mAccountChangeList = new SmartList<AccountChange>();
 			this.mAccountChangeList.setListInternalName (ACCOUNT_CHANGE_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mAccountChangeList;	
@@ -728,7 +728,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithAccountChange(AccountChange accountChange){
 		
 		if(accountChange == null){

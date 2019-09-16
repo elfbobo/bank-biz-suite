@@ -30,18 +30,18 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"Sec User Blocking", menuFor: "secUserBlocking",
+const menuData = {menuName:"????", menuFor: "secUserBlocking",
   		subItems: [
-  {name: 'secUserList', displayName:'Sec User', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'secUserList', displayName:'????', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  who: 'Who',
-  blockTime: 'Block Time',
-  comments: 'Comments',
+  id: 'ID',
+  who: '?',
+  blockTime: '???',
+  comments: '??',
 
 }
 
@@ -60,17 +60,10 @@ const renderItemOfList=(secUserBlocking,targetComponent)=>{
     <div key={secUserBlocking.id}>
 	
       <DescriptionList  key={secUserBlocking.id} size="small" col="4">
-<<<<<<< HEAD
         <Description term="ID">{secUserBlocking.id}</Description> 
-        <Description term="谁">{secUserBlocking.who}</Description> 
-        <Description term="块时间"><div>{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="评论">{secUserBlocking.comments}</Description> 
-=======
-        <Description term="Id">{secUserBlocking.id}</Description> 
-        <Description term="Who">{secUserBlocking.who}</Description> 
-        <Description term="Block Time"><div>{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="Comments">{secUserBlocking.comments}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+        <Description term="?">{secUserBlocking.who}</Description> 
+        <Description term="???"><div>{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="??">{secUserBlocking.comments}</Description> 
 	
         
       </DescriptionList>

@@ -104,10 +104,10 @@ public interface SecUserDAO{
 
  
  
-	// 需要一个加载引用我的对象的enhance方法:UserApp的secUser的UserAppList
+	// ?????????????enhance??:UserApp?secUser?UserAppList
 	public SmartList<UserApp> loadOurUserAppList(BankUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception;
 	
-	// 需要一个加载引用我的对象的enhance方法:LoginHistory的secUser的LoginHistoryList
+	// ?????????????enhance??:LoginHistory?secUser?LoginHistoryList
 	public SmartList<LoginHistory> loadOurLoginHistoryList(BankUserContext userContext, List<SecUser> us, Map<String,Object> options) throws Exception;
 	
 }

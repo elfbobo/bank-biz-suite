@@ -23,16 +23,20 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (quickLink,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{quickLink.id}</Description> 
-<Description term="Name">{quickLink.name}</Description> 
-<Description term="Icon">{quickLink.icon}</Description> 
-<Description term="Link Target">{quickLink.linkTarget}</Description> 
-<Description term="Create Time">{ moment(quickLink.createTime).format('YYYY-MM-DD')}</Description> 
+<Description term="ID">{quickLink.id}</Description> 
+<Description term="??">{quickLink.name}</Description> 
+<Description term="??">{quickLink.icon}</Description> 
+<Description term="?????">{quickLink.linkTarget}</Description> 
+<Description term="????">{ moment(quickLink.createTime).format('YYYY-MM-DD')}</Description> 
 	
       </DescriptionList>
 	)
@@ -56,9 +60,10 @@ class QuickLinkPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  quickLink = this.props.quickLink;
+    const  quickLink = this.props.quickLink
     const { id,displayName,  } = quickLink
-    const cardsData = {cardsName:"Quick Link",cardsFor: "quickLink",cardsSource: quickLink,
+    const  returnURL = `/quickLink/${id}/dashboard`
+    const cardsData = {cardsName:"????",cardsFor: "quickLink",cardsSource: quickLink,displayName,returnURL,
   		subItems: [
     
       	],
@@ -69,7 +74,7 @@ class QuickLinkPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

@@ -40,7 +40,7 @@ const { Option } = Select
 
 
 const imageList =(quickLink)=>{return [
-	   {"title":'Image Path',"imageLocation":quickLink.imagePath},
+	   {"title":'????',"imageLocation":quickLink.imagePath},
 ]}
 
 const internalImageListOf = (quickLink) =>defaultImageListOf(quickLink,imageList)
@@ -66,11 +66,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/quickLink/${targetComponent.props.quickLink.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/quickLink/${targetComponent.props.quickLink.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -82,14 +107,14 @@ const internalSummaryOf = (quickLink,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{quickLink.id}</Description> 
-<Description term="Name">{quickLink.name}</Description> 
-<Description term="Icon">{quickLink.icon}</Description> 
-<Description term="Link Target">{quickLink.linkTarget}</Description> 
-<Description term="Create Time">{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="App">{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
+<Description term="ID">{quickLink.id}</Description> 
+<Description term="??">{quickLink.name}</Description> 
+<Description term="??">{quickLink.icon}</Description> 
+<Description term="?????">{quickLink.linkTarget}</Description> 
+<Description term="????">{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="????">{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"App","userApp",QuickLinkService.requestCandidateApp,
+  showTransferModel(targetComponent,"????","userApp",QuickLinkService.requestCandidateApp,
 	      QuickLinkService.transferToAnotherApp,"anotherAppId",quickLink.app?quickLink.app.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -130,7 +155,7 @@ class QuickLinkDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Quick Link",cardsFor: "quickLink",
+    const cardsData = {cardsName:"????",cardsFor: "quickLink",
     	cardsSource: this.props.quickLink,returnURL,displayName,
   		subItems: [
     

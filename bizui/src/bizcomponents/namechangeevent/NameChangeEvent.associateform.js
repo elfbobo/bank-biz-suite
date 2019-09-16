@@ -139,7 +139,7 @@ class NameChangeEventAssociateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Name" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>

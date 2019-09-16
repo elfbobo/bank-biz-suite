@@ -93,7 +93,7 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+	// disconnect from all, ?????????????????????????????
 	public 	void clearFromAll(){
 		setDomain( null );
 		setBlocking( null );
@@ -647,7 +647,7 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		if(this.mUserAppList == null){
 			this.mUserAppList = new SmartList<UserApp>();
 			this.mUserAppList.setListInternalName (USER_APP_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mUserAppList;	
@@ -702,7 +702,7 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithUserApp(UserApp userApp){
 		
 		if(userApp == null){
@@ -754,7 +754,7 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 		if(this.mLoginHistoryList == null){
 			this.mLoginHistoryList = new SmartList<LoginHistory>();
 			this.mLoginHistoryList.setListInternalName (LOGIN_HISTORY_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mLoginHistoryList;	
@@ -809,7 +809,7 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithLoginHistory(LoginHistory loginHistory){
 		
 		if(loginHistory == null){

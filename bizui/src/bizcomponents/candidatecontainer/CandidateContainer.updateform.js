@@ -261,11 +261,7 @@ class CandidateContainerUpdateForm extends Component {
                     initialValue: selectedRow.id,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-<<<<<<< HEAD
                     <Input size="large" placeholder="ID" disabled/>
-=======
-                    <Input size="large" placeholder="Id" disabled/>
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
                     
                   )}
                 </Form.Item>
@@ -277,11 +273,7 @@ class CandidateContainerUpdateForm extends Component {
                     initialValue: selectedRow.name,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-<<<<<<< HEAD
-                    <Input size="large" placeholder="名称" />
-=======
-                    <Input size="large" placeholder="Name" />
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+                    <Input size="large" placeholder="??" />
                     
                   )}
                 </Form.Item>

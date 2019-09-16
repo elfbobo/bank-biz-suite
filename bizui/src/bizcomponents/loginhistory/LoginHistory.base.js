@@ -30,18 +30,18 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"Login History", menuFor: "loginHistory",
+const menuData = {menuName:"????", menuFor: "loginHistory",
   		subItems: [
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  loginTime: 'Login Time',
-  fromIp: 'From Ip',
-  description: 'Description',
-  secUser: 'Sec User',
+  id: 'ID',
+  loginTime: '????',
+  fromIp: '??IP',
+  description: '??',
+  secUser: '????',
 
 }
 
@@ -61,19 +61,11 @@ const renderItemOfList=(loginHistory,targetComponent)=>{
     <div key={loginHistory.id}>
 	
       <DescriptionList  key={loginHistory.id} size="small" col="4">
-<<<<<<< HEAD
         <Description term="ID">{loginHistory.id}</Description> 
-        <Description term="登录时间"><div>{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="来自IP">{loginHistory.fromIp}</Description> 
-        <Description term="描述">{loginHistory.description}</Description> 
-        <Description term="安全用户"><div>{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
-=======
-        <Description term="Id">{loginHistory.id}</Description> 
-        <Description term="Login Time"><div>{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="From Ip">{loginHistory.fromIp}</Description> 
-        <Description term="Description">{loginHistory.description}</Description> 
-        <Description term="Sec User"><div>{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+        <Description term="????"><div>{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="??IP">{loginHistory.fromIp}</Description> 
+        <Description term="??">{loginHistory.description}</Description> 
+        <Description term="????"><div>{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
         </div></Description>
 	
         

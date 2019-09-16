@@ -326,8 +326,6 @@ public class BankObjectChecker extends BankChecker{
 
 	}
 
-<<<<<<< HEAD
-=======
 	public BankObjectChecker checkAndFixQuickLink(BaseEntity quickLinkAsBaseEntity){
 
 		if( isChecked(quickLinkAsBaseEntity) ){
@@ -346,7 +344,6 @@ public class BankObjectChecker extends BankChecker{
 
 	}
 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 	public BankObjectChecker checkAndFixListAccess(BaseEntity listAccessAsBaseEntity){
 
 		if( isChecked(listAccessAsBaseEntity) ){
@@ -796,8 +793,6 @@ public class BankObjectChecker extends BankChecker{
 		AtomicInteger index = new AtomicInteger();
 		secUserList.stream().forEach(secUser->
 			commonObjectElementCheck(secUser,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSecUser));
-<<<<<<< HEAD
-=======
 		return this;
 	}
 
@@ -805,7 +800,6 @@ public class BankObjectChecker extends BankChecker{
 		AtomicInteger index = new AtomicInteger();
 		quickLinkList.stream().forEach(quickLink->
 			commonObjectElementCheck(quickLink,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixQuickLink));
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 		return this;
 	}
 
@@ -833,8 +827,6 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		checkAndFixSecUser(secUserAsBaseEntity);
-<<<<<<< HEAD
-=======
 		return this;
 	}
 
@@ -849,7 +841,6 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		checkAndFixUserApp(appAsBaseEntity);
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 		return this;
 	}
 

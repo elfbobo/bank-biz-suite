@@ -30,23 +30,23 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"Account", menuFor: "account",
+const menuData = {menuName:"??", menuFor: "account",
   		subItems: [
-  {name: 'transactionListAsFromAccount', displayName:'Transaction(Transaction List As From Account)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'transactionListAsToAccount', displayName:'Transaction(Transaction List As To Account)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'nameChangeEventList', displayName:'Name Change Event', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'accountChangeList', displayName:'Account Change', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'transactionListAsFromAccount', displayName:'??(???????)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'transactionListAsToAccount', displayName:'??(????????)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'nameChangeEventList', displayName:'??????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'accountChangeList', displayName:'????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  name: 'Name',
-  balance: 'Balance',
-  createTime: 'Create Time',
-  updateTime: 'Update Time',
-  platform: 'Platform',
+  id: 'ID',
+  name: '??',
+  balance: '??',
+  createTime: '????',
+  updateTime: '????',
+  platform: '??',
 
 }
 
@@ -67,19 +67,11 @@ const renderItemOfList=(account,targetComponent)=>{
     <div key={account.id}>
 	
       <DescriptionList  key={account.id} size="small" col="4">
-<<<<<<< HEAD
         <Description term="ID">{account.id}</Description> 
-        <Description term="名称">{account.name}</Description> 
-        <Description term="余额"><div style={{"color":"red"}}>{account.balance}</div></Description> 
-        <Description term="创建时间"><div>{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="更新时间"><div>{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-=======
-        <Description term="Id">{account.id}</Description> 
-        <Description term="Name">{account.name}</Description> 
-        <Description term="Balance"><div style={{"color":"red"}}>{account.balance}</div></Description> 
-        <Description term="Create Time"><div>{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="Update Time"><div>{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+        <Description term="??">{account.name}</Description> 
+        <Description term="??"><div style={{"color":"red"}}>{account.balance}</div></Description> 
+        <Description term="????"><div>{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="????"><div>{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
 	
         
       </DescriptionList>

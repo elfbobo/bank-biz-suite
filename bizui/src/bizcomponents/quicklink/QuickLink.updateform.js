@@ -263,7 +263,7 @@ class QuickLinkUpdateForm extends Component {
                     initialValue: selectedRow.id,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Id" disabled/>
+                    <Input size="large" placeholder="ID" disabled/>
                     
                   )}
                 </Form.Item>
@@ -275,7 +275,7 @@ class QuickLinkUpdateForm extends Component {
                     initialValue: selectedRow.name,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Name" />
+                    <Input size="large" placeholder="??" />
                     
                   )}
                 </Form.Item>
@@ -287,7 +287,7 @@ class QuickLinkUpdateForm extends Component {
                     initialValue: selectedRow.icon,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Icon" />
+                    <Input size="large" placeholder="??" />
                     
                   )}
                 </Form.Item>
@@ -299,7 +299,7 @@ class QuickLinkUpdateForm extends Component {
                     initialValue: selectedRow.linkTarget,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Link Target" />
+                    <Input size="large" placeholder="?????" />
                     
                   )}
                 </Form.Item>
@@ -320,7 +320,7 @@ class QuickLinkUpdateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <ImageComponent
-                  buttonTitle="Image Path"
+                  buttonTitle="????"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'imagePath')}
                   fileList={convertedImagesValues.imagePath}

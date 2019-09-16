@@ -195,8 +195,8 @@ class NameChangeEventCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}Name Change Event`}
-        content={`${appLocaleName(userContext,"CreateNew")}Name Change Event`}
+        title={`${appLocaleName(userContext,"CreateNew")}??????`}
+        content={`${appLocaleName(userContext,"CreateNew")}??????`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -208,7 +208,7 @@ class NameChangeEventCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Name" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>

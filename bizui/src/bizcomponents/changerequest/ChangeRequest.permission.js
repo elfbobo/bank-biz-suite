@@ -23,22 +23,19 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (changeRequest,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<<<<<<< HEAD
 <Description term="ID">{changeRequest.id}</Description> 
-<Description term="名称">{changeRequest.name}</Description> 
-<Description term="创建时间">{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</Description> 
-<Description term="远程Ip">{changeRequest.remoteIp}</Description> 
-=======
-<Description term="Id">{changeRequest.id}</Description> 
-<Description term="Name">{changeRequest.name}</Description> 
-<Description term="Create Time">{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</Description> 
-<Description term="Remote Ip">{changeRequest.remoteIp}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+<Description term="??">{changeRequest.name}</Description> 
+<Description term="????">{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</Description> 
+<Description term="??Ip">{changeRequest.remoteIp}</Description> 
 	
       </DescriptionList>
 	)
@@ -62,9 +59,10 @@ class ChangeRequestPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  changeRequest = this.props.changeRequest;
+    const  changeRequest = this.props.changeRequest
     const { id,displayName, transactionCount, nameChangeEventCount, accountChangeCount } = changeRequest
-    const cardsData = {cardsName:"Change Request",cardsFor: "changeRequest",cardsSource: changeRequest,
+    const  returnURL = `/changeRequest/${id}/dashboard`
+    const cardsData = {cardsName:"????",cardsFor: "changeRequest",cardsSource: changeRequest,displayName,returnURL,
   		subItems: [
     
       	],
@@ -75,7 +73,7 @@ class ChangeRequestPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

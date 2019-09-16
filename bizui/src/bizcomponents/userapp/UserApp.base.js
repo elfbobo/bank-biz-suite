@@ -30,25 +30,25 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"User App", menuFor: "userApp",
+const menuData = {menuName:"??????", menuFor: "userApp",
   		subItems: [
-  {name: 'quickLinkList', displayName:'Quick Link', icon:'link',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'listAccessList', displayName:'List Access', icon:'list',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'objectAccessList', displayName:'Object Access', icon:'accessible-icon',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'quickLinkList', displayName:'????', icon:'link',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'listAccessList', displayName:'????', icon:'list',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'objectAccessList', displayName:'????', icon:'accessible-icon',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  title: 'Title',
-  secUser: 'Sec User',
-  appIcon: 'App Icon',
-  fullAccess: 'Full Access',
-  permission: 'Permission',
-  objectType: 'Object Type',
-  objectId: 'Object Id',
-  location: 'Location',
+  id: 'ID',
+  title: '??',
+  secUser: '????',
+  appIcon: '??????',
+  fullAccess: '????',
+  permission: '??',
+  objectType: '??????',
+  objectId: '??ID',
+  location: '??',
 
 }
 
@@ -72,15 +72,15 @@ const renderItemOfList=(userApp,targetComponent)=>{
     <div key={userApp.id}>
 	
       <DescriptionList  key={userApp.id} size="small" col="4">
-        <Description term="Id">{userApp.id}</Description> 
-        <Description term="Title">{userApp.title}</Description> 
-        <Description term="Sec User"><div>{userApp.secUser==null?appLocaleName(userContext,"NotAssigned"):`${userApp.secUser.displayName}(${userApp.secUser.id})`}
+        <Description term="ID">{userApp.id}</Description> 
+        <Description term="??">{userApp.title}</Description> 
+        <Description term="????"><div>{userApp.secUser==null?appLocaleName(userContext,"NotAssigned"):`${userApp.secUser.displayName}(${userApp.secUser.id})`}
         </div></Description>
-        <Description term="App Icon">{userApp.appIcon}</Description> 
-        <Description term="Permission">{userApp.permission}</Description> 
-        <Description term="Object Type">{userApp.objectType}</Description> 
-        <Description term="Object Id">{userApp.objectId}</Description> 
-        <Description term="Location">{userApp.location}</Description> 
+        <Description term="??????">{userApp.appIcon}</Description> 
+        <Description term="??">{userApp.permission}</Description> 
+        <Description term="??????">{userApp.objectType}</Description> 
+        <Description term="??ID">{userApp.objectId}</Description> 
+        <Description term="??">{userApp.location}</Description> 
 	
         
       </DescriptionList>

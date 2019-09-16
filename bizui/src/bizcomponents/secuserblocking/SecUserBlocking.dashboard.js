@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/secUserBlocking/${targetComponent.props.secUserBlocking.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/secUserBlocking/${targetComponent.props.secUserBlocking.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,17 +106,10 @@ const internalSummaryOf = (secUserBlocking,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<<<<<<< HEAD
 <Description term="ID">{secUserBlocking.id}</Description> 
-<Description term="谁">{secUserBlocking.who}</Description> 
-<Description term="块时间">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="评论">{secUserBlocking.comments}</Description> 
-=======
-<Description term="Id">{secUserBlocking.id}</Description> 
-<Description term="Who">{secUserBlocking.who}</Description> 
-<Description term="Block Time">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="Comments">{secUserBlocking.comments}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+<Description term="?">{secUserBlocking.who}</Description> 
+<Description term="???">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="??">{secUserBlocking.comments}</Description> 
 	
         {buildTransferModal(secUserBlocking,targetComponent)}
       </DescriptionList>
@@ -129,10 +147,10 @@ class SecUserBlockingDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Sec User Blocking",cardsFor: "secUserBlocking",
+    const cardsData = {cardsName:"????",cardsFor: "secUserBlocking",
     	cardsSource: this.props.secUserBlocking,returnURL,displayName,
   		subItems: [
-{name: 'secUserList', displayName:'Sec User',type:'secUser',count:secUserCount,addFunction: true, role: 'secUser', metaInfo: secUserListMetaInfo, renderItem: GlobalComponents.SecUserBase.renderItemOfList},
+{name: 'secUserList', displayName:'????',type:'secUser',count:secUserCount,addFunction: true, role: 'secUser', metaInfo: secUserListMetaInfo, renderItem: GlobalComponents.SecUserBase.renderItemOfList},
     
       	],
   	};

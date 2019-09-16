@@ -145,15 +145,7 @@ class AccountBizApp extends React.PureComponent {
         )}
         )}
 
-       		<SubMenu key="sub4" title={<span><Icon type="setting" /><span>{appLocaleName(userContext,"Setting")}</span></span>} >
-       			<Menu.Item key="profile">
-               		<Link to={`/account/${this.props.account.id}/permission`}><Icon type="safety-certificate" /><span>{appLocaleName(userContext,"Permission")}</span></Link>
-             	</Menu.Item>
-             	<Menu.Item key="permission">
-               		<Link to={`/account/${this.props.account.id}/profile`}><Icon type="cluster" /><span>{appLocaleName(userContext,"Profile")}</span></Link>
-             	</Menu.Item> 
-      
-        	</SubMenu>
+       		
         
            </Menu>
     )
@@ -167,7 +159,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Transaction(Transaction List As From Account)",
+      name: "??(???????)",
       role: "transactionAsFromAccount",
       data: state._account.transactionListAsFromAccount,
       metaInfo: state._account.transactionListAsFromAccountMetaInfo,
@@ -216,7 +208,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Transaction(Transaction List As To Account)",
+      name: "??(????????)",
       role: "transactionAsToAccount",
       data: state._account.transactionListAsToAccount,
       metaInfo: state._account.transactionListAsToAccountMetaInfo,
@@ -265,7 +257,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Name Change Event",
+      name: "??????",
       role: "nameChangeEvent",
       data: state._account.nameChangeEventList,
       metaInfo: state._account.nameChangeEventListMetaInfo,
@@ -314,7 +306,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Account Change",
+      name: "????",
       role: "accountChange",
       data: state._account.accountChangeList,
       metaInfo: state._account.accountChangeListMetaInfo,
@@ -407,7 +399,7 @@ class AccountBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '银行模拟平台'
+    const title = '??????'
     return title
   }
  

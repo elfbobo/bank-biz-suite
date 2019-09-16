@@ -19,7 +19,7 @@ const testValues = {};
 /*
 const testValues = {
   fromIp: '192.168.1.1',
-  description: '登陆成功',
+  description: '????',
   secUserId: 'SU000001',
 }
 */
@@ -139,7 +139,7 @@ class LoginHistoryAssociateForm extends Component {
                   {getFieldDecorator('fromIp', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="From Ip" />
+                    <Input size="large" placeholder="??IP" />
                   )}
                 </Form.Item>
               </Col>
@@ -149,7 +149,7 @@ class LoginHistoryAssociateForm extends Component {
                   {getFieldDecorator('description', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Description" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>

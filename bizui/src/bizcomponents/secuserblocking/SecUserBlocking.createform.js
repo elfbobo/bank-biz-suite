@@ -18,7 +18,7 @@ const testValues = {};
 /*
 const testValues = {
   who: 'currentUser()',
-  comments: '这个用户多次发送违反社区的帖子，现在把他给屏蔽了',
+  comments: '????????????????????????',
 }
 */
 
@@ -194,8 +194,8 @@ class SecUserBlockingCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}Sec User Blocking`}
-        content={`${appLocaleName(userContext,"CreateNew")}Sec User Blocking`}
+        title={`${appLocaleName(userContext,"CreateNew")}????`}
+        content={`${appLocaleName(userContext,"CreateNew")}????`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -207,7 +207,7 @@ class SecUserBlockingCreateForm extends Component {
                   {getFieldDecorator('who', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Who" />
+                    <Input size="large" placeholder="?" />
                   )}
                 </Form.Item>
               </Col>
@@ -217,7 +217,7 @@ class SecUserBlockingCreateForm extends Component {
                   {getFieldDecorator('comments', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Comments" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>

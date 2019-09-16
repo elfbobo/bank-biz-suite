@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/transaction/${targetComponent.props.transaction.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/transaction/${targetComponent.props.transaction.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,25 +106,25 @@ const internalSummaryOf = (transaction,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{transaction.id}</Description> 
-<Description term="Name">{transaction.name}</Description> 
-<Description term="From Account">{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
+<Description term="ID">{transaction.id}</Description> 
+<Description term="??">{transaction.name}</Description> 
+<Description term="???">{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"From Account","account",TransactionService.requestCandidateFromAccount,
+  showTransferModel(targetComponent,"???","account",TransactionService.requestCandidateFromAccount,
 	      TransactionService.transferToAnotherFromAccount,"anotherFromAccountId",transaction.fromAccount?transaction.fromAccount.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="To Account">{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
+<Description term="????">{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"To Account","account",TransactionService.requestCandidateToAccount,
+  showTransferModel(targetComponent,"????","account",TransactionService.requestCandidateToAccount,
 	      TransactionService.transferToAnotherToAccount,"anotherToAccountId",transaction.toAccount?transaction.toAccount.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="Amount">{transaction.amount}</Description> 
-<Description term="Type">{transaction.type}</Description> 
-<Description term="Change Request">{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
+<Description term="??">{transaction.amount}</Description> 
+<Description term="??">{transaction.type}</Description> 
+<Description term="????">{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"Change Request","changeRequest",TransactionService.requestCandidateChangeRequest,
+  showTransferModel(targetComponent,"????","changeRequest",TransactionService.requestCandidateChangeRequest,
 	      TransactionService.transferToAnotherChangeRequest,"anotherChangeRequestId",transaction.changeRequest?transaction.changeRequest.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -140,7 +165,7 @@ class TransactionDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Transaction",cardsFor: "transaction",
+    const cardsData = {cardsName:"??",cardsFor: "transaction",
     	cardsSource: this.props.transaction,returnURL,displayName,
   		subItems: [
     

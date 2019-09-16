@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/loginHistory/${targetComponent.props.loginHistory.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/loginHistory/${targetComponent.props.loginHistory.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,21 +106,13 @@ const internalSummaryOf = (loginHistory,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<<<<<<< HEAD
 <Description term="ID">{loginHistory.id}</Description> 
-<Description term="登录时间">{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="来自IP">{loginHistory.fromIp}</Description> 
-<Description term="描述">{loginHistory.description}</Description> 
-<Description term="安全用户">{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
-=======
-<Description term="Id">{loginHistory.id}</Description> 
-<Description term="Login Time">{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="From Ip">{loginHistory.fromIp}</Description> 
-<Description term="Description">{loginHistory.description}</Description> 
-<Description term="Sec User">{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+<Description term="????">{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="??IP">{loginHistory.fromIp}</Description> 
+<Description term="??">{loginHistory.description}</Description> 
+<Description term="????">{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"Sec User","secUser",LoginHistoryService.requestCandidateSecUser,
+  showTransferModel(targetComponent,"????","secUser",LoginHistoryService.requestCandidateSecUser,
 	      LoginHistoryService.transferToAnotherSecUser,"anotherSecUserId",loginHistory.secUser?loginHistory.secUser.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -136,7 +153,7 @@ class LoginHistoryDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Login History",cardsFor: "loginHistory",
+    const cardsData = {cardsName:"????",cardsFor: "loginHistory",
     	cardsSource: this.props.loginHistory,returnURL,displayName,
   		subItems: [
     

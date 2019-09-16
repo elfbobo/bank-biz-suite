@@ -137,7 +137,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/platform/${id}/list/ChangeRequestList/Change Request+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/platform/${id}/list/ChangeRequestList/????+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateChangeRequest({ payload }, { call, put }) {
@@ -159,7 +159,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/platform/${id}/list/ChangeRequestList/Change Request列表`, state: newPlayload }
+      const location = { pathname: `/platform/${id}/list/ChangeRequestList/??????`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextChangeRequestUpdateRow({ payload }, { call, put }) {
@@ -206,7 +206,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/platform/${id}/list/AccountList/Account+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/platform/${id}/list/AccountList/??+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateAccount({ payload }, { call, put }) {
@@ -228,7 +228,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/platform/${id}/list/AccountList/Account列表`, state: newPlayload }
+      const location = { pathname: `/platform/${id}/list/AccountList/????`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextAccountUpdateRow({ payload }, { call, put }) {

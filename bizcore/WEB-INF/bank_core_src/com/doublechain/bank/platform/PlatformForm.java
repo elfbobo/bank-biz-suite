@@ -227,7 +227,7 @@ public class PlatformForm extends BaseForm {
 
 	public PlatformForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

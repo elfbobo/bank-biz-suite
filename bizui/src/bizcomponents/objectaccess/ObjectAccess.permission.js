@@ -23,23 +23,27 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (objectAccess,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{objectAccess.id}</Description> 
-<Description term="Name">{objectAccess.name}</Description> 
-<Description term="Object Type">{objectAccess.objectType}</Description> 
-<Description term="List1">{objectAccess.list1}</Description> 
-<Description term="List2">{objectAccess.list2}</Description> 
-<Description term="List3">{objectAccess.list3}</Description> 
-<Description term="List4">{objectAccess.list4}</Description> 
-<Description term="List5">{objectAccess.list5}</Description> 
-<Description term="List6">{objectAccess.list6}</Description> 
-<Description term="List7">{objectAccess.list7}</Description> 
-<Description term="List8">{objectAccess.list8}</Description> 
-<Description term="List9">{objectAccess.list9}</Description> 
+<Description term="ID">{objectAccess.id}</Description> 
+<Description term="??">{objectAccess.name}</Description> 
+<Description term="??????">{objectAccess.objectType}</Description> 
+<Description term="??1">{objectAccess.list1}</Description> 
+<Description term="??2">{objectAccess.list2}</Description> 
+<Description term="??3">{objectAccess.list3}</Description> 
+<Description term="??4">{objectAccess.list4}</Description> 
+<Description term="??5">{objectAccess.list5}</Description> 
+<Description term="??6">{objectAccess.list6}</Description> 
+<Description term="??7">{objectAccess.list7}</Description> 
+<Description term="??8">{objectAccess.list8}</Description> 
+<Description term="??9">{objectAccess.list9}</Description> 
 	
       </DescriptionList>
 	)
@@ -63,9 +67,10 @@ class ObjectAccessPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  objectAccess = this.props.objectAccess;
+    const  objectAccess = this.props.objectAccess
     const { id,displayName,  } = objectAccess
-    const cardsData = {cardsName:"Object Access",cardsFor: "objectAccess",cardsSource: objectAccess,
+    const  returnURL = `/objectAccess/${id}/dashboard`
+    const cardsData = {cardsName:"????",cardsFor: "objectAccess",cardsSource: objectAccess,displayName,returnURL,
   		subItems: [
     
       	],
@@ -76,7 +81,7 @@ class ObjectAccessPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

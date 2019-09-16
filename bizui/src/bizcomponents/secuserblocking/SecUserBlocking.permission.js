@@ -23,15 +23,19 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (secUserBlocking,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{secUserBlocking.id}</Description> 
-<Description term="Who">{secUserBlocking.who}</Description> 
-<Description term="Block Time">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD')}</Description> 
-<Description term="Comments">{secUserBlocking.comments}</Description> 
+<Description term="ID">{secUserBlocking.id}</Description> 
+<Description term="?">{secUserBlocking.who}</Description> 
+<Description term="???">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD')}</Description> 
+<Description term="??">{secUserBlocking.comments}</Description> 
 	
       </DescriptionList>
 	)
@@ -55,9 +59,10 @@ class SecUserBlockingPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  secUserBlocking = this.props.secUserBlocking;
+    const  secUserBlocking = this.props.secUserBlocking
     const { id,displayName, secUserCount } = secUserBlocking
-    const cardsData = {cardsName:"Sec User Blocking",cardsFor: "secUserBlocking",cardsSource: secUserBlocking,
+    const  returnURL = `/secUserBlocking/${id}/dashboard`
+    const cardsData = {cardsName:"????",cardsFor: "secUserBlocking",cardsSource: secUserBlocking,displayName,returnURL,
   		subItems: [
     
       	],
@@ -68,7 +73,7 @@ class SecUserBlockingPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

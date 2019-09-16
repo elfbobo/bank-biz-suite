@@ -17,8 +17,8 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '搜索到的匹配字段',
-  type: '类型描述',
+  name: '????????',
+  type: '????',
   containerId: 'CC000001',
 }
 */
@@ -196,13 +196,8 @@ class CandidateElementCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-<<<<<<< HEAD
-        title={`${appLocaleName(userContext,"CreateNew")}候选人元素`}
-        content={`${appLocaleName(userContext,"CreateNew")}候选人元素`}
-=======
-        title={`${appLocaleName(userContext,"CreateNew")}Candidate Element`}
-        content={`${appLocaleName(userContext,"CreateNew")}Candidate Element`}
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+        title={`${appLocaleName(userContext,"CreateNew")}?????`}
+        content={`${appLocaleName(userContext,"CreateNew")}?????`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -214,11 +209,7 @@ class CandidateElementCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-<<<<<<< HEAD
-                    <Input size="large" placeholder="名称" />
-=======
-                    <Input size="large" placeholder="Name" />
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -228,11 +219,7 @@ class CandidateElementCreateForm extends Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-<<<<<<< HEAD
-                    <Input size="large" placeholder="类型" />
-=======
-                    <Input size="large" placeholder="Type" />
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -258,11 +245,7 @@ class CandidateElementCreateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <ImageComponent
-<<<<<<< HEAD
-                  buttonTitle="图片"
-=======
-                  buttonTitle="Image"
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+                  buttonTitle="??"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image')}
                   fileList={convertedImagesValues.image}

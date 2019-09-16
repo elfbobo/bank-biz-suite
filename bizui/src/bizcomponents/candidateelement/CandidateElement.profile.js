@@ -55,8 +55,8 @@ class CandidateElementProfile extends Component {
     // eslint-disable-next-line max-len
     const  candidateElement = this.props.candidateElement;
     const { id,displayName,  } = candidateElement
-
-    const cardsData = {cardsName:"Candidate Element",cardsFor: "candidateElement",cardsSource: candidateElement,
+    const  returnURL = `/candidateElement/${id}/dashboard`
+    const cardsData = {cardsName:"?????",cardsFor: "candidateElement",cardsSource: candidateElement,displayName,returnURL,
   		subItems: [
      
       	],
@@ -70,8 +70,8 @@ class CandidateElementProfile extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
-        content={summaryOf(cardsData.cardsSource,this)}
+        title={internalRenderTitle(cardsData, this)}
+        content={summaryOf(cardsData.cardsSource, this)}
         wrapperClassName={styles.advancedForm}
       >
       {renderExtraHeader(cardsData.cardsSource)}

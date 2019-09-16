@@ -30,17 +30,17 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"User White List", menuFor: "userWhiteList",
+const menuData = {menuName:"?????", menuFor: "userWhiteList",
   		subItems: [
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  userIdentity: 'User Identity',
-  userSpecialFunctions: 'User Special Functions',
-  domain: 'Domain',
+  id: 'ID',
+  userIdentity: '????',
+  userSpecialFunctions: '??????',
+  domain: '?',
 
 }
 
@@ -59,9 +59,9 @@ const renderItemOfList=(userWhiteList,targetComponent)=>{
     <div key={userWhiteList.id}>
 	
       <DescriptionList  key={userWhiteList.id} size="small" col="4">
-        <Description term="Id">{userWhiteList.id}</Description> 
-        <Description term="User Identity">{userWhiteList.userIdentity}</Description> 
-        <Description term="User Special Functions">{userWhiteList.userSpecialFunctions}</Description> 
+        <Description term="ID">{userWhiteList.id}</Description> 
+        <Description term="????">{userWhiteList.userIdentity}</Description> 
+        <Description term="??????">{userWhiteList.userSpecialFunctions}</Description> 
 	
         
       </DescriptionList>

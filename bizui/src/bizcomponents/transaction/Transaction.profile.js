@@ -55,8 +55,8 @@ class TransactionProfile extends Component {
     // eslint-disable-next-line max-len
     const  transaction = this.props.transaction;
     const { id,displayName,  } = transaction
-
-    const cardsData = {cardsName:"Transaction",cardsFor: "transaction",cardsSource: transaction,
+    const  returnURL = `/transaction/${id}/dashboard`
+    const cardsData = {cardsName:"??",cardsFor: "transaction",cardsSource: transaction,displayName,returnURL,
   		subItems: [
      
       	],
@@ -70,8 +70,8 @@ class TransactionProfile extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
-        content={summaryOf(cardsData.cardsSource,this)}
+        title={internalRenderTitle(cardsData, this)}
+        content={summaryOf(cardsData.cardsSource, this)}
         wrapperClassName={styles.advancedForm}
       >
       {renderExtraHeader(cardsData.cardsSource)}

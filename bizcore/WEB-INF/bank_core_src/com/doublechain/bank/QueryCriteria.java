@@ -16,10 +16,10 @@ import com.terapico.caf.DateTime;
 
 
 /*
- * 支持多个字段或的操作，比如
+ * ?????????????
  * 
  * name|title|content    contains 'super'
- * 会被解析成 where name contains ? or title contains ? 
+ * ????? where name contains ? or title contains ? 
  * */
 class QueryElement extends BaseEntity{
 	protected  Object[] wrapToArray(Object value){
@@ -657,7 +657,7 @@ customList.searchResultOrder=desc/asc
 				getOptionsValue(listName,"searchValue",options));
 		
 		if(filter!=null){
-			criteria.addFilter(filter);//没办法，兼容老的标准
+			criteria.addFilter(filter);//??????????
 		}
 		
 		for(int i=0;i<20;i++){
@@ -679,7 +679,7 @@ customList.searchResultOrder=desc/asc
 				getOptionsValue(listName,"descOrAsc",options));
 
 		if(sorter!=null){
-			criteria.addSorter(sorter);//没办法，兼容老的标准
+			criteria.addSorter(sorter);//??????????
 		}
 		
 		for(int i=0;i<20;i++){
@@ -872,7 +872,7 @@ customList.searchResultOrder=desc/asc
 		SearchField field = new SearchField();
 		field.setName("id");
 		field.setLocaleKey("@id");
-		field.setPresentName("序号");
+		field.setPresentName("??");
 		
 		fields.add(field);
 		
@@ -883,13 +883,13 @@ customList.searchResultOrder=desc/asc
 		SortType sortType = new SortType();
 		sortType.setName("asc");
 		sortType.setLocaleKey("@asc");
-		sortType.setPresentName("正序");
+		sortType.setPresentName("??");
 		
 		fields.add(sortType);
 		sortType = new SortType();
 		sortType.setName("desc");
 		sortType.setLocaleKey("@desc");
-		sortType.setPresentName("倒序");
+		sortType.setPresentName("??");
 		fields.add(sortType);
 		return fields;
 	}

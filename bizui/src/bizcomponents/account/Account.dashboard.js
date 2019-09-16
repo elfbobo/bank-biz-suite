@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/account/${targetComponent.props.account.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/account/${targetComponent.props.account.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,19 +106,11 @@ const internalSummaryOf = (account,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<<<<<<< HEAD
 <Description term="ID">{account.id}</Description> 
-<Description term="名称">{account.name}</Description> 
-<Description term="余额">{account.balance}</Description> 
-<Description term="创建时间">{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="更新时间">{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</Description> 
-=======
-<Description term="Id">{account.id}</Description> 
-<Description term="Name">{account.name}</Description> 
-<Description term="Balance">{account.balance}</Description> 
-<Description term="Create Time">{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="Update Time">{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+<Description term="??">{account.name}</Description> 
+<Description term="??">{account.balance}</Description> 
+<Description term="????">{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="????">{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</Description> 
 	
         {buildTransferModal(account,targetComponent)}
       </DescriptionList>
@@ -131,13 +148,13 @@ class AccountDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Account",cardsFor: "account",
+    const cardsData = {cardsName:"??",cardsFor: "account",
     	cardsSource: this.props.account,returnURL,displayName,
   		subItems: [
-{name: 'transactionListAsFromAccount', displayName:'Transaction(Transaction List As From Account)',type:'transaction',count:transactionAsFromAccountCount,addFunction: true, role: 'transactionAsFromAccount', metaInfo: transactionListAsFromAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'transactionListAsToAccount', displayName:'Transaction(Transaction List As To Account)',type:'transaction',count:transactionAsToAccountCount,addFunction: true, role: 'transactionAsToAccount', metaInfo: transactionListAsToAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'nameChangeEventList', displayName:'Name Change Event',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
-{name: 'accountChangeList', displayName:'Account Change',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
+{name: 'transactionListAsFromAccount', displayName:'??(???????)',type:'transaction',count:transactionAsFromAccountCount,addFunction: true, role: 'transactionAsFromAccount', metaInfo: transactionListAsFromAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'transactionListAsToAccount', displayName:'??(????????)',type:'transaction',count:transactionAsToAccountCount,addFunction: true, role: 'transactionAsToAccount', metaInfo: transactionListAsToAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'nameChangeEventList', displayName:'??????',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
+{name: 'accountChangeList', displayName:'????',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
     
       	],
   	};

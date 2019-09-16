@@ -161,15 +161,15 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		
 		String xauth = userContext.getRequestHeader("X-Auth");
 		if(xauth!=null) {
-			return accessOK(); //for temporary use， security leak for demo only
+			return accessOK(); //for temporary use? security leak for demo only
 		}
 		
-		//如果来自本地IP，则放开访问
+		//??????IP??????
 		UserApp app =(UserApp) userContext.getCachedObject(this.getCurrentAppKey(userContext), UserApp.class);
 		
 		if(app == null){
 			userContext.log("app is null!");
-			return accessFail("没有选择App");
+			return accessFail("????App");
 		}
 		//userContext.log("trying to log all access list");
 		//for(ObjectAccess oa:app.getObjectAccessList()){
@@ -184,7 +184,7 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		
 		
 		if(true){
-			return accessOK();//暂时不适用graph来确定权限
+			return accessOK();//?????graph?????
 		}
 		String sourceType = app.getObjectType();//temp here
 		String sourceId = app.getObjectId();//temp here
@@ -198,12 +198,12 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		String permission = app.getPermission();
 		if(targetObjectType.equals(sourceType)){
 			if(targetId.equals(sourceId)){
-				//直接权限分配，直接检查操作类型是不是子集就好了
+				//???????????????????????
 				if(hasDirectRight(permission,operation)){
 					return accessOK();
 				}
 				
-				return accessFail("你直接访问"+sourceType+"("+sourceId+") 失败，你不具有"+operation+"权限" );
+				return accessFail("?????"+sourceType+"("+sourceId+") ???????"+operation+"??" );
 				
 			}
 		}
@@ -217,9 +217,9 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		if(hasIndirectRight(userContext, permission,operation, relations)){
 			return accessOK();
 		}
-		String message = "你以持有对"+sourceType+"("+sourceId+")的 '"+permission+"' 权限被禁止以 '"+operation+"' 访问: "+targetObjectType+"("+targetId+")";
+		String message = "?????"+sourceType+"("+sourceId+")? '"+permission+"' ?????? '"+operation+"' ??: "+targetObjectType+"("+targetId+")";
 		try {
-			userContext.sendEmail("philip_chang@163.com", "发现认证失败事件", message);
+			userContext.sendEmail("philip_chang@163.com", "????????", message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -279,29 +279,29 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		
 	}
 	protected String targetIdOf(String methodName, Object[] parameters){
-		//如果第一个是Context，那么通常第二个就是Id，结合方法名，可以找得比较准确
-		//所有的public方法第一个参数都必须是UserContext，第二餐参数可能id或者没有就像deleteAll
+		//??????Context??????????Id???????????????
+		//???public???????????UserContext????????id??????deleteAll
 		
 		if(parameters.length == 0){
-			return null;//什么都没有，无法判断权限
+			return null;//????????????
 		}
 		Object object = parameters[0];
 		if(!(object instanceof BaseUserContext)){
-			return null;//第一个不是，也无法判断权限，通常这样的方法不允许在manager方法出现
+			return null;//?????????????????????????manager????
 		}
 		if(parameters.length == 1){
-			//只有UC，没有其他参数
+			//??UC???????
 			return null;
 		}
 		
-		//第一个是UC，而且至少有第二个参数，而且是String，而且方法的名字不是deleteAll和create，都应该是第二个
+		//????UC???????????????String??????????deleteAll?create????????
 		int index = indexOfTargetId(methodName);
 		if(index < 0){
-			return null;//不存在targetId
+			return null;//???targetId
 		}
 	
 		if(index >= parameters.length){
-			return null;//得到的Index超过范围，也不知道是怎么算的
+			return null;//???Index??????????????
 		}
 
 		Object secondParameter = parameters[index];
@@ -315,12 +315,12 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 	}
 	
 	static final String[] readMethodPrefixes = {"find","load","search","select","view"};
-	//保持字母顺序，查找很快, 但是你得非常小心，如果排序没对，就惨了
-	static final String[] writeMethodPrefixes = {"add","update"};//保持字母顺序，查找很快
-	static final String[] managementMethodPrefixes = {"assign","delete"};//保持字母顺序，查找很快
+	//???????????, ???????????????????
+	static final String[] writeMethodPrefixes = {"add","update"};//???????????
+	static final String[] managementMethodPrefixes = {"assign","delete"};//???????????
 	
 	protected String operationTypeOf(String methodName, Object[] parameters){
-		//每个方法都对应着唯一的操作类型
+		//???????????????
 		
 		String prefix = getMethodPrefix(methodName);
 		
@@ -336,10 +336,10 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		if(index >= 0 ){
 			return "m";
 		}
-		return "x";//执行的词汇非常多，默认是执行
+		return "x";//??????????????
 		
 	}
-	//找到第一个大写字母或者结束，都算prefix
+	//????????????????prefix
 	protected String getMethodPrefix(String methodName) {
 		
 		
@@ -629,11 +629,11 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 	
 		if(value == null){
 			if(minLength == 0 ){
-				//如果最小长度为0，则改值允许为NULL
+				//???????0???????NULL
 				return;
 			}
 			packMessage(messageList, "STRING_NOT_ALLOW_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minLength, maxLength},
-					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度有误，该值最少"+minLength+"个字符.");
+					"???? '"+propertyKey+"' ??'"+value+"'?????????"+minLength+"???.");
 			return;
 		}
 		
@@ -642,22 +642,22 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		}
 		
 		if(minLength == maxLength){
-			//固定长度，
+			//?????
 			
-	 		//errorMsg.setBody("您输入的"+propertyKey+":'"+value+"'长度有误, 该值长度为 "+ value.length()+", 系统预期是固定长度为"+minLength + "之间的文本");
+	 		//errorMsg.setBody("????"+propertyKey+":'"+value+"'????, ????? "+ value.length()+", ??????????"+minLength + "?????");
 			packMessage(messageList, "STRING_NOT_FIXED_LENGTH",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度不对, 该值长度为 "+ value.length()+", 系统预期是固定长度为 "+minLength + " 文本.");
+					"???? '"+propertyKey+"' ??'"+value+"'????, ????? "+ value.length()+", ?????????? "+minLength + " ??.");
 	 		return;
 		}
 		if(value.length()>maxLength){
 			packMessage(messageList, "STRING_TOO_LONG",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度太长, 该值长度为 "+ value.length()+", 系统预期最多 "+maxLength+" 个字符.");
+					"???? '"+propertyKey+"' ??'"+value+"'????, ????? "+ value.length()+", ?????? "+maxLength+" ???.");
 	 		return;
 	 	}
 		if(value.length()<minLength){
 	 		
 			packMessage(messageList, "STRING_TOO_SHORT",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度太短, 该值长度为 "+ value.length()+", 系统预期是最短 "+minLength+" 个字符.");
+					"???? '"+propertyKey+"' ??'"+value+"'????, ????? "+ value.length()+", ??????? "+minLength+" ???.");
 	 		return;
 	 	}
 		
@@ -689,21 +689,21 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 	protected void checkChinaMobilePhone(String value, int minLength, int maxLength,
 			String propertyKey, List<Message> messageList) {
 		//checkStringLengthRange(value, 11, 11, propertyKey, messageList);
-		//中国的手机号目前都只有11位,全部数字，并且是以13 15 17 18 开头
+		//???????????11?,?????????13 15 17 18 ??
 		
 		if(value == null){
 			if(minLength == 0 ){
-				//如果最小长度为0，则改值允许为NULL
+				//???????0???????NULL
 				return;
 			}
 			packMessage(messageList, "CHINA_MOBILE_NOT_ALLOW_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minLength, maxLength},
-					"您输入的 '"+propertyKey+"' 的值 '"+value+"' 长度有误，该值为11个数字的手机号.");
+					"???? '"+propertyKey+"' ?? '"+value+"' ????????11???????.");
 			return;
 		}
 
 		if(!integerValueInClosedRange(value.length(), 11, 11)){
 			packMessage(messageList, "CHINA_MOBILE_NOT_FIXED_LENGTH",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"您输入的 '"+propertyKey+"' 的值 '"+value+"' 长度不对, 该值长度为 "+ value.length()+", 系统预期是固定长度为 "+minLength + "，而且全部为数字的手机号.");
+					"???? '"+propertyKey+"' ?? '"+value+"' ????, ????? "+ value.length()+", ?????????? "+minLength + "????????????.");
 	 		
 			return;
 		}
@@ -712,9 +712,9 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		
 		
 		if(!prefixedWith(value,prefixes)){
-			String errorForPrefixes = this.joinArray("、", prefixes);
+			String errorForPrefixes = this.joinArray("?", prefixes);
 			packMessage(messageList, "CHINA_MOBILE_FORMAT_ISSUE",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"您输入的 '"+propertyKey+"' 的值 '"+value+"' 格式错误, 开头应为"+errorForPrefixes+"而且全部为半角字符数字的手机号.");
+					"???? '"+propertyKey+"' ?? '"+value+"' ????, ????"+errorForPrefixes+"???????????????.");
 	 		return;
 		}
 		char digits[]=value.toCharArray();
@@ -723,7 +723,7 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 				continue;	
 			}
 			packMessage(messageList, "CHINA_MOBILE_CONTAIN_INVALID_CHAR",propertyKey,new Object[]{propertyKey, value, minLength, maxLength,ch+""},
-					"您输入的 '"+propertyKey+"' 的值 '"+value+"'包含非数字字符 '"+ch+"', 系统预期是全部为数字的手机号.");
+					"???? '"+propertyKey+"' ?? '"+value+"'??????? '"+ch+"', ??????????????.");
 	 		return;
 		}
 	}
@@ -740,19 +740,19 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		if(value == null){
 			
 			packMessage(messageList, "DATE_NOT_ALLOWED_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 为空，系统预期为一个日期.");
+					"???? '"+propertyKey+"' ????????????.");
 	 		return;
 		}
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 		if(minDate.after(value)){
 			packMessage(messageList, "DATE_BEFORE_START",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 在允许最早日期"+formatter.format(minDate) +"之前，请修正");
+					"???? '"+propertyKey+"' ???????"+formatter.format(minDate) +"??????");
 	 		
 	 		return;
 	 	}
 		if(maxDate.before(value)){
 			packMessage(messageList, "DATE_AFTER_END",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 在允许最晚日期"+formatter.format(maxDate)+"之后，请修正");
+					"???? '"+propertyKey+"' ???????"+formatter.format(maxDate)+"??????");
 	 		
 	 		return;
 	 	}
@@ -763,7 +763,7 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		if(value == null){
 			
 			packMessage(messageList, "DATE_NOT_ALLOWED_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 为空，系统预期为一个时间.");
+					"???? '"+propertyKey+"' ????????????.");
 	 		return;
 		}
 		Format formatter = new SimpleDateFormat("HH:mm:ss");
@@ -771,14 +771,14 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		long minTime = minDate.getHours()*3600+minDate.getMinutes()*60+minDate.getSeconds();
 		if(minTime>valTime){
 			packMessage(messageList, "DATE_BEFORE_START",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 在允许最早时间"+formatter.format(minDate) +"之前，请修正");
+					"???? '"+propertyKey+"' ???????"+formatter.format(minDate) +"??????");
 	 		
 	 		return;
 	 	}
 		long maxTime = maxDate.getHours()*3600+maxDate.getMinutes()*60+maxDate.getSeconds();
 		if(maxTime<valTime){
 			packMessage(messageList, "DATE_AFTER_END",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 在允许最晚时间"+formatter.format(maxDate)+"之后，请修正");
+					"???? '"+propertyKey+"' ???????"+formatter.format(maxDate)+"??????");
 	 		
 	 		return;
 	 	}
@@ -790,19 +790,19 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 		if(value == null){
 			
 			packMessage(messageList, "DATE_NOT_ALLOWED_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 为空，系统预期为一个日期.");
+					"???? '"+propertyKey+"' ????????????.");
 	 		return;
 		}
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 		if(minDate.after(value)){
 			packMessage(messageList, "DATE_BEFORE_START",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 在最早的日期"+formatter.format(minDate) +"之前，请修正");
+					"???? '"+propertyKey+"' ??????"+formatter.format(minDate) +"??????");
 	 		
 	 		return;
 	 	}
 		if(maxDate.before(value)){
 			packMessage(messageList, "DATE_AFTER_END",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"您输入的 '"+propertyKey+"' 在最晚的日期"+formatter.format(maxDate)+"之后，请修正");
+					"???? '"+propertyKey+"' ??????"+formatter.format(maxDate)+"??????");
 	 		
 	 		return;
 	 	}
@@ -832,13 +832,13 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 	}
 	/*
 	 * 
-您输入的姓名阿布切诺-买买提有误，该值长度 7 ，系统预期是长度2到6之间的文本
+??????????-?????????? 7 ????????2?6?????
 
-您输入的支付金额 ‘100.00’ 有误， 该值低于系统预期范围，系统期望是从101.00到121.00之间
+???????? ?100.00? ??? ?????????????????101.00?121.00??
 
-您输入的支付金额 ‘啊100.00’ 有误， 该输入正确的格式是像 123.09 的小数
+???????? ??100.00? ??? ?????????? 123.09 ???
 
-您输入的出生日期格式有误，该输入正确的的格式是像 2017-09-09的日期
+???????????????????????? 2017-09-09???
 	 * 
 	 * 
 	 * */
@@ -846,13 +846,13 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 			String propertyKey, List<Message> messageList) {
 		if(value > max){
 			packMessage(messageList, "NUMBER_GREATER_THAN_MAX",propertyKey,new Object[]{propertyKey, value, min, max},
-					"您输入的 '"+propertyKey+"' 在比允许的最大值"+max+"还要大，请修正。");
+					"???? '"+propertyKey+"' ????????"+max+"????????");
 	 		
 	 		return;
 	 	}
 		if(value < min){
 			packMessage(messageList, "NUMBER_LESS_THAN_MIN",propertyKey,new Object[]{propertyKey, value, min, max},
-					"您输入的 '"+propertyKey+"' 在比允许的最小值"+min+"还要小，请修正。");
+					"???? '"+propertyKey+"' ????????"+min+"????????");
 	 		
 	 		return;
 	 	}
@@ -876,13 +876,13 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 			String propertyKey, List<Message> messageList) {
 		if(value > max){
 			packMessage(messageList, "INTEGER_GREATER_THAN_MAX",propertyKey,new Object[]{propertyKey, value, min, max},
-					"您输入的"+propertyKey+"在比允许的最大值"+max+"还要大，请修正。");
+					"????"+propertyKey+"????????"+max+"????????");
 	 		
 	 		return;
 	 	}
 		if(value < min){
 			packMessage(messageList, "INTEGER_LESS_THAN_MIN",propertyKey,new Object[]{propertyKey, value, min, max},
-					"您输入的"+propertyKey+"在比允许的最小值"+min+"还要小，请修正。");
+					"????"+propertyKey+"????????"+min+"????????");
 	 		
 	 		return;
 	 	}
@@ -967,13 +967,13 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 	protected void checkBigDecimalRange(BigDecimal value, double min, double max, String propertyKey, List<Message> messageList) {
 		if(value.compareTo(new BigDecimal(max)) > 0){
 			packMessage(messageList, "NUMBER_GREATER_THAN_MAX",propertyKey,new Object[]{propertyKey, value, min, max},
-					"您输入的 '"+propertyKey+"' 在比允许的最大值"+max+"还要大，请修正。");
+					"???? '"+propertyKey+"' ????????"+max+"????????");
 	 		
 	 		return;
 	 	}
 		if(value.compareTo(new BigDecimal(min)) < 0){
 			packMessage(messageList, "NUMBER_LESS_THAN_MIN",propertyKey,new Object[]{propertyKey, value, min, max},
-					"您输入的 '"+propertyKey+"' 在比允许的最小值"+min+"还要小，请修正。");
+					"???? '"+propertyKey+"' ????????"+min+"????????");
 	 		
 	 		return;
 	 	}
@@ -982,7 +982,7 @@ public class BaseManagerImpl implements AccessControledService,BeanNameAware{
 			List<Message> messageList) {
 		if(value == null || value.trim().length() != 15){
 			packMessage(messageList, "STRING_NOT_FIXED_LENGTH",propertyKey,new Object[]{propertyKey, value, 15},
-					"您输入的 '"+propertyKey+"' 不是15位的有效税号，请修正。");
+					"???? '"+propertyKey+"' ??15???????????");
 	 		return;
 	 	}
 	}

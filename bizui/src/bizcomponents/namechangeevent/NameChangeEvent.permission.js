@@ -23,13 +23,17 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (nameChangeEvent,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{nameChangeEvent.id}</Description> 
-<Description term="Name">{nameChangeEvent.name}</Description> 
+<Description term="ID">{nameChangeEvent.id}</Description> 
+<Description term="??">{nameChangeEvent.name}</Description> 
 	
       </DescriptionList>
 	)
@@ -53,9 +57,10 @@ class NameChangeEventPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  nameChangeEvent = this.props.nameChangeEvent;
+    const  nameChangeEvent = this.props.nameChangeEvent
     const { id,displayName,  } = nameChangeEvent
-    const cardsData = {cardsName:"Name Change Event",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,
+    const  returnURL = `/nameChangeEvent/${id}/dashboard`
+    const cardsData = {cardsName:"??????",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,displayName,returnURL,
   		subItems: [
     
       	],
@@ -66,7 +71,7 @@ class NameChangeEventPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

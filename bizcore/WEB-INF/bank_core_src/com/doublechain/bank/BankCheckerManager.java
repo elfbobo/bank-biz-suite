@@ -78,10 +78,10 @@ public class BankCheckerManager extends BaseManagerImpl {
 	protected void checkVerifyCode(BankUserContext ctx, String inputVerifyCode, String mobile) throws Exception {
 		String cachedVerifyCode = getVerifyCodeFromCache(ctx, mobile);
 		if (cachedVerifyCode == null) {
-			throw new Exception("请先获取验证码");
+			throw new Exception("???????");
 		}
 		if (!cachedVerifyCode.equals(inputVerifyCode)) {
-			throw new Exception("验证码不正确");
+			throw new Exception("??????");
 		}
 	}
 	

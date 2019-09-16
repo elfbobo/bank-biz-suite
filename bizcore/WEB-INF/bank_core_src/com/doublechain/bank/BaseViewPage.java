@@ -221,14 +221,14 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		}
 		String outputName = fieldScope.getAliasName() == null ? key : fieldScope.getAliasName();
 		CustomSerializer cSerializer = getCustomSerializerByObject(value);
-		// 如果有自定义的序列化方法，优先使用自定义的
+		// ?????????????????????
 		if (cSerializer != null) {
 			Object convertResult = cSerializer.serialize(fieldScope, value, newPath);
 			addFieldToOwner(resultMap, fieldScope, outputName, convertResult);
 			return;
 		}
 
-		// 没有的话，就使用约定的方法
+		// ?????????????
 		Object convertResult = doRenderingObject(fieldScope, value, newPath, resultMap, outputName);
 		addFieldToOwner(resultMap, fieldScope, outputName, convertResult);
 	}
@@ -256,7 +256,7 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		if (value instanceof BaseViewComponent) {
 			return ((BaseViewComponent) value).toMap();
 		}
-		// 最后了，没办法了
+		// ????????
 		if (fieldScope.isRevers()) {
 			if (value instanceof BigDecimal) {
 				return ((BigDecimal) value).negate();
@@ -276,7 +276,7 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			if (value instanceof String) {
 				return new StringBuffer((String) value).reverse().toString();
 			}
-			// 其他数据类型忽略 reverse()
+			// ???????? reverse()
 		}
 		return value;
 	}
@@ -287,13 +287,13 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 		}
 		List<KeyValuePair> dataList = value.keyValuePairOf();
 		Map<String, Object> resultMap = new HashMap<>();
-		// 先序列化字段
+		// ??????
 		for (KeyValuePair dataItem : dataList) {
 			String fieldName = dataItem.getKey();
 			Object fieldValue = dataItem.getValue();
 			handleOneData(resultMap, scope, path, fieldName, fieldValue);
 		}
-		// 再序列化附加字段
+		// ????????
 		doRenderingMap(resultMap, scope, value.getValueMap(), path);
 		if (OBJECT_HASHCODE) {
 			addHashCode(resultMap);
@@ -319,7 +319,7 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			}
 			String outputName = fieldScope.getAliasName() == null ? key : fieldScope.getAliasName();
 			CustomSerializer cSerializer = getCustomSerializerByObject(item);
-			// 如果有自定义的序列化方法，优先使用自定义的
+			// ?????????????????????
 			if (cSerializer != null) {
 				Object convertResult = cSerializer.serialize(fieldScope, item, path);
 				saveListItemConvertResult(fieldScope, resultList, item, convertResult);
@@ -385,7 +385,7 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			if (dataList.isEmpty()) {
 				String emptyMessage = (String) dataList.valueByKey(X_EMPTY_MESSAGE);
 				if (emptyMessage == null) {
-					emptyMessage = "暂时没有内容";
+					emptyMessage = "??????";
 				}
 				metaData.put(X_EMPTY_MESSAGE, emptyMessage);
 			}
@@ -402,11 +402,11 @@ public abstract class BaseViewPage extends HashMap<String, Object> {
 			return new FormProcessorSerializer();
 		}
 		if (object instanceof ButtonViewComponent) {
-			// action 是特别定制的序列化
+			// action ?????????
 			return new ButtonViewComponentSerializer();
 		}
 		if (object instanceof PopupViewComponent) {
-			// popup 也是特别定制的的
+			// popup ????????
 			return new PopupViewComponentSerializer();
 		}
 		return null;

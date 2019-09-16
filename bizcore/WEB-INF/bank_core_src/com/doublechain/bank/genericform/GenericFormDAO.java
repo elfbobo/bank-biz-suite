@@ -80,16 +80,16 @@ public interface GenericFormDAO{
 	
 	public SmartList<GenericForm> queryList(String sql, Object ... parmeters);
 
-	// 需要一个加载引用我的对象的enhance方法:FormMessage的form的FormMessageList
+	// ?????????????enhance??:FormMessage?form?FormMessageList
 	public SmartList<FormMessage> loadOurFormMessageList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception;
 	
-	// 需要一个加载引用我的对象的enhance方法:FormFieldMessage的form的FormFieldMessageList
+	// ?????????????enhance??:FormFieldMessage?form?FormFieldMessageList
 	public SmartList<FormFieldMessage> loadOurFormFieldMessageList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception;
 	
-	// 需要一个加载引用我的对象的enhance方法:FormField的form的FormFieldList
+	// ?????????????enhance??:FormField?form?FormFieldList
 	public SmartList<FormField> loadOurFormFieldList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception;
 	
-	// 需要一个加载引用我的对象的enhance方法:FormAction的form的FormActionList
+	// ?????????????enhance??:FormAction?form?FormActionList
 	public SmartList<FormAction> loadOurFormActionList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception;
 	
 }

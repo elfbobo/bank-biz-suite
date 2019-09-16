@@ -85,7 +85,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+	// disconnect from all, ?????????????????????????????
 	public 	void clearFromAll(){
 		setSecUser( null );
 
@@ -470,7 +470,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		if(this.mQuickLinkList == null){
 			this.mQuickLinkList = new SmartList<QuickLink>();
 			this.mQuickLinkList.setListInternalName (QUICK_LINK_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mQuickLinkList;	
@@ -525,7 +525,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithQuickLink(QuickLink quickLink){
 		
 		if(quickLink == null){
@@ -577,7 +577,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		if(this.mListAccessList == null){
 			this.mListAccessList = new SmartList<ListAccess>();
 			this.mListAccessList.setListInternalName (LIST_ACCESS_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mListAccessList;	
@@ -632,7 +632,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithListAccess(ListAccess listAccess){
 		
 		if(listAccess == null){
@@ -684,7 +684,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 		if(this.mObjectAccessList == null){
 			this.mObjectAccessList = new SmartList<ObjectAccess>();
 			this.mObjectAccessList.setListInternalName (OBJECT_ACCESS_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mObjectAccessList;	
@@ -739,7 +739,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithObjectAccess(ObjectAccess objectAccess){
 		
 		if(objectAccess == null){

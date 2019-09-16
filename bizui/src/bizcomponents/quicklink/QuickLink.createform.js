@@ -17,9 +17,9 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '列表',
+  name: '??',
   icon: 'facebook',
-  linkTarget: '列表',
+  linkTarget: '??',
   appId: 'UA000001',
 }
 */
@@ -197,8 +197,8 @@ class QuickLinkCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}Quick Link`}
-        content={`${appLocaleName(userContext,"CreateNew")}Quick Link`}
+        title={`${appLocaleName(userContext,"CreateNew")}????`}
+        content={`${appLocaleName(userContext,"CreateNew")}????`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -210,7 +210,7 @@ class QuickLinkCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Name" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -220,7 +220,7 @@ class QuickLinkCreateForm extends Component {
                   {getFieldDecorator('icon', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Icon" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -230,7 +230,7 @@ class QuickLinkCreateForm extends Component {
                   {getFieldDecorator('linkTarget', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Link Target" />
+                    <Input size="large" placeholder="?????" />
                   )}
                 </Form.Item>
               </Col>
@@ -256,7 +256,7 @@ class QuickLinkCreateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <ImageComponent
-                  buttonTitle="Image Path"
+                  buttonTitle="????"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'imagePath')}
                   fileList={convertedImagesValues.imagePath}

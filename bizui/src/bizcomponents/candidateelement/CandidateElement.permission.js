@@ -23,14 +23,18 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (candidateElement,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{candidateElement.id}</Description> 
-<Description term="Name">{candidateElement.name}</Description> 
-<Description term="Type">{candidateElement.type}</Description> 
+<Description term="ID">{candidateElement.id}</Description> 
+<Description term="??">{candidateElement.name}</Description> 
+<Description term="??">{candidateElement.type}</Description> 
 	
       </DescriptionList>
 	)
@@ -54,9 +58,10 @@ class CandidateElementPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  candidateElement = this.props.candidateElement;
+    const  candidateElement = this.props.candidateElement
     const { id,displayName,  } = candidateElement
-    const cardsData = {cardsName:"Candidate Element",cardsFor: "candidateElement",cardsSource: candidateElement,
+    const  returnURL = `/candidateElement/${id}/dashboard`
+    const cardsData = {cardsName:"?????",cardsFor: "candidateElement",cardsSource: candidateElement,displayName,returnURL,
   		subItems: [
     
       	],
@@ -67,7 +72,7 @@ class CandidateElementPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

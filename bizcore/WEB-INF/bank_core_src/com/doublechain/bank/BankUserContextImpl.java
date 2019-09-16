@@ -26,7 +26,7 @@ import com.terapico.utils.CollectionUtils;
 public class BankUserContextImpl extends UserContextImpl implements BankUserContext{
     //implements the domain specific user model
 
-	//默认支持中文和英文
+	//?????????
 	protected static Map<String,String> chineseMap;
 	
 	protected static Map<String,String> englishMap;
@@ -182,7 +182,7 @@ public class BankUserContextImpl extends UserContextImpl implements BankUserCont
 		}
 		Iterator<UserApp> it = apps.iterator();
 		while (it.hasNext()) {
-			// 过滤掉无效的app
+			// ??????app
 			UserApp app = it.next();
 			if (app.getSecUser() == null) {
 				it.remove();
@@ -205,7 +205,7 @@ public class BankUserContextImpl extends UserContextImpl implements BankUserCont
 	public BankObjectChecker getChecker() {
 		
 		if(this.checker==null) {
-			throw new IllegalStateException("每个实例必须配置Checker，请检查相关Spring的XML配置文件中 checker的配置");
+			throw new IllegalStateException("????????Checker??????Spring?XML????? checker???");
 		}
 		checker.setUserContext(this);
 		return checker;
@@ -237,18 +237,18 @@ public class BankUserContextImpl extends UserContextImpl implements BankUserCont
 			throw new Exception("This request was from " + beanName+", not from " + helper.getBeanName()+".");
 		}
 		if (methodName == null) {
-			return;// 没保存过，就不用处理了。
+			return;// ????????????
 		}
 		this.removeFromCache(getFootprintMarkKey());
-		// 核心问题是怎么处理堆栈。 是持续累加，还是‘短路’算法（clear_top)，或者‘提升’（brought—to-front）
+		// ???????????? ???????????????clear_top)????????brought?to-front?
 		Footprint fp = new Footprint();
 		fp.setBeanName(helper.getBeanName());
 		fp.setMethodName(methodName);
 		fp.setParameters(parameters);
-		// 先从缓存中拿到历史记录
+		// ???????????
 		List<Footprint> history = getFootprintListFromCache();
 		if (history == null || history.isEmpty()) {
-			// 历史是空的，直接追加
+			// ??????????
 			history = new ArrayList<>();
 			history.add(fp);
 			this.log("add footprint " + beanName+"."+methodName+"("+Arrays.asList(fp.getParameters())+")");
@@ -265,14 +265,14 @@ public class BankUserContextImpl extends UserContextImpl implements BankUserCont
 		}
 		
 		if (replacedFp == null) {
-			// 没找到可替换的目标，追加到队列最后
+			// ?????????????????
 			history.add(fp);
 			this.log("add new footprint " + beanName+"."+methodName+"("+Arrays.asList(fp.getParameters())+")");
 			putFootprintIntoCache(history);
 			return;
 		}
 		
-		// 找到可替换的目标以后，还要决定怎么做
+		// ??????????????????
 		if (helper.clearTop()) {
 			Iterator<Footprint> it = history.iterator();
 			boolean found = false;
@@ -303,7 +303,7 @@ public class BankUserContextImpl extends UserContextImpl implements BankUserCont
 	}
 	protected void putFootprintIntoCache(List<Footprint> history) throws Exception {
 		String historyJson = new ObjectMapper().writeValueAsString(history);
-		this.putToCache(getFootprintKey(), historyJson, 1*60*60); // 1个小时
+		this.putToCache(getFootprintKey(), historyJson, 1*60*60); // 1???
 	}
 
 	protected List<Footprint> getFootprintListFromCache() throws Exception {
@@ -367,7 +367,7 @@ public class BankUserContextImpl extends UserContextImpl implements BankUserCont
 	public Object goback() throws Exception {
 		Object mark = getCachedObject(getFootprintMarkKey(), Boolean.class);
 		if (mark instanceof Boolean && ((Boolean) mark).booleanValue()) {
-			// 没压栈
+			// ???
 			return getLastViewPage();
 		}
 		return getPreviousViewPage();

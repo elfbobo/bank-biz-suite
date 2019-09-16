@@ -145,15 +145,7 @@ class CandidateContainerBizApp extends React.PureComponent {
         )}
         )}
 
-       		<SubMenu key="sub4" title={<span><Icon type="setting" /><span>{appLocaleName(userContext,"Setting")}</span></span>} >
-       			<Menu.Item key="profile">
-               		<Link to={`/candidateContainer/${this.props.candidateContainer.id}/permission`}><Icon type="safety-certificate" /><span>{appLocaleName(userContext,"Permission")}</span></Link>
-             	</Menu.Item>
-             	<Menu.Item key="permission">
-               		<Link to={`/candidateContainer/${this.props.candidateContainer.id}/profile`}><Icon type="cluster" /><span>{appLocaleName(userContext,"Profile")}</span></Link>
-             	</Menu.Item> 
-      
-        	</SubMenu>
+       		
         
            </Menu>
     )
@@ -167,11 +159,7 @@ class CandidateContainerBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-<<<<<<< HEAD
-      name: "候选人元素",
-=======
-      name: "Candidate Element",
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+      name: "?????",
       role: "candidateElement",
       data: state._candidateContainer.candidateElementList,
       metaInfo: state._candidateContainer.candidateElementListMetaInfo,
@@ -252,7 +240,7 @@ class CandidateContainerBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '银行模拟平台'
+    const title = '??????'
     return title
   }
  

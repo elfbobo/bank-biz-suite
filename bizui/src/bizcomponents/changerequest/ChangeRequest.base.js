@@ -30,29 +30,21 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"Change Request", menuFor: "changeRequest",
+const menuData = {menuName:"????", menuFor: "changeRequest",
   		subItems: [
-  {name: 'transactionList', displayName:'Transaction', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'nameChangeEventList', displayName:'Name Change Event', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'accountChangeList', displayName:'Account Change', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'transactionList', displayName:'??', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'nameChangeEventList', displayName:'??????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'accountChangeList', displayName:'????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }
 
 const fieldLabels = {
-<<<<<<< HEAD
   id: 'ID',
-  name: '名称',
-  createTime: '创建时间',
-  remoteIp: '远程Ip',
-  platform: '平台',
-=======
-  id: 'Id',
-  name: 'Name',
-  createTime: 'Create Time',
-  remoteIp: 'Remote Ip',
-  platform: 'Platform',
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+  name: '??',
+  createTime: '????',
+  remoteIp: '??Ip',
+  platform: '??',
 
 }
 
@@ -72,17 +64,10 @@ const renderItemOfList=(changeRequest,targetComponent)=>{
     <div key={changeRequest.id}>
 	
       <DescriptionList  key={changeRequest.id} size="small" col="4">
-<<<<<<< HEAD
         <Description term="ID">{changeRequest.id}</Description> 
-        <Description term="名称">{changeRequest.name}</Description> 
-        <Description term="创建时间"><div>{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="远程Ip">{changeRequest.remoteIp}</Description> 
-=======
-        <Description term="Id">{changeRequest.id}</Description> 
-        <Description term="Name">{changeRequest.name}</Description> 
-        <Description term="Create Time"><div>{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="Remote Ip">{changeRequest.remoteIp}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+        <Description term="??">{changeRequest.name}</Description> 
+        <Description term="????"><div>{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="??Ip">{changeRequest.remoteIp}</Description> 
 	
         
       </DescriptionList>

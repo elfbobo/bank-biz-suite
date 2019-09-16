@@ -23,14 +23,18 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (platform,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{platform.id}</Description> 
-<Description term="Name">{platform.name}</Description> 
-<Description term="Founded">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
+<Description term="ID">{platform.id}</Description> 
+<Description term="??">{platform.name}</Description> 
+<Description term="??">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
 	
       </DescriptionList>
 	)
@@ -54,9 +58,10 @@ class PlatformPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  platform = this.props.platform;
+    const  platform = this.props.platform
     const { id,displayName, changeRequestCount, accountCount } = platform
-    const cardsData = {cardsName:"Platform",cardsFor: "platform",cardsSource: platform,
+    const  returnURL = `/platform/${id}/dashboard`
+    const cardsData = {cardsName:"??",cardsFor: "platform",cardsSource: platform,displayName,returnURL,
   		subItems: [
     
       	],
@@ -67,7 +72,7 @@ class PlatformPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

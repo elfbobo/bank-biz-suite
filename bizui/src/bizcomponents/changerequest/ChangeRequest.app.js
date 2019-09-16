@@ -145,15 +145,7 @@ class ChangeRequestBizApp extends React.PureComponent {
         )}
         )}
 
-       		<SubMenu key="sub4" title={<span><Icon type="setting" /><span>{appLocaleName(userContext,"Setting")}</span></span>} >
-       			<Menu.Item key="profile">
-               		<Link to={`/changeRequest/${this.props.changeRequest.id}/permission`}><Icon type="safety-certificate" /><span>{appLocaleName(userContext,"Permission")}</span></Link>
-             	</Menu.Item>
-             	<Menu.Item key="permission">
-               		<Link to={`/changeRequest/${this.props.changeRequest.id}/profile`}><Icon type="cluster" /><span>{appLocaleName(userContext,"Profile")}</span></Link>
-             	</Menu.Item> 
-      
-        	</SubMenu>
+       		
         
            </Menu>
     )
@@ -167,7 +159,7 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Transaction",
+      name: "??",
       role: "transaction",
       data: state._changeRequest.transactionList,
       metaInfo: state._changeRequest.transactionListMetaInfo,
@@ -216,7 +208,7 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Name Change Event",
+      name: "??????",
       role: "nameChangeEvent",
       data: state._changeRequest.nameChangeEventList,
       metaInfo: state._changeRequest.nameChangeEventListMetaInfo,
@@ -265,7 +257,7 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "Account Change",
+      name: "????",
       role: "accountChange",
       data: state._changeRequest.accountChangeList,
       metaInfo: state._changeRequest.accountChangeListMetaInfo,
@@ -354,7 +346,7 @@ class ChangeRequestBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '银行模拟平台'
+    const title = '??????'
     return title
   }
  

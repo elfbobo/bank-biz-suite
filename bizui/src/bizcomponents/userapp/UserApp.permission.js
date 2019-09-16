@@ -23,18 +23,22 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (userApp,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{userApp.id}</Description> 
-<Description term="Title">{userApp.title}</Description> 
-<Description term="App Icon">{userApp.appIcon}</Description> 
-<Description term="Permission">{userApp.permission}</Description> 
-<Description term="Object Type">{userApp.objectType}</Description> 
-<Description term="Object Id">{userApp.objectId}</Description> 
-<Description term="Location">{userApp.location}</Description> 
+<Description term="ID">{userApp.id}</Description> 
+<Description term="??">{userApp.title}</Description> 
+<Description term="??????">{userApp.appIcon}</Description> 
+<Description term="??">{userApp.permission}</Description> 
+<Description term="??????">{userApp.objectType}</Description> 
+<Description term="??ID">{userApp.objectId}</Description> 
+<Description term="??">{userApp.location}</Description> 
 	
       </DescriptionList>
 	)
@@ -58,9 +62,10 @@ class UserAppPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  userApp = this.props.userApp;
+    const  userApp = this.props.userApp
     const { id,displayName, quickLinkCount, listAccessCount, objectAccessCount } = userApp
-    const cardsData = {cardsName:"User App",cardsFor: "userApp",cardsSource: userApp,
+    const  returnURL = `/userApp/${id}/dashboard`
+    const cardsData = {cardsName:"??????",cardsFor: "userApp",cardsSource: userApp,displayName,returnURL,
   		subItems: [
     
       	],
@@ -71,7 +76,7 @@ class UserAppPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

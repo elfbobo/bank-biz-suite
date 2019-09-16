@@ -25,13 +25,8 @@ const testValues = {
   weixinAppid: 'wxapp12098410239840',
   accessToken: 'jwt_token_12345678',
   verificationCode: '0',
-<<<<<<< HEAD
-  verificationCodeExpire: '2019-08-23 10:54:33',
-  lastLoginTime: '2019-08-17 01:34:35',
-=======
-  verificationCodeExpire: '2019-08-28 22:44:00',
-  lastLoginTime: '2019-08-29 11:46:35',
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+  verificationCodeExpire: '2019-09-04 03:01:10',
+  lastLoginTime: '2019-08-27 06:46:58',
   domainId: 'UD000001',
 }
 */
@@ -208,8 +203,8 @@ class SecUserCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}Sec User`}
-        content={`${appLocaleName(userContext,"CreateNew")}Sec User`}
+        title={`${appLocaleName(userContext,"CreateNew")}????`}
+        content={`${appLocaleName(userContext,"CreateNew")}????`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -221,7 +216,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('login', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Login" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -231,7 +226,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('mobile', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Mobile" />
+                    <Input size="large" placeholder="????" />
                   )}
                 </Form.Item>
               </Col>
@@ -241,7 +236,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('email', {
                     rules: [{ required: false, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Email" />
+                    <Input size="large" placeholder="????" />
                   )}
                 </Form.Item>
               </Col>
@@ -251,7 +246,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('pwd', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Pwd" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -261,7 +256,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('weixinOpenid', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Weixin Openid" />
+                    <Input size="large" placeholder="??openid" />
                   )}
                 </Form.Item>
               </Col>
@@ -271,7 +266,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('weixinAppid', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Weixin Appid" />
+                    <Input size="large" placeholder="??Appid" />
                   )}
                 </Form.Item>
               </Col>
@@ -281,7 +276,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('accessToken', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Access Token" />
+                    <Input size="large" placeholder="????" />
                   )}
                 </Form.Item>
               </Col>
@@ -291,7 +286,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('verificationCode', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Verification Code" />
+                    <Input size="large" placeholder="???" />
                   )}
                 </Form.Item>
               </Col>
@@ -301,7 +296,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('verificationCodeExpire', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <DatePicker size="large" showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="Verification Code Expire" />
+                    <DatePicker size="large" showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="?????" />
                   )}
                 </Form.Item>
               </Col>
@@ -311,7 +306,7 @@ class SecUserCreateForm extends Component {
                   {getFieldDecorator('lastLoginTime', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <DatePicker size="large" showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="Last Login Time" />
+                    <DatePicker size="large" showTime format="YYYY-MM-DD HH:mm" minuteStep={5} placeholder="??????" />
                   )}
                 </Form.Item>
               </Col>

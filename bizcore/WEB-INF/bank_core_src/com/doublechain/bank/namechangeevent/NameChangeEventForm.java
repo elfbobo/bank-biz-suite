@@ -240,7 +240,7 @@ public class NameChangeEventForm extends BaseForm {
 	
  	public NameChangeEventForm transferToAnotherAccountAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherAccount/nameChangeEventId/");
 		this.addFormAction(action);
@@ -250,7 +250,7 @@ public class NameChangeEventForm extends BaseForm {
  	
  	public NameChangeEventForm transferToAnotherChangeRequestAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherChangeRequest/nameChangeEventId/");
 		this.addFormAction(action);
@@ -261,7 +261,7 @@ public class NameChangeEventForm extends BaseForm {
 
 	public NameChangeEventForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

@@ -55,8 +55,8 @@ class QuickLinkProfile extends Component {
     // eslint-disable-next-line max-len
     const  quickLink = this.props.quickLink;
     const { id,displayName,  } = quickLink
-
-    const cardsData = {cardsName:"Quick Link",cardsFor: "quickLink",cardsSource: quickLink,
+    const  returnURL = `/quickLink/${id}/dashboard`
+    const cardsData = {cardsName:"????",cardsFor: "quickLink",cardsSource: quickLink,displayName,returnURL,
   		subItems: [
      
       	],
@@ -70,8 +70,8 @@ class QuickLinkProfile extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
-        content={summaryOf(cardsData.cardsSource,this)}
+        title={internalRenderTitle(cardsData, this)}
+        content={summaryOf(cardsData.cardsSource, this)}
         wrapperClassName={styles.advancedForm}
       >
       {renderExtraHeader(cardsData.cardsSource)}

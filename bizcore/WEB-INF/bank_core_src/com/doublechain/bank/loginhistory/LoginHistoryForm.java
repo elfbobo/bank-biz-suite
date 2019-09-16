@@ -296,7 +296,7 @@ public class LoginHistoryForm extends BaseForm {
 	
  	public LoginHistoryForm transferToAnotherSecUserAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherSecUser/loginHistoryId/");
 		this.addFormAction(action);
@@ -307,7 +307,7 @@ public class LoginHistoryForm extends BaseForm {
 
 	public LoginHistoryForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

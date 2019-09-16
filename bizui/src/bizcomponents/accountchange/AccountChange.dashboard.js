@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/accountChange/${targetComponent.props.accountChange.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/accountChange/${targetComponent.props.accountChange.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,21 +106,21 @@ const internalSummaryOf = (accountChange,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{accountChange.id}</Description> 
-<Description term="Name">{accountChange.name}</Description> 
-<Description term="Account">{accountChange.account==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.account.displayName}(${accountChange.account.id})`}
+<Description term="ID">{accountChange.id}</Description> 
+<Description term="??">{accountChange.name}</Description> 
+<Description term="??">{accountChange.account==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.account.displayName}(${accountChange.account.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"Account","account",AccountChangeService.requestCandidateAccount,
+  showTransferModel(targetComponent,"??","account",AccountChangeService.requestCandidateAccount,
 	      AccountChangeService.transferToAnotherAccount,"anotherAccountId",accountChange.account?accountChange.account.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="Previous Balance">{accountChange.previousBalance}</Description> 
-<Description term="Type">{accountChange.type}</Description> 
-<Description term="Amount">{accountChange.amount}</Description> 
-<Description term="Current Balance">{accountChange.currentBalance}</Description> 
-<Description term="Change Request">{accountChange.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.changeRequest.displayName}(${accountChange.changeRequest.id})`}
+<Description term="????">{accountChange.previousBalance}</Description> 
+<Description term="??">{accountChange.type}</Description> 
+<Description term="??">{accountChange.amount}</Description> 
+<Description term="????">{accountChange.currentBalance}</Description> 
+<Description term="????">{accountChange.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.changeRequest.displayName}(${accountChange.changeRequest.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"Change Request","changeRequest",AccountChangeService.requestCandidateChangeRequest,
+  showTransferModel(targetComponent,"????","changeRequest",AccountChangeService.requestCandidateChangeRequest,
 	      AccountChangeService.transferToAnotherChangeRequest,"anotherChangeRequestId",accountChange.changeRequest?accountChange.changeRequest.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -136,7 +161,7 @@ class AccountChangeDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Account Change",cardsFor: "accountChange",
+    const cardsData = {cardsName:"????",cardsFor: "accountChange",
     	cardsSource: this.props.accountChange,returnURL,displayName,
   		subItems: [
     

@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/nameChangeEvent/${targetComponent.props.nameChangeEvent.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/nameChangeEvent/${targetComponent.props.nameChangeEvent.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,17 +106,17 @@ const internalSummaryOf = (nameChangeEvent,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{nameChangeEvent.id}</Description> 
-<Description term="Name">{nameChangeEvent.name}</Description> 
-<Description term="Account">{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
+<Description term="ID">{nameChangeEvent.id}</Description> 
+<Description term="??">{nameChangeEvent.name}</Description> 
+<Description term="??">{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"Account","account",NameChangeEventService.requestCandidateAccount,
+  showTransferModel(targetComponent,"??","account",NameChangeEventService.requestCandidateAccount,
 	      NameChangeEventService.transferToAnotherAccount,"anotherAccountId",nameChangeEvent.account?nameChangeEvent.account.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="Change Request">{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
+<Description term="????">{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"Change Request","changeRequest",NameChangeEventService.requestCandidateChangeRequest,
+  showTransferModel(targetComponent,"????","changeRequest",NameChangeEventService.requestCandidateChangeRequest,
 	      NameChangeEventService.transferToAnotherChangeRequest,"anotherChangeRequestId",nameChangeEvent.changeRequest?nameChangeEvent.changeRequest.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -132,7 +157,7 @@ class NameChangeEventDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Name Change Event",cardsFor: "nameChangeEvent",
+    const cardsData = {cardsName:"??????",cardsFor: "nameChangeEvent",
     	cardsSource: this.props.nameChangeEvent,returnURL,displayName,
   		subItems: [
     

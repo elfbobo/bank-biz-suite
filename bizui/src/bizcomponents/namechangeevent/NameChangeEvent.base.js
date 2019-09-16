@@ -30,17 +30,17 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"Name Change Event", menuFor: "nameChangeEvent",
+const menuData = {menuName:"??????", menuFor: "nameChangeEvent",
   		subItems: [
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  name: 'Name',
-  account: 'Account',
-  changeRequest: 'Change Request',
+  id: 'ID',
+  name: '??',
+  account: '??',
+  changeRequest: '????',
 
 }
 
@@ -59,11 +59,11 @@ const renderItemOfList=(nameChangeEvent,targetComponent)=>{
     <div key={nameChangeEvent.id}>
 	
       <DescriptionList  key={nameChangeEvent.id} size="small" col="4">
-        <Description term="Id">{nameChangeEvent.id}</Description> 
-        <Description term="Name">{nameChangeEvent.name}</Description> 
-        <Description term="Account"><div>{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
+        <Description term="ID">{nameChangeEvent.id}</Description> 
+        <Description term="??">{nameChangeEvent.name}</Description> 
+        <Description term="??"><div>{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
         </div></Description>
-        <Description term="Change Request"><div>{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
+        <Description term="????"><div>{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
         </div></Description>
 	
         

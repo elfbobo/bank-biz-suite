@@ -114,7 +114,7 @@ public class UserWhiteListForm extends BaseForm {
 	
  	public UserWhiteListForm transferToAnotherDomainAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherDomain/userWhiteListId/");
 		this.addFormAction(action);
@@ -125,7 +125,7 @@ public class UserWhiteListForm extends BaseForm {
 
 	public UserWhiteListForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

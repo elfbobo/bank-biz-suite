@@ -139,7 +139,7 @@ class UserWhiteListAssociateForm extends Component {
                   {getFieldDecorator('userIdentity', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="User Identity" />
+                    <Input size="large" placeholder="????" />
                   )}
                 </Form.Item>
               </Col>
@@ -149,7 +149,7 @@ class UserWhiteListAssociateForm extends Component {
                   {getFieldDecorator('userSpecialFunctions', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="User Special Functions" />
+                    <Input size="large" placeholder="??????" />
                   )}
                 </Form.Item>
               </Col>

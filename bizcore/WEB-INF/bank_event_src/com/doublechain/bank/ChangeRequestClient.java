@@ -123,13 +123,7 @@ public class ChangeRequestClient {
 		
 		
 		checker.checkAndFixChangeRequest(req);
-<<<<<<< HEAD
-		
 
-		
-=======
-
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 		
 		try {
 			

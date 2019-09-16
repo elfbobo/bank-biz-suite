@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/candidateContainer/${targetComponent.props.candidateContainer.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/candidateContainer/${targetComponent.props.candidateContainer.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,13 +106,8 @@ const internalSummaryOf = (candidateContainer,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<<<<<<< HEAD
 <Description term="ID">{candidateContainer.id}</Description> 
-<Description term="名称">{candidateContainer.name}</Description> 
-=======
-<Description term="Id">{candidateContainer.id}</Description> 
-<Description term="Name">{candidateContainer.name}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+<Description term="??">{candidateContainer.name}</Description> 
 	
         {buildTransferModal(candidateContainer,targetComponent)}
       </DescriptionList>
@@ -125,17 +145,10 @@ class CandidateContainerDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-<<<<<<< HEAD
-    const cardsData = {cardsName:"候选人容器",cardsFor: "candidateContainer",
+    const cardsData = {cardsName:"?????",cardsFor: "candidateContainer",
     	cardsSource: this.props.candidateContainer,returnURL,displayName,
   		subItems: [
-{name: 'candidateElementList', displayName:'候选人元素',type:'candidateElement',count:candidateElementCount,addFunction: true, role: 'candidateElement', metaInfo: candidateElementListMetaInfo, renderItem: GlobalComponents.CandidateElementBase.renderItemOfList},
-=======
-    const cardsData = {cardsName:"Candidate Container",cardsFor: "candidateContainer",
-    	cardsSource: this.props.candidateContainer,returnURL,displayName,
-  		subItems: [
-{name: 'candidateElementList', displayName:'Candidate Element',type:'candidateElement',count:candidateElementCount,addFunction: true, role: 'candidateElement', metaInfo: candidateElementListMetaInfo, renderItem: GlobalComponents.CandidateElementBase.renderItemOfList},
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+{name: 'candidateElementList', displayName:'?????',type:'candidateElement',count:candidateElementCount,addFunction: true, role: 'candidateElement', metaInfo: candidateElementListMetaInfo, renderItem: GlobalComponents.CandidateElementBase.renderItemOfList},
     
       	],
   	};

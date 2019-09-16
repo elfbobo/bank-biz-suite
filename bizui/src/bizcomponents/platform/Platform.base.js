@@ -30,18 +30,18 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"Platform", menuFor: "platform",
+const menuData = {menuName:"??", menuFor: "platform",
   		subItems: [
-  {name: 'changeRequestList', displayName:'Change Request', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'accountList', displayName:'Account', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'changeRequestList', displayName:'????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'accountList', displayName:'??', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  name: 'Name',
-  founded: 'Founded',
+  id: 'ID',
+  name: '??',
+  founded: '??',
 
 }
 
@@ -59,15 +59,9 @@ const renderItemOfList=(platform,targetComponent)=>{
     <div key={platform.id}>
 	
       <DescriptionList  key={platform.id} size="small" col="4">
-<<<<<<< HEAD
         <Description term="ID">{platform.id}</Description> 
-        <Description term="名称">{platform.name}</Description> 
-        <Description term="成立"><div>{ moment(platform.founded).format('YYYY-MM-DD HH:mm')}</div></Description> 
-=======
-        <Description term="Id">{platform.id}</Description> 
-        <Description term="Name">{platform.name}</Description> 
-        <Description term="Founded"><div>{ moment(platform.founded).format('YYYY-MM-DD HH:mm')}</div></Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+        <Description term="??">{platform.name}</Description> 
+        <Description term="??"><div>{ moment(platform.founded).format('YYYY-MM-DD HH:mm')}</div></Description> 
 	
         
       </DescriptionList>

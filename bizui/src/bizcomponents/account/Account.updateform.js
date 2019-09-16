@@ -263,7 +263,7 @@ class AccountUpdateForm extends Component {
                     initialValue: selectedRow.id,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Id" disabled/>
+                    <Input size="large" placeholder="ID" disabled/>
                     
                   )}
                 </Form.Item>
@@ -275,7 +275,7 @@ class AccountUpdateForm extends Component {
                     initialValue: selectedRow.name,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Name" />
+                    <Input size="large" placeholder="??" />
                     
                   )}
                 </Form.Item>
@@ -287,7 +287,7 @@ class AccountUpdateForm extends Component {
                     initialValue: selectedRow.balance,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Balance" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="??" />
                     
                   )}
                 </Form.Item>

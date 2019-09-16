@@ -55,8 +55,8 @@ class UserAppProfile extends Component {
     // eslint-disable-next-line max-len
     const  userApp = this.props.userApp;
     const { id,displayName, quickLinkCount, listAccessCount, objectAccessCount } = userApp
-
-    const cardsData = {cardsName:"User App",cardsFor: "userApp",cardsSource: userApp,
+    const  returnURL = `/userApp/${id}/dashboard`
+    const cardsData = {cardsName:"??????",cardsFor: "userApp",cardsSource: userApp,displayName,returnURL,
   		subItems: [
      
       	],
@@ -70,8 +70,8 @@ class UserAppProfile extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
-        content={summaryOf(cardsData.cardsSource,this)}
+        title={internalRenderTitle(cardsData, this)}
+        content={summaryOf(cardsData.cardsSource, this)}
         wrapperClassName={styles.advancedForm}
       >
       {renderExtraHeader(cardsData.cardsSource)}

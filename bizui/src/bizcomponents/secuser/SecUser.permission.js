@@ -23,23 +23,27 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (secUser,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{secUser.id}</Description> 
-<Description term="Login">{secUser.login}</Description> 
-<Description term="Mobile">{secUser.mobile}</Description> 
-<Description term="Email">{secUser.email}</Description> 
-<Description term="Pwd">{secUser.pwd}</Description> 
-<Description term="Weixin Openid">{secUser.weixinOpenid}</Description> 
-<Description term="Weixin Appid">{secUser.weixinAppid}</Description> 
-<Description term="Access Token">{secUser.accessToken}</Description> 
-<Description term="Verification Code">{secUser.verificationCode}</Description> 
-<Description term="Verification Code Expire">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
-<Description term="Last Login Time">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</Description> 
-<Description term="Current Status">{secUser.currentStatus}</Description> 
+<Description term="ID">{secUser.id}</Description> 
+<Description term="??">{secUser.login}</Description> 
+<Description term="????">{secUser.mobile}</Description> 
+<Description term="????">{secUser.email}</Description> 
+<Description term="??">{secUser.pwd}</Description> 
+<Description term="??openid">{secUser.weixinOpenid}</Description> 
+<Description term="??Appid">{secUser.weixinAppid}</Description> 
+<Description term="????">{secUser.accessToken}</Description> 
+<Description term="???">{secUser.verificationCode}</Description> 
+<Description term="?????">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
+<Description term="??????">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</Description> 
+<Description term="????">{secUser.currentStatus}</Description> 
 	
       </DescriptionList>
 	)
@@ -63,9 +67,10 @@ class SecUserPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  secUser = this.props.secUser;
+    const  secUser = this.props.secUser
     const { id,displayName, userAppCount, loginHistoryCount } = secUser
-    const cardsData = {cardsName:"Sec User",cardsFor: "secUser",cardsSource: secUser,
+    const  returnURL = `/secUser/${id}/dashboard`
+    const cardsData = {cardsName:"????",cardsFor: "secUser",cardsSource: secUser,displayName,returnURL,
   		subItems: [
     
       	],
@@ -76,7 +81,7 @@ class SecUserPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

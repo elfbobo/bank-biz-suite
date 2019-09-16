@@ -459,7 +459,7 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 		}
 		int length = value.length();
 		if(length>=tabWidth*8) {
-			//超过了
+			//???
 			return value.substring(0, tabWidth*8-2)+".\t";
 		}
 	
@@ -1054,7 +1054,7 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
  		this.logSQLAndParameters("countWithIds", SQL, ids, cntMap.size() + " Counts");
  		return cntMap;
  	}
-	//先支持一个Key好了, 后面再扩展到多Key场景
+	//?????Key??, ???????Key??
 	protected Map<String, Integer> countWithGroup(String groupKey, MultipleAccessKey filterKey, Map<String, Object> options) {
 		if(filterKey.isEmpty()){
 			throw new IllegalArgumentException("The key.sql() from MultipleAccessKey has nothing in it!");

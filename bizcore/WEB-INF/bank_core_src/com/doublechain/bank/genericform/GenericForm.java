@@ -75,7 +75,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
+	// disconnect from all, ?????????????????????????????
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -244,7 +244,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		if(this.mFormMessageList == null){
 			this.mFormMessageList = new SmartList<FormMessage>();
 			this.mFormMessageList.setListInternalName (FORM_MESSAGE_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mFormMessageList;	
@@ -299,7 +299,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithFormMessage(FormMessage formMessage){
 		
 		if(formMessage == null){
@@ -351,7 +351,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		if(this.mFormFieldMessageList == null){
 			this.mFormFieldMessageList = new SmartList<FormFieldMessage>();
 			this.mFormFieldMessageList.setListInternalName (FORM_FIELD_MESSAGE_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mFormFieldMessageList;	
@@ -406,7 +406,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithFormFieldMessage(FormFieldMessage formFieldMessage){
 		
 		if(formFieldMessage == null){
@@ -458,7 +458,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		if(this.mFormFieldList == null){
 			this.mFormFieldList = new SmartList<FormField>();
 			this.mFormFieldList.setListInternalName (FORM_FIELD_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mFormFieldList;	
@@ -513,7 +513,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithFormField(FormField formField){
 		
 		if(formField == null){
@@ -565,7 +565,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 		if(this.mFormActionList == null){
 			this.mFormActionList = new SmartList<FormAction>();
 			this.mFormActionList.setListInternalName (FORM_ACTION_LIST );
-			//有名字，便于做权限控制
+			//???????????
 		}
 		
 		return this.mFormActionList;	
@@ -620,7 +620,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//断舍离
+	//???
 	public  void breakWithFormAction(FormAction formAction){
 		
 		if(formAction == null){

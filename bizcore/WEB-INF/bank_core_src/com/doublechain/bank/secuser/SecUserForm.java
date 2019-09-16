@@ -506,7 +506,7 @@ public class SecUserForm extends BaseForm {
 	
  	public SecUserForm transferToAnotherDomainAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherDomain/secUserId/");
 		this.addFormAction(action);
@@ -516,7 +516,7 @@ public class SecUserForm extends BaseForm {
  	
  	public SecUserForm  blockAction(){
 		FormAction action = new FormAction();
-		action.setLabel("Blocking");
+		action.setLabel("??");
 		action.setLocaleKey("sec_user.block");
 		action.setUrl("secUserManager/block/secUserId/who/comments/");
 		this.addFormAction(action);
@@ -525,7 +525,7 @@ public class SecUserForm extends BaseForm {
 
 	public SecUserForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

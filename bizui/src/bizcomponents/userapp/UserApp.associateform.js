@@ -18,7 +18,7 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  title: '审车平台',
+  title: '????',
   appIcon: 'users',
   permission: 'MXWR',
   objectType: 'CarInspectionPlatform',
@@ -146,7 +146,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Title" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -156,7 +156,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('appIcon', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="App Icon" />
+                    <Input size="large" placeholder="??????" />
                   )}
                 </Form.Item>
               </Col>
@@ -166,7 +166,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('permission', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Permission" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -176,7 +176,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('objectType', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Object Type" />
+                    <Input size="large" placeholder="??????" />
                   )}
                 </Form.Item>
               </Col>
@@ -186,7 +186,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('objectId', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Object Id" />
+                    <Input size="large" placeholder="??ID" />
                   )}
                 </Form.Item>
               </Col>
@@ -196,7 +196,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('location', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Location" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>

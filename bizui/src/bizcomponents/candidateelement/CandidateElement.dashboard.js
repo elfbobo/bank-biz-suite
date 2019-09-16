@@ -40,11 +40,7 @@ const { Option } = Select
 
 
 const imageList =(candidateElement)=>{return [
-<<<<<<< HEAD
-	   {"title":'图片',"imageLocation":candidateElement.image},
-=======
-	   {"title":'Image',"imageLocation":candidateElement.image},
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+	   {"title":'??',"imageLocation":candidateElement.image},
 ]}
 
 const internalImageListOf = (candidateElement) =>defaultImageListOf(candidateElement,imageList)
@@ -70,11 +66,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/candidateElement/${targetComponent.props.candidateElement.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/candidateElement/${targetComponent.props.candidateElement.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -86,15 +107,9 @@ const internalSummaryOf = (candidateElement,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<<<<<<< HEAD
 <Description term="ID">{candidateElement.id}</Description> 
-<Description term="名称">{candidateElement.name}</Description> 
-<Description term="类型">{candidateElement.type}</Description> 
-=======
-<Description term="Id">{candidateElement.id}</Description> 
-<Description term="Name">{candidateElement.name}</Description> 
-<Description term="Type">{candidateElement.type}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+<Description term="??">{candidateElement.name}</Description> 
+<Description term="??">{candidateElement.type}</Description> 
 	
         {buildTransferModal(candidateElement,targetComponent)}
       </DescriptionList>
@@ -132,11 +147,7 @@ class CandidateElementDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-<<<<<<< HEAD
-    const cardsData = {cardsName:"候选人元素",cardsFor: "candidateElement",
-=======
-    const cardsData = {cardsName:"Candidate Element",cardsFor: "candidateElement",
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+    const cardsData = {cardsName:"?????",cardsFor: "candidateElement",
     	cardsSource: this.props.candidateElement,returnURL,displayName,
   		subItems: [
     

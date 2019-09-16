@@ -23,14 +23,18 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (userWhiteList,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{userWhiteList.id}</Description> 
-<Description term="User Identity">{userWhiteList.userIdentity}</Description> 
-<Description term="User Special Functions">{userWhiteList.userSpecialFunctions}</Description> 
+<Description term="ID">{userWhiteList.id}</Description> 
+<Description term="????">{userWhiteList.userIdentity}</Description> 
+<Description term="??????">{userWhiteList.userSpecialFunctions}</Description> 
 	
       </DescriptionList>
 	)
@@ -54,9 +58,10 @@ class UserWhiteListPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  userWhiteList = this.props.userWhiteList;
+    const  userWhiteList = this.props.userWhiteList
     const { id,displayName,  } = userWhiteList
-    const cardsData = {cardsName:"User White List",cardsFor: "userWhiteList",cardsSource: userWhiteList,
+    const  returnURL = `/userWhiteList/${id}/dashboard`
+    const cardsData = {cardsName:"?????",cardsFor: "userWhiteList",cardsSource: userWhiteList,displayName,returnURL,
   		subItems: [
     
       	],
@@ -67,7 +72,7 @@ class UserWhiteListPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

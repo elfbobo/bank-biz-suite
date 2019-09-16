@@ -17,13 +17,9 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '存款交易',
-<<<<<<< HEAD
-  amount: '95.20',
-=======
-  amount: '105.50',
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
-  type: '存款',
+  name: '????',
+  amount: '87.92',
+  type: '??',
   fromAccountId: 'A000001',
   toAccountId: 'A000001',
   changeRequestId: 'CR000001',
@@ -202,8 +198,8 @@ class TransactionCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}Transaction`}
-        content={`${appLocaleName(userContext,"CreateNew")}Transaction`}
+        title={`${appLocaleName(userContext,"CreateNew")}??`}
+        content={`${appLocaleName(userContext,"CreateNew")}??`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -215,7 +211,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Name" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -225,7 +221,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('amount', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Amount" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="??" />
                   )}
                 </Form.Item>
               </Col>
@@ -235,7 +231,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="Type" />
+                    <Input size="large" placeholder="??" />
                   )}
                 </Form.Item>
               </Col>

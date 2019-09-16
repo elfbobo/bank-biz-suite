@@ -23,15 +23,19 @@ const {defaultRenderExtraHeader}= DashboardTool
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const internalRenderTitle = (cardsData,targetComponent) =>{
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
 
+}
 const internalSummaryOf = (transaction,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="Id">{transaction.id}</Description> 
-<Description term="Name">{transaction.name}</Description> 
-<Description term="Amount">{transaction.amount}</Description> 
-<Description term="Type">{transaction.type}</Description> 
+<Description term="ID">{transaction.id}</Description> 
+<Description term="??">{transaction.name}</Description> 
+<Description term="??">{transaction.amount}</Description> 
+<Description term="??">{transaction.type}</Description> 
 	
       </DescriptionList>
 	)
@@ -55,9 +59,10 @@ class TransactionPermission extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const  transaction = this.props.transaction;
+    const  transaction = this.props.transaction
     const { id,displayName,  } = transaction
-    const cardsData = {cardsName:"Transaction",cardsFor: "transaction",cardsSource: transaction,
+    const  returnURL = `/transaction/${id}/dashboard`
+    const cardsData = {cardsName:"??",cardsFor: "transaction",cardsSource: transaction,displayName,returnURL,
   		subItems: [
     
       	],
@@ -68,7 +73,7 @@ class TransactionPermission extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
+        title={internalRenderTitle(cardsData,this)}
         content={summaryOf(cardsData.cardsSource,this)}
         wrapperClassName={styles.advancedForm}
       >

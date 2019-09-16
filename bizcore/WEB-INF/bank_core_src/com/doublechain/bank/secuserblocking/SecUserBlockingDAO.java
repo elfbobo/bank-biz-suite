@@ -57,7 +57,7 @@ public interface SecUserBlockingDAO{
 	
 	public SmartList<SecUserBlocking> queryList(String sql, Object ... parmeters);
 
-	// 需要一个加载引用我的对象的enhance方法:SecUser的blocking的SecUserList
+	// ?????????????enhance??:SecUser?blocking?SecUserList
 	public SmartList<SecUser> loadOurSecUserList(BankUserContext userContext, List<SecUserBlocking> us, Map<String,Object> options) throws Exception;
 	
 }

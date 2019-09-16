@@ -30,20 +30,20 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"Quick Link", menuFor: "quickLink",
+const menuData = {menuName:"????", menuFor: "quickLink",
   		subItems: [
   
   		],
 }
 
 const fieldLabels = {
-  id: 'Id',
-  name: 'Name',
-  icon: 'Icon',
-  imagePath: 'Image Path',
-  linkTarget: 'Link Target',
-  createTime: 'Create Time',
-  app: 'App',
+  id: 'ID',
+  name: '??',
+  icon: '??',
+  imagePath: '????',
+  linkTarget: '?????',
+  createTime: '????',
+  app: '????',
 
 }
 
@@ -51,7 +51,7 @@ const displayColumns = [
   { title: fieldLabels.id, debugtype: 'string', dataIndex: 'id', width: '8', render: (text, record)=>renderTextCell(text,record,'quickLink') , sorter: true },
   { title: fieldLabels.name, debugtype: 'string', dataIndex: 'name', width: '6',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.icon, debugtype: 'string', dataIndex: 'icon', width: '12',render: (text, record)=>renderTextCell(text,record)},
-  { title: fieldLabels.imagePath, dataIndex: 'imagePath', render: (text, record) => renderImageCell(text,record,'Image Path') },
+  { title: fieldLabels.imagePath, dataIndex: 'imagePath', render: (text, record) => renderImageCell(text,record,'????') },
   { title: fieldLabels.linkTarget, debugtype: 'string', dataIndex: 'linkTarget', width: '6',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.createTime, dataIndex: 'createTime', render: (text, record) =>renderDateTimeCell(text,record), sorter: true},
   { title: fieldLabels.app, dataIndex: 'app', render: (text, record) => renderReferenceCell(text, record), sorter:true},
@@ -65,12 +65,12 @@ const renderItemOfList=(quickLink,targetComponent)=>{
     <div key={quickLink.id}>
 	
       <DescriptionList  key={quickLink.id} size="small" col="4">
-        <Description term="Id">{quickLink.id}</Description> 
-        <Description term="Name">{quickLink.name}</Description> 
-        <Description term="Icon">{quickLink.icon}</Description> 
-        <Description term="Link Target">{quickLink.linkTarget}</Description> 
-        <Description term="Create Time"><div>{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="App"><div>{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
+        <Description term="ID">{quickLink.id}</Description> 
+        <Description term="??">{quickLink.name}</Description> 
+        <Description term="??">{quickLink.icon}</Description> 
+        <Description term="?????">{quickLink.linkTarget}</Description> 
+        <Description term="????"><div>{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="????"><div>{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
         </div></Description>
 	
         

@@ -55,8 +55,8 @@ class NameChangeEventProfile extends Component {
     // eslint-disable-next-line max-len
     const  nameChangeEvent = this.props.nameChangeEvent;
     const { id,displayName,  } = nameChangeEvent
-
-    const cardsData = {cardsName:"Name Change Event",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,
+    const  returnURL = `/nameChangeEvent/${id}/dashboard`
+    const cardsData = {cardsName:"??????",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,displayName,returnURL,
   		subItems: [
      
       	],
@@ -70,8 +70,8 @@ class NameChangeEventProfile extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
-        content={summaryOf(cardsData.cardsSource,this)}
+        title={internalRenderTitle(cardsData, this)}
+        content={summaryOf(cardsData.cardsSource, this)}
         wrapperClassName={styles.advancedForm}
       >
       {renderExtraHeader(cardsData.cardsSource)}

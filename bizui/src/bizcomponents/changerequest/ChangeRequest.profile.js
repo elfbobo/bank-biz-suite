@@ -55,8 +55,8 @@ class ChangeRequestProfile extends Component {
     // eslint-disable-next-line max-len
     const  changeRequest = this.props.changeRequest;
     const { id,displayName, transactionCount, nameChangeEventCount, accountChangeCount } = changeRequest
-
-    const cardsData = {cardsName:"Change Request",cardsFor: "changeRequest",cardsSource: changeRequest,
+    const  returnURL = `/changeRequest/${id}/dashboard`
+    const cardsData = {cardsName:"????",cardsFor: "changeRequest",cardsSource: changeRequest,displayName,returnURL,
   		subItems: [
      
       	],
@@ -70,8 +70,8 @@ class ChangeRequestProfile extends Component {
     return (
 
       <PageHeaderLayout
-        title={`${cardsData.cardsName}: ${displayName}`}
-        content={summaryOf(cardsData.cardsSource,this)}
+        title={internalRenderTitle(cardsData, this)}
+        content={summaryOf(cardsData.cardsSource, this)}
         wrapperClassName={styles.advancedForm}
       >
       {renderExtraHeader(cardsData.cardsSource)}

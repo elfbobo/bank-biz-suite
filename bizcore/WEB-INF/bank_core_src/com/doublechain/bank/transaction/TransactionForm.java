@@ -282,7 +282,7 @@ public class TransactionForm extends BaseForm {
 	
  	public TransactionForm transferToAnotherFromAccountAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherFromAccount/transactionId/");
 		this.addFormAction(action);
@@ -292,7 +292,7 @@ public class TransactionForm extends BaseForm {
  	
  	public TransactionForm transferToAnotherToAccountAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherToAccount/transactionId/");
 		this.addFormAction(action);
@@ -302,7 +302,7 @@ public class TransactionForm extends BaseForm {
  	
  	public TransactionForm transferToAnotherChangeRequestAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherChangeRequest/transactionId/");
 		this.addFormAction(action);
@@ -313,7 +313,7 @@ public class TransactionForm extends BaseForm {
 
 	public TransactionForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("显示");
+		action.setLabel("??");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

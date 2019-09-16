@@ -65,11 +65,36 @@ const internalRenderExtraFooter = defaultRenderExtraFooter
 const internalSubListsOf = defaultSubListsOf
 
 
+const renderSettingDropDown = (cardsData,targetComponent)=>{
+
+  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
+        <Icon
+          type="setting"
+        />
+      </Dropdown>)
+
+
+}
+
+const renderSettingMenu = (cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu>
+    	<Menu.Item key="profile">
+  			<Link to={`/changeRequest/${targetComponent.props.changeRequest.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
+		</Menu.Item>
+		<Menu.Item key="permission">
+  			<Link to={`/changeRequest/${targetComponent.props.changeRequest.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
+			</Menu.Item>
+		</Menu>)
+
+}
+
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
   const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
-  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName}</div>)
+  return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
 
@@ -81,17 +106,10 @@ const internalSummaryOf = (changeRequest,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<<<<<<< HEAD
 <Description term="ID">{changeRequest.id}</Description> 
-<Description term="名称">{changeRequest.name}</Description> 
-<Description term="创建时间">{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="远程Ip">{changeRequest.remoteIp}</Description> 
-=======
-<Description term="Id">{changeRequest.id}</Description> 
-<Description term="Name">{changeRequest.name}</Description> 
-<Description term="Create Time">{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="Remote Ip">{changeRequest.remoteIp}</Description> 
->>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
+<Description term="??">{changeRequest.name}</Description> 
+<Description term="????">{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="??Ip">{changeRequest.remoteIp}</Description> 
 	
         {buildTransferModal(changeRequest,targetComponent)}
       </DescriptionList>
@@ -129,12 +147,12 @@ class ChangeRequestDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"Change Request",cardsFor: "changeRequest",
+    const cardsData = {cardsName:"????",cardsFor: "changeRequest",
     	cardsSource: this.props.changeRequest,returnURL,displayName,
   		subItems: [
-{name: 'transactionList', displayName:'Transaction',type:'transaction',count:transactionCount,addFunction: true, role: 'transaction', metaInfo: transactionListMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'nameChangeEventList', displayName:'Name Change Event',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
-{name: 'accountChangeList', displayName:'Account Change',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
+{name: 'transactionList', displayName:'??',type:'transaction',count:transactionCount,addFunction: true, role: 'transaction', metaInfo: transactionListMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'nameChangeEventList', displayName:'??????',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
+{name: 'accountChangeList', displayName:'????',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
     
       	],
   	};
