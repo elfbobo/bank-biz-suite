@@ -167,7 +167,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "事务(交易清单从帐户)",
+      name: "Transaction(Transaction List As From Account)",
       role: "transactionAsFromAccount",
       data: state._account.transactionListAsFromAccount,
       metaInfo: state._account.transactionListAsFromAccountMetaInfo,
@@ -216,7 +216,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "事务(交易清单作为帐户)",
+      name: "Transaction(Transaction List As To Account)",
       role: "transactionAsToAccount",
       data: state._account.transactionListAsToAccount,
       metaInfo: state._account.transactionListAsToAccountMetaInfo,
@@ -265,7 +265,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "名字更改事件",
+      name: "Name Change Event",
       role: "nameChangeEvent",
       data: state._account.nameChangeEventList,
       metaInfo: state._account.nameChangeEventListMetaInfo,
@@ -314,7 +314,7 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "账户变更",
+      name: "Account Change",
       role: "accountChange",
       data: state._account.accountChangeList,
       metaInfo: state._account.accountChangeListMetaInfo,

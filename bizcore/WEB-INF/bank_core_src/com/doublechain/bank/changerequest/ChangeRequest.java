@@ -24,6 +24,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 	public static final String ID_PROPERTY                    = "id"                ;
 	public static final String NAME_PROPERTY                  = "name"              ;
 	public static final String CREATE_TIME_PROPERTY           = "createTime"        ;
+	public static final String REMOTE_IP_PROPERTY             = "remoteIp"          ;
 	public static final String PLATFORM_PROPERTY              = "platform"          ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
@@ -53,6 +54,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 	protected		String              	mId                 ;
 	protected		String              	mName               ;
 	protected		DateTime            	mCreateTime         ;
+	protected		String              	mRemoteIp           ;
 	protected		Platform            	mPlatform           ;
 	protected		int                 	mVersion            ;
 	
@@ -82,10 +84,11 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		this.changed = true;
 	}
 	
-	public 	ChangeRequest(String name, DateTime createTime, Platform platform)
+	public 	ChangeRequest(String name, DateTime createTime, String remoteIp, Platform platform)
 	{
 		setName(name);
 		setCreateTime(createTime);
+		setRemoteIp(remoteIp);
 		setPlatform(platform);
 
 		this.mTransactionList = new SmartList<Transaction>();
@@ -102,6 +105,9 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		}
 		if(CREATE_TIME_PROPERTY.equals(property)){
 			changeCreateTimeProperty(newValueExpr);
+		}
+		if(REMOTE_IP_PROPERTY.equals(property)){
+			changeRemoteIpProperty(newValueExpr);
 		}
 
       
@@ -138,6 +144,21 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 			
 			
 			
+	protected void changeRemoteIpProperty(String newValueExpr){
+		String oldValue = getRemoteIp();
+		String newValue = parseString(newValueExpr);
+		if(equalsString(oldValue , newValue)){
+			return;//they can be both null, or exact the same object, this is much faster than equals function
+		}
+		//they are surely different each other
+		updateRemoteIp(newValue);
+		this.onChangeProperty(REMOTE_IP_PROPERTY, oldValue, newValue);
+		return;
+  
+	}
+			
+			
+			
 
 
 	
@@ -148,6 +169,9 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		}
 		if(CREATE_TIME_PROPERTY.equals(property)){
 			return getCreateTime();
+		}
+		if(REMOTE_IP_PROPERTY.equals(property)){
+			return getRemoteIp();
 		}
 		if(PLATFORM_PROPERTY.equals(property)){
 			return getPlatform();
@@ -220,6 +244,22 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 	}
 	public void mergeCreateTime(DateTime createTime){
 		setCreateTime(createTime);
+	}
+	
+	
+	public void setRemoteIp(String remoteIp){
+		this.mRemoteIp = trimString(remoteIp);;
+	}
+	public String getRemoteIp(){
+		return this.mRemoteIp;
+	}
+	public ChangeRequest updateRemoteIp(String remoteIp){
+		this.mRemoteIp = trimString(remoteIp);;
+		this.changed = true;
+		return this;
+	}
+	public void mergeRemoteIp(String remoteIp){
+		if(remoteIp != null) { setRemoteIp(remoteIp);}
 	}
 	
 	
@@ -617,6 +657,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, ID_PROPERTY, getId());
 		appendKeyValuePair(result, NAME_PROPERTY, getName());
 		appendKeyValuePair(result, CREATE_TIME_PROPERTY, getCreateTime());
+		appendKeyValuePair(result, REMOTE_IP_PROPERTY, getRemoteIp());
 		appendKeyValuePair(result, PLATFORM_PROPERTY, getPlatform());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, TRANSACTION_LIST, getTransactionList());
@@ -651,6 +692,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 			dest.setId(getId());
 			dest.setName(getName());
 			dest.setCreateTime(getCreateTime());
+			dest.setRemoteIp(getRemoteIp());
 			dest.setPlatform(getPlatform());
 			dest.setVersion(getVersion());
 			dest.setTransactionList(getTransactionList());
@@ -672,6 +714,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeCreateTime(getCreateTime());
+			dest.mergeRemoteIp(getRemoteIp());
 			dest.mergePlatform(getPlatform());
 			dest.mergeVersion(getVersion());
 			dest.mergeTransactionList(getTransactionList());
@@ -694,6 +737,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 			dest.mergeId(getId());
 			dest.mergeName(getName());
 			dest.mergeCreateTime(getCreateTime());
+			dest.mergeRemoteIp(getRemoteIp());
 			dest.mergeVersion(getVersion());
 
 		}
@@ -707,6 +751,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		stringBuilder.append("\tid='"+getId()+"';");
 		stringBuilder.append("\tname='"+getName()+"';");
 		stringBuilder.append("\tcreateTime='"+getCreateTime()+"';");
+		stringBuilder.append("\tremoteIp='"+getRemoteIp()+"';");
 		if(getPlatform() != null ){
  			stringBuilder.append("\tplatform='Platform("+getPlatform().getId()+")';");
  		}

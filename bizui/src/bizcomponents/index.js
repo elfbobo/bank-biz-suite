@@ -156,6 +156,20 @@ import UserAppPermission from './userapp/UserApp.permission';
 import UserAppProfile from './userapp/UserApp.profile';
 import UserAppService from './userapp/UserApp.service';
 import UserAppUpdateForm from './userapp/UserApp.updateform';
+import QuickLinkBase from './quicklink/QuickLink.base';
+import QuickLinkBizApp from './quicklink/QuickLink.app';
+import QuickLinkModel from './quicklink/QuickLink.model';
+import QuickLinkDashboard from './quicklink/QuickLink.dashboard';
+import QuickLinkModalTable from './quicklink/QuickLink.modaltable';
+import QuickLinkSearch from './quicklink/QuickLink.search';
+import QuickLinkSearchForm from './quicklink/QuickLink.searchform';
+import QuickLinkCreateForm from './quicklink/QuickLink.createform';
+import QuickLinkAssociateForm from './quicklink/QuickLink.associateform';
+import QuickLinkTable from './quicklink/QuickLink.table';
+import QuickLinkPermission from './quicklink/QuickLink.permission';
+import QuickLinkProfile from './quicklink/QuickLink.profile';
+import QuickLinkService from './quicklink/QuickLink.service';
+import QuickLinkUpdateForm from './quicklink/QuickLink.updateform';
 import ListAccessBase from './listaccess/ListAccess.base';
 import ListAccessBizApp from './listaccess/ListAccess.app';
 import ListAccessModel from './listaccess/ListAccess.model';
@@ -240,6 +254,7 @@ const BizModels = [
 	SecUserModel,
 	SecUserBlockingModel,
 	UserAppModel,
+	QuickLinkModel,
 	ListAccessModel,
 	ObjectAccessModel,
 	LoginHistoryModel,
@@ -273,6 +288,7 @@ menuLibrary['userWhiteList'] = UserWhiteListBase.menuData
 menuLibrary['secUser'] = SecUserBase.menuData
 menuLibrary['secUserBlocking'] = SecUserBlockingBase.menuData
 menuLibrary['userApp'] = UserAppBase.menuData
+menuLibrary['quickLink'] = QuickLinkBase.menuData
 menuLibrary['listAccess'] = ListAccessBase.menuData
 menuLibrary['objectAccess'] = ObjectAccessBase.menuData
 menuLibrary['loginHistory'] = LoginHistoryBase.menuData
@@ -309,6 +325,7 @@ const ViewMapping = {
   'com.doublechain.bank.secuser.SecUser': {name:'secUser'},
   'com.doublechain.bank.secuserblocking.SecUserBlocking': {name:'secUserBlocking'},
   'com.doublechain.bank.userapp.UserApp': {name:'userApp'},
+  'com.doublechain.bank.quicklink.QuickLink': {name:'quickLink'},
   'com.doublechain.bank.listaccess.ListAccess': {name:'listAccess'},
   'com.doublechain.bank.objectaccess.ObjectAccess': {name:'objectAccess'},
   'com.doublechain.bank.loginhistory.LoginHistory': {name:'loginHistory'},
@@ -513,6 +530,20 @@ const OOTBComponents={
     UserAppProfile,
     UserAppService,
     UserAppUpdateForm,
+    QuickLinkBase,
+    QuickLinkBizApp,
+    QuickLinkModel,
+    QuickLinkDashboard,
+    QuickLinkModalTable,
+    QuickLinkSearch,
+    QuickLinkSearchForm,
+    QuickLinkCreateForm,
+    QuickLinkAssociateForm,
+    QuickLinkTable,
+    QuickLinkPermission,
+    QuickLinkProfile,
+    QuickLinkService,
+    QuickLinkUpdateForm,
     ListAccessBase,
     ListAccessBizApp,
     ListAccessModel,

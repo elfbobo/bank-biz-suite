@@ -18,7 +18,7 @@ const testValues = {};
 /*
 const testValues = {
   name: '存款交易',
-  amount: '117.59',
+  amount: '105.50',
   type: '存款',
   fromAccountId: 'A000001',
   toAccountId: 'A000001',
@@ -198,8 +198,8 @@ class TransactionCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}事务`}
-        content={`${appLocaleName(userContext,"CreateNew")}事务`}
+        title={`${appLocaleName(userContext,"CreateNew")}Transaction`}
+        content={`${appLocaleName(userContext,"CreateNew")}Transaction`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -211,7 +211,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                   )}
                 </Form.Item>
               </Col>
@@ -221,7 +221,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('amount', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="金额" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Amount" />
                   )}
                 </Form.Item>
               </Col>
@@ -231,7 +231,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="类型" />
+                    <Input size="large" placeholder="Type" />
                   )}
                 </Form.Item>
               </Col>

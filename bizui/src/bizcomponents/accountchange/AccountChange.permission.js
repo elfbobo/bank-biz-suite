@@ -28,12 +28,12 @@ const internalSummaryOf = (accountChange,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{accountChange.id}</Description> 
-<Description term="名称">{accountChange.name}</Description> 
-<Description term="初期余额">{accountChange.previousBalance}</Description> 
-<Description term="类型">{accountChange.type}</Description> 
-<Description term="金额">{accountChange.amount}</Description> 
-<Description term="当前余额">{accountChange.currentBalance}</Description> 
+<Description term="Id">{accountChange.id}</Description> 
+<Description term="Name">{accountChange.name}</Description> 
+<Description term="Previous Balance">{accountChange.previousBalance}</Description> 
+<Description term="Type">{accountChange.type}</Description> 
+<Description term="Amount">{accountChange.amount}</Description> 
+<Description term="Current Balance">{accountChange.currentBalance}</Description> 
 	
       </DescriptionList>
 	)
@@ -59,7 +59,7 @@ class AccountChangePermission extends Component {
     // eslint-disable-next-line max-len
     const  accountChange = this.props.accountChange;
     const { id,displayName,  } = accountChange
-    const cardsData = {cardsName:"账户变更",cardsFor: "accountChange",cardsSource: accountChange,
+    const cardsData = {cardsName:"Account Change",cardsFor: "accountChange",cardsSource: accountChange,
   		subItems: [
     
       	],

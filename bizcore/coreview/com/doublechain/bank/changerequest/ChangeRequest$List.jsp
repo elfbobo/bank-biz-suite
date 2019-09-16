@@ -104,6 +104,9 @@
 <c:if test="${param.referName ne 'createTime'}">
 	<th>${userContext.localeMap['change_request.create_time']}</th>
 </c:if>
+<c:if test="${param.referName ne 'remoteIp'}">
+	<th>${userContext.localeMap['change_request.remote_ip']}</th>
+</c:if>
 <c:if test="${param.referName ne 'platform'}">
 	<th>${userContext.localeMap['change_request.platform']}</th>
 </c:if>
@@ -115,6 +118,7 @@
 				<tr currentVersion='${item.version}' id="changeRequest-${item.id}" ><td><a class="link-action-removed" href="./changeRequestManager/view/${item.id}/"> ${item.id}</a></td>
 <c:if test="${param.referName ne 'name'}">	<td contenteditable='true' class='edit-value'  propertyToChange='name' storedCellValue='${item.name}' prefix='${ownerBeanName}Manager/updateChangeRequest/${result.id}/${item.id}/'>${item.name}</td>
 </c:if><c:if test="${param.referName ne 'createTime'}">	<td contenteditable='true' class='edit-value'  propertyToChange='createTime' storedCellValue='${item.createTime}' prefix='${ownerBeanName}Manager/updateChangeRequest/${result.id}/${item.id}/'><fmt:formatDate pattern="yyyy-MM-dd'T'HH:mm:ss" value="${item.createTime}" /></td>
+</c:if><c:if test="${param.referName ne 'remoteIp'}">	<td contenteditable='true' class='edit-value'  propertyToChange='remoteIp' storedCellValue='${item.remoteIp}' prefix='${ownerBeanName}Manager/updateChangeRequest/${result.id}/${item.id}/'>${item.remoteIp}</td>
 </c:if><c:if test="${param.referName ne 'platform'}">
 	<td class="select_candidate_td"
 			data-candidate-method="./changeRequestManager/requestCandidatePlatform/${ownerBeanName}/${item.id}/"

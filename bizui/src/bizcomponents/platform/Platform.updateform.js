@@ -262,7 +262,7 @@ class PlatformUpdateForm extends Component {
                     initialValue: selectedRow.id,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="ID" disabled/>
+                    <Input size="large" placeholder="Id" disabled/>
                     
                   )}
                 </Form.Item>
@@ -274,7 +274,7 @@ class PlatformUpdateForm extends Component {
                     initialValue: selectedRow.name,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                     
                   )}
                 </Form.Item>

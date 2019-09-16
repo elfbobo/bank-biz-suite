@@ -11,10 +11,12 @@ import com.doublechain.bank.BankUserContext;
 import com.doublechain.bank.objectaccess.ObjectAccess;
 import com.doublechain.bank.listaccess.ListAccess;
 import com.doublechain.bank.secuser.SecUser;
+import com.doublechain.bank.quicklink.QuickLink;
 
 import com.doublechain.bank.secuser.SecUserDAO;
 import com.doublechain.bank.listaccess.ListAccessDAO;
 import com.doublechain.bank.objectaccess.ObjectAccessDAO;
+import com.doublechain.bank.quicklink.QuickLinkDAO;
 
 
 public interface UserAppDAO{
@@ -45,16 +47,23 @@ public interface UserAppDAO{
 	public UserApp disconnectFromAll(String userAppId, int version) throws Exception;
 	public int deleteAll() throws Exception;
 
+	public QuickLinkDAO getQuickLinkDAO();
+		
 	public ListAccessDAO getListAccessDAO();
 		
 	public ObjectAccessDAO getObjectAccessDAO();
 		
 	
+ 	public SmartList<UserApp> requestCandidateUserAppForQuickLink(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
+		
  	public SmartList<UserApp> requestCandidateUserAppForListAccess(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
  	public SmartList<UserApp> requestCandidateUserAppForObjectAccess(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
 	
+	public UserApp planToRemoveQuickLinkList(UserApp userApp, String quickLinkIds[], Map<String,Object> options)throws Exception;
+
+
 	public UserApp planToRemoveListAccessList(UserApp userApp, String listAccessIds[], Map<String,Object> options)throws Exception;
 
 
@@ -72,6 +81,9 @@ public interface UserAppDAO{
 
  
  
+	// 需要一个加载引用我的对象的enhance方法:QuickLink的app的QuickLinkList
+	public SmartList<QuickLink> loadOurQuickLinkList(BankUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception;
+	
 	// 需要一个加载引用我的对象的enhance方法:ListAccess的app的ListAccessList
 	public SmartList<ListAccess> loadOurListAccessList(BankUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception;
 	

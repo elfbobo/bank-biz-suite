@@ -23,6 +23,8 @@ import com.doublechain.bank.secuserblocking.SecUserBlockingManager;
 
 import com.doublechain.bank.userapp.UserAppManager;
 
+import com.doublechain.bank.quicklink.QuickLinkManager;
+
 import com.doublechain.bank.listaccess.ListAccessManager;
 
 import com.doublechain.bank.objectaccess.ObjectAccessManager;
@@ -38,6 +40,10 @@ import com.doublechain.bank.formfieldmessage.FormFieldMessageManager;
 import com.doublechain.bank.formfield.FormFieldManager;
 
 import com.doublechain.bank.formaction.FormActionManager;
+
+import com.doublechain.bank.candidatecontainer.CandidateContainerManager;
+
+import com.doublechain.bank.candidateelement.CandidateElementManager;
 
 
 public class ManagerGroup {
@@ -64,6 +70,8 @@ public class ManagerGroup {
 
 	protected UserAppManager userAppManager;
 
+	protected QuickLinkManager quickLinkManager;
+
 	protected ListAccessManager listAccessManager;
 
 	protected ObjectAccessManager objectAccessManager;
@@ -79,6 +87,10 @@ public class ManagerGroup {
 	protected FormFieldManager formFieldManager;
 
 	protected FormActionManager formActionManager;
+
+	protected CandidateContainerManager candidateContainerManager;
+
+	protected CandidateElementManager candidateElementManager;
 
 	
 
@@ -170,6 +182,14 @@ public class ManagerGroup {
 	}
 
 
+	public QuickLinkManager getQuickLinkManager(){
+		return this.quickLinkManager;
+	}
+	public void setQuickLinkManager(QuickLinkManager manager){
+		this.quickLinkManager = manager;
+	}
+
+
 	public ListAccessManager getListAccessManager(){
 		return this.listAccessManager;
 	}
@@ -231,6 +251,22 @@ public class ManagerGroup {
 	}
 	public void setFormActionManager(FormActionManager manager){
 		this.formActionManager = manager;
+	}
+
+
+	public CandidateContainerManager getCandidateContainerManager(){
+		return this.candidateContainerManager;
+	}
+	public void setCandidateContainerManager(CandidateContainerManager manager){
+		this.candidateContainerManager = manager;
+	}
+
+
+	public CandidateElementManager getCandidateElementManager(){
+		return this.candidateElementManager;
+	}
+	public void setCandidateElementManager(CandidateElementManager manager){
+		this.candidateElementManager = manager;
 	}
 
 

@@ -261,7 +261,7 @@ class TransactionUpdateForm extends Component {
                     initialValue: selectedRow.id,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="ID" disabled/>
+                    <Input size="large" placeholder="Id" disabled/>
                     
                   )}
                 </Form.Item>
@@ -273,7 +273,7 @@ class TransactionUpdateForm extends Component {
                     initialValue: selectedRow.name,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                     
                   )}
                 </Form.Item>
@@ -285,7 +285,7 @@ class TransactionUpdateForm extends Component {
                     initialValue: selectedRow.amount,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="金额" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Amount" />
                     
                   )}
                 </Form.Item>
@@ -297,7 +297,7 @@ class TransactionUpdateForm extends Component {
                     initialValue: selectedRow.type,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="类型" />
+                    <Input size="large" placeholder="Type" />
                     
                   )}
                 </Form.Item>

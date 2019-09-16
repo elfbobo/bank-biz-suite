@@ -582,7 +582,7 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
  
 		StatsItem createTimeStatsItem = new StatsItem();
 		//ChangeRequest.CREATE_TIME_PROPERTY
-		createTimeStatsItem.setDisplayName("变更请求");
+		createTimeStatsItem.setDisplayName("Change Request");
 		createTimeStatsItem.setInternalName(formatKeyForDateLine(ChangeRequest.CREATE_TIME_PROPERTY));
 		createTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ChangeRequest.CREATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(createTimeStatsItem);
@@ -744,30 +744,32 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
  		return prepareChangeRequestCreateParameters(changeRequest);
  	}
  	protected Object[] prepareChangeRequestUpdateParameters(ChangeRequest changeRequest){
- 		Object[] parameters = new Object[6];
+ 		Object[] parameters = new Object[7];
  
  		parameters[0] = changeRequest.getName();
- 		parameters[1] = changeRequest.getCreateTime(); 	
+ 		parameters[1] = changeRequest.getCreateTime();
+ 		parameters[2] = changeRequest.getRemoteIp(); 	
  		if(changeRequest.getPlatform() != null){
- 			parameters[2] = changeRequest.getPlatform().getId();
+ 			parameters[3] = changeRequest.getPlatform().getId();
  		}
  		
- 		parameters[3] = changeRequest.nextVersion();
- 		parameters[4] = changeRequest.getId();
- 		parameters[5] = changeRequest.getVersion();
+ 		parameters[4] = changeRequest.nextVersion();
+ 		parameters[5] = changeRequest.getId();
+ 		parameters[6] = changeRequest.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareChangeRequestCreateParameters(ChangeRequest changeRequest){
-		Object[] parameters = new Object[4];
+		Object[] parameters = new Object[5];
 		String newChangeRequestId=getNextId();
 		changeRequest.setId(newChangeRequestId);
 		parameters[0] =  changeRequest.getId();
  
  		parameters[1] = changeRequest.getName();
- 		parameters[2] = changeRequest.getCreateTime(); 	
+ 		parameters[2] = changeRequest.getCreateTime();
+ 		parameters[3] = changeRequest.getRemoteIp(); 	
  		if(changeRequest.getPlatform() != null){
- 			parameters[3] = changeRequest.getPlatform().getId();
+ 			parameters[4] = changeRequest.getPlatform().getId();
  		
  		}
  				

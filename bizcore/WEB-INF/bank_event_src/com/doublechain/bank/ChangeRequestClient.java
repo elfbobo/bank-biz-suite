@@ -122,15 +122,8 @@ public class ChangeRequestClient {
 		BankObjectChecker checker=new BankObjectChecker();
 		
 		
-		checker.checkChangeRequestAsObject(req);
-		
-		
-		
-		
-		
-		
-		
-		
+		checker.checkAndFixChangeRequest(req);
+
 		
 		try {
 			
@@ -138,7 +131,7 @@ public class ChangeRequestClient {
 			log(val);
 			
 			checker.throwExceptionIfHasErrors(ChangeRequestManagerException.class);
-			IntStream.range(0, 10).forEach(
+			IntStream.range(0, 1).forEach(
 					nbr -> {
 						try {
 							emitRequest(req);

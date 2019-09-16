@@ -81,9 +81,9 @@ const internalSummaryOf = (platform,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{platform.id}</Description> 
-<Description term="名称">{platform.name}</Description> 
-<Description term="成立">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
+<Description term="Id">{platform.id}</Description> 
+<Description term="Name">{platform.name}</Description> 
+<Description term="Founded">{ moment(platform.founded).format('YYYY-MM-DD HH:mm')}</Description> 
 	
         {buildTransferModal(platform,targetComponent)}
       </DescriptionList>
@@ -121,11 +121,11 @@ class PlatformDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"平台",cardsFor: "platform",
+    const cardsData = {cardsName:"Platform",cardsFor: "platform",
     	cardsSource: this.props.platform,returnURL,displayName,
   		subItems: [
-{name: 'changeRequestList', displayName:'变更请求',type:'changeRequest',count:changeRequestCount,addFunction: true, role: 'changeRequest', metaInfo: changeRequestListMetaInfo, renderItem: GlobalComponents.ChangeRequestBase.renderItemOfList},
-{name: 'accountList', displayName:'账户',type:'account',count:accountCount,addFunction: true, role: 'account', metaInfo: accountListMetaInfo, renderItem: GlobalComponents.AccountBase.renderItemOfList},
+{name: 'changeRequestList', displayName:'Change Request',type:'changeRequest',count:changeRequestCount,addFunction: true, role: 'changeRequest', metaInfo: changeRequestListMetaInfo, renderItem: GlobalComponents.ChangeRequestBase.renderItemOfList},
+{name: 'accountList', displayName:'Account',type:'account',count:accountCount,addFunction: true, role: 'account', metaInfo: accountListMetaInfo, renderItem: GlobalComponents.AccountBase.renderItemOfList},
     
       	],
   	};

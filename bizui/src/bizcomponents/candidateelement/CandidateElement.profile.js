@@ -56,7 +56,7 @@ class CandidateElementProfile extends Component {
     const  candidateElement = this.props.candidateElement;
     const { id,displayName,  } = candidateElement
 
-    const cardsData = {cardsName:"候选人元素",cardsFor: "candidateElement",cardsSource: candidateElement,
+    const cardsData = {cardsName:"Candidate Element",cardsFor: "candidateElement",cardsSource: candidateElement,
   		subItems: [
      
       	],

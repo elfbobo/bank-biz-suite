@@ -19,7 +19,7 @@ const testValues = {};
 /*
 const testValues = {
   name: '张三账户',
-  balance: '93.71',
+  balance: '94.44',
   platformId: 'P000001',
 }
 */
@@ -142,7 +142,7 @@ class AccountAssociateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                   )}
                 </Form.Item>
               </Col>
@@ -152,7 +152,7 @@ class AccountAssociateForm extends Component {
                   {getFieldDecorator('balance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="余额" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Balance" />
                   )}
                 </Form.Item>
               </Col>

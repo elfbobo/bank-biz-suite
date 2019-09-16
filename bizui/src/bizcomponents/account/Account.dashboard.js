@@ -81,11 +81,11 @@ const internalSummaryOf = (account,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{account.id}</Description> 
-<Description term="名称">{account.name}</Description> 
-<Description term="余额">{account.balance}</Description> 
-<Description term="创建时间">{ moment(account.createTime).format('YYYY-MM-DD')}</Description> 
-<Description term="更新时间">{ moment(account.updateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="Id">{account.id}</Description> 
+<Description term="Name">{account.name}</Description> 
+<Description term="Balance">{account.balance}</Description> 
+<Description term="Create Time">{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="Update Time">{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</Description> 
 	
         {buildTransferModal(account,targetComponent)}
       </DescriptionList>
@@ -123,13 +123,13 @@ class AccountDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"账户",cardsFor: "account",
+    const cardsData = {cardsName:"Account",cardsFor: "account",
     	cardsSource: this.props.account,returnURL,displayName,
   		subItems: [
-{name: 'transactionListAsFromAccount', displayName:'事务(交易清单从帐户)',type:'transaction',count:transactionAsFromAccountCount,addFunction: true, role: 'transactionAsFromAccount', metaInfo: transactionListAsFromAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'transactionListAsToAccount', displayName:'事务(交易清单作为帐户)',type:'transaction',count:transactionAsToAccountCount,addFunction: true, role: 'transactionAsToAccount', metaInfo: transactionListAsToAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'nameChangeEventList', displayName:'名字更改事件',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
-{name: 'accountChangeList', displayName:'账户变更',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
+{name: 'transactionListAsFromAccount', displayName:'Transaction(Transaction List As From Account)',type:'transaction',count:transactionAsFromAccountCount,addFunction: true, role: 'transactionAsFromAccount', metaInfo: transactionListAsFromAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'transactionListAsToAccount', displayName:'Transaction(Transaction List As To Account)',type:'transaction',count:transactionAsToAccountCount,addFunction: true, role: 'transactionAsToAccount', metaInfo: transactionListAsToAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'nameChangeEventList', displayName:'Name Change Event',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
+{name: 'accountChangeList', displayName:'Account Change',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
     
       	],
   	};

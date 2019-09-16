@@ -56,7 +56,7 @@ class PlatformProfile extends Component {
     const  platform = this.props.platform;
     const { id,displayName, changeRequestCount, accountCount } = platform
 
-    const cardsData = {cardsName:"平台",cardsFor: "platform",cardsSource: platform,
+    const cardsData = {cardsName:"Platform",cardsFor: "platform",cardsSource: platform,
   		subItems: [
      
       	],

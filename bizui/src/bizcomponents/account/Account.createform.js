@@ -18,7 +18,7 @@ const testValues = {};
 /*
 const testValues = {
   name: '张三账户',
-  balance: '115.98',
+  balance: '88.64',
   platformId: 'P000001',
 }
 */
@@ -195,8 +195,8 @@ class AccountCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}账户`}
-        content={`${appLocaleName(userContext,"CreateNew")}账户`}
+        title={`${appLocaleName(userContext,"CreateNew")}Account`}
+        content={`${appLocaleName(userContext,"CreateNew")}Account`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -208,7 +208,7 @@ class AccountCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                   )}
                 </Form.Item>
               </Col>
@@ -218,7 +218,7 @@ class AccountCreateForm extends Component {
                   {getFieldDecorator('balance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="余额" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Balance" />
                   )}
                 </Form.Item>
               </Col>

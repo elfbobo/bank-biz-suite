@@ -81,9 +81,10 @@ const internalSummaryOf = (changeRequest,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{changeRequest.id}</Description> 
-<Description term="名称">{changeRequest.name}</Description> 
-<Description term="创建时间">{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</Description> 
+<Description term="Id">{changeRequest.id}</Description> 
+<Description term="Name">{changeRequest.name}</Description> 
+<Description term="Create Time">{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="Remote Ip">{changeRequest.remoteIp}</Description> 
 	
         {buildTransferModal(changeRequest,targetComponent)}
       </DescriptionList>
@@ -121,12 +122,12 @@ class ChangeRequestDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"变更请求",cardsFor: "changeRequest",
+    const cardsData = {cardsName:"Change Request",cardsFor: "changeRequest",
     	cardsSource: this.props.changeRequest,returnURL,displayName,
   		subItems: [
-{name: 'transactionList', displayName:'事务',type:'transaction',count:transactionCount,addFunction: true, role: 'transaction', metaInfo: transactionListMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'nameChangeEventList', displayName:'名字更改事件',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
-{name: 'accountChangeList', displayName:'账户变更',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
+{name: 'transactionList', displayName:'Transaction',type:'transaction',count:transactionCount,addFunction: true, role: 'transaction', metaInfo: transactionListMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'nameChangeEventList', displayName:'Name Change Event',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
+{name: 'accountChangeList', displayName:'Account Change',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
     
       	],
   	};

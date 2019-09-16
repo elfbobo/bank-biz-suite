@@ -110,6 +110,20 @@ public class PlatformForm extends BaseForm {
 	}
 
 
+	public PlatformForm remoteIpFieldForChangeRequest(String parameterName, String initValue){
+		FormField field =  remoteIpFromChangeRequest(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public PlatformForm remoteIpFieldForChangeRequest(String initValue){
+		return remoteIpFieldForChangeRequest("remoteIp",initValue);
+	}
+	public PlatformForm remoteIpFieldForChangeRequest(){
+		return remoteIpFieldForChangeRequest("remoteIp","");
+	}
+
+
 	public PlatformForm platformIdFieldForChangeRequest(String parameterName, String initValue){
 		FormField field =  platformIdFromChangeRequest(parameterName, initValue);		
 		this.addFormField(field);

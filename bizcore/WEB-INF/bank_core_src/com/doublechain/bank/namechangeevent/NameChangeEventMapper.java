@@ -58,10 +58,10 @@ public class NameChangeEventMapper extends BaseRowMapper<NameChangeEvent>{
  		if( accountId.isEmpty()){
  			return;
  		}
- 		Account laccount = nameChangeEvent.getAccount();
- 		if( laccount != null ){
+ 		Account account = nameChangeEvent.getAccount();
+ 		if( account != null ){
  			//if the root object 'nameChangeEvent' already have the property, just set the id for it;
- 			laccount.setId(accountId);
+ 			account.setId(accountId);
  			
  			return;
  		}
@@ -76,10 +76,10 @@ public class NameChangeEventMapper extends BaseRowMapper<NameChangeEvent>{
  		if( changeRequestId.isEmpty()){
  			return;
  		}
- 		ChangeRequest lchangeRequest = nameChangeEvent.getChangeRequest();
- 		if( lchangeRequest != null ){
+ 		ChangeRequest changeRequest = nameChangeEvent.getChangeRequest();
+ 		if( changeRequest != null ){
  			//if the root object 'nameChangeEvent' already have the property, just set the id for it;
- 			lchangeRequest.setId(changeRequestId);
+ 			changeRequest.setId(changeRequestId);
  			
  			return;
  		}

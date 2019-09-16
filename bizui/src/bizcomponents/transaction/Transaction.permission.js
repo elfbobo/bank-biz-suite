@@ -28,10 +28,10 @@ const internalSummaryOf = (transaction,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{transaction.id}</Description> 
-<Description term="名称">{transaction.name}</Description> 
-<Description term="金额">{transaction.amount}</Description> 
-<Description term="类型">{transaction.type}</Description> 
+<Description term="Id">{transaction.id}</Description> 
+<Description term="Name">{transaction.name}</Description> 
+<Description term="Amount">{transaction.amount}</Description> 
+<Description term="Type">{transaction.type}</Description> 
 	
       </DescriptionList>
 	)
@@ -57,7 +57,7 @@ class TransactionPermission extends Component {
     // eslint-disable-next-line max-len
     const  transaction = this.props.transaction;
     const { id,displayName,  } = transaction
-    const cardsData = {cardsName:"事务",cardsFor: "transaction",cardsSource: transaction,
+    const cardsData = {cardsName:"Transaction",cardsFor: "transaction",cardsSource: transaction,
   		subItems: [
     
       	],

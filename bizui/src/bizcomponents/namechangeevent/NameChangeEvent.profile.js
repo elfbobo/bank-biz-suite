@@ -56,7 +56,7 @@ class NameChangeEventProfile extends Component {
     const  nameChangeEvent = this.props.nameChangeEvent;
     const { id,displayName,  } = nameChangeEvent
 
-    const cardsData = {cardsName:"名字更改事件",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,
+    const cardsData = {cardsName:"Name Change Event",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,
   		subItems: [
      
       	],

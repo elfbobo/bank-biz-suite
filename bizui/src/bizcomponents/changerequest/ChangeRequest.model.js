@@ -137,7 +137,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/changeRequest/${id}/list/TransactionList/事务+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/changeRequest/${id}/list/TransactionList/Transaction+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateTransaction({ payload }, { call, put }) {
@@ -159,7 +159,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/changeRequest/${id}/list/TransactionList/事务列表`, state: newPlayload }
+      const location = { pathname: `/changeRequest/${id}/list/TransactionList/Transaction列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextTransactionUpdateRow({ payload }, { call, put }) {
@@ -206,7 +206,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/changeRequest/${id}/list/NameChangeEventList/名字更改事件+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/changeRequest/${id}/list/NameChangeEventList/Name Change Event+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateNameChangeEvent({ payload }, { call, put }) {
@@ -228,7 +228,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/changeRequest/${id}/list/NameChangeEventList/名字更改事件列表`, state: newPlayload }
+      const location = { pathname: `/changeRequest/${id}/list/NameChangeEventList/Name Change Event列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextNameChangeEventUpdateRow({ payload }, { call, put }) {
@@ -275,7 +275,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/changeRequest/${id}/list/AccountChangeList/账户变更+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/changeRequest/${id}/list/AccountChangeList/Account Change+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateAccountChange({ payload }, { call, put }) {
@@ -297,7 +297,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/changeRequest/${id}/list/AccountChangeList/账户变更列表`, state: newPlayload }
+      const location = { pathname: `/changeRequest/${id}/list/AccountChangeList/Account Change列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextAccountChangeUpdateRow({ payload }, { call, put }) {

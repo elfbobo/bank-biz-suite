@@ -205,6 +205,20 @@ public class NameChangeEventForm extends BaseForm {
 	}
 
 
+	public NameChangeEventForm remoteIpFieldOfChangeRequest(String parameterName, String initValue){
+		FormField field =  remoteIpFromChangeRequest(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public NameChangeEventForm remoteIpFieldOfChangeRequest(String initValue){
+		return remoteIpFieldOfChangeRequest("remoteIp",initValue);
+	}
+	public NameChangeEventForm remoteIpFieldOfChangeRequest(){
+		return remoteIpFieldOfChangeRequest("remoteIp","");
+	}
+
+
 	public NameChangeEventForm platformIdFieldOfChangeRequest(String parameterName, String initValue){
 		FormField field =  platformIdFromChangeRequest(parameterName, initValue);
 		this.addFormField(field);	

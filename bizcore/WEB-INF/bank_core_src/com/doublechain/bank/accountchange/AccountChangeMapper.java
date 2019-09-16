@@ -62,10 +62,10 @@ public class AccountChangeMapper extends BaseRowMapper<AccountChange>{
  		if( accountId.isEmpty()){
  			return;
  		}
- 		Account laccount = accountChange.getAccount();
- 		if( laccount != null ){
+ 		Account account = accountChange.getAccount();
+ 		if( account != null ){
  			//if the root object 'accountChange' already have the property, just set the id for it;
- 			laccount.setId(accountId);
+ 			account.setId(accountId);
  			
  			return;
  		}
@@ -128,10 +128,10 @@ public class AccountChangeMapper extends BaseRowMapper<AccountChange>{
  		if( changeRequestId.isEmpty()){
  			return;
  		}
- 		ChangeRequest lchangeRequest = accountChange.getChangeRequest();
- 		if( lchangeRequest != null ){
+ 		ChangeRequest changeRequest = accountChange.getChangeRequest();
+ 		if( changeRequest != null ){
  			//if the root object 'accountChange' already have the property, just set the id for it;
- 			lchangeRequest.setId(changeRequestId);
+ 			changeRequest.setId(changeRequestId);
  			
  			return;
  		}

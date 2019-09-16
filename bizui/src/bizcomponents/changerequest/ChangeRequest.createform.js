@@ -194,8 +194,8 @@ class ChangeRequestCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}变更请求`}
-        content={`${appLocaleName(userContext,"CreateNew")}变更请求`}
+        title={`${appLocaleName(userContext,"CreateNew")}Change Request`}
+        content={`${appLocaleName(userContext,"CreateNew")}Change Request`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -207,7 +207,7 @@ class ChangeRequestCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                   )}
                 </Form.Item>
               </Col>

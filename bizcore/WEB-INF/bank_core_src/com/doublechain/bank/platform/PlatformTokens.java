@@ -137,7 +137,7 @@ public class PlatformTokens extends CommonTokens{
 	}
 	
 	public PlatformTokens searchAllTextOfChangeRequestList(String verb, String value){	
-		String field = "id|name";
+		String field = "id|name|remoteIp";
 		addSearchMoreOptions(CHANGE_REQUEST_LIST,changeRequestListSearchCounter++, field, verb, value);
 		return this;
 	}

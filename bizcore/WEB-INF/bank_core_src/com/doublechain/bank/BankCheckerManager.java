@@ -151,6 +151,12 @@ public class BankCheckerManager extends BaseManagerImpl {
 	public com.doublechain.bank.userapp.UserAppDAO userAppDaoOf(BankUserContext userContext){
 		return userContext.getDAOGroup().getUserAppDAO();
 	}
+	public com.doublechain.bank.quicklink.QuickLinkManager quickLinkManagerOf(BankUserContext userContext){
+		return userContext.getManagerGroup().getQuickLinkManager();
+	}
+	public com.doublechain.bank.quicklink.QuickLinkDAO quickLinkDaoOf(BankUserContext userContext){
+		return userContext.getDAOGroup().getQuickLinkDAO();
+	}
 	public com.doublechain.bank.listaccess.ListAccessManager listAccessManagerOf(BankUserContext userContext){
 		return userContext.getManagerGroup().getListAccessManager();
 	}
@@ -258,6 +264,8 @@ public class BankCheckerManager extends BaseManagerImpl {
 	}
     
 }
+
+
 
 
 

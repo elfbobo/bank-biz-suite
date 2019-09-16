@@ -30,16 +30,16 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"用户域", menuFor: "userDomain",
+const menuData = {menuName:"User Domain", menuFor: "userDomain",
   		subItems: [
-  {name: 'secUserList', displayName:'安全用户', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'secUserList', displayName:'Sec User', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }
 
 const fieldLabels = {
-  id: 'ID',
-  name: '名称',
+  id: 'Id',
+  name: 'Name',
 
 }
 
@@ -56,8 +56,8 @@ const renderItemOfList=(userDomain,targetComponent)=>{
     <div key={userDomain.id}>
 	
       <DescriptionList  key={userDomain.id} size="small" col="4">
-        <Description term="ID">{userDomain.id}</Description> 
-        <Description term="名称">{userDomain.name}</Description> 
+        <Description term="Id">{userDomain.id}</Description> 
+        <Description term="Name">{userDomain.name}</Description> 
 	
         
       </DescriptionList>

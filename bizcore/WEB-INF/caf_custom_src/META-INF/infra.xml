@@ -95,7 +95,7 @@
     <bean id="storageService" class="com.skynet.infrastructure.AliyunOSSService">
         <property name="config" ref="aliyunOssServiceConfiguration"></property>
     </bean>
-
+	
 
 <!--    <bean id="kafkaMessageEventService" class="com.skynet.infrastructure.kafkaservice.KafkaMessageEventService">-->
 <!--        <property name="producerProperties">-->

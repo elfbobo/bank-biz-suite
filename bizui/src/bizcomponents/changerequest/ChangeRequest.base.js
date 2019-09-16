@@ -30,20 +30,21 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"变更请求", menuFor: "changeRequest",
+const menuData = {menuName:"Change Request", menuFor: "changeRequest",
   		subItems: [
-  {name: 'transactionList', displayName:'事务', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'nameChangeEventList', displayName:'名字更改事件', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'accountChangeList', displayName:'账户变更', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'transactionList', displayName:'Transaction', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'nameChangeEventList', displayName:'Name Change Event', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'accountChangeList', displayName:'Account Change', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }
 
 const fieldLabels = {
-  id: 'ID',
-  name: '名称',
-  createTime: '创建时间',
-  platform: '平台',
+  id: 'Id',
+  name: 'Name',
+  createTime: 'Create Time',
+  remoteIp: 'Remote Ip',
+  platform: 'Platform',
 
 }
 
@@ -51,6 +52,7 @@ const displayColumns = [
   { title: fieldLabels.id, debugtype: 'string', dataIndex: 'id', width: '8', render: (text, record)=>renderTextCell(text,record,'changeRequest') , sorter: true },
   { title: fieldLabels.name, debugtype: 'string', dataIndex: 'name', width: '6',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.createTime, dataIndex: 'createTime', render: (text, record) =>renderDateTimeCell(text,record), sorter: true},
+  { title: fieldLabels.remoteIp, debugtype: 'string_client_ip', dataIndex: 'remoteIp', width: '14',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.platform, dataIndex: 'platform', render: (text, record) => renderReferenceCell(text, record), sorter:true},
 
 ]
@@ -62,9 +64,10 @@ const renderItemOfList=(changeRequest,targetComponent)=>{
     <div key={changeRequest.id}>
 	
       <DescriptionList  key={changeRequest.id} size="small" col="4">
-        <Description term="ID">{changeRequest.id}</Description> 
-        <Description term="名称">{changeRequest.name}</Description> 
-        <Description term="创建时间"><div>{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</div></Description> 
+        <Description term="Id">{changeRequest.id}</Description> 
+        <Description term="Name">{changeRequest.name}</Description> 
+        <Description term="Create Time"><div>{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="Remote Ip">{changeRequest.remoteIp}</Description> 
 	
         
       </DescriptionList>

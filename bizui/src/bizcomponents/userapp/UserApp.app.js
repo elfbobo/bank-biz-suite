@@ -162,12 +162,61 @@ class UserAppBizApp extends React.PureComponent {
 
 
 
+  getQuickLinkSearch = () => {
+    const {QuickLinkSearch} = GlobalComponents;
+    const userContext = null
+    return connect(state => ({
+      rule: state.rule,
+      name: "Quick Link",
+      role: "quickLink",
+      data: state._userApp.quickLinkList,
+      metaInfo: state._userApp.quickLinkListMetaInfo,
+      count: state._userApp.quickLinkCount,
+      currentPage: state._userApp.quickLinkCurrentPageNumber,
+      searchFormParameters: state._userApp.quickLinkSearchFormParameters,
+      searchParameters: {...state._userApp.searchParameters},
+      expandForm: state._userApp.expandForm,
+      loading: state._userApp.loading,
+      partialList: state._userApp.partialList,
+      owner: { type: '_userApp', id: state._userApp.id, 
+      referenceName: 'app', 
+      listName: 'quickLinkList', ref:state._userApp, 
+      listDisplayName: appLocaleName(userContext,"List") }, // this is for model namespace and
+    }))(QuickLinkSearch)
+  }
+  getQuickLinkCreateForm = () => {
+   	const {QuickLinkCreateForm} = GlobalComponents;
+   	const userContext = null
+    return connect(state => ({
+      rule: state.rule,
+      role: "quickLink",
+      data: state._userApp.quickLinkList,
+      metaInfo: state._userApp.quickLinkListMetaInfo,
+      count: state._userApp.quickLinkCount,
+      currentPage: state._userApp.quickLinkCurrentPageNumber,
+      searchFormParameters: state._userApp.quickLinkSearchFormParameters,
+      loading: state._userApp.loading,
+      owner: { type: '_userApp', id: state._userApp.id, referenceName: 'app', listName: 'quickLinkList', ref:state._userApp, listDisplayName: appLocaleName(userContext,"List")}, // this is for model namespace and
+    }))(QuickLinkCreateForm)
+  }
+  
+  getQuickLinkUpdateForm = () => {
+    const userContext = null
+  	const {QuickLinkUpdateForm} = GlobalComponents;
+    return connect(state => ({
+      selectedRows: state._userApp.selectedRows,
+      role: "quickLink",
+      currentUpdateIndex: state._userApp.currentUpdateIndex,
+      owner: { type: '_userApp', id: state._userApp.id, listName: 'quickLinkList', ref:state._userApp, listDisplayName: appLocaleName(userContext,"List") }, // this is for model namespace and
+    }))(QuickLinkUpdateForm)
+  }
+
   getListAccessSearch = () => {
     const {ListAccessSearch} = GlobalComponents;
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "访问列表",
+      name: "List Access",
       role: "listAccess",
       data: state._userApp.listAccessList,
       metaInfo: state._userApp.listAccessListMetaInfo,
@@ -216,7 +265,7 @@ class UserAppBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "对象访问",
+      name: "Object Access",
       role: "objectAccess",
       data: state._userApp.objectAccessList,
       metaInfo: state._userApp.objectAccessListMetaInfo,
@@ -275,6 +324,10 @@ class UserAppBizApp extends React.PureComponent {
   	
   	
   	
+  	{path:"/userApp/:id/list/quickLinkList", component: this.getQuickLinkSearch()},
+  	{path:"/userApp/:id/list/quickLinkCreateForm", component: this.getQuickLinkCreateForm()},
+  	{path:"/userApp/:id/list/quickLinkUpdateForm", component: this.getQuickLinkUpdateForm()},
+   	
   	{path:"/userApp/:id/list/listAccessList", component: this.getListAccessSearch()},
   	{path:"/userApp/:id/list/listAccessCreateForm", component: this.getListAccessCreateForm()},
   	{path:"/userApp/:id/list/listAccessUpdateForm", component: this.getListAccessUpdateForm()},

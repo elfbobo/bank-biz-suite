@@ -81,17 +81,17 @@ const internalSummaryOf = (nameChangeEvent,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{nameChangeEvent.id}</Description> 
-<Description term="名称">{nameChangeEvent.name}</Description> 
-<Description term="账户">{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
+<Description term="Id">{nameChangeEvent.id}</Description> 
+<Description term="Name">{nameChangeEvent.name}</Description> 
+<Description term="Account">{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"账户","account",NameChangeEventService.requestCandidateAccount,
+  showTransferModel(targetComponent,"Account","account",NameChangeEventService.requestCandidateAccount,
 	      NameChangeEventService.transferToAnotherAccount,"anotherAccountId",nameChangeEvent.account?nameChangeEvent.account.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="变更请求">{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
+<Description term="Change Request">{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"变更请求","changeRequest",NameChangeEventService.requestCandidateChangeRequest,
+  showTransferModel(targetComponent,"Change Request","changeRequest",NameChangeEventService.requestCandidateChangeRequest,
 	      NameChangeEventService.transferToAnotherChangeRequest,"anotherChangeRequestId",nameChangeEvent.changeRequest?nameChangeEvent.changeRequest.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -132,7 +132,7 @@ class NameChangeEventDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"名字更改事件",cardsFor: "nameChangeEvent",
+    const cardsData = {cardsName:"Name Change Event",cardsFor: "nameChangeEvent",
     	cardsSource: this.props.nameChangeEvent,returnURL,displayName,
   		subItems: [
     

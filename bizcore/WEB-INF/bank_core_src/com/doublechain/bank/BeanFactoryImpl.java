@@ -13,6 +13,7 @@ import com.doublechain.bank.userwhitelist.UserWhiteList;
 import com.doublechain.bank.secuser.SecUser;
 import com.doublechain.bank.secuserblocking.SecUserBlocking;
 import com.doublechain.bank.userapp.UserApp;
+import com.doublechain.bank.quicklink.QuickLink;
 import com.doublechain.bank.listaccess.ListAccess;
 import com.doublechain.bank.objectaccess.ObjectAccess;
 import com.doublechain.bank.loginhistory.LoginHistory;
@@ -21,6 +22,8 @@ import com.doublechain.bank.formmessage.FormMessage;
 import com.doublechain.bank.formfieldmessage.FormFieldMessage;
 import com.doublechain.bank.formfield.FormField;
 import com.doublechain.bank.formaction.FormAction;
+import com.doublechain.bank.candidatecontainer.CandidateContainer;
+import com.doublechain.bank.candidateelement.CandidateElement;
 
 public class BeanFactoryImpl{
 
@@ -80,6 +83,11 @@ public class BeanFactoryImpl{
 	}
 
 
+	public QuickLink createQuickLink(Map<String,Object> options){
+		return new QuickLink();
+	}
+
+
 	public ListAccess createListAccess(Map<String,Object> options){
 		return new ListAccess();
 	}
@@ -117,6 +125,16 @@ public class BeanFactoryImpl{
 
 	public FormAction createFormAction(Map<String,Object> options){
 		return new FormAction();
+	}
+
+
+	public CandidateContainer createCandidateContainer(Map<String,Object> options){
+		return new CandidateContainer();
+	}
+
+
+	public CandidateElement createCandidateElement(Map<String,Object> options){
+		return new CandidateElement();
 	}
 
 

@@ -167,7 +167,7 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "事务",
+      name: "Transaction",
       role: "transaction",
       data: state._changeRequest.transactionList,
       metaInfo: state._changeRequest.transactionListMetaInfo,
@@ -216,7 +216,7 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "名字更改事件",
+      name: "Name Change Event",
       role: "nameChangeEvent",
       data: state._changeRequest.nameChangeEventList,
       metaInfo: state._changeRequest.nameChangeEventListMetaInfo,
@@ -265,7 +265,7 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "账户变更",
+      name: "Account Change",
       role: "accountChange",
       data: state._changeRequest.accountChangeList,
       metaInfo: state._changeRequest.accountChangeListMetaInfo,

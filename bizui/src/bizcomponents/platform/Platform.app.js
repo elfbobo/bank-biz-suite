@@ -167,7 +167,7 @@ class PlatformBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "变更请求",
+      name: "Change Request",
       role: "changeRequest",
       data: state._platform.changeRequestList,
       metaInfo: state._platform.changeRequestListMetaInfo,
@@ -216,7 +216,7 @@ class PlatformBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "账户",
+      name: "Account",
       role: "account",
       data: state._platform.accountList,
       metaInfo: state._platform.accountListMetaInfo,

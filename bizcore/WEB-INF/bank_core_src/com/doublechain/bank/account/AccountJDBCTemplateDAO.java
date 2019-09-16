@@ -675,7 +675,7 @@ public class AccountJDBCTemplateDAO extends BankBaseDAOImpl implements AccountDA
  
 		StatsItem createTimeStatsItem = new StatsItem();
 		//Account.CREATE_TIME_PROPERTY
-		createTimeStatsItem.setDisplayName("账户");
+		createTimeStatsItem.setDisplayName("Account");
 		createTimeStatsItem.setInternalName(formatKeyForDateLine(Account.CREATE_TIME_PROPERTY));
 		createTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(Account.CREATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(createTimeStatsItem);
