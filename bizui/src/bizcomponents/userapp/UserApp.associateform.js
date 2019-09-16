@@ -78,6 +78,7 @@ class UserAppAssociateForm extends Component {
     const {UserAppService} = GlobalComponents
     const userContext = null
     
+ const {QuickLinkModalTable} = GlobalComponents;
  const {ListAccessModalTable} = GlobalComponents;
  const {ObjectAccessModalTable} = GlobalComponents;
 
@@ -145,7 +146,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('title', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="标题" />
+                    <Input size="large" placeholder="Title" />
                   )}
                 </Form.Item>
               </Col>
@@ -155,7 +156,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('appIcon', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="应用程序图标" />
+                    <Input size="large" placeholder="App Icon" />
                   )}
                 </Form.Item>
               </Col>
@@ -165,7 +166,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('permission', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="许可" />
+                    <Input size="large" placeholder="Permission" />
                   )}
                 </Form.Item>
               </Col>
@@ -175,7 +176,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('objectType', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="访问对象类型" />
+                    <Input size="large" placeholder="Object Type" />
                   )}
                 </Form.Item>
               </Col>
@@ -185,7 +186,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('objectId', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="对象ID" />
+                    <Input size="large" placeholder="Object Id" />
                   )}
                 </Form.Item>
               </Col>
@@ -195,7 +196,7 @@ class UserAppAssociateForm extends Component {
                   {getFieldDecorator('location', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="位置" />
+                    <Input size="large" placeholder="Location" />
                   )}
                 </Form.Item>
               </Col>
@@ -262,6 +263,7 @@ class UserAppAssociateForm extends Component {
 			
         </Card>
         
+	<QuickLinkModalTable data={data.quickLinkList} owner={owner} />
 	<ListAccessModalTable data={data.listAccessList} owner={owner} />
 	<ObjectAccessModalTable data={data.objectAccessList} owner={owner} />
         

@@ -193,8 +193,8 @@ class PlatformCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}平台`}
-        content={`${appLocaleName(userContext,"CreateNew")}平台`}
+        title={`${appLocaleName(userContext,"CreateNew")}Platform`}
+        content={`${appLocaleName(userContext,"CreateNew")}Platform`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -206,7 +206,7 @@ class PlatformCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                   )}
                 </Form.Item>
               </Col>

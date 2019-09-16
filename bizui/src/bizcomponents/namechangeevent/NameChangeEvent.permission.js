@@ -28,8 +28,8 @@ const internalSummaryOf = (nameChangeEvent,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{nameChangeEvent.id}</Description> 
-<Description term="名称">{nameChangeEvent.name}</Description> 
+<Description term="Id">{nameChangeEvent.id}</Description> 
+<Description term="Name">{nameChangeEvent.name}</Description> 
 	
       </DescriptionList>
 	)
@@ -55,7 +55,7 @@ class NameChangeEventPermission extends Component {
     // eslint-disable-next-line max-len
     const  nameChangeEvent = this.props.nameChangeEvent;
     const { id,displayName,  } = nameChangeEvent
-    const cardsData = {cardsName:"名字更改事件",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,
+    const cardsData = {cardsName:"Name Change Event",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,
   		subItems: [
     
       	],

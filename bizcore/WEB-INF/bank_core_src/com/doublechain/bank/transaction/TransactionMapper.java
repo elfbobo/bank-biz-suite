@@ -61,10 +61,10 @@ public class TransactionMapper extends BaseRowMapper<Transaction>{
  		if( accountId.isEmpty()){
  			return;
  		}
- 		Account laccount = transaction.getFromAccount();
- 		if( laccount != null ){
+ 		Account account = transaction.getFromAccount();
+ 		if( account != null ){
  			//if the root object 'transaction' already have the property, just set the id for it;
- 			laccount.setId(accountId);
+ 			account.setId(accountId);
  			
  			return;
  		}
@@ -79,10 +79,10 @@ public class TransactionMapper extends BaseRowMapper<Transaction>{
  		if( accountId.isEmpty()){
  			return;
  		}
- 		Account laccount = transaction.getToAccount();
- 		if( laccount != null ){
+ 		Account account = transaction.getToAccount();
+ 		if( account != null ){
  			//if the root object 'transaction' already have the property, just set the id for it;
- 			laccount.setId(accountId);
+ 			account.setId(accountId);
  			
  			return;
  		}
@@ -121,10 +121,10 @@ public class TransactionMapper extends BaseRowMapper<Transaction>{
  		if( changeRequestId.isEmpty()){
  			return;
  		}
- 		ChangeRequest lchangeRequest = transaction.getChangeRequest();
- 		if( lchangeRequest != null ){
+ 		ChangeRequest changeRequest = transaction.getChangeRequest();
+ 		if( changeRequest != null ){
  			//if the root object 'transaction' already have the property, just set the id for it;
- 			lchangeRequest.setId(changeRequestId);
+ 			changeRequest.setId(changeRequestId);
  			
  			return;
  		}

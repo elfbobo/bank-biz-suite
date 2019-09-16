@@ -37,6 +37,9 @@ import com.doublechain.bank.secuserblocking.SecUserBlockingTokens;
 import com.doublechain.bank.userapp.UserApp;
 import com.doublechain.bank.userapp.UserAppDAO;
 import com.doublechain.bank.userapp.UserAppTokens;
+import com.doublechain.bank.quicklink.QuickLink;
+import com.doublechain.bank.quicklink.QuickLinkDAO;
+import com.doublechain.bank.quicklink.QuickLinkTokens;
 import com.doublechain.bank.listaccess.ListAccess;
 import com.doublechain.bank.listaccess.ListAccessDAO;
 import com.doublechain.bank.listaccess.ListAccessTokens;
@@ -91,6 +94,8 @@ public class DAOGroup {
 	protected SecUserBlockingDAO secUserBlockingDAO;
 
 	protected UserAppDAO userAppDAO;
+
+	protected QuickLinkDAO quickLinkDAO;
 
 	protected ListAccessDAO listAccessDAO;
 
@@ -199,6 +204,14 @@ public class DAOGroup {
 	}
 	public void setUserAppDAO(UserAppDAO dao){
 		this.userAppDAO = dao;
+	}
+
+
+	public QuickLinkDAO getQuickLinkDAO(){
+		return this.quickLinkDAO;
+	}
+	public void setQuickLinkDAO(QuickLinkDAO dao){
+		this.quickLinkDAO = dao;
 	}
 
 
@@ -498,6 +511,25 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getUserAppDAO().present((UserApp)data, tokens);
+			}
+		});
+
+		internalLoaderMap.put("QuickLink", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getQuickLinkDAO().load(id, QuickLinkTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getQuickLinkDAO().enhanceList((List<QuickLink>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getQuickLinkDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getQuickLinkDAO().present((QuickLink)data, tokens);
 			}
 		});
 

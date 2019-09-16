@@ -95,10 +95,10 @@ public class AccountMapper extends BaseRowMapper<Account>{
  		if( platformId.isEmpty()){
  			return;
  		}
- 		Platform lplatform = account.getPlatform();
- 		if( lplatform != null ){
+ 		Platform platform = account.getPlatform();
+ 		if( platform != null ){
  			//if the root object 'account' already have the property, just set the id for it;
- 			lplatform.setId(platformId);
+ 			platform.setId(platformId);
  			
  			return;
  		}

@@ -45,7 +45,7 @@ const imageList =(userApp)=>{return [
 const internalImageListOf = (userApp) =>defaultImageListOf(userApp,imageList)
 
 const optionList =(userApp)=>{return [ 
-	  {"title":'完全访问',"value":userApp.fullAccess,"parameterName":"fullAccess"},
+	  {"title":'Full Access',"value":userApp.fullAccess,"parameterName":"fullAccess"},
 ]}
 
 const buildTransferModal = defaultBuildTransferModal
@@ -82,19 +82,19 @@ const internalSummaryOf = (userApp,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{userApp.id}</Description> 
-<Description term="标题">{userApp.title}</Description> 
-<Description term="安全用户">{userApp.secUser==null?appLocaleName(userContext,"NotAssigned"):`${userApp.secUser.displayName}(${userApp.secUser.id})`}
+<Description term="Id">{userApp.id}</Description> 
+<Description term="Title">{userApp.title}</Description> 
+<Description term="Sec User">{userApp.secUser==null?appLocaleName(userContext,"NotAssigned"):`${userApp.secUser.displayName}(${userApp.secUser.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"安全用户","secUser",UserAppService.requestCandidateSecUser,
+  showTransferModel(targetComponent,"Sec User","secUser",UserAppService.requestCandidateSecUser,
 	      UserAppService.transferToAnotherSecUser,"anotherSecUserId",userApp.secUser?userApp.secUser.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="应用程序图标">{userApp.appIcon}</Description> 
-<Description term="许可">{userApp.permission}</Description> 
-<Description term="访问对象类型">{userApp.objectType}</Description> 
-<Description term="对象ID">{userApp.objectId}</Description> 
-<Description term="位置">{userApp.location}</Description> 
+<Description term="App Icon">{userApp.appIcon}</Description> 
+<Description term="Permission">{userApp.permission}</Description> 
+<Description term="Object Type">{userApp.objectType}</Description> 
+<Description term="Object Id">{userApp.objectId}</Description> 
+<Description term="Location">{userApp.location}</Description> 
 	
         {buildTransferModal(userApp,targetComponent)}
       </DescriptionList>
@@ -126,17 +126,18 @@ class UserAppDashboard extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const { id,displayName, listAccessListMetaInfo, objectAccessListMetaInfo, listAccessCount, objectAccessCount } = this.props.userApp
+    const { id,displayName, quickLinkListMetaInfo, listAccessListMetaInfo, objectAccessListMetaInfo, quickLinkCount, listAccessCount, objectAccessCount } = this.props.userApp
     if(!this.props.userApp.class){
       return null
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"用户应用程序",cardsFor: "userApp",
+    const cardsData = {cardsName:"User App",cardsFor: "userApp",
     	cardsSource: this.props.userApp,returnURL,displayName,
   		subItems: [
-{name: 'listAccessList', displayName:'访问列表',type:'listAccess',count:listAccessCount,addFunction: true, role: 'listAccess', metaInfo: listAccessListMetaInfo, renderItem: GlobalComponents.ListAccessBase.renderItemOfList},
-{name: 'objectAccessList', displayName:'对象访问',type:'objectAccess',count:objectAccessCount,addFunction: true, role: 'objectAccess', metaInfo: objectAccessListMetaInfo, renderItem: GlobalComponents.ObjectAccessBase.renderItemOfList},
+{name: 'quickLinkList', displayName:'Quick Link',type:'quickLink',count:quickLinkCount,addFunction: true, role: 'quickLink', metaInfo: quickLinkListMetaInfo, renderItem: GlobalComponents.QuickLinkBase.renderItemOfList},
+{name: 'listAccessList', displayName:'List Access',type:'listAccess',count:listAccessCount,addFunction: true, role: 'listAccess', metaInfo: listAccessListMetaInfo, renderItem: GlobalComponents.ListAccessBase.renderItemOfList},
+{name: 'objectAccessList', displayName:'Object Access',type:'objectAccess',count:objectAccessCount,addFunction: true, role: 'objectAccess', metaInfo: objectAccessListMetaInfo, renderItem: GlobalComponents.ObjectAccessBase.renderItemOfList},
     
       	],
   	};

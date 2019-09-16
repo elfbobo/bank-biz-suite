@@ -1,30 +1,10 @@
 package com.doublechain.bank;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
-import com.doublechain.bank.account.Account;
-import com.doublechain.bank.account.AccountManagerException;
-import com.doublechain.bank.accountchange.AccountChange;
 import com.doublechain.bank.changerequest.ChangeRequest;
-import com.doublechain.bank.changerequest.ChangeRequestManager;
-import com.doublechain.bank.changerequest.ChangeRequestManagerException;
-import com.doublechain.bank.changerequest.ChangeRequestTokens;
 import com.doublechain.bank.namechangeevent.NameChangeEvent;
-import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-import com.terapico.caf.Password;
 import com.terapico.uccaf.BaseUserContext;
 
 public class ChangeRequestService extends CustomBankCheckerManager{
@@ -34,16 +14,12 @@ public class ChangeRequestService extends CustomBankCheckerManager{
 	
 
 		String whiteList[]= {
-				"process",
-				
-				"process3",
-				"process4","sample","unreg",
-				"testPassword"};
+				"process"};
 		
 		if(Arrays.asList(whiteList).contains(methodName)) {
 			return this.accessOK();
 		}
-
+		
 		
 		return super.checkAccess(baseUserContext, methodName, parameters);
 	}
@@ -51,21 +27,25 @@ public class ChangeRequestService extends CustomBankCheckerManager{
 		
 		
 		checkerOf(userContext).checkAndFixChangeRequest(request);
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 		
+		userContext.log(request.toString());
+	
 		ChangeRequest newReq = changeRequestManagerOf(userContext)
 			.internalSaveChangeRequest(userContext, request);
 		
-		for(NameChangeEvent nv:request.getNameChangeEventList() ) {
-			
-			NameChangeEventHandler handler = new NameChangeEventHandler();
-			handler.apply(userContext, newReq, nv);
-		}
 		
-		for(Transaction tx:request.getTransactionList() ) {
-			TxRequestHandler handler = new TxRequestHandler();
-			handler.apply(userContext, newReq, tx);
-		}
+		
+		// request.getNameChangeEventList().forEach(event->new NameChangeEventHandler().apply(userContext, newReq, event));
+		
+		NameChangeEventHandler handler = new NameChangeEventHandler();
+		handler.applyEventList(userContext, newReq);
+		TxRequestHandler txhandler = new TxRequestHandler();
+		txhandler.applyEventList(userContext, newReq);
+		
 		
 		
 		return request;

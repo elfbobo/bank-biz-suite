@@ -81,8 +81,13 @@ const internalSummaryOf = (candidateContainer,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
+<<<<<<< HEAD
 <Description term="ID">{candidateContainer.id}</Description> 
 <Description term="名称">{candidateContainer.name}</Description> 
+=======
+<Description term="Id">{candidateContainer.id}</Description> 
+<Description term="Name">{candidateContainer.name}</Description> 
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 	
         {buildTransferModal(candidateContainer,targetComponent)}
       </DescriptionList>
@@ -120,10 +125,17 @@ class CandidateContainerDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
+<<<<<<< HEAD
     const cardsData = {cardsName:"候选人容器",cardsFor: "candidateContainer",
     	cardsSource: this.props.candidateContainer,returnURL,displayName,
   		subItems: [
 {name: 'candidateElementList', displayName:'候选人元素',type:'candidateElement',count:candidateElementCount,addFunction: true, role: 'candidateElement', metaInfo: candidateElementListMetaInfo, renderItem: GlobalComponents.CandidateElementBase.renderItemOfList},
+=======
+    const cardsData = {cardsName:"Candidate Container",cardsFor: "candidateContainer",
+    	cardsSource: this.props.candidateContainer,returnURL,displayName,
+  		subItems: [
+{name: 'candidateElementList', displayName:'Candidate Element',type:'candidateElement',count:candidateElementCount,addFunction: true, role: 'candidateElement', metaInfo: candidateElementListMetaInfo, renderItem: GlobalComponents.CandidateElementBase.renderItemOfList},
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
     
       	],
   	};

@@ -1,7 +1,11 @@
 
 
 
+<<<<<<< HEAD
 =================Execute Report (Model Time 190824T2242) @Sat Aug 24 22:43:05 CST 2019, 21 objects and 157 fields===========================
+=======
+=================Execute Report (Model Time 190826T1611) @Fri Aug 30 16:35:09 CST 2019, 22 objects and 165 fields===========================
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 
 
 
@@ -333,11 +337,27 @@ user_app{
 		string	location('/link/to/app'), verb: false, required: true;
 		int	version('2147483647'), verb: false, required: true;
 	}
-	references field(2){
+	references field(3){
+		quickLinkList	app(__no_group)--app;
 		listAccessList	app(__no_group)--app;
 		objectAccessList	app(__no_group)--app;
 	}
 } depth=2; isRoot = false
+
+quick_link{
+	fields(8){
+		string	id('ABCD'), verb: false, required: true;
+		string	name('列表'), verb: false, required: true;
+		string	icon('facebook|google'), verb: false, required: true;
+		string_image	image_path('y-200-200-red.jpg'), verb: false, required: true;
+		string	link_target('列表'), verb: false, required: true;
+		date_time_create	create_time('createTime()'), verb: false, required: true;
+		user_app	app('$(object)'), verb: false, required: true, referenceBy: quickLinkList;
+		int	version('2147483647'), verb: false, required: true;
+	}
+	references field(0){
+	}
+} depth=3; isRoot = false
 
 list_access{
 	fields(10){

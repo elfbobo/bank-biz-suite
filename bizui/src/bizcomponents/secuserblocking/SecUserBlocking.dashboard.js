@@ -81,10 +81,17 @@ const internalSummaryOf = (secUserBlocking,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
+<<<<<<< HEAD
 <Description term="ID">{secUserBlocking.id}</Description> 
 <Description term="谁">{secUserBlocking.who}</Description> 
 <Description term="块时间">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</Description> 
 <Description term="评论">{secUserBlocking.comments}</Description> 
+=======
+<Description term="Id">{secUserBlocking.id}</Description> 
+<Description term="Who">{secUserBlocking.who}</Description> 
+<Description term="Block Time">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="Comments">{secUserBlocking.comments}</Description> 
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 	
         {buildTransferModal(secUserBlocking,targetComponent)}
       </DescriptionList>
@@ -122,10 +129,10 @@ class SecUserBlockingDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"用户屏蔽",cardsFor: "secUserBlocking",
+    const cardsData = {cardsName:"Sec User Blocking",cardsFor: "secUserBlocking",
     	cardsSource: this.props.secUserBlocking,returnURL,displayName,
   		subItems: [
-{name: 'secUserList', displayName:'安全用户',type:'secUser',count:secUserCount,addFunction: true, role: 'secUser', metaInfo: secUserListMetaInfo, renderItem: GlobalComponents.SecUserBase.renderItemOfList},
+{name: 'secUserList', displayName:'Sec User',type:'secUser',count:secUserCount,addFunction: true, role: 'secUser', metaInfo: secUserListMetaInfo, renderItem: GlobalComponents.SecUserBase.renderItemOfList},
     
       	],
   	};

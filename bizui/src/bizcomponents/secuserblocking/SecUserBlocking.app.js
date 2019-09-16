@@ -167,7 +167,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "安全用户",
+      name: "Sec User",
       role: "secUser",
       data: state._secUserBlocking.secUserList,
       metaInfo: state._secUserBlocking.secUserListMetaInfo,

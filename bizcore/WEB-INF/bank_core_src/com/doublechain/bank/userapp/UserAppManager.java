@@ -28,6 +28,16 @@ public interface UserAppManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
+	//public  QuickLinkManager getQuickLinkManager(BankUserContext userContext, String userAppId, String name, String icon, String imagePath, String linkTarget ,String [] tokensExpr)  throws Exception;
+	
+	public  UserApp addQuickLink(BankUserContext userContext, String userAppId, String name, String icon, String imagePath, String linkTarget , String [] tokensExpr)  throws Exception;
+	public  UserApp removeQuickLink(BankUserContext userContext, String userAppId, String quickLinkId, int quickLinkVersion,String [] tokensExpr)  throws Exception;
+	public  UserApp updateQuickLink(BankUserContext userContext, String userAppId, String quickLinkId, int quickLinkVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
+
+	/*
+
+	*/
+
 	//public  ListAccessManager getListAccessManager(BankUserContext userContext, String userAppId, String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission ,String [] tokensExpr)  throws Exception;
 	
 	public  UserApp addListAccess(BankUserContext userContext, String userAppId, String name, String internalName, boolean readPermission, boolean createPermission, boolean deletePermission, boolean updatePermission, boolean executionPermission , String [] tokensExpr)  throws Exception;

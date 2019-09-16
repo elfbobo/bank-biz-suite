@@ -82,10 +82,17 @@ public class CandidateElementMapper extends BaseRowMapper<CandidateElement>{
  		if( candidateContainerId.isEmpty()){
  			return;
  		}
+<<<<<<< HEAD
  		CandidateContainer lcandidateContainer = candidateElement.getContainer();
  		if( lcandidateContainer != null ){
  			//if the root object 'candidateElement' already have the property, just set the id for it;
  			lcandidateContainer.setId(candidateContainerId);
+=======
+ 		CandidateContainer candidateContainer = candidateElement.getContainer();
+ 		if( candidateContainer != null ){
+ 			//if the root object 'candidateElement' already have the property, just set the id for it;
+ 			candidateContainer.setId(candidateContainerId);
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
  			
  			return;
  		}

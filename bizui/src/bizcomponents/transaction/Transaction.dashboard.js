@@ -81,25 +81,25 @@ const internalSummaryOf = (transaction,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{transaction.id}</Description> 
-<Description term="名称">{transaction.name}</Description> 
-<Description term="从账户">{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
+<Description term="Id">{transaction.id}</Description> 
+<Description term="Name">{transaction.name}</Description> 
+<Description term="From Account">{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"从账户","account",TransactionService.requestCandidateFromAccount,
+  showTransferModel(targetComponent,"From Account","account",TransactionService.requestCandidateFromAccount,
 	      TransactionService.transferToAnotherFromAccount,"anotherFromAccountId",transaction.fromAccount?transaction.fromAccount.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="承担责任">{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
+<Description term="To Account">{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"承担责任","account",TransactionService.requestCandidateToAccount,
+  showTransferModel(targetComponent,"To Account","account",TransactionService.requestCandidateToAccount,
 	      TransactionService.transferToAnotherToAccount,"anotherToAccountId",transaction.toAccount?transaction.toAccount.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="金额">{transaction.amount}</Description> 
-<Description term="类型">{transaction.type}</Description> 
-<Description term="变更请求">{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
+<Description term="Amount">{transaction.amount}</Description> 
+<Description term="Type">{transaction.type}</Description> 
+<Description term="Change Request">{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"变更请求","changeRequest",TransactionService.requestCandidateChangeRequest,
+  showTransferModel(targetComponent,"Change Request","changeRequest",TransactionService.requestCandidateChangeRequest,
 	      TransactionService.transferToAnotherChangeRequest,"anotherChangeRequestId",transaction.changeRequest?transaction.changeRequest.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -140,7 +140,7 @@ class TransactionDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"事务",cardsFor: "transaction",
+    const cardsData = {cardsName:"Transaction",cardsFor: "transaction",
     	cardsSource: this.props.transaction,returnURL,displayName,
   		subItems: [
     

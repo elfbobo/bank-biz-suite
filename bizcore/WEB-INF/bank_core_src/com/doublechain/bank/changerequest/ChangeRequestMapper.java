@@ -82,10 +82,10 @@ public class ChangeRequestMapper extends BaseRowMapper<ChangeRequest>{
  		if( platformId.isEmpty()){
  			return;
  		}
- 		Platform lplatform = changeRequest.getPlatform();
- 		if( lplatform != null ){
+ 		Platform platform = changeRequest.getPlatform();
+ 		if( platform != null ){
  			//if the root object 'changeRequest' already have the property, just set the id for it;
- 			lplatform.setId(platformId);
+ 			platform.setId(platformId);
  			
  			return;
  		}

@@ -122,12 +122,20 @@
 	
 	<bean id="userAppDAOBase" class="com.doublechain.bank.userapp.UserAppJDBCTemplateDAO">
 		<property name="dataSource" ref="dataSource" /><property name="secUserDAO" ref="secUserDAO" />
+		<property name="quickLinkDAO" ref="quickLinkDAO" />
+		
 		<property name="listAccessDAO" ref="listAccessDAO" />
 		
 		<property name="objectAccessDAO" ref="objectAccessDAO" />
 		
 	</bean>
 	<bean id="userAppDAO" parent="userAppDAOBase"></bean>	
+	
+	
+	<bean id="quickLinkDAOBase" class="com.doublechain.bank.quicklink.QuickLinkJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="userAppDAO" ref="userAppDAO" />
+	</bean>
+	<bean id="quickLinkDAO" parent="quickLinkDAOBase"></bean>	
 	
 	
 	<bean id="listAccessDAOBase" class="com.doublechain.bank.listaccess.ListAccessJDBCTemplateDAO">
@@ -213,6 +221,7 @@
 		<property name="secUserDAO" ref="secUserDAO"/>
 		<property name="secUserBlockingDAO" ref="secUserBlockingDAO"/>
 		<property name="userAppDAO" ref="userAppDAO"/>
+		<property name="quickLinkDAO" ref="quickLinkDAO"/>
 		<property name="listAccessDAO" ref="listAccessDAO"/>
 		<property name="objectAccessDAO" ref="objectAccessDAO"/>
 		<property name="loginHistoryDAO" ref="loginHistoryDAO"/>

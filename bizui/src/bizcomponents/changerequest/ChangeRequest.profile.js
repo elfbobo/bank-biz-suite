@@ -56,7 +56,7 @@ class ChangeRequestProfile extends Component {
     const  changeRequest = this.props.changeRequest;
     const { id,displayName, transactionCount, nameChangeEventCount, accountChangeCount } = changeRequest
 
-    const cardsData = {cardsName:"变更请求",cardsFor: "changeRequest",cardsSource: changeRequest,
+    const cardsData = {cardsName:"Change Request",cardsFor: "changeRequest",cardsSource: changeRequest,
   		subItems: [
      
       	],

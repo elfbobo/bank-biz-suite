@@ -167,7 +167,11 @@ class CandidateContainerBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
+<<<<<<< HEAD
       name: "候选人元素",
+=======
+      name: "Candidate Element",
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
       role: "candidateElement",
       data: state._candidateContainer.candidateElementList,
       metaInfo: state._candidateContainer.candidateElementListMetaInfo,

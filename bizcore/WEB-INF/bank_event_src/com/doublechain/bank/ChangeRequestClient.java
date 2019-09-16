@@ -123,9 +123,13 @@ public class ChangeRequestClient {
 		
 		
 		checker.checkAndFixChangeRequest(req);
+<<<<<<< HEAD
 		
 
 		
+=======
+
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 		
 		try {
 			
@@ -133,7 +137,7 @@ public class ChangeRequestClient {
 			log(val);
 			
 			checker.throwExceptionIfHasErrors(ChangeRequestManagerException.class);
-			IntStream.range(0, 10).forEach(
+			IntStream.range(0, 1).forEach(
 					nbr -> {
 						try {
 							emitRequest(req);

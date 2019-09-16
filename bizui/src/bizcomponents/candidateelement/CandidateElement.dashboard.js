@@ -40,7 +40,11 @@ const { Option } = Select
 
 
 const imageList =(candidateElement)=>{return [
+<<<<<<< HEAD
 	   {"title":'图片',"imageLocation":candidateElement.image},
+=======
+	   {"title":'Image',"imageLocation":candidateElement.image},
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 ]}
 
 const internalImageListOf = (candidateElement) =>defaultImageListOf(candidateElement,imageList)
@@ -82,9 +86,15 @@ const internalSummaryOf = (candidateElement,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
+<<<<<<< HEAD
 <Description term="ID">{candidateElement.id}</Description> 
 <Description term="名称">{candidateElement.name}</Description> 
 <Description term="类型">{candidateElement.type}</Description> 
+=======
+<Description term="Id">{candidateElement.id}</Description> 
+<Description term="Name">{candidateElement.name}</Description> 
+<Description term="Type">{candidateElement.type}</Description> 
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 	
         {buildTransferModal(candidateElement,targetComponent)}
       </DescriptionList>
@@ -122,7 +132,11 @@ class CandidateElementDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
+<<<<<<< HEAD
     const cardsData = {cardsName:"候选人元素",cardsFor: "candidateElement",
+=======
+    const cardsData = {cardsName:"Candidate Element",cardsFor: "candidateElement",
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
     	cardsSource: this.props.candidateElement,returnURL,displayName,
   		subItems: [
     

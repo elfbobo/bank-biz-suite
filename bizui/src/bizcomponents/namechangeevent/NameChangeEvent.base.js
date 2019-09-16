@@ -30,17 +30,17 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"名字更改事件", menuFor: "nameChangeEvent",
+const menuData = {menuName:"Name Change Event", menuFor: "nameChangeEvent",
   		subItems: [
   
   		],
 }
 
 const fieldLabels = {
-  id: 'ID',
-  name: '名称',
-  account: '账户',
-  changeRequest: '变更请求',
+  id: 'Id',
+  name: 'Name',
+  account: 'Account',
+  changeRequest: 'Change Request',
 
 }
 
@@ -59,11 +59,11 @@ const renderItemOfList=(nameChangeEvent,targetComponent)=>{
     <div key={nameChangeEvent.id}>
 	
       <DescriptionList  key={nameChangeEvent.id} size="small" col="4">
-        <Description term="ID">{nameChangeEvent.id}</Description> 
-        <Description term="名称">{nameChangeEvent.name}</Description> 
-        <Description term="账户"><div>{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
+        <Description term="Id">{nameChangeEvent.id}</Description> 
+        <Description term="Name">{nameChangeEvent.name}</Description> 
+        <Description term="Account"><div>{nameChangeEvent.account==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.account.displayName}(${nameChangeEvent.account.id})`}
         </div></Description>
-        <Description term="变更请求"><div>{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
+        <Description term="Change Request"><div>{nameChangeEvent.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${nameChangeEvent.changeRequest.displayName}(${nameChangeEvent.changeRequest.id})`}
         </div></Description>
 	
         

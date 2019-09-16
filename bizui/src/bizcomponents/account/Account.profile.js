@@ -56,7 +56,7 @@ class AccountProfile extends Component {
     const  account = this.props.account;
     const { id,displayName, transactionAsFromAccountCount, transactionAsToAccountCount, nameChangeEventCount, accountChangeCount } = account
 
-    const cardsData = {cardsName:"账户",cardsFor: "account",cardsSource: account,
+    const cardsData = {cardsName:"Account",cardsFor: "account",cardsSource: account,
   		subItems: [
      
       	],

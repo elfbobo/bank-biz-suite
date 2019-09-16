@@ -23,6 +23,8 @@ import com.doublechain.bank.secuserblocking.SecUserBlockingManager;
 
 import com.doublechain.bank.userapp.UserAppManager;
 
+import com.doublechain.bank.quicklink.QuickLinkManager;
+
 import com.doublechain.bank.listaccess.ListAccessManager;
 
 import com.doublechain.bank.objectaccess.ObjectAccessManager;
@@ -67,6 +69,8 @@ public class ManagerGroup {
 	protected SecUserBlockingManager secUserBlockingManager;
 
 	protected UserAppManager userAppManager;
+
+	protected QuickLinkManager quickLinkManager;
 
 	protected ListAccessManager listAccessManager;
 
@@ -175,6 +179,14 @@ public class ManagerGroup {
 	}
 	public void setUserAppManager(UserAppManager manager){
 		this.userAppManager = manager;
+	}
+
+
+	public QuickLinkManager getQuickLinkManager(){
+		return this.quickLinkManager;
+	}
+	public void setQuickLinkManager(QuickLinkManager manager){
+		this.quickLinkManager = manager;
 	}
 
 

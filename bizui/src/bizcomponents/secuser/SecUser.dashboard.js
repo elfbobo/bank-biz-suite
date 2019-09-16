@@ -81,6 +81,7 @@ const internalSummaryOf = (secUser,targetComponent) =>{
 	const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
+<<<<<<< HEAD
 <Description term="ID">{secUser.id}</Description> 
 <Description term="登录">{secUser.login}</Description> 
 <Description term="手机号码">{secUser.mobile}</Description> 
@@ -93,6 +94,20 @@ const internalSummaryOf = (secUser,targetComponent) =>{
 <Description term="验证码过期">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD HH:mm')}</Description> 
 <Description term="最后登录时间">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD HH:mm')}</Description> 
 <Description term="当前状态">{secUser.currentStatus}</Description> 
+=======
+<Description term="Id">{secUser.id}</Description> 
+<Description term="Login">{secUser.login}</Description> 
+<Description term="Mobile">{secUser.mobile}</Description> 
+<Description term="Email">{secUser.email}</Description> 
+<Description term="Pwd">{secUser.pwd}</Description> 
+<Description term="Weixin Openid">{secUser.weixinOpenid}</Description> 
+<Description term="Weixin Appid">{secUser.weixinAppid}</Description> 
+<Description term="Access Token">{secUser.accessToken}</Description> 
+<Description term="Verification Code">{secUser.verificationCode}</Description> 
+<Description term="Verification Code Expire">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="Last Login Time">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="Current Status">{secUser.currentStatus}</Description> 
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 	
         {buildTransferModal(secUser,targetComponent)}
       </DescriptionList>
@@ -130,11 +145,11 @@ class SecUserDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"安全用户",cardsFor: "secUser",
+    const cardsData = {cardsName:"Sec User",cardsFor: "secUser",
     	cardsSource: this.props.secUser,returnURL,displayName,
   		subItems: [
-{name: 'userAppList', displayName:'用户应用程序',type:'userApp',count:userAppCount,addFunction: true, role: 'userApp', metaInfo: userAppListMetaInfo, renderItem: GlobalComponents.UserAppBase.renderItemOfList},
-{name: 'loginHistoryList', displayName:'登录历史',type:'loginHistory',count:loginHistoryCount,addFunction: false, role: 'loginHistory', metaInfo: loginHistoryListMetaInfo, renderItem: GlobalComponents.LoginHistoryBase.renderItemOfList},
+{name: 'userAppList', displayName:'User App',type:'userApp',count:userAppCount,addFunction: true, role: 'userApp', metaInfo: userAppListMetaInfo, renderItem: GlobalComponents.UserAppBase.renderItemOfList},
+{name: 'loginHistoryList', displayName:'Login History',type:'loginHistory',count:loginHistoryCount,addFunction: false, role: 'loginHistory', metaInfo: loginHistoryListMetaInfo, renderItem: GlobalComponents.LoginHistoryBase.renderItemOfList},
     
       	],
   	};

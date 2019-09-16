@@ -56,7 +56,7 @@ class TransactionProfile extends Component {
     const  transaction = this.props.transaction;
     const { id,displayName,  } = transaction
 
-    const cardsData = {cardsName:"事务",cardsFor: "transaction",cardsSource: transaction,
+    const cardsData = {cardsName:"Transaction",cardsFor: "transaction",cardsSource: transaction,
   		subItems: [
      
       	],

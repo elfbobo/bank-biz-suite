@@ -18,10 +18,17 @@ const testValues = {};
 /*
 const testValues = {
   name: '存款交易',
+<<<<<<< HEAD
   previousBalance: '1272.26',
   type: '存款',
   amount: '97.96',
   currentBalance: '1195.19',
+=======
+  previousBalance: '1298.97',
+  type: '存款',
+  amount: '99.00',
+  currentBalance: '1273.12',
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
   accountId: 'A000001',
   changeRequestId: 'CR000001',
 }
@@ -199,8 +206,8 @@ class AccountChangeCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}账户变更`}
-        content={`${appLocaleName(userContext,"CreateNew")}账户变更`}
+        title={`${appLocaleName(userContext,"CreateNew")}Account Change`}
+        content={`${appLocaleName(userContext,"CreateNew")}Account Change`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -212,7 +219,7 @@ class AccountChangeCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="名称" />
+                    <Input size="large" placeholder="Name" />
                   )}
                 </Form.Item>
               </Col>
@@ -222,7 +229,7 @@ class AccountChangeCreateForm extends Component {
                   {getFieldDecorator('previousBalance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="初期余额" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Previous Balance" />
                   )}
                 </Form.Item>
               </Col>
@@ -232,7 +239,7 @@ class AccountChangeCreateForm extends Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="类型" />
+                    <Input size="large" placeholder="Type" />
                   )}
                 </Form.Item>
               </Col>
@@ -242,7 +249,7 @@ class AccountChangeCreateForm extends Component {
                   {getFieldDecorator('amount', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="金额" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Amount" />
                   )}
                 </Form.Item>
               </Col>
@@ -252,7 +259,7 @@ class AccountChangeCreateForm extends Component {
                   {getFieldDecorator('currentBalance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="当前余额" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="Current Balance" />
                   )}
                 </Form.Item>
               </Col>

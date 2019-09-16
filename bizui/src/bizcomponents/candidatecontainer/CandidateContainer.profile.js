@@ -56,7 +56,7 @@ class CandidateContainerProfile extends Component {
     const  candidateContainer = this.props.candidateContainer;
     const { id,displayName, candidateElementCount } = candidateContainer
 
-    const cardsData = {cardsName:"候选人容器",cardsFor: "candidateContainer",cardsSource: candidateContainer,
+    const cardsData = {cardsName:"Candidate Container",cardsFor: "candidateContainer",cardsSource: candidateContainer,
   		subItems: [
      
       	],

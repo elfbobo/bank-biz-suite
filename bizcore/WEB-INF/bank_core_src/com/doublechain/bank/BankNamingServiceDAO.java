@@ -30,6 +30,7 @@ public class BankNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("SecUser", new String[]{"sec_user_data","login"});
 		namingTableMap.put("SecUserBlocking", new String[]{"sec_user_blocking_data","who"});
 		namingTableMap.put("UserApp", new String[]{"user_app_data","title"});
+		namingTableMap.put("QuickLink", new String[]{"quick_link_data","name"});
 		namingTableMap.put("ListAccess", new String[]{"list_access_data","name"});
 		namingTableMap.put("ObjectAccess", new String[]{"object_access_data","name"});
 		namingTableMap.put("LoginHistory", new String[]{"login_history_data","from_ip"});

@@ -1,4 +1,5 @@
 Summary|概览
+<<<<<<< HEAD
 Platform|平台
 Id|ID
 Name|名称
@@ -199,4 +200,216 @@ Transfer to Another Form|转移到形式
 Transfer to Another Form|转移到形式
 Transfer to Another Form|转移到形式
 Transfer to Another Container|转移到容器
+=======
+Platform|Platform
+Id|Id
+Name|Name
+Founded|Founded
+Version|Version
+Change Request|Change Request
+Id|Id
+Name|Name
+Create Time|Create Time
+Remote Ip|Remote Ip
+Platform|Platform
+Version|Version
+Transaction|Transaction
+Id|Id
+Name|Name
+From Account|From Account
+To Account|To Account
+Amount|Amount
+Type|Type
+Change Request|Change Request
+Version|Version
+Name Change Event|Name Change Event
+Id|Id
+Name|Name
+Account|Account
+Change Request|Change Request
+Version|Version
+Account|Account
+Id|Id
+Name|Name
+Balance|Balance
+Create Time|Create Time
+Update Time|Update Time
+Platform|Platform
+Version|Version
+Account Change|Account Change
+Id|Id
+Name|Name
+Account|Account
+Previous Balance|Previous Balance
+Type|Type
+Amount|Amount
+Current Balance|Current Balance
+Change Request|Change Request
+Version|Version
+User Domain|User Domain
+Id|Id
+Name|Name
+Version|Version
+User White List|User White List
+Id|Id
+User Identity|User Identity
+User Special Functions|User Special Functions
+Domain|Domain
+Version|Version
+Sec User|Sec User
+Id|Id
+Login|Login
+Mobile|Mobile
+Email|Email
+Pwd|Pwd
+Weixin Openid|Weixin Openid
+Weixin Appid|Weixin Appid
+Access Token|Access Token
+Verification Code|Verification Code
+Verification Code Expire|Verification Code Expire
+Last Login Time|Last Login Time
+Domain|Domain
+Block|Blocking
+Block|Blocking
+Current Status|Current Status
+Version|Version
+Sec User Blocking|Sec User Blocking
+Id|Id
+Who|Who
+Block Time|Block Time
+Comments|Comments
+Version|Version
+User App|User App
+Id|Id
+Title|Title
+Sec User|Sec User
+App Icon|App Icon
+Full Access|Full Access
+Permission|Permission
+Object Type|Object Type
+Object Id|Object Id
+Location|Location
+Version|Version
+Quick Link|Quick Link
+Id|Id
+Name|Name
+Icon|Icon
+Image Path|Image Path
+Link Target|Link Target
+Create Time|Create Time
+App|App
+Version|Version
+List Access|List Access
+Id|Id
+Name|Name
+Internal Name|Internal Name
+Read Permission|Read Permission
+Create Permission|Create Permission
+Delete Permission|Delete Permission
+Update Permission|Update Permission
+Execution Permission|Execution Permission
+App|App
+Version|Version
+Object Access|Object Access
+Id|Id
+Name|Name
+Object Type|Object Type
+List1|List1
+List2|List2
+List3|List3
+List4|List4
+List5|List5
+List6|List6
+List7|List7
+List8|List8
+List9|List9
+App|App
+Version|Version
+Login History|Login History
+Id|Id
+Login Time|Login Time
+From Ip|From Ip
+Description|Description
+Sec User|Sec User
+Version|Version
+Generic Form|Generic Form
+Id|Id
+Title|Title
+Description|Description
+Version|Version
+Form Message|Form Message
+Id|Id
+Title|Title
+Form|Form
+Level|Level
+Version|Version
+Form Field Message|Form Field Message
+Id|Id
+Title|Title
+Parameter Name|Parameter Name
+Form|Form
+Level|Level
+Version|Version
+Form Field|Form Field
+Id|Id
+Label|Label
+Locale Key|Locale Key
+Parameter Name|Parameter Name
+Type|Type
+Form|Form
+Placeholder|Placeholder
+Default Value|Default Value
+Description|Description
+Field Group|Field Group
+Minimum Value|Minimum Value
+Maximum Value|Maximum Value
+Required|Required
+Disabled|Disabled
+Custom Rendering|Custom Rendering
+Candidate Values|Candidate Values
+Suggest Values|Suggest Values
+Version|Version
+Form Action|Form Action
+Id|Id
+Label|Label
+Locale Key|Locale Key
+Action Key|Action Key
+Level|Level
+Url|Url
+Form|Form
+Version|Version
+Candidate Container|Candidate Container
+Id|Id
+Name|Name
+Version|Version
+Candidate Element|Candidate Element
+Id|Id
+Name|Name
+Type|Type
+Image|Image
+Container|Container
+Version|Version
+Transfer to Another Platform|Transfer To Platform
+Transfer to Another From Account|Transfer To From Account
+Transfer to Another To Account|Transfer To To Account
+Transfer to Another Change Request|Transfer To Change Request
+Transfer to Another Account|Transfer To Account
+Transfer to Another Change Request|Transfer To Change Request
+Transfer to Another Platform|Transfer To Platform
+Transfer to Another Account|Transfer To Account
+Transfer to Another Change Request|Transfer To Change Request
+Transfer to Another Domain|Transfer To Domain
+Transfer to Another Domain|Transfer To Domain
+Transfer to Another Block|Transfer To Blocking
+Transfer to Another Sec User|Transfer To Sec User
+Transfer to Another App|Transfer To App
+Transfer to Another App|Transfer To App
+Transfer to Another App|Transfer To App
+Transfer to Another Sec User|Transfer To Sec User
+Transfer to Another Form|Transfer To Form
+Transfer to Another Form|Transfer To Form
+Transfer to Another Form|Transfer To Form
+Transfer to Another Form|Transfer To Form
+Transfer to Another Container|Transfer To Container
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 

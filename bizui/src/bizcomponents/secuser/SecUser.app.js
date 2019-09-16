@@ -167,7 +167,7 @@ class SecUserBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "用户应用程序",
+      name: "User App",
       role: "userApp",
       data: state._secUser.userAppList,
       metaInfo: state._secUser.userAppListMetaInfo,
@@ -216,7 +216,7 @@ class SecUserBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "登录历史",
+      name: "Login History",
       role: "loginHistory",
       data: state._secUser.loginHistoryList,
       metaInfo: state._secUser.loginHistoryListMetaInfo,

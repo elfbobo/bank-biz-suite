@@ -28,8 +28,8 @@ const internalSummaryOf = (candidateContainer,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{candidateContainer.id}</Description> 
-<Description term="名称">{candidateContainer.name}</Description> 
+<Description term="Id">{candidateContainer.id}</Description> 
+<Description term="Name">{candidateContainer.name}</Description> 
 	
       </DescriptionList>
 	)
@@ -55,7 +55,7 @@ class CandidateContainerPermission extends Component {
     // eslint-disable-next-line max-len
     const  candidateContainer = this.props.candidateContainer;
     const { id,displayName, candidateElementCount } = candidateContainer
-    const cardsData = {cardsName:"候选人容器",cardsFor: "candidateContainer",cardsSource: candidateContainer,
+    const cardsData = {cardsName:"Candidate Container",cardsFor: "candidateContainer",cardsSource: candidateContainer,
   		subItems: [
     
       	],

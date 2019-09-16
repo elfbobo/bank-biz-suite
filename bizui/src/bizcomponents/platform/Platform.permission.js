@@ -28,9 +28,9 @@ const internalSummaryOf = (platform,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
-<Description term="ID">{platform.id}</Description> 
-<Description term="名称">{platform.name}</Description> 
-<Description term="成立">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
+<Description term="Id">{platform.id}</Description> 
+<Description term="Name">{platform.name}</Description> 
+<Description term="Founded">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
 	
       </DescriptionList>
 	)
@@ -56,7 +56,7 @@ class PlatformPermission extends Component {
     // eslint-disable-next-line max-len
     const  platform = this.props.platform;
     const { id,displayName, changeRequestCount, accountCount } = platform
-    const cardsData = {cardsName:"平台",cardsFor: "platform",cardsSource: platform,
+    const cardsData = {cardsName:"Platform",cardsFor: "platform",cardsSource: platform,
   		subItems: [
     
       	],

@@ -54,7 +54,7 @@ public class BankChecker extends BaseChecker{
 	public BankChecker checkNameOfChangeRequest(String name)
 	{
 		
-	 	checkStringLengthRange(name,1, 8,NAME_OF_CHANGE_REQUEST ); 		
+	 	checkStringLengthRange(name,1, 50,NAME_OF_CHANGE_REQUEST ); 		
 		
 		return this;
 	}	
@@ -162,7 +162,7 @@ public class BankChecker extends BaseChecker{
 	public BankChecker checkNameOfNameChangeEvent(String name)
 	{
 		
-	 	checkStringLengthRange(name,3, 32,NAME_OF_NAME_CHANGE_EVENT ); 		
+	 	checkStringLengthRange(name,1, 50,NAME_OF_NAME_CHANGE_EVENT ); 		
 		
 		return this;
 	}	
@@ -207,7 +207,7 @@ public class BankChecker extends BaseChecker{
 	public BankChecker checkNameOfAccount(String name)
 	{
 		
-	 	checkStringLengthRange(name,2, 16,NAME_OF_ACCOUNT ); 		
+	 	checkStringLengthRange(name,1, 50,NAME_OF_ACCOUNT ); 		
 		
 		return this;
 	}	
@@ -252,7 +252,7 @@ public class BankChecker extends BaseChecker{
 	public BankChecker checkNameOfAccountChange(String name)
 	{
 		
-	 	checkStringLengthRange(name,2, 16,NAME_OF_ACCOUNT_CHANGE ); 		
+	 	checkStringLengthRange(name,1, 50,NAME_OF_ACCOUNT_CHANGE ); 		
 		
 		return this;
 	}	
@@ -631,6 +631,69 @@ public class BankChecker extends BaseChecker{
 	{
 		
 	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_USER_APP ); 		
+		
+		return this;
+	}	
+
+	public static final String  ID_OF_QUICK_LINK ="quick_link.id";
+	public BankChecker checkIdOfQuickLink(String id)
+	{
+		
+	 	checkStringLengthRange(id,2, 64,ID_OF_QUICK_LINK ); 		
+		
+		return this;
+	}	
+
+	public static final String  NAME_OF_QUICK_LINK ="quick_link.name";
+	public BankChecker checkNameOfQuickLink(String name)
+	{
+		
+	 	checkStringLengthRange(name,1, 200,NAME_OF_QUICK_LINK ); 		
+		
+		return this;
+	}	
+
+	public static final String  ICON_OF_QUICK_LINK ="quick_link.icon";
+	public BankChecker checkIconOfQuickLink(String icon)
+	{
+		
+	 	checkStringLengthRange(icon,1, 200,ICON_OF_QUICK_LINK ); 		
+		
+		return this;
+	}	
+
+	public static final String  IMAGE_PATH_OF_QUICK_LINK ="quick_link.image_path";
+	public BankChecker checkImagePathOfQuickLink(String imagePath)
+	{
+		
+	 	checkImage(imagePath,0, 512,IMAGE_PATH_OF_QUICK_LINK ); 		
+		
+		return this;
+	}	
+
+	public static final String  LINK_TARGET_OF_QUICK_LINK ="quick_link.link_target";
+	public BankChecker checkLinkTargetOfQuickLink(String linkTarget)
+	{
+		
+	 	checkStringLengthRange(linkTarget,1, 200,LINK_TARGET_OF_QUICK_LINK ); 		
+		
+		return this;
+	}	
+
+	public static final String  APP_OF_QUICK_LINK ="quick_link.app";
+	public BankChecker checkAppIdOfQuickLink(String appId)
+	{
+		
+	 	checkIdOfQuickLink(appId ); 		
+		
+		return this;
+	}	
+
+	public static final String  VERSION_OF_QUICK_LINK ="quick_link.version";
+	public BankChecker checkVersionOfQuickLink(int version)
+	{
+		
+	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_QUICK_LINK ); 		
 		
 		return this;
 	}	

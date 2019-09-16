@@ -193,8 +193,13 @@ class CandidateContainerCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
+<<<<<<< HEAD
         title={`${appLocaleName(userContext,"CreateNew")}候选人容器`}
         content={`${appLocaleName(userContext,"CreateNew")}候选人容器`}
+=======
+        title={`${appLocaleName(userContext,"CreateNew")}Candidate Container`}
+        content={`${appLocaleName(userContext,"CreateNew")}Candidate Container`}
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -206,7 +211,11 @@ class CandidateContainerCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
+<<<<<<< HEAD
                     <Input size="large" placeholder="名称" />
+=======
+                    <Input size="large" placeholder="Name" />
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
                   )}
                 </Form.Item>
               </Col>

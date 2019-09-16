@@ -319,12 +319,34 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(userAppAsBaseEntity,"objectId",this::checkObjectIdOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"location",this::checkLocationOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"version",this::checkVersionOfUserApp);
+		commonObjectPropertyCheck(userAppAsBaseEntity,"quickLinkList",this::checkQuickLinkListOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"listAccessList",this::checkListAccessListOfUserApp);
 		commonObjectPropertyCheck(userAppAsBaseEntity,"objectAccessList",this::checkObjectAccessListOfUserApp);
 		return this;
 
 	}
 
+<<<<<<< HEAD
+=======
+	public BankObjectChecker checkAndFixQuickLink(BaseEntity quickLinkAsBaseEntity){
+
+		if( isChecked(quickLinkAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(quickLinkAsBaseEntity);
+		commonObjectPropertyCheck(quickLinkAsBaseEntity,"id",this::checkIdOfQuickLink);
+		commonObjectPropertyCheck(quickLinkAsBaseEntity,"name",this::checkNameOfQuickLink);
+		commonObjectPropertyCheck(quickLinkAsBaseEntity,"icon",this::checkIconOfQuickLink);
+		commonObjectPropertyCheck(quickLinkAsBaseEntity,"imagePath",this::checkImagePathOfQuickLink);
+		commonObjectPropertyCheck(quickLinkAsBaseEntity,"linkTarget",this::checkLinkTargetOfQuickLink);
+		commonObjectPropertyAssign(quickLinkAsBaseEntity,"createTime",this::assignCreateTimeOfQuickLink);
+		commonObjectPropertyCheck(quickLinkAsBaseEntity,"app",this::checkAppOfQuickLink);
+		commonObjectPropertyCheck(quickLinkAsBaseEntity,"version",this::checkVersionOfQuickLink);
+		return this;
+
+	}
+
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 	public BankObjectChecker checkAndFixListAccess(BaseEntity listAccessAsBaseEntity){
 
 		if( isChecked(listAccessAsBaseEntity) ){
@@ -774,6 +796,16 @@ public class BankObjectChecker extends BankChecker{
 		AtomicInteger index = new AtomicInteger();
 		secUserList.stream().forEach(secUser->
 			commonObjectElementCheck(secUser,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixSecUser));
+<<<<<<< HEAD
+=======
+		return this;
+	}
+
+	public BankObjectChecker checkQuickLinkListOfUserApp(List<BaseEntity> quickLinkList){
+		AtomicInteger index = new AtomicInteger();
+		quickLinkList.stream().forEach(quickLink->
+			commonObjectElementCheck(quickLink,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixQuickLink));
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 		return this;
 	}
 
@@ -801,6 +833,23 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		checkAndFixSecUser(secUserAsBaseEntity);
+<<<<<<< HEAD
+=======
+		return this;
+	}
+
+
+	public static final String APP_OF_QUICK_LINK = "quick_link.app";
+
+
+	public BankObjectChecker checkAppOfQuickLink(BaseEntity appAsBaseEntity){
+
+		if(appAsBaseEntity == null){
+			checkBaseEntityReference(appAsBaseEntity,true,APP_OF_QUICK_LINK);
+			return this;
+		}
+		checkAndFixUserApp(appAsBaseEntity);
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 		return this;
 	}
 
@@ -1016,6 +1065,16 @@ public class BankObjectChecker extends BankChecker{
 			return this;
 		}
 		setEntityProperty(targetEntity,"blockTime",userContext.now());
+		return this;
+	}
+	public BankObjectChecker assignCreateTimeOfQuickLink(BaseEntity targetEntity){
+		if(!isObjectForCreate(targetEntity)){
+			return this;
+		}
+		if(userContext==null){
+			return this;
+		}
+		setEntityProperty(targetEntity,"createTime",userContext.now());
 		return this;
 	}
 	public BankObjectChecker assignLoginTimeOfLoginHistory(BaseEntity targetEntity){

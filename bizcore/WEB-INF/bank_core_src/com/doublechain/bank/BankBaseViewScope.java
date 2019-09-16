@@ -14,6 +14,7 @@ import com.doublechain.bank.userwhitelist.UserWhiteList;
 import com.doublechain.bank.secuser.SecUser;
 import com.doublechain.bank.secuserblocking.SecUserBlocking;
 import com.doublechain.bank.userapp.UserApp;
+import com.doublechain.bank.quicklink.QuickLink;
 import com.doublechain.bank.listaccess.ListAccess;
 import com.doublechain.bank.objectaccess.ObjectAccess;
 import com.doublechain.bank.loginhistory.LoginHistory;
@@ -167,6 +168,20 @@ public class BankBaseViewScope {
 	/** 用于UserApp的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserAppSummaryScope() {
 		return UserAppBaseSummaryScope;
+	}
+
+	protected static SerializeScope QuickLinkBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(QuickLink.ID_PROPERTY)
+		.field(QuickLink.NAME_PROPERTY)
+		.field(QuickLink.ICON_PROPERTY)
+		.field(QuickLink.IMAGE_PATH_PROPERTY)
+		.field(QuickLink.LINK_TARGET_PROPERTY)
+		.field(QuickLink.CREATE_TIME_PROPERTY)
+		;
+	/** 用于QuickLink的子对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getQuickLinkSummaryScope() {
+		return QuickLinkBaseSummaryScope;
 	}
 
 	protected static SerializeScope ListAccessBaseSummaryScope = SerializeScope.INCLUDE()
@@ -450,6 +465,20 @@ public class BankBaseViewScope {
 	/** 用于UserApp的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserAppSecondaryListItemScope() {
 		return UserAppBaseSecondaryListItemScope;
+	}
+
+	protected static SerializeScope QuickLinkBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(QuickLink.ID_PROPERTY)
+		.field(QuickLink.NAME_PROPERTY)
+		.field(QuickLink.ICON_PROPERTY)
+		.field(QuickLink.IMAGE_PATH_PROPERTY)
+		.field(QuickLink.LINK_TARGET_PROPERTY)
+		.field(QuickLink.CREATE_TIME_PROPERTY)
+		;
+	/** 用于QuickLink的父对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getQuickLinkSecondaryListItemScope() {
+		return QuickLinkBaseSecondaryListItemScope;
 	}
 
 	protected static SerializeScope ListAccessBaseSecondaryListItemScope = SerializeScope.INCLUDE()
@@ -756,12 +785,28 @@ public class BankBaseViewScope {
 		.field(UserApp.OBJECT_TYPE_PROPERTY)
 		.field(UserApp.OBJECT_ID_PROPERTY)
 		.field(UserApp.LOCATION_PROPERTY)
+		.field(UserApp.QUICK_LINK_LIST, getQuickLinkSecondaryListItemScope())
 		.field(UserApp.LIST_ACCESS_LIST, getListAccessSecondaryListItemScope())
 		.field(UserApp.OBJECT_ACCESS_LIST, getObjectAccessSecondaryListItemScope())
 		;
 	/** 用于UserApp对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserAppListItemScope() {
 		return UserAppBaseListItemScope;
+	}
+
+	protected static SerializeScope QuickLinkBaseListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(QuickLink.ID_PROPERTY)
+		.field(QuickLink.NAME_PROPERTY)
+		.field(QuickLink.ICON_PROPERTY)
+		.field(QuickLink.IMAGE_PATH_PROPERTY)
+		.field(QuickLink.LINK_TARGET_PROPERTY)
+		.field(QuickLink.CREATE_TIME_PROPERTY)
+		.field(QuickLink.APP_PROPERTY, getUserAppSummaryScope())
+		;
+	/** 用于QuickLink对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getQuickLinkListItemScope() {
+		return QuickLinkBaseListItemScope;
 	}
 
 	protected static SerializeScope ListAccessBaseListItemScope = SerializeScope.INCLUDE()
@@ -1081,12 +1126,28 @@ public class BankBaseViewScope {
 		.field(UserApp.OBJECT_TYPE_PROPERTY)
 		.field(UserApp.OBJECT_ID_PROPERTY)
 		.field(UserApp.LOCATION_PROPERTY)
+		.field(UserApp.QUICK_LINK_LIST, getQuickLinkListItemScope())
 		.field(UserApp.LIST_ACCESS_LIST, getListAccessListItemScope())
 		.field(UserApp.OBJECT_ACCESS_LIST, getObjectAccessListItemScope())
 		;
 	/** 用于UserApp对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserAppDetailScope() {
 		return UserAppBaseDetailScope;
+	}
+
+	protected static SerializeScope QuickLinkBaseDetailScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(QuickLink.ID_PROPERTY)
+		.field(QuickLink.NAME_PROPERTY)
+		.field(QuickLink.ICON_PROPERTY)
+		.field(QuickLink.IMAGE_PATH_PROPERTY)
+		.field(QuickLink.LINK_TARGET_PROPERTY)
+		.field(QuickLink.CREATE_TIME_PROPERTY)
+		.field(QuickLink.APP_PROPERTY, getUserAppSummaryScope())
+		;
+	/** 用于QuickLink对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getQuickLinkDetailScope() {
+		return QuickLinkBaseDetailScope;
 	}
 
 	protected static SerializeScope ListAccessBaseDetailScope = SerializeScope.INCLUDE()

@@ -13,6 +13,7 @@ import com.doublechain.bank.userwhitelist.UserWhiteList;
 import com.doublechain.bank.secuser.SecUser;
 import com.doublechain.bank.secuserblocking.SecUserBlocking;
 import com.doublechain.bank.userapp.UserApp;
+import com.doublechain.bank.quicklink.QuickLink;
 import com.doublechain.bank.listaccess.ListAccess;
 import com.doublechain.bank.objectaccess.ObjectAccess;
 import com.doublechain.bank.loginhistory.LoginHistory;
@@ -79,6 +80,11 @@ public class BeanFactoryImpl{
 
 	public UserApp createUserApp(Map<String,Object> options){
 		return new UserApp();
+	}
+
+
+	public QuickLink createQuickLink(Map<String,Object> options){
+		return new QuickLink();
 	}
 
 

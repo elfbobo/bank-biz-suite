@@ -95,6 +95,10 @@ public class _ChangeRequest$Summary__jsp extends com.caucho.jsp.JavaPage
 
         _jsp_FormatDateTag_1.setValue(_caucho_expr_15.evalObject(_jsp_env));
         _jsp_FormatDateTag_1.doEndTag();
+        out.write(_jsp_string12, 0, _jsp_string12.length);
+        _caucho_expr_16.print(out, _jsp_env, false);
+        out.write(_jsp_string11, 0, _jsp_string11.length);
+        _caucho_expr_17.print(out, _jsp_env, false);
         out.write(_jsp_string13, 0, _jsp_string13.length);
       }
       out.write(_jsp_string14, 0, _jsp_string14.length);
@@ -172,6 +176,8 @@ public class _ChangeRequest$Summary__jsp extends com.caucho.jsp.JavaPage
     _caucho_expr_13 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${result.name}");
     _caucho_expr_14 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${userContext.localeMap['change_request.create_time']}");
     _caucho_expr_15 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${result.createTime}");
+    _caucho_expr_16 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${userContext.localeMap['change_request.remote_ip']}");
+    _caucho_expr_17 = com.caucho.jsp.JspUtil.createExpr(pageContext.getELContext(), "${result.remoteIp}");
   }
 
   public void destroy()
@@ -192,7 +198,7 @@ public class _ChangeRequest$Summary__jsp extends com.caucho.jsp.JavaPage
     String resourcePath = loader.getResourcePathSpecificFirst();
     mergePath.addClassPath(resourcePath);
     com.caucho.vfs.Depend depend;
-    depend = new com.caucho.vfs.Depend(appDir.lookup("coreview/com/doublechain/bank/changerequest/ChangeRequest$Summary.jsp"), -2336168171778117371L, false);
+    depend = new com.caucho.vfs.Depend(appDir.lookup("coreview/com/doublechain/bank/changerequest/ChangeRequest$Summary.jsp"), -8043686563915595065L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
     depend = new com.caucho.vfs.Depend(mergePath.lookup("jar:file:/opt/resin-3.1.12/lib/resin.jar!/com/caucho/jstl/fmt.tld"), 8594578285720415164L, false);
     com.caucho.jsp.JavaPage.addDepend(_caucho_depends, depend);
@@ -223,6 +229,8 @@ public class _ChangeRequest$Summary__jsp extends com.caucho.jsp.JavaPage
   private static com.caucho.el.Expr _caucho_expr_13;
   private static com.caucho.el.Expr _caucho_expr_14;
   private static com.caucho.el.Expr _caucho_expr_15;
+  private static com.caucho.el.Expr _caucho_expr_16;
+  private static com.caucho.el.Expr _caucho_expr_17;
 
   private final static char []_jsp_string6;
   private final static char []_jsp_string8;

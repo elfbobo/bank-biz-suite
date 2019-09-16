@@ -28,10 +28,17 @@ const internalSummaryOf = (changeRequest,targetComponent) =>{
     const userContext = null
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
+<<<<<<< HEAD
 <Description term="ID">{changeRequest.id}</Description> 
 <Description term="名称">{changeRequest.name}</Description> 
 <Description term="创建时间">{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</Description> 
 <Description term="远程Ip">{changeRequest.remoteIp}</Description> 
+=======
+<Description term="Id">{changeRequest.id}</Description> 
+<Description term="Name">{changeRequest.name}</Description> 
+<Description term="Create Time">{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</Description> 
+<Description term="Remote Ip">{changeRequest.remoteIp}</Description> 
+>>>>>>> 8c1580262f63aadc12e1024abc0444ec92345e2c
 	
       </DescriptionList>
 	)
@@ -57,7 +64,7 @@ class ChangeRequestPermission extends Component {
     // eslint-disable-next-line max-len
     const  changeRequest = this.props.changeRequest;
     const { id,displayName, transactionCount, nameChangeEventCount, accountChangeCount } = changeRequest
-    const cardsData = {cardsName:"变更请求",cardsFor: "changeRequest",cardsSource: changeRequest,
+    const cardsData = {cardsName:"Change Request",cardsFor: "changeRequest",cardsSource: changeRequest,
   		subItems: [
     
       	],

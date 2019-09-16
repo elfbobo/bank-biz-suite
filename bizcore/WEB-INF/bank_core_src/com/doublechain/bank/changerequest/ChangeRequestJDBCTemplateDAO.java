@@ -582,7 +582,7 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
  
 		StatsItem createTimeStatsItem = new StatsItem();
 		//ChangeRequest.CREATE_TIME_PROPERTY
-		createTimeStatsItem.setDisplayName("变更请求");
+		createTimeStatsItem.setDisplayName("Change Request");
 		createTimeStatsItem.setInternalName(formatKeyForDateLine(ChangeRequest.CREATE_TIME_PROPERTY));
 		createTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ChangeRequest.CREATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(createTimeStatsItem);

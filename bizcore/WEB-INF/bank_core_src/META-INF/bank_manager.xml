@@ -41,6 +41,9 @@
 	<bean id="userAppManagerBase" class="com.doublechain.bank.userapp.UserAppManagerImpl"/>
 	<bean id="userAppManager" class="com.doublechain.bank.userapp.UserAppCustomManagerImpl" parent="userAppManagerBase" ></bean>
 	
+	<bean id="quickLinkManagerBase" class="com.doublechain.bank.quicklink.QuickLinkManagerImpl"/>
+	<bean id="quickLinkManager" class="com.doublechain.bank.quicklink.QuickLinkManagerImpl" parent="quickLinkManagerBase" ></bean>
+	
 	<bean id="listAccessManagerBase" class="com.doublechain.bank.listaccess.ListAccessManagerImpl"/>
 	<bean id="listAccessManager" class="com.doublechain.bank.listaccess.ListAccessManagerImpl" parent="listAccessManagerBase" ></bean>
 	
@@ -84,6 +87,7 @@
 		<property name="secUserManager" ref="secUserManager"/>
 		<property name="secUserBlockingManager" ref="secUserBlockingManager"/>
 		<property name="userAppManager" ref="userAppManager"/>
+		<property name="quickLinkManager" ref="quickLinkManager"/>
 		<property name="listAccessManager" ref="listAccessManager"/>
 		<property name="objectAccessManager" ref="objectAccessManager"/>
 		<property name="loginHistoryManager" ref="loginHistoryManager"/>
