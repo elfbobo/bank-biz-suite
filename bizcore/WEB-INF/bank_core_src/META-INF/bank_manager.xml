@@ -65,6 +65,12 @@
 	<bean id="formActionManagerBase" class="com.doublechain.bank.formaction.FormActionManagerImpl"/>
 	<bean id="formActionManager" class="com.doublechain.bank.formaction.FormActionManagerImpl" parent="formActionManagerBase" ></bean>
 	
+	<bean id="candidateContainerManagerBase" class="com.doublechain.bank.candidatecontainer.CandidateContainerManagerImpl"/>
+	<bean id="candidateContainerManager" class="com.doublechain.bank.candidatecontainer.CandidateContainerCustomManagerImpl" parent="candidateContainerManagerBase" ></bean>
+	
+	<bean id="candidateElementManagerBase" class="com.doublechain.bank.candidateelement.CandidateElementManagerImpl"/>
+	<bean id="candidateElementManager" class="com.doublechain.bank.candidateelement.CandidateElementManagerImpl" parent="candidateElementManagerBase" ></bean>
+	
 
 	<bean id="managerGroupBase" class="com.doublechain.bank.ManagerGroup">
 		<property name="platformManager" ref="platformManager"/>
@@ -86,6 +92,8 @@
 		<property name="formFieldMessageManager" ref="formFieldMessageManager"/>
 		<property name="formFieldManager" ref="formFieldManager"/>
 		<property name="formActionManager" ref="formActionManager"/>
+		<property name="candidateContainerManager" ref="candidateContainerManager"/>
+		<property name="candidateElementManager" ref="candidateElementManager"/>
 	</bean>
 	<bean id="managerGroup" parent="managerGroupBase"></bean>
 	

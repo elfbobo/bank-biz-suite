@@ -22,6 +22,8 @@ import com.doublechain.bank.formmessage.FormMessage;
 import com.doublechain.bank.formfieldmessage.FormFieldMessage;
 import com.doublechain.bank.formfield.FormField;
 import com.doublechain.bank.formaction.FormAction;
+import com.doublechain.bank.candidatecontainer.CandidateContainer;
+import com.doublechain.bank.candidateelement.CandidateElement;
 
 
 public class BankBaseViewScope {
@@ -42,6 +44,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.ID_PROPERTY)
 		.field(ChangeRequest.NAME_PROPERTY)
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
+		.field(ChangeRequest.REMOTE_IP_PROPERTY)
 		;
 	/** 用于ChangeRequest的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getChangeRequestSummaryScope() {
@@ -286,6 +289,28 @@ public class BankBaseViewScope {
 		return FormActionBaseSummaryScope;
 	}
 
+	protected static SerializeScope CandidateContainerBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateContainer.ID_PROPERTY)
+		.field(CandidateContainer.NAME_PROPERTY)
+		;
+	/** 用于CandidateContainer的子对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getCandidateContainerSummaryScope() {
+		return CandidateContainerBaseSummaryScope;
+	}
+
+	protected static SerializeScope CandidateElementBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateElement.ID_PROPERTY)
+		.field(CandidateElement.NAME_PROPERTY)
+		.field(CandidateElement.TYPE_PROPERTY)
+		.field(CandidateElement.IMAGE_PROPERTY)
+		;
+	/** 用于CandidateElement的子对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getCandidateElementSummaryScope() {
+		return CandidateElementBaseSummaryScope;
+	}
+
 	protected static SerializeScope PlatformBaseSecondaryListItemScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(Platform.ID_PROPERTY)
@@ -302,6 +327,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.ID_PROPERTY)
 		.field(ChangeRequest.NAME_PROPERTY)
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
+		.field(ChangeRequest.REMOTE_IP_PROPERTY)
 		;
 	/** 用于ChangeRequest的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getChangeRequestSecondaryListItemScope() {
@@ -546,6 +572,28 @@ public class BankBaseViewScope {
 		return FormActionBaseSecondaryListItemScope;
 	}
 
+	protected static SerializeScope CandidateContainerBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateContainer.ID_PROPERTY)
+		.field(CandidateContainer.NAME_PROPERTY)
+		;
+	/** 用于CandidateContainer的父对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getCandidateContainerSecondaryListItemScope() {
+		return CandidateContainerBaseSecondaryListItemScope;
+	}
+
+	protected static SerializeScope CandidateElementBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateElement.ID_PROPERTY)
+		.field(CandidateElement.NAME_PROPERTY)
+		.field(CandidateElement.TYPE_PROPERTY)
+		.field(CandidateElement.IMAGE_PROPERTY)
+		;
+	/** 用于CandidateElement的父对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getCandidateElementSecondaryListItemScope() {
+		return CandidateElementBaseSecondaryListItemScope;
+	}
+
 	protected static SerializeScope PlatformBaseListItemScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(Platform.ID_PROPERTY)
@@ -564,6 +612,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.ID_PROPERTY)
 		.field(ChangeRequest.NAME_PROPERTY)
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
+		.field(ChangeRequest.REMOTE_IP_PROPERTY)
 		.field(ChangeRequest.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(ChangeRequest.TRANSACTION_LIST, getTransactionSecondaryListItemScope())
 		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventSecondaryListItemScope())
@@ -846,6 +895,30 @@ public class BankBaseViewScope {
 		return FormActionBaseListItemScope;
 	}
 
+	protected static SerializeScope CandidateContainerBaseListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateContainer.ID_PROPERTY)
+		.field(CandidateContainer.NAME_PROPERTY)
+		.field(CandidateContainer.CANDIDATE_ELEMENT_LIST, getCandidateElementSecondaryListItemScope())
+		;
+	/** 用于CandidateContainer对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getCandidateContainerListItemScope() {
+		return CandidateContainerBaseListItemScope;
+	}
+
+	protected static SerializeScope CandidateElementBaseListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateElement.ID_PROPERTY)
+		.field(CandidateElement.NAME_PROPERTY)
+		.field(CandidateElement.TYPE_PROPERTY)
+		.field(CandidateElement.IMAGE_PROPERTY)
+		.field(CandidateElement.CONTAINER_PROPERTY, getCandidateContainerSummaryScope())
+		;
+	/** 用于CandidateElement对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getCandidateElementListItemScope() {
+		return CandidateElementBaseListItemScope;
+	}
+
 	protected static SerializeScope PlatformBaseDetailScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(Platform.ID_PROPERTY)
@@ -864,6 +937,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.ID_PROPERTY)
 		.field(ChangeRequest.NAME_PROPERTY)
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
+		.field(ChangeRequest.REMOTE_IP_PROPERTY)
 		.field(ChangeRequest.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(ChangeRequest.TRANSACTION_LIST, getTransactionListItemScope())
 		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventListItemScope())
@@ -1144,6 +1218,30 @@ public class BankBaseViewScope {
 	/** 用于FormAction对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormActionDetailScope() {
 		return FormActionBaseDetailScope;
+	}
+
+	protected static SerializeScope CandidateContainerBaseDetailScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateContainer.ID_PROPERTY)
+		.field(CandidateContainer.NAME_PROPERTY)
+		.field(CandidateContainer.CANDIDATE_ELEMENT_LIST, getCandidateElementListItemScope())
+		;
+	/** 用于CandidateContainer对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getCandidateContainerDetailScope() {
+		return CandidateContainerBaseDetailScope;
+	}
+
+	protected static SerializeScope CandidateElementBaseDetailScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(CandidateElement.ID_PROPERTY)
+		.field(CandidateElement.NAME_PROPERTY)
+		.field(CandidateElement.TYPE_PROPERTY)
+		.field(CandidateElement.IMAGE_PROPERTY)
+		.field(CandidateElement.CONTAINER_PROPERTY, getCandidateContainerSummaryScope())
+		;
+	/** 用于CandidateElement对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getCandidateElementDetailScope() {
+		return CandidateElementBaseDetailScope;
 	}
 
 	

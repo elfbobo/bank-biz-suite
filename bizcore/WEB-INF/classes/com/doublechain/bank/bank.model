@@ -13,11 +13,13 @@
 	<change_request
 		name="存款|转账|取款"
 		create_time="createTime()"
+		remote_ip="remoteIp()"
+		
 		platform="$(platform)"
 	/>
 	
 	<transaction
-		name="存款交易|存款交易|取款交易"
+		name="存款交易|存款交易|取款交易|[1,50]"
 		from_account="$(account)"
 		to_account="$(account)"
 		amount="$123.00"

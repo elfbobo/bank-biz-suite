@@ -83,7 +83,7 @@ const internalSummaryOf = (platform,targetComponent) =>{
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{platform.id}</Description> 
 <Description term="名称">{platform.name}</Description> 
-<Description term="成立">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
+<Description term="成立">{ moment(platform.founded).format('YYYY-MM-DD HH:mm')}</Description> 
 	
         {buildTransferModal(platform,targetComponent)}
       </DescriptionList>

@@ -15,6 +15,7 @@ public class ChangeRequestMapper extends BaseRowMapper<ChangeRequest>{
  		setId(changeRequest, rs, rowNumber); 		
  		setName(changeRequest, rs, rowNumber); 		
  		setCreateTime(changeRequest, rs, rowNumber); 		
+ 		setRemoteIp(changeRequest, rs, rowNumber); 		
  		setPlatform(changeRequest, rs, rowNumber); 		
  		setVersion(changeRequest, rs, rowNumber);
 
@@ -59,6 +60,18 @@ public class ChangeRequestMapper extends BaseRowMapper<ChangeRequest>{
 		}
 		
 		changeRequest.setCreateTime(convertToDateTime(createTime));
+	}
+		
+	protected void setRemoteIp(ChangeRequest changeRequest, ResultSet rs, int rowNumber) throws SQLException{
+	
+		//there will be issue when the type is double/int/long
+		String remoteIp = rs.getString(ChangeRequestTable.COLUMN_REMOTE_IP);
+		if(remoteIp == null){
+			//do nothing when nothing found in database
+			return;
+		}
+		
+		changeRequest.setRemoteIp(remoteIp);
 	}
 		 		
  	protected void setPlatform(ChangeRequest changeRequest, ResultSet rs, int rowNumber) throws SQLException{

@@ -240,7 +240,7 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 			//also good when there is a ram based DAO implementation
 			//make changes to Platform.
 			if (platform.isChanged()){
-			
+			platform.updateFounded(userContext.now());
 			}
 			platform = savePlatform(userContext, platform, options);
 			return platform;
@@ -264,7 +264,7 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 			//will be good when the platform loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to Platform.
-			
+			platform.updateFounded(userContext.now());
 			platform.changeProperty(property, newValueExpr);
 			platform = savePlatform(userContext, platform, tokens().done());
 			return present(userContext,platform, mergedAllTokens(tokensExpr));
@@ -288,7 +288,7 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 			//make changes to Platform.
 			
 			platform.changeProperty(property, newValueExpr);
-			
+			platform.updateFounded(userContext.now());
 			platform = savePlatform(userContext, platform, tokens().done());
 			return present(userContext,platform, mergedAllTokens(tokensExpr));
 			//return savePlatform(userContext, platform, tokens().done());
@@ -443,7 +443,8 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 		
 		
 		changeRequest.setName(name);		
-		changeRequest.setCreateTime(userContext.now());
+		changeRequest.setCreateTime(userContext.now());		
+		changeRequest.setRemoteIp(userContext.getRemoteIP());
 	
 		
 		return changeRequest;
@@ -535,7 +536,7 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 			//Will be good when the platform loaded from this JVM process cache.
 			//Also good when there is a RAM based DAO implementation
 			
-			
+			changeRequest.updateRemoteIp(userContext.getRemoteIP());
 			
 			platform.copyChangeRequestFrom( changeRequest );		
 			platform = savePlatform(userContext, platform, tokens().withChangeRequestList().done());
@@ -588,7 +589,7 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 			}
 			
 			changeRequest.changeProperty(property, newValueExpr);
-			
+			changeRequest.updateRemoteIp(userContext.getRemoteIP());
 			platform = savePlatform(userContext, platform, tokens().withChangeRequestList().done());
 			return present(userContext,platform, mergedAllTokens(tokensExpr));
 		}

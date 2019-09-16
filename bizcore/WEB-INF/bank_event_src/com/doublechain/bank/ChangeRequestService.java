@@ -50,53 +50,27 @@ public class ChangeRequestService extends CustomBankCheckerManager{
 	public ChangeRequest process(BankUserContext userContext, ChangeRequest request) throws Exception {
 		
 		
-		userContext.getChecker().checkChangeRequestAsObject(request);
+		checkerOf(userContext).checkAndFixChangeRequest(request);
 		
 		
 		ChangeRequest newReq = changeRequestManagerOf(userContext)
 			.internalSaveChangeRequest(userContext, request);
 		
 		for(NameChangeEvent nv:request.getNameChangeEventList() ) {
-			Account a1 = accountManagerOf(userContext)
-					.loadAccount(userContext, nv.getAccount().getId(), new String[] {});
-			a1.updateName(nv.getName());
-			accountManagerOf(userContext).internalSaveAccount(userContext, a1);
 			
+			NameChangeEventHandler handler = new NameChangeEventHandler();
+			handler.apply(userContext, newReq, nv);
 		}
 		
 		for(Transaction tx:request.getTransactionList() ) {
-			Account a1 = accountManagerOf(userContext).loadAccount(userContext, 
-					tx.getFromAccount().getId(), new String[] {});
-			Account a2 = accountManagerOf(userContext).loadAccount(userContext, 
-					tx.getToAccount().getId(), new String[] {});
-			
-			
-			AccountChange ac1 = new AccountChange().updateAmount(tx.getAmount())
-					.updateName(tx.getName()).updatePreviousBalance(a1.getBalance())
-					.updateType("转出").updateCurrentBalance(a1.getBalance().subtract(tx.getAmount()))
-					.updateChangeRequest(newReq);
-			
-			AccountChange ac2=	new AccountChange().updateAmount(tx.getAmount())
-					.updateName(tx.getName()).updatePreviousBalance(a2.getBalance())
-					.updateType("转入").updateCurrentBalance(a2.getBalance().add(tx.getAmount()))
-					.updateChangeRequest(newReq);
-			a1.addAccountChange(ac1);
-			a2.addAccountChange(ac2);
-			a1.updateBalance(a1.getBalance().subtract(tx.getAmount()));
-			a2.updateBalance(a2.getBalance().add(tx.getAmount()));
-			
-			
-			accountManagerOf(userContext).internalSaveAccount(userContext, a1);
-			accountManagerOf(userContext).internalSaveAccount(userContext, a2);
-			
-			//userContext.getDAOGroup().getAccountDAO()
-			
-			
+			TxRequestHandler handler = new TxRequestHandler();
+			handler.apply(userContext, newReq, tx);
 		}
 		
 		
 		return request;
 		
+
 		/*
 		
 		for(ChangeRequestItem item: request.getItemList()) {
@@ -175,23 +149,17 @@ public class ChangeRequestService extends CustomBankCheckerManager{
 				.updateName("test cr")
 				.updatePlatform(platform);
 				
-		Transaction tx = new Transaction().updateName("test tx")
-				.updateFromAccount(new Account().updateId("A000001").updateName("acc name")
-						.updatePlatform(platform))
-				.updateToAccount(new Account().updateId("A000002").updateName("acc name")
-						.updatePlatform(platform))
+		Transaction tx = new Transaction().updateName("A000001=>A000002(21.00)")
+				
 				.updateFromAccount(Account.refById("A000001"))
 				.updateToAccount(Account.refById("A000002"))
 				.updateType("转账")
 				
 				.updateAmount(new BigDecimal("21.00"));
-		
-		
-		
-		
+
 		req.addTransaction(tx);
 		
-		tx = new Transaction().updateName("test tx3")
+		tx = new Transaction().updateName("A000002=>A000001(11.00)")
 					.updateFromAccount(Account.refById("A000002"))
 					.updateToAccount(Account.refById("A000001"))
 					.updateType("转账")
@@ -201,18 +169,16 @@ public class ChangeRequestService extends CustomBankCheckerManager{
 		
 
 		
-		tx = new Transaction().updateName("test tx")
-				.updateFromAccount(new Account().updateId("A000002").updateName("acc name")
-						//.updateName("acc name2")
-						.updatePlatform(platform))
-				.updateToAccount(new Account().updateId("A000001")
-						//.updateName("acc name2")
-						.updatePlatform(platform))
+		tx = new Transaction().updateName("A000002=>A000001(10.87)")
+				.updateFromAccount(Account.refById("A000002"))
+				.updateToAccount(Account.refById("A000001"))
 				.updateType("转账")
 				.updateAmount(new BigDecimal("10.87"));
 		
 		req.addTransaction(tx);
 
+		
+		
 		NameChangeEvent ne=new NameChangeEvent()
 				.updateAccount(Account.refById("A000001"))
 				.updateName("OLD NAME");
@@ -242,9 +208,14 @@ public class ChangeRequestService extends CustomBankCheckerManager{
 			e.printStackTrace();
 		}
 		
-		log("done");
+		log("done11");
 		
+
 	}
+	
+	
+	
+	
 	
 }
 

@@ -18,10 +18,10 @@ const testValues = {};
 /*
 const testValues = {
   name: '存款交易',
-  previousBalance: '986.65',
+  previousBalance: '1272.26',
   type: '存款',
-  amount: '115.93',
-  currentBalance: '1091.64',
+  amount: '97.96',
+  currentBalance: '1195.19',
   accountId: 'A000001',
   changeRequestId: 'CR000001',
 }

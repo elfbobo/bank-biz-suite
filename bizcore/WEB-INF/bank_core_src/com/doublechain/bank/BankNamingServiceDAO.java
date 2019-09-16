@@ -38,6 +38,8 @@ public class BankNamingServiceDAO extends CommonJDBCTemplateDAO {
 		namingTableMap.put("FormFieldMessage", new String[]{"form_field_message_data","title"});
 		namingTableMap.put("FormField", new String[]{"form_field_data","label"});
 		namingTableMap.put("FormAction", new String[]{"form_action_data","label"});
+		namingTableMap.put("CandidateContainer", new String[]{"candidate_container_data","name"});
+		namingTableMap.put("CandidateElement", new String[]{"candidate_element_data","name"});
 		
 
 		

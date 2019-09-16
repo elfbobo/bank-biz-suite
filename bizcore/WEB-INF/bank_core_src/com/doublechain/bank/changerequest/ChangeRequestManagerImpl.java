@@ -194,6 +194,7 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 
 		changeRequest.setName(name);
 		changeRequest.setCreateTime(userContext.now());
+		changeRequest.setRemoteIp(userContext.getRemoteIP());
 			
 		Platform platform = loadPlatform(userContext, platformId,emptyOptions());
 		changeRequest.setPlatform(platform);
@@ -256,7 +257,7 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 			//also good when there is a ram based DAO implementation
 			//make changes to ChangeRequest.
 			if (changeRequest.isChanged()){
-			
+			changeRequest.updateRemoteIp(userContext.getRemoteIP());
 			}
 			changeRequest = saveChangeRequest(userContext, changeRequest, options);
 			return changeRequest;
@@ -280,7 +281,7 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 			//will be good when the changeRequest loaded from this JVM process cache.
 			//also good when there is a ram based DAO implementation
 			//make changes to ChangeRequest.
-			
+			changeRequest.updateRemoteIp(userContext.getRemoteIP());
 			changeRequest.changeProperty(property, newValueExpr);
 			changeRequest = saveChangeRequest(userContext, changeRequest, tokens().done());
 			return present(userContext,changeRequest, mergedAllTokens(tokensExpr));
@@ -304,7 +305,7 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 			//make changes to ChangeRequest.
 			
 			changeRequest.changeProperty(property, newValueExpr);
-			
+			changeRequest.updateRemoteIp(userContext.getRemoteIP());
 			changeRequest = saveChangeRequest(userContext, changeRequest, tokens().done());
 			return present(userContext,changeRequest, mergedAllTokens(tokensExpr));
 			//return saveChangeRequest(userContext, changeRequest, tokens().done());

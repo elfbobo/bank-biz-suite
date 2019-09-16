@@ -84,8 +84,8 @@ const internalSummaryOf = (account,targetComponent) =>{
 <Description term="ID">{account.id}</Description> 
 <Description term="名称">{account.name}</Description> 
 <Description term="余额">{account.balance}</Description> 
-<Description term="创建时间">{ moment(account.createTime).format('YYYY-MM-DD')}</Description> 
-<Description term="更新时间">{ moment(account.updateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="创建时间">{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="更新时间">{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</Description> 
 	
         {buildTransferModal(account,targetComponent)}
       </DescriptionList>

@@ -185,6 +185,20 @@
 	</bean>
 	<bean id="formActionDAO" parent="formActionDAOBase"></bean>	
 	
+	
+	<bean id="candidateContainerDAOBase" class="com.doublechain.bank.candidatecontainer.CandidateContainerJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" />
+		<property name="candidateElementDAO" ref="candidateElementDAO" />
+		
+	</bean>
+	<bean id="candidateContainerDAO" parent="candidateContainerDAOBase"></bean>	
+	
+	
+	<bean id="candidateElementDAOBase" class="com.doublechain.bank.candidateelement.CandidateElementJDBCTemplateDAO">
+		<property name="dataSource" ref="dataSource" /><property name="candidateContainerDAO" ref="candidateContainerDAO" />
+	</bean>
+	<bean id="candidateElementDAO" parent="candidateElementDAOBase"></bean>	
+	
 
 
 	<bean id="DAOGroupBase" class="com.doublechain.bank.DAOGroup">
@@ -207,6 +221,8 @@
 		<property name="formFieldMessageDAO" ref="formFieldMessageDAO"/>
 		<property name="formFieldDAO" ref="formFieldDAO"/>
 		<property name="formActionDAO" ref="formActionDAO"/>
+		<property name="candidateContainerDAO" ref="candidateContainerDAO"/>
+		<property name="candidateElementDAO" ref="candidateElementDAO"/>
 	</bean>
 	<bean id="DAOGroup" parent="DAOGroupBase"></bean>
 </beans>

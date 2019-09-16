@@ -154,6 +154,9 @@ public class BaseRelation{
 		String [] formActionRelatedObjectNames = {"form:GenericForm"};
 		addRelationIndex("FormAction",formActionRelatedObjectNames);
 
+		String [] candidateElementRelatedObjectNames = {"container:CandidateContainer"};
+		addRelationIndex("CandidateElement",candidateElementRelatedObjectNames);
+
 	
 	
 	}
@@ -193,6 +196,7 @@ public class BaseRelation{
 		addGenericRelation("FormFieldMessage"                      ,TRUST_CHAIN_READ,"form");
 		addGenericRelation("FormField"                             ,TRUST_CHAIN_READ,"form");
 		addGenericRelation("FormAction"                            ,TRUST_CHAIN_READ,"form");
+		addGenericRelation("CandidateElement"                      ,TRUST_CHAIN_READ,"container");
 	
 	}
 

@@ -62,7 +62,7 @@ const renderItemOfList=(loginHistory,targetComponent)=>{
 	
       <DescriptionList  key={loginHistory.id} size="small" col="4">
         <Description term="ID">{loginHistory.id}</Description> 
-        <Description term="登录时间"><div>{ moment(loginHistory.loginTime).format('YYYY-MM-DD')}</div></Description> 
+        <Description term="登录时间"><div>{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
         <Description term="来自IP">{loginHistory.fromIp}</Description> 
         <Description term="描述">{loginHistory.description}</Description> 
         <Description term="安全用户"><div>{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
@@ -81,13 +81,6 @@ const renderItemOfList=(loginHistory,targetComponent)=>{
 
 const LoginHistoryBase={menuData,displayColumns,fieldLabels,renderItemOfList}
 export default LoginHistoryBase
-
-
-
-
-
-
-
 
 
 

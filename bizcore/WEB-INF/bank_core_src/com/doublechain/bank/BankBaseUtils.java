@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -216,6 +218,14 @@ public class BankBaseUtils {
 	}
 	public static String getRequestAppType(BankUserContext userContext) {
 		return userContext.getRequestHeader("x-app-type");
+	}
+	private static final NumberFormat cashFormat = new DecimalFormat("#,##0.00");
+	private static final NumberFormat exRateFormat = new DecimalFormat("#,##0.00#");
+	public static String formatCash(BigDecimal amount) {
+		return cashFormat.format(amount)+"元";
+	}
+	public static String formatExchangeRate(BigDecimal amount) {
+		return exRateFormat.format(amount);
 	}
 
 }

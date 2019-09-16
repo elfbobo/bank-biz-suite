@@ -39,6 +39,10 @@ import com.doublechain.bank.formfield.FormFieldManager;
 
 import com.doublechain.bank.formaction.FormActionManager;
 
+import com.doublechain.bank.candidatecontainer.CandidateContainerManager;
+
+import com.doublechain.bank.candidateelement.CandidateElementManager;
+
 
 public class ManagerGroup {
 
@@ -79,6 +83,10 @@ public class ManagerGroup {
 	protected FormFieldManager formFieldManager;
 
 	protected FormActionManager formActionManager;
+
+	protected CandidateContainerManager candidateContainerManager;
+
+	protected CandidateElementManager candidateElementManager;
 
 	
 
@@ -231,6 +239,22 @@ public class ManagerGroup {
 	}
 	public void setFormActionManager(FormActionManager manager){
 		this.formActionManager = manager;
+	}
+
+
+	public CandidateContainerManager getCandidateContainerManager(){
+		return this.candidateContainerManager;
+	}
+	public void setCandidateContainerManager(CandidateContainerManager manager){
+		this.candidateContainerManager = manager;
+	}
+
+
+	public CandidateElementManager getCandidateElementManager(){
+		return this.candidateElementManager;
+	}
+	public void setCandidateElementManager(CandidateElementManager manager){
+		this.candidateElementManager = manager;
 	}
 
 

@@ -13,8 +13,9 @@
 	<table name="change_request_data">
 		<fields>
 			<field name="id" nullable="false" type="string" checkType="StringLengthRange" min="2" max="64" description="ID" />
-			<field name="name" type="string" checkType="StringLengthRange" min="1" max="8" description="名称" />
+			<field name="name" type="string" checkType="StringLengthRange" min="1" max="50" description="名称" />
 			<field name="create_time" type="date_time_create" checkType="DateTimeCreate" min="1900-01-01T00:00:00" max="createTime()" description="创建时间" />
+			<field name="remote_ip" type="string_client_ip" checkType="ClientIp" min="5" max="40" description="远程Ip" />
 			<field name="platform" type="reference" checkType="exist(platform)" description="平台" />
 			<field name="version" type="int" checkType="IntegerRange" min="0" max="Integer.MAX_VALUE" description="版本" />
 		</fields>
@@ -23,7 +24,7 @@
 	<table name="transaction_data">
 		<fields>
 			<field name="id" nullable="false" type="string" checkType="StringLengthRange" min="2" max="64" description="ID" />
-			<field name="name" type="string" checkType="StringLengthRange" min="2" max="16" description="名称" />
+			<field name="name" type="string" checkType="StringLengthRange" min="1" max="50" description="名称" />
 			<field name="from_account" type="reference" checkType="exist(account)" description="从账户" />
 			<field name="to_account" type="reference" checkType="exist(account)" description="承担责任" />
 			<field name="amount" type="money" checkType="MoneyAmount" min="0.0" max="123.00" description="金额" />
@@ -36,7 +37,7 @@
 	<table name="name_change_event_data">
 		<fields>
 			<field name="id" nullable="false" type="string" checkType="StringLengthRange" min="2" max="64" description="ID" />
-			<field name="name" type="string" checkType="StringLengthRange" min="3" max="32" description="名称" />
+			<field name="name" type="string" checkType="StringLengthRange" min="1" max="50" description="名称" />
 			<field name="account" type="reference" checkType="exist(account)" description="账户" />
 			<field name="change_request" type="reference" checkType="exist(change_request)" description="变更请求" />
 			<field name="version" type="int" checkType="IntegerRange" min="0" max="Integer.MAX_VALUE" description="版本" />
@@ -46,7 +47,7 @@
 	<table name="account_data">
 		<fields>
 			<field name="id" nullable="false" type="string" checkType="StringLengthRange" min="2" max="64" description="ID" />
-			<field name="name" type="string" checkType="StringLengthRange" min="2" max="16" description="名称" />
+			<field name="name" type="string" checkType="StringLengthRange" min="1" max="50" description="名称" />
 			<field name="balance" type="money" checkType="MoneyAmount" min="0.0" max="123.00" description="余额" />
 			<field name="create_time" type="date_time_create" checkType="DateTimeCreate" min="1900-01-01T00:00:00" max="createTime()" description="创建时间" />
 			<field name="update_time" type="date_time_update" checkType="DateTimeUpdate" min="1900-01-01T00:00:00" max="updateTime()" description="更新时间" />
@@ -58,7 +59,7 @@
 	<table name="account_change_data">
 		<fields>
 			<field name="id" nullable="false" type="string" checkType="StringLengthRange" min="2" max="64" description="ID" />
-			<field name="name" type="string" checkType="StringLengthRange" min="2" max="16" description="名称" />
+			<field name="name" type="string" checkType="StringLengthRange" min="1" max="50" description="名称" />
 			<field name="account" type="reference" checkType="exist(account)" description="账户" />
 			<field name="previous_balance" type="money" checkType="MoneyAmount" min="0.0" max="1312.00" description="初期余额" />
 			<field name="type" type="string" checkType="StringLengthRange" min="1" max="8" description="类型" />
@@ -239,6 +240,25 @@
 			<field name="level" type="string" checkType="StringLengthRange" min="3" max="28" description="水平" />
 			<field name="url" type="string" checkType="StringLengthRange" min="11" max="168" description="url" />
 			<field name="form" type="reference" checkType="exist(generic_form)" description="形式" />
+			<field name="version" type="int" checkType="IntegerRange" min="0" max="Integer.MAX_VALUE" description="版本" />
+		</fields>
+	</table>
+
+	<table name="candidate_container_data">
+		<fields>
+			<field name="id" nullable="false" type="string" checkType="StringLengthRange" min="2" max="64" description="ID" />
+			<field name="name" type="string" checkType="StringLengthRange" min="2" max="28" description="名称" />
+			<field name="version" type="int" checkType="IntegerRange" min="0" max="Integer.MAX_VALUE" description="版本" />
+		</fields>
+	</table>
+
+	<table name="candidate_element_data">
+		<fields>
+			<field name="id" nullable="false" type="string" checkType="StringLengthRange" min="2" max="64" description="ID" />
+			<field name="name" type="string" checkType="StringLengthRange" min="1" max="200" description="名称" />
+			<field name="type" type="string" checkType="StringLengthRange" min="1" max="200" description="类型" />
+			<field name="image" type="string_image" checkType="Image" min="0" max="512" description="图片" />
+			<field name="container" type="reference" checkType="exist(candidate_container)" description="容器" />
 			<field name="version" type="int" checkType="IntegerRange" min="0" max="Integer.MAX_VALUE" description="版本" />
 		</fields>
 	</table>

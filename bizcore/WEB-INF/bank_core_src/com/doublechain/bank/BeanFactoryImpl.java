@@ -21,6 +21,8 @@ import com.doublechain.bank.formmessage.FormMessage;
 import com.doublechain.bank.formfieldmessage.FormFieldMessage;
 import com.doublechain.bank.formfield.FormField;
 import com.doublechain.bank.formaction.FormAction;
+import com.doublechain.bank.candidatecontainer.CandidateContainer;
+import com.doublechain.bank.candidateelement.CandidateElement;
 
 public class BeanFactoryImpl{
 
@@ -117,6 +119,16 @@ public class BeanFactoryImpl{
 
 	public FormAction createFormAction(Map<String,Object> options){
 		return new FormAction();
+	}
+
+
+	public CandidateContainer createCandidateContainer(Map<String,Object> options){
+		return new CandidateContainer();
+	}
+
+
+	public CandidateElement createCandidateElement(Map<String,Object> options){
+		return new CandidateElement();
 	}
 
 

@@ -61,6 +61,12 @@ import com.doublechain.bank.formfield.FormFieldTokens;
 import com.doublechain.bank.formaction.FormAction;
 import com.doublechain.bank.formaction.FormActionDAO;
 import com.doublechain.bank.formaction.FormActionTokens;
+import com.doublechain.bank.candidatecontainer.CandidateContainer;
+import com.doublechain.bank.candidatecontainer.CandidateContainerDAO;
+import com.doublechain.bank.candidatecontainer.CandidateContainerTokens;
+import com.doublechain.bank.candidateelement.CandidateElement;
+import com.doublechain.bank.candidateelement.CandidateElementDAO;
+import com.doublechain.bank.candidateelement.CandidateElementTokens;
 
 public class DAOGroup {
 
@@ -101,6 +107,10 @@ public class DAOGroup {
 	protected FormFieldDAO formFieldDAO;
 
 	protected FormActionDAO formActionDAO;
+
+	protected CandidateContainerDAO candidateContainerDAO;
+
+	protected CandidateElementDAO candidateElementDAO;
 
 	
 
@@ -253,6 +263,22 @@ public class DAOGroup {
 	}
 	public void setFormActionDAO(FormActionDAO dao){
 		this.formActionDAO = dao;
+	}
+
+
+	public CandidateContainerDAO getCandidateContainerDAO(){
+		return this.candidateContainerDAO;
+	}
+	public void setCandidateContainerDAO(CandidateContainerDAO dao){
+		this.candidateContainerDAO = dao;
+	}
+
+
+	public CandidateElementDAO getCandidateElementDAO(){
+		return this.candidateElementDAO;
+	}
+	public void setCandidateElementDAO(CandidateElementDAO dao){
+		this.candidateElementDAO = dao;
 	}
 
 
@@ -624,6 +650,44 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getFormActionDAO().present((FormAction)data, tokens);
+			}
+		});
+
+		internalLoaderMap.put("CandidateContainer", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getCandidateContainerDAO().load(id, CandidateContainerTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCandidateContainerDAO().enhanceList((List<CandidateContainer>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateContainerDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateContainerDAO().present((CandidateContainer)data, tokens);
+			}
+		});
+
+		internalLoaderMap.put("CandidateElement", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getCandidateElementDAO().load(id, CandidateElementTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getCandidateElementDAO().enhanceList((List<CandidateElement>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateElementDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getCandidateElementDAO().present((CandidateElement)data, tokens);
 			}
 		});
 

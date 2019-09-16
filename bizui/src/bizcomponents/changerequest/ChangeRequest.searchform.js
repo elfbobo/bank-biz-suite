@@ -132,6 +132,7 @@ componentDidMount() {
      
 		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'contains', 'id'))
 		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'contains', 'name'))
+		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'contains', 'remoteIp'))
 		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'eq', 'platform'))
 
      
@@ -256,6 +257,14 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="名称">
               {getFieldDecorator('name')(
+                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+              )}
+            </FormItem>
+          </Col>
+
+          <Col md={8} sm={24}>
+            <FormItem label="远程Ip">
+              {getFieldDecorator('remoteIp')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>

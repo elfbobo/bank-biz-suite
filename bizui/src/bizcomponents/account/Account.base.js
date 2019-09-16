@@ -70,8 +70,8 @@ const renderItemOfList=(account,targetComponent)=>{
         <Description term="ID">{account.id}</Description> 
         <Description term="名称">{account.name}</Description> 
         <Description term="余额"><div style={{"color":"red"}}>{account.balance}</div></Description> 
-        <Description term="创建时间"><div>{ moment(account.createTime).format('YYYY-MM-DD')}</div></Description> 
-        <Description term="更新时间"><div>{ moment(account.updateTime).format('YYYY-MM-DD')}</div></Description> 
+        <Description term="创建时间"><div>{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="更新时间"><div>{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
 	
         
       </DescriptionList>

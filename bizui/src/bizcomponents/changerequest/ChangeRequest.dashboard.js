@@ -83,7 +83,8 @@ const internalSummaryOf = (changeRequest,targetComponent) =>{
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{changeRequest.id}</Description> 
 <Description term="名称">{changeRequest.name}</Description> 
-<Description term="创建时间">{ moment(changeRequest.createTime).format('YYYY-MM-DD')}</Description> 
+<Description term="创建时间">{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="远程Ip">{changeRequest.remoteIp}</Description> 
 	
         {buildTransferModal(changeRequest,targetComponent)}
       </DescriptionList>

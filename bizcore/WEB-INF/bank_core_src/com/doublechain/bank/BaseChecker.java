@@ -82,6 +82,7 @@ public class BaseChecker {
 		try {
 			return format.parse(doubleExpr).doubleValue();
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			throw new NumberFormatException("The value: "+ doubleExpr +" is not for a number");
 		}
 		

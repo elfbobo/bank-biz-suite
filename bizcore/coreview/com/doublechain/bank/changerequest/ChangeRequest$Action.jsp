@@ -20,6 +20,7 @@
 	<li><span>${userContext.localeMap['change_request.id']}</span> ${changeRequest.id}</li>
 <li><span>${userContext.localeMap['change_request.name']}</span> ${changeRequest.name}</li>
 <li><span>${userContext.localeMap['change_request.create_time']}</span> <fmt:formatDate pattern="yyyy-MM-dd" value="${changeRequest.createTime}" /></li>
+<li><span>${userContext.localeMap['change_request.remote_ip']}</span> ${changeRequest.remoteIp}</li>
 
 	
 	</ul>

@@ -90,8 +90,8 @@ const renderItemOfList=(secUser,targetComponent)=>{
         <Description term="微信Appid">{secUser.weixinAppid}</Description> 
         <Description term="访问令牌">{secUser.accessToken}</Description> 
         <Description term="验证码"><div style={{"color":"red"}}>{secUser.verificationCode}</div></Description> 
-        <Description term="验证码过期"><div>{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</div></Description> 
-        <Description term="最后登录时间"><div>{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</div></Description> 
+        <Description term="验证码过期"><div>{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="最后登录时间"><div>{ moment(secUser.lastLoginTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
         <Description term="当前状态">{secUser.currentStatus}</Description> 
 	
         
