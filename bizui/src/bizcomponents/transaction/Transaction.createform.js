@@ -17,9 +17,9 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '????',
-  amount: '87.92',
-  type: '??',
+  name: '存款交易',
+  amount: '107.33',
+  type: '存款',
   fromAccountId: 'A000001',
   toAccountId: 'A000001',
   changeRequestId: 'CR000001',
@@ -198,8 +198,8 @@ class TransactionCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}??`}
-        content={`${appLocaleName(userContext,"CreateNew")}??`}
+        title={`${appLocaleName(userContext,"CreateNew")}事务`}
+        content={`${appLocaleName(userContext,"CreateNew")}事务`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -211,7 +211,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -221,7 +221,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('amount', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="??" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="金额" />
                   )}
                 </Form.Item>
               </Col>
@@ -231,7 +231,7 @@ class TransactionCreateForm extends Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="类型" />
                   )}
                 </Form.Item>
               </Col>

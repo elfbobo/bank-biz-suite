@@ -17,7 +17,7 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '??????',
+  name: '银行模拟平台',
 }
 */
 
@@ -193,8 +193,8 @@ class PlatformCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}??`}
-        content={`${appLocaleName(userContext,"CreateNew")}??`}
+        title={`${appLocaleName(userContext,"CreateNew")}平台`}
+        content={`${appLocaleName(userContext,"CreateNew")}平台`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -206,7 +206,7 @@ class PlatformCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>

@@ -33,8 +33,8 @@ const internalSummaryOf = (platform,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{platform.id}</Description> 
-<Description term="??">{platform.name}</Description> 
-<Description term="??">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
+<Description term="名称">{platform.name}</Description> 
+<Description term="成立">{ moment(platform.founded).format('YYYY-MM-DD')}</Description> 
 	
       </DescriptionList>
 	)
@@ -61,7 +61,7 @@ class PlatformPermission extends Component {
     const  platform = this.props.platform
     const { id,displayName, changeRequestCount, accountCount } = platform
     const  returnURL = `/platform/${id}/dashboard`
-    const cardsData = {cardsName:"??",cardsFor: "platform",cardsSource: platform,displayName,returnURL,
+    const cardsData = {cardsName:"平台",cardsFor: "platform",cardsSource: platform,displayName,returnURL,
   		subItems: [
     
       	],

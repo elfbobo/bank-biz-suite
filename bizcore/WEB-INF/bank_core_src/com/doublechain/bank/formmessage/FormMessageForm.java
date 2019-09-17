@@ -128,7 +128,7 @@ public class FormMessageForm extends BaseForm {
 	
  	public FormMessageForm transferToAnotherFormAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherForm/formMessageId/");
 		this.addFormAction(action);
@@ -139,7 +139,7 @@ public class FormMessageForm extends BaseForm {
 
 	public FormMessageForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

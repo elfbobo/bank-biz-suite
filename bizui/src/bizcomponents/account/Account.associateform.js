@@ -18,8 +18,8 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '????',
-  balance: '108.35',
+  name: '张三账户',
+  balance: '90.15',
   platformId: 'P000001',
 }
 */
@@ -142,7 +142,7 @@ class AccountAssociateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -152,7 +152,7 @@ class AccountAssociateForm extends Component {
                   {getFieldDecorator('balance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="??" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="余额" />
                   )}
                 </Form.Item>
               </Col>

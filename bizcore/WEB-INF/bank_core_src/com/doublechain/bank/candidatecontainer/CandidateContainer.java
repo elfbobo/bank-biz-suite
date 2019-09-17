@@ -64,7 +64,7 @@ public class CandidateContainer extends BaseEntity implements  java.io.Serializa
 		return withId(id);
 	}
 	
-	// disconnect from all, ?????????????????????????????
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -180,7 +180,7 @@ public class CandidateContainer extends BaseEntity implements  java.io.Serializa
 		if(this.mCandidateElementList == null){
 			this.mCandidateElementList = new SmartList<CandidateElement>();
 			this.mCandidateElementList.setListInternalName (CANDIDATE_ELEMENT_LIST );
-			//???????????
+			//有名字，便于做权限控制
 		}
 		
 		return this.mCandidateElementList;	
@@ -235,7 +235,7 @@ public class CandidateContainer extends BaseEntity implements  java.io.Serializa
         
 	
 	}
-	//???
+	//断舍离
 	public  void breakWithCandidateElement(CandidateElement candidateElement){
 		
 		if(candidateElement == null){

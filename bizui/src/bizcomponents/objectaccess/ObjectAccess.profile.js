@@ -56,7 +56,7 @@ class ObjectAccessProfile extends Component {
     const  objectAccess = this.props.objectAccess;
     const { id,displayName,  } = objectAccess
     const  returnURL = `/objectAccess/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "objectAccess",cardsSource: objectAccess,displayName,returnURL,
+    const cardsData = {cardsName:"对象访问",cardsFor: "objectAccess",cardsSource: objectAccess,displayName,returnURL,
   		subItems: [
      
       	],

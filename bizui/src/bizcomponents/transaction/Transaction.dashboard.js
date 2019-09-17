@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
+import { Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
 import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -67,15 +67,27 @@ const internalSubListsOf = defaultSubListsOf
 
 const renderSettingDropDown = (cardsData,targetComponent)=>{
 
-  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
-        <Icon
-          type="setting"
-        />
-      </Dropdown>)
-
+  return (<div style={{float: 'right'}} >
+        <Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight" >
+       
+        <Button>
+        <Icon type="setting" theme="filled" twoToneColor="#00b" style={{color:'#3333b0'}}/> 设置  <Icon type="down"/>
+      </Button>
+      </Dropdown></div>)
 
 }
 
+const renderSettingMenuItem = (item,cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu.Item key={item.name}>
+      <Link to={`/transaction/${targetComponent.props.transaction.id}/list/${item.name}/${item.displayName}/`}>
+        <span>{item.displayName}</span>
+        </Link>
+        </Menu.Item>
+  )
+
+}
 const renderSettingMenu = (cardsData,targetComponent) =>{
 
   const userContext = null
@@ -83,9 +95,8 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
     	<Menu.Item key="profile">
   			<Link to={`/transaction/${targetComponent.props.transaction.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
 		</Menu.Item>
-		<Menu.Item key="permission">
-  			<Link to={`/transaction/${targetComponent.props.transaction.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
-			</Menu.Item>
+		<Menu.Divider />
+		{cardsData.subSettingItems.map(item=>renderSettingMenuItem(item,cardsData,targetComponent))}
 		</Menu>)
 
 }
@@ -107,24 +118,24 @@ const internalSummaryOf = (transaction,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{transaction.id}</Description> 
-<Description term="??">{transaction.name}</Description> 
-<Description term="???">{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
+<Description term="名称">{transaction.name}</Description> 
+<Description term="从账户">{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"???","account",TransactionService.requestCandidateFromAccount,
+  showTransferModel(targetComponent,"从账户","account",TransactionService.requestCandidateFromAccount,
 	      TransactionService.transferToAnotherFromAccount,"anotherFromAccountId",transaction.fromAccount?transaction.fromAccount.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="????">{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
+<Description term="承担责任">{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"????","account",TransactionService.requestCandidateToAccount,
+  showTransferModel(targetComponent,"承担责任","account",TransactionService.requestCandidateToAccount,
 	      TransactionService.transferToAnotherToAccount,"anotherToAccountId",transaction.toAccount?transaction.toAccount.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="??">{transaction.amount}</Description> 
-<Description term="??">{transaction.type}</Description> 
-<Description term="????">{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
+<Description term="金额">{transaction.amount}</Description> 
+<Description term="类型">{transaction.type}</Description> 
+<Description term="变更请求">{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"????","changeRequest",TransactionService.requestCandidateChangeRequest,
+  showTransferModel(targetComponent,"变更请求","changeRequest",TransactionService.requestCandidateChangeRequest,
 	      TransactionService.transferToAnotherChangeRequest,"anotherChangeRequestId",transaction.changeRequest?transaction.changeRequest.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -165,11 +176,15 @@ class TransactionDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"??",cardsFor: "transaction",
+    const cardsData = {cardsName:"事务",cardsFor: "transaction",
     	cardsSource: this.props.transaction,returnURL,displayName,
   		subItems: [
     
       	],
+   		subSettingItems: [
+    
+      	],     	
+      	
   	};
     
     const renderExtraHeader = this.props.renderExtraHeader || internalRenderExtraHeader

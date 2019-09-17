@@ -200,7 +200,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-         <FormItem label="??">
+         <FormItem label="名称">
            {getFieldDecorator('name')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -255,18 +255,15 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="名称">
               {getFieldDecorator('name')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="??">
-                  {getFieldDecorator('account', {
-                  ��initialValue: tryinit('account'),
-                   
-                  })(
+                    <Form.Item label="账户">
+                  {getFieldDecorator('account', {initialValue: tryinit('account')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('account')}
@@ -277,11 +274,8 @@ componentDidMount() {
                   )}
                 </Form.Item></Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="????">
-                  {getFieldDecorator('changeRequest', {
-                  ��initialValue: tryinit('changeRequest'),
-                   
-                  })(
+                    <Form.Item label="变更请求">
+                  {getFieldDecorator('changeRequest', {initialValue: tryinit('changeRequest')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('changeRequest')}

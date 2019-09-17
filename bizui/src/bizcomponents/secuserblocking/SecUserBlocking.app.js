@@ -159,11 +159,12 @@ class SecUserBlockingBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "安全用户",
       role: "secUser",
       data: state._secUserBlocking.secUserList,
       metaInfo: state._secUserBlocking.secUserListMetaInfo,
       count: state._secUserBlocking.secUserCount,
+      returnURL: `/secUserBlocking/${state._secUserBlocking.id}/dashboard`,
       currentPage: state._secUserBlocking.secUserCurrentPageNumber,
       searchFormParameters: state._secUserBlocking.secUserSearchFormParameters,
       searchParameters: {...state._secUserBlocking.searchParameters},
@@ -240,7 +241,7 @@ class SecUserBlockingBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

@@ -30,7 +30,14 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"????", menuFor: "accountChange",
+const menuData = {menuName:"账户变更", menuFor: "accountChange",
+  		subItems: [
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"账户变更", menuFor: "accountChange",
   		subItems: [
   
   		],
@@ -38,13 +45,13 @@ const menuData = {menuName:"????", menuFor: "accountChange",
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
-  account: '??',
-  previousBalance: '????',
-  type: '??',
-  amount: '??',
-  currentBalance: '????',
-  changeRequest: '????',
+  name: '名称',
+  account: '账户',
+  previousBalance: '初期余额',
+  type: '类型',
+  amount: '金额',
+  currentBalance: '当前余额',
+  changeRequest: '变更请求',
 
 }
 
@@ -68,14 +75,14 @@ const renderItemOfList=(accountChange,targetComponent)=>{
 	
       <DescriptionList  key={accountChange.id} size="small" col="4">
         <Description term="ID">{accountChange.id}</Description> 
-        <Description term="??">{accountChange.name}</Description> 
-        <Description term="??"><div>{accountChange.account==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.account.displayName}(${accountChange.account.id})`}
+        <Description term="名称">{accountChange.name}</Description> 
+        <Description term="账户"><div>{accountChange.account==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.account.displayName}(${accountChange.account.id})`}
         </div></Description>
-        <Description term="????"><div style={{"color":"red"}}>{accountChange.previousBalance}</div></Description> 
-        <Description term="??">{accountChange.type}</Description> 
-        <Description term="??"><div style={{"color":"red"}}>{accountChange.amount}</div></Description> 
-        <Description term="????"><div style={{"color":"red"}}>{accountChange.currentBalance}</div></Description> 
-        <Description term="????"><div>{accountChange.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.changeRequest.displayName}(${accountChange.changeRequest.id})`}
+        <Description term="初期余额"><div style={{"color":"red"}}>{accountChange.previousBalance}</div></Description> 
+        <Description term="类型">{accountChange.type}</Description> 
+        <Description term="金额"><div style={{"color":"red"}}>{accountChange.amount}</div></Description> 
+        <Description term="当前余额"><div style={{"color":"red"}}>{accountChange.currentBalance}</div></Description> 
+        <Description term="变更请求"><div>{accountChange.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${accountChange.changeRequest.displayName}(${accountChange.changeRequest.id})`}
         </div></Description>
 	
         

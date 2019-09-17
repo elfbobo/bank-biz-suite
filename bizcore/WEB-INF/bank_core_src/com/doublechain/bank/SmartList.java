@@ -13,17 +13,17 @@ import java.util.function.Consumer;
 /*
  * 
  * 
-SmartList??List?????BaseEntity?
+SmartList实现List接口，继承BaseEntity。
 
-?????????????????????????LinkedList???????????????List????????????
+可以统计操作类型，如果从中间插入和删除过多，就改成LinkedList，以此来改善性能，而且在构造改List的时候无须初始化一个数组
 
-??BaseEntity???????actionList?message??
+继承BaseEntity之后就可以使用actionList和message了。
 
-actionList - ?????????????????
-message - ????????????
-count??????????
-toRemoveList??????????
-facetList????????
+actionList - 构造界面上可以操作的按钮更容易了。
+message - 有什么要告诉前台，更容易
+count，对列表条数进行统计
+toRemoveList，保存将要删除的元素
+facetList，动态过滤器列表
  * 
  * */
 public class SmartList<E  extends BaseEntity> extends BaseEntity implements List<E> {
@@ -59,7 +59,7 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 	public void setAccessible(boolean accessible) {
 		this.accessible = accessible;
 	}
-	private boolean accessible = true;//???????????
+	private boolean accessible = true;//当前用户有无该列表权限
 	
 
 	private String listInternalName;
@@ -90,7 +90,7 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 		if(smartList instanceof LinkedList){
 			return;
 		}
-		//?????LinkedList?????LinkedList?
+		//一旦切换到LinkedList，只有使用LinkedList了
 		if(counter > SWITCH_COUNT){
 			List<E> tempList = new LinkedList<E>();
 			tempList.addAll(smartList);
@@ -160,7 +160,7 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 
 	public <T> T[] toArray(T[] a) {
 		ensureSmartList();
-		tryToKeepArrayListList();// ?????ArrayList??????????LinkedList???
+		tryToKeepArrayListList();// 有利于使用ArrayList的操作，则减少切换到LinkedList的机会
 		return smartList.toArray(a);
 	}
 
@@ -258,7 +258,7 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 		}
 		ensureSmartList();
 		if(index < this.size()){
-			//??index??????????????????????????????Linkedlist?
+			//如果index不在最后一个位置上，则是从头或者中间开始设置，可以开始试着往Linkedlist转
 			this.tryToSwithToLinkedList();
 		}
 		return smartList.addAll(index, c);
@@ -291,14 +291,14 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 
 	public E get(int index) {
 		ensureSmartList();
-		tryToKeepArrayListList();// ?????ArrayList??????????LinkedList???
+		tryToKeepArrayListList();// 有利于使用ArrayList的操作，则减少切换到LinkedList的机会
 		return smartList.get(index);
 	}
 
 	public E set(int index, E element) {
 		ensureSmartList();
 		if(index < this.size()){
-			//??index??????????????????????????????Linkedlist?
+			//如果index不在最后一个位置上，则是从头或者中间开始设置，可以开始试着往Linkedlist转
 			this.tryToSwithToLinkedList();
 		}
 		return smartList.set(index, element);
@@ -307,7 +307,7 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 	public void add(int index, E element) {
 		ensureSmartList();
 		if(index < this.size()){
-			//??index??????????????????????????????Linkedlist?
+			//如果index不在最后一个位置上，则是从头或者中间开始设置，可以开始试着往Linkedlist转
 			this.tryToSwithToLinkedList();
 		}
 		smartList.add(index, element);
@@ -317,7 +317,7 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 		
 		ensureSmartList();
 		if(index < this.size()){
-			//??index??????????????????????????????Linkedlist?
+			//如果index不在最后一个位置上，则是从头或者中间开始删除，可以开始试着往Linkedlist转
 			this.tryToSwithToLinkedList();
 		}
 		return smartList.remove(index);
@@ -340,18 +340,18 @@ public class SmartList<E  extends BaseEntity> extends BaseEntity implements List
 
 	public ListIterator<E> listIterator(int index) {
 		ensureSmartList();
-		tryToKeepArrayListList();// ?????ArrayList??????????LinkedList???
+		tryToKeepArrayListList();// 有利于使用ArrayList的操作，则减少切换到LinkedList的机会
 		return smartList.listIterator(index);
 	}
 
 	public List<E> subList(int fromIndex, int toIndex) {
 		ensureSmartList();
-		tryToKeepArrayListList();// ?????ArrayList??????????LinkedList???
+		tryToKeepArrayListList();// 有利于使用ArrayList的操作，则减少切换到LinkedList的机会
 		return smartList.subList(fromIndex, toIndex);
 	}
 	public SmartList<E> subListOf(int fromIndex, int toIndex) {
 		ensureSmartList();
-		tryToKeepArrayListList();// ?????ArrayList??????????LinkedList???
+		tryToKeepArrayListList();// 有利于使用ArrayList的操作，则减少切换到LinkedList的机会
 		
 		SmartList<E> newSmartList = new SmartList<E>();
 		newSmartList.addAll(smartList.subList(fromIndex, toIndex));

@@ -17,8 +17,8 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '????',
-  balance: '100.95',
+  name: '张三账户',
+  balance: '87.14',
   platformId: 'P000001',
 }
 */
@@ -195,8 +195,8 @@ class AccountCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}??`}
-        content={`${appLocaleName(userContext,"CreateNew")}??`}
+        title={`${appLocaleName(userContext,"CreateNew")}账户`}
+        content={`${appLocaleName(userContext,"CreateNew")}账户`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -208,7 +208,7 @@ class AccountCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -218,7 +218,7 @@ class AccountCreateForm extends Component {
                   {getFieldDecorator('balance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="??" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="余额" />
                   )}
                 </Form.Item>
               </Col>

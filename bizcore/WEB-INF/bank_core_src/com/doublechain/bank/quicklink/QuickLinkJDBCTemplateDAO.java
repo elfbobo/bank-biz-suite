@@ -282,7 +282,7 @@ public class QuickLinkJDBCTemplateDAO extends BankBaseDAOImpl implements QuickLi
  
 		StatsItem createTimeStatsItem = new StatsItem();
 		//QuickLink.CREATE_TIME_PROPERTY
-		createTimeStatsItem.setDisplayName("????");
+		createTimeStatsItem.setDisplayName("快速链接");
 		createTimeStatsItem.setInternalName(formatKeyForDateLine(QuickLink.CREATE_TIME_PROPERTY));
 		createTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(QuickLink.CREATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(createTimeStatsItem);

@@ -274,7 +274,7 @@ class CandidateElementUpdateForm extends Component {
                     initialValue: selectedRow.name,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                     
                   )}
                 </Form.Item>
@@ -286,7 +286,7 @@ class CandidateElementUpdateForm extends Component {
                     initialValue: selectedRow.type,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="类型" />
                     
                   )}
                 </Form.Item>
@@ -307,7 +307,7 @@ class CandidateElementUpdateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <ImageComponent
-                  buttonTitle="??"
+                  buttonTitle="图片"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image')}
                   fileList={convertedImagesValues.image}

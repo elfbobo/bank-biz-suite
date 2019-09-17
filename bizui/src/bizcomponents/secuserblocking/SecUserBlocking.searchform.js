@@ -199,7 +199,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-         <FormItem label="?">
+         <FormItem label="谁">
            {getFieldDecorator('who')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -254,7 +254,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="?">
+            <FormItem label="谁">
               {getFieldDecorator('who')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -262,7 +262,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="评论">
               {getFieldDecorator('comments')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}

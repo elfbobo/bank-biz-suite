@@ -33,9 +33,9 @@ const internalSummaryOf = (secUserBlocking,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{secUserBlocking.id}</Description> 
-<Description term="?">{secUserBlocking.who}</Description> 
-<Description term="???">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD')}</Description> 
-<Description term="??">{secUserBlocking.comments}</Description> 
+<Description term="谁">{secUserBlocking.who}</Description> 
+<Description term="块时间">{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD')}</Description> 
+<Description term="评论">{secUserBlocking.comments}</Description> 
 	
       </DescriptionList>
 	)
@@ -62,7 +62,7 @@ class SecUserBlockingPermission extends Component {
     const  secUserBlocking = this.props.secUserBlocking
     const { id,displayName, secUserCount } = secUserBlocking
     const  returnURL = `/secUserBlocking/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "secUserBlocking",cardsSource: secUserBlocking,displayName,returnURL,
+    const cardsData = {cardsName:"用户屏蔽",cardsFor: "secUserBlocking",cardsSource: secUserBlocking,displayName,returnURL,
   		subItems: [
     
       	],

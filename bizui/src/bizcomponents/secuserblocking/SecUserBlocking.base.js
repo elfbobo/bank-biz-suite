@@ -30,18 +30,25 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"????", menuFor: "secUserBlocking",
+const menuData = {menuName:"用户屏蔽", menuFor: "secUserBlocking",
   		subItems: [
-  {name: 'secUserList', displayName:'????', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'secUserList', displayName:'安全用户', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"用户屏蔽", menuFor: "secUserBlocking",
+  		subItems: [
   
   		],
 }
 
 const fieldLabels = {
   id: 'ID',
-  who: '?',
-  blockTime: '???',
-  comments: '??',
+  who: '谁',
+  blockTime: '块时间',
+  comments: '评论',
 
 }
 
@@ -61,9 +68,9 @@ const renderItemOfList=(secUserBlocking,targetComponent)=>{
 	
       <DescriptionList  key={secUserBlocking.id} size="small" col="4">
         <Description term="ID">{secUserBlocking.id}</Description> 
-        <Description term="?">{secUserBlocking.who}</Description> 
-        <Description term="???"><div>{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="??">{secUserBlocking.comments}</Description> 
+        <Description term="谁">{secUserBlocking.who}</Description> 
+        <Description term="块时间"><div>{ moment(secUserBlocking.blockTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="评论">{secUserBlocking.comments}</Description> 
 	
         
       </DescriptionList>

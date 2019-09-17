@@ -12,7 +12,7 @@ import com.terapico.caf.viewcomponent.ButtonViewComponent;
 import com.terapico.caf.viewcomponent.FilterTabsViewComponent;
 import com.terapico.caf.viewcomponent.PopupViewComponent;
 
-// ??????????
+// 不包含支付相关的内容
 
 import com.terapico.utils.TextUtil;
 import com.doublechain.bank.secuser.SecUser;
@@ -54,7 +54,7 @@ public class BankBizUserContextImpl extends BankUserContextImpl{
 	public void checkOnlyCalledByLocalhost() throws Exception {
 		String ip = getRemoteIP();
 		if (!ip.equals("127.0.0.1") && isProductEnvironment()) {
-			throw new Exception("??????????");
+			throw new Exception("本接口只能在本地调用");
 		}
 	}
 	public void setEventResult(String eventName, int processResult) {
@@ -285,13 +285,13 @@ public class BankBizUserContextImpl extends BankUserContextImpl{
 			throws Exception {
 		if (!isProductEnvironment()) {
 			System.out.printf("send to %s: %s:%s\n", dest, template, String.valueOf(parameters));
-			return; // ??????
+			return; // 短信直接不发
 		}
 		super.sendMessage(dest, fromWho, template, parameters);
 	}
 	
-	// ?????????????, ?cookie???react-client? JWT header. ????????????????,???A
-	// href?header????.
+	// 这个对象仅用于在开发环境中, 用cookie来模拟react-client的 JWT header. 因为开发环境使用的是普通的浏览器,不能在A
+	// href的header中设置值.
 	protected Cookie[] cookies;
 
 	public Cookie[] getCookies() {

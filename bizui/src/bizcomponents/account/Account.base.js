@@ -30,23 +30,30 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"??", menuFor: "account",
+const menuData = {menuName:"账户", menuFor: "account",
   		subItems: [
-  {name: 'transactionListAsFromAccount', displayName:'??(???????)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'transactionListAsToAccount', displayName:'??(????????)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'nameChangeEventList', displayName:'??????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'accountChangeList', displayName:'????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'transactionListAsFromAccount', displayName:'事务(交易清单从帐户)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'transactionListAsToAccount', displayName:'事务(交易清单作为帐户)', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'nameChangeEventList', displayName:'名字更改事件', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'accountChangeList', displayName:'账户变更', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"账户", menuFor: "account",
+  		subItems: [
   
   		],
 }
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
-  balance: '??',
-  createTime: '????',
-  updateTime: '????',
-  platform: '??',
+  name: '名称',
+  balance: '余额',
+  createTime: '创建时间',
+  updateTime: '更新时间',
+  platform: '平台',
 
 }
 
@@ -68,10 +75,10 @@ const renderItemOfList=(account,targetComponent)=>{
 	
       <DescriptionList  key={account.id} size="small" col="4">
         <Description term="ID">{account.id}</Description> 
-        <Description term="??">{account.name}</Description> 
-        <Description term="??"><div style={{"color":"red"}}>{account.balance}</div></Description> 
-        <Description term="????"><div>{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="????"><div>{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="名称">{account.name}</Description> 
+        <Description term="余额"><div style={{"color":"red"}}>{account.balance}</div></Description> 
+        <Description term="创建时间"><div>{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="更新时间"><div>{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
 	
         
       </DescriptionList>

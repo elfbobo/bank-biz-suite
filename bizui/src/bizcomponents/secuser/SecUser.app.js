@@ -159,11 +159,12 @@ class SecUserBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "??????",
+      name: "用户应用程序",
       role: "userApp",
       data: state._secUser.userAppList,
       metaInfo: state._secUser.userAppListMetaInfo,
       count: state._secUser.userAppCount,
+      returnURL: `/secUser/${state._secUser.id}/dashboard`,
       currentPage: state._secUser.userAppCurrentPageNumber,
       searchFormParameters: state._secUser.userAppSearchFormParameters,
       searchParameters: {...state._secUser.searchParameters},
@@ -208,11 +209,12 @@ class SecUserBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "登录历史",
       role: "loginHistory",
       data: state._secUser.loginHistoryList,
       metaInfo: state._secUser.loginHistoryListMetaInfo,
       count: state._secUser.loginHistoryCount,
+      returnURL: `/secUser/${state._secUser.id}/dashboard`,
       currentPage: state._secUser.loginHistoryCurrentPageNumber,
       searchFormParameters: state._secUser.loginHistorySearchFormParameters,
       searchParameters: {...state._secUser.searchParameters},
@@ -293,7 +295,7 @@ class SecUserBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

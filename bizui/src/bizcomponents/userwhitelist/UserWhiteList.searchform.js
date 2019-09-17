@@ -200,7 +200,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-         <FormItem label="????">
+         <FormItem label="用户身份">
            {getFieldDecorator('userIdentity')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -255,7 +255,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="????">
+            <FormItem label="用户身份">
               {getFieldDecorator('userIdentity')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -263,18 +263,15 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??????">
+            <FormItem label="用户特殊功能">
               {getFieldDecorator('userSpecialFunctions')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="?">
-                  {getFieldDecorator('domain', {
-                  ��initialValue: tryinit('domain'),
-                   
-                  })(
+                    <Form.Item label="域">
+                  {getFieldDecorator('domain', {initialValue: tryinit('domain')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('domain')}

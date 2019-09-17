@@ -159,11 +159,12 @@ class UserDomainBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "?????",
+      name: "用户白名单",
       role: "userWhiteList",
       data: state._userDomain.userWhiteListList,
       metaInfo: state._userDomain.userWhiteListListMetaInfo,
       count: state._userDomain.userWhiteListCount,
+      returnURL: `/userDomain/${state._userDomain.id}/dashboard`,
       currentPage: state._userDomain.userWhiteListCurrentPageNumber,
       searchFormParameters: state._userDomain.userWhiteListSearchFormParameters,
       searchParameters: {...state._userDomain.searchParameters},
@@ -208,11 +209,12 @@ class UserDomainBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "安全用户",
       role: "secUser",
       data: state._userDomain.secUserList,
       metaInfo: state._userDomain.secUserListMetaInfo,
       count: state._userDomain.secUserCount,
+      returnURL: `/userDomain/${state._userDomain.id}/dashboard`,
       currentPage: state._userDomain.secUserCurrentPageNumber,
       searchFormParameters: state._userDomain.secUserSearchFormParameters,
       searchParameters: {...state._userDomain.searchParameters},
@@ -293,7 +295,7 @@ class UserDomainBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

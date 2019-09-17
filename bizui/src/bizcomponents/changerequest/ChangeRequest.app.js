@@ -159,11 +159,12 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "??",
+      name: "事务",
       role: "transaction",
       data: state._changeRequest.transactionList,
       metaInfo: state._changeRequest.transactionListMetaInfo,
       count: state._changeRequest.transactionCount,
+      returnURL: `/changeRequest/${state._changeRequest.id}/dashboard`,
       currentPage: state._changeRequest.transactionCurrentPageNumber,
       searchFormParameters: state._changeRequest.transactionSearchFormParameters,
       searchParameters: {...state._changeRequest.searchParameters},
@@ -208,11 +209,12 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "??????",
+      name: "名字更改事件",
       role: "nameChangeEvent",
       data: state._changeRequest.nameChangeEventList,
       metaInfo: state._changeRequest.nameChangeEventListMetaInfo,
       count: state._changeRequest.nameChangeEventCount,
+      returnURL: `/changeRequest/${state._changeRequest.id}/dashboard`,
       currentPage: state._changeRequest.nameChangeEventCurrentPageNumber,
       searchFormParameters: state._changeRequest.nameChangeEventSearchFormParameters,
       searchParameters: {...state._changeRequest.searchParameters},
@@ -257,11 +259,12 @@ class ChangeRequestBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "账户变更",
       role: "accountChange",
       data: state._changeRequest.accountChangeList,
       metaInfo: state._changeRequest.accountChangeListMetaInfo,
       count: state._changeRequest.accountChangeCount,
+      returnURL: `/changeRequest/${state._changeRequest.id}/dashboard`,
       currentPage: state._changeRequest.accountChangeCurrentPageNumber,
       searchFormParameters: state._changeRequest.accountChangeSearchFormParameters,
       searchParameters: {...state._changeRequest.searchParameters},
@@ -346,7 +349,7 @@ class ChangeRequestBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

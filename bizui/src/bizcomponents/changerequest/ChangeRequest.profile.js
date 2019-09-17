@@ -56,7 +56,7 @@ class ChangeRequestProfile extends Component {
     const  changeRequest = this.props.changeRequest;
     const { id,displayName, transactionCount, nameChangeEventCount, accountChangeCount } = changeRequest
     const  returnURL = `/changeRequest/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "changeRequest",cardsSource: changeRequest,displayName,returnURL,
+    const cardsData = {cardsName:"变更请求",cardsFor: "changeRequest",cardsSource: changeRequest,displayName,returnURL,
   		subItems: [
      
       	],

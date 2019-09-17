@@ -30,16 +30,23 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"?????", menuFor: "candidateContainer",
+const menuData = {menuName:"候选人容器", menuFor: "candidateContainer",
   		subItems: [
-  {name: 'candidateElementList', displayName:'?????', icon:'at',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'candidateElementList', displayName:'候选人元素', icon:'at',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"候选人容器", menuFor: "candidateContainer",
+  		subItems: [
   
   		],
 }
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
+  name: '名称',
 
 }
 
@@ -57,7 +64,7 @@ const renderItemOfList=(candidateContainer,targetComponent)=>{
 	
       <DescriptionList  key={candidateContainer.id} size="small" col="4">
         <Description term="ID">{candidateContainer.id}</Description> 
-        <Description term="??">{candidateContainer.name}</Description> 
+        <Description term="名称">{candidateContainer.name}</Description> 
 	
         
       </DescriptionList>

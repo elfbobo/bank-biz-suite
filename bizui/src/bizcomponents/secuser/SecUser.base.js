@@ -30,29 +30,36 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"????", menuFor: "secUser",
+const menuData = {menuName:"安全用户", menuFor: "secUser",
   		subItems: [
-  {name: 'userAppList', displayName:'??????', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'loginHistoryList', displayName:'????', icon:'history',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'userAppList', displayName:'用户应用程序', icon:'user',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'loginHistoryList', displayName:'登录历史', icon:'history',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"安全用户", menuFor: "secUser",
+  		subItems: [
   
   		],
 }
 
 const fieldLabels = {
   id: 'ID',
-  login: '??',
-  mobile: '????',
-  email: '????',
-  pwd: '??',
-  weixinOpenid: '??openid',
-  weixinAppid: '??Appid',
-  accessToken: '????',
-  verificationCode: '???',
-  verificationCodeExpire: '?????',
-  lastLoginTime: '??????',
-  domain: '?',
-  blocking: '??',
-  currentStatus: '????',
+  login: '登录',
+  mobile: '手机号码',
+  email: '电子邮件',
+  pwd: '密码',
+  weixinOpenid: '微信openid',
+  weixinAppid: '微信Appid',
+  accessToken: '访问令牌',
+  verificationCode: '验证码',
+  verificationCodeExpire: '验证码过期',
+  lastLoginTime: '最后登录时间',
+  domain: '域',
+  blocking: '屏蔽',
+  currentStatus: '当前状态',
 
 }
 
@@ -82,17 +89,17 @@ const renderItemOfList=(secUser,targetComponent)=>{
 	
       <DescriptionList  key={secUser.id} size="small" col="4">
         <Description term="ID">{secUser.id}</Description> 
-        <Description term="??">{secUser.login}</Description> 
-        <Description term="????">{secUser.mobile}</Description> 
-        <Description term="????">{secUser.email}</Description> 
-        <Description term="??">{secUser.pwd}</Description> 
-        <Description term="??openid">{secUser.weixinOpenid}</Description> 
-        <Description term="??Appid">{secUser.weixinAppid}</Description> 
-        <Description term="????">{secUser.accessToken}</Description> 
-        <Description term="???"><div style={{"color":"red"}}>{secUser.verificationCode}</div></Description> 
-        <Description term="?????"><div>{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="??????"><div>{ moment(secUser.lastLoginTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="????">{secUser.currentStatus}</Description> 
+        <Description term="登录">{secUser.login}</Description> 
+        <Description term="手机号码">{secUser.mobile}</Description> 
+        <Description term="电子邮件">{secUser.email}</Description> 
+        <Description term="密码">{secUser.pwd}</Description> 
+        <Description term="微信openid">{secUser.weixinOpenid}</Description> 
+        <Description term="微信Appid">{secUser.weixinAppid}</Description> 
+        <Description term="访问令牌">{secUser.accessToken}</Description> 
+        <Description term="验证码"><div style={{"color":"red"}}>{secUser.verificationCode}</div></Description> 
+        <Description term="验证码过期"><div>{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="最后登录时间"><div>{ moment(secUser.lastLoginTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="当前状态">{secUser.currentStatus}</Description> 
 	
         
       </DescriptionList>

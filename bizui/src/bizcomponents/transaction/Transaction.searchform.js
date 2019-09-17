@@ -202,7 +202,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-         <FormItem label="??">
+         <FormItem label="名称">
            {getFieldDecorator('name')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -257,18 +257,15 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="名称">
               {getFieldDecorator('name')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="???">
-                  {getFieldDecorator('fromAccount', {
-                  ��initialValue: tryinit('fromAccount'),
-                   
-                  })(
+                    <Form.Item label="从账户">
+                  {getFieldDecorator('fromAccount', {initialValue: tryinit('fromAccount')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('fromAccount')}
@@ -279,11 +276,8 @@ componentDidMount() {
                   )}
                 </Form.Item></Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="????">
-                  {getFieldDecorator('toAccount', {
-                  ��initialValue: tryinit('toAccount'),
-                   
-                  })(
+                    <Form.Item label="承担责任">
+                  {getFieldDecorator('toAccount', {initialValue: tryinit('toAccount')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('toAccount')}
@@ -295,18 +289,15 @@ componentDidMount() {
                 </Form.Item></Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="类型">
               {getFieldDecorator('type')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="????">
-                  {getFieldDecorator('changeRequest', {
-                  ��initialValue: tryinit('changeRequest'),
-                   
-                  })(
+                    <Form.Item label="变更请求">
+                  {getFieldDecorator('changeRequest', {initialValue: tryinit('changeRequest')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('changeRequest')}

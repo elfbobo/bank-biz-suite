@@ -17,7 +17,7 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '??',
+  name: '存款',
   platformId: 'P000001',
 }
 */
@@ -194,8 +194,8 @@ class ChangeRequestCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}????`}
-        content={`${appLocaleName(userContext,"CreateNew")}????`}
+        title={`${appLocaleName(userContext,"CreateNew")}变更请求`}
+        content={`${appLocaleName(userContext,"CreateNew")}变更请求`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -207,7 +207,7 @@ class ChangeRequestCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>

@@ -18,11 +18,11 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '????',
-  previousBalance: '1000.46',
-  type: '??',
-  amount: '100.12',
-  currentBalance: '1100.02',
+  name: '存款交易',
+  previousBalance: '1188.97',
+  type: '存款',
+  amount: '88.58',
+  currentBalance: '1129.07',
   accountId: 'A000001',
   changeRequestId: 'CR000001',
 }
@@ -143,7 +143,7 @@ class AccountChangeAssociateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -153,7 +153,7 @@ class AccountChangeAssociateForm extends Component {
                   {getFieldDecorator('previousBalance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="????" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="初期余额" />
                   )}
                 </Form.Item>
               </Col>
@@ -163,7 +163,7 @@ class AccountChangeAssociateForm extends Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="类型" />
                   )}
                 </Form.Item>
               </Col>
@@ -173,7 +173,7 @@ class AccountChangeAssociateForm extends Component {
                   {getFieldDecorator('amount', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="??" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="金额" />
                   )}
                 </Form.Item>
               </Col>
@@ -183,7 +183,7 @@ class AccountChangeAssociateForm extends Component {
                   {getFieldDecorator('currentBalance', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="????" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="当前余额" />
                   )}
                 </Form.Item>
               </Col>

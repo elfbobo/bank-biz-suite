@@ -105,7 +105,7 @@ public class BaseFormProcessor {
 			return true;
 		}
 		if (data instanceof String) {
-			return ((String) data).isEmpty(); // ????????
+			return ((String) data).isEmpty(); // 有空格也算是不空
 		}
 		if (data instanceof Collection) {
 			return ((Collection) data).isEmpty();
@@ -121,7 +121,7 @@ public class BaseFormProcessor {
 
 	protected void loadRequestBody(String requestBody) throws Exception {
 		if (TextUtils.isBlank(requestBody)) {
-			throw new Exception("??????");
+			throw new Exception("请求参数为空");
 		}
 		this.requestBody = requestBody;
 		params = new ObjectMapper().readValue(requestBody, Map.class);
@@ -418,7 +418,7 @@ public class BaseFormProcessor {
 		return true;
 	}
 	public void verifyInputs() throws Exception{
-		throw new Exception(this.getClass().getSimpleName()+"???????verifyInputs()??");
+		throw new Exception(this.getClass().getSimpleName()+"没有实现自己的verifyInputs()方法");
 	}
 	protected boolean verifyIntegerInput(Integer input, int minValue, int maxValue) {
 		if (input == null) {

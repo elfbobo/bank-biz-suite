@@ -129,7 +129,7 @@ public class CandidateContainerForm extends BaseForm {
 
 	public CandidateContainerForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

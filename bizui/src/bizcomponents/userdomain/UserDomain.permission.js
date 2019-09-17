@@ -33,7 +33,7 @@ const internalSummaryOf = (userDomain,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{userDomain.id}</Description> 
-<Description term="??">{userDomain.name}</Description> 
+<Description term="名称">{userDomain.name}</Description> 
 	
       </DescriptionList>
 	)
@@ -60,9 +60,9 @@ class UserDomainPermission extends Component {
     const  userDomain = this.props.userDomain
     const { id,displayName, userWhiteListCount, secUserCount } = userDomain
     const  returnURL = `/userDomain/${id}/dashboard`
-    const cardsData = {cardsName:"???",cardsFor: "userDomain",cardsSource: userDomain,displayName,returnURL,
+    const cardsData = {cardsName:"用户域",cardsFor: "userDomain",cardsSource: userDomain,displayName,returnURL,
   		subItems: [
-{name: 'userWhiteListList', displayName:'?????',type:'userWhiteList',count:userWhiteListCount,addFunction: true, role: 'userWhiteList', data: userDomain.userWhiteListList},
+{name: 'userWhiteListList', displayName:'用户白名单',type:'userWhiteList',count:userWhiteListCount,addFunction: true, role: 'userWhiteList', data: userDomain.userWhiteListList},
     
       	],
   	};

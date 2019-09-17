@@ -1,7 +1,7 @@
 
 export const SYSTEM_SHORT_NAME = "bank" //Use for requssting different apps
-export const SYSTEM_LOCAL_NAME = "??????" 
-export const BUILD_TIIME="Mon Sep 16 22:48:38 CST 2019"
+export const SYSTEM_LOCAL_NAME = "银行模拟平台" 
+export const BUILD_TIIME="Tue Sep 17 14:44:17 CST 2019"
 export const MEDIA_UPLOAD_URL="https://www.doublechaintech.com/mss/upload.html"
 export const MEDIA_PREFIX="https://www.doublechaintech.com/mss/"
 

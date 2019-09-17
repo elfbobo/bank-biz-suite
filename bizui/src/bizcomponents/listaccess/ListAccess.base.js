@@ -30,7 +30,14 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"????", menuFor: "listAccess",
+const menuData = {menuName:"访问列表", menuFor: "listAccess",
+  		subItems: [
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"访问列表", menuFor: "listAccess",
   		subItems: [
   
   		],
@@ -38,14 +45,14 @@ const menuData = {menuName:"????", menuFor: "listAccess",
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
-  internalName: '????',
-  readPermission: '???',
-  createPermission: '????',
-  deletePermission: '????',
-  updatePermission: '????',
-  executionPermission: '????',
-  app: '????',
+  name: '名称',
+  internalName: '内部名称',
+  readPermission: '读权限',
+  createPermission: '创建权限',
+  deletePermission: '删除权限',
+  updatePermission: '更新权限',
+  executionPermission: '执行权限',
+  app: '应用程序',
 
 }
 
@@ -70,9 +77,9 @@ const renderItemOfList=(listAccess,targetComponent)=>{
 	
       <DescriptionList  key={listAccess.id} size="small" col="4">
         <Description term="ID">{listAccess.id}</Description> 
-        <Description term="??">{listAccess.name}</Description> 
-        <Description term="????">{listAccess.internalName}</Description> 
-        <Description term="????"><div>{listAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${listAccess.app.displayName}(${listAccess.app.id})`}
+        <Description term="名称">{listAccess.name}</Description> 
+        <Description term="内部名称">{listAccess.internalName}</Description> 
+        <Description term="应用程序"><div>{listAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${listAccess.app.displayName}(${listAccess.app.id})`}
         </div></Description>
 	
         

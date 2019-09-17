@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
+import { Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
 import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -67,15 +67,27 @@ const internalSubListsOf = defaultSubListsOf
 
 const renderSettingDropDown = (cardsData,targetComponent)=>{
 
-  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
-        <Icon
-          type="setting"
-        />
-      </Dropdown>)
-
+  return (<div style={{float: 'right'}} >
+        <Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight" >
+       
+        <Button>
+        <Icon type="setting" theme="filled" twoToneColor="#00b" style={{color:'#3333b0'}}/> 设置  <Icon type="down"/>
+      </Button>
+      </Dropdown></div>)
 
 }
 
+const renderSettingMenuItem = (item,cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu.Item key={item.name}>
+      <Link to={`/loginHistory/${targetComponent.props.loginHistory.id}/list/${item.name}/${item.displayName}/`}>
+        <span>{item.displayName}</span>
+        </Link>
+        </Menu.Item>
+  )
+
+}
 const renderSettingMenu = (cardsData,targetComponent) =>{
 
   const userContext = null
@@ -83,9 +95,8 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
     	<Menu.Item key="profile">
   			<Link to={`/loginHistory/${targetComponent.props.loginHistory.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
 		</Menu.Item>
-		<Menu.Item key="permission">
-  			<Link to={`/loginHistory/${targetComponent.props.loginHistory.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
-			</Menu.Item>
+		<Menu.Divider />
+		{cardsData.subSettingItems.map(item=>renderSettingMenuItem(item,cardsData,targetComponent))}
 		</Menu>)
 
 }
@@ -107,12 +118,12 @@ const internalSummaryOf = (loginHistory,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{loginHistory.id}</Description> 
-<Description term="????">{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="??IP">{loginHistory.fromIp}</Description> 
-<Description term="??">{loginHistory.description}</Description> 
-<Description term="????">{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
+<Description term="登录时间">{ moment(loginHistory.loginTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="来自IP">{loginHistory.fromIp}</Description> 
+<Description term="描述">{loginHistory.description}</Description> 
+<Description term="安全用户">{loginHistory.secUser==null?appLocaleName(userContext,"NotAssigned"):`${loginHistory.secUser.displayName}(${loginHistory.secUser.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"????","secUser",LoginHistoryService.requestCandidateSecUser,
+  showTransferModel(targetComponent,"安全用户","secUser",LoginHistoryService.requestCandidateSecUser,
 	      LoginHistoryService.transferToAnotherSecUser,"anotherSecUserId",loginHistory.secUser?loginHistory.secUser.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -153,11 +164,15 @@ class LoginHistoryDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"????",cardsFor: "loginHistory",
+    const cardsData = {cardsName:"登录历史",cardsFor: "loginHistory",
     	cardsSource: this.props.loginHistory,returnURL,displayName,
   		subItems: [
     
       	],
+   		subSettingItems: [
+    
+      	],     	
+      	
   	};
     
     const renderExtraHeader = this.props.renderExtraHeader || internalRenderExtraHeader

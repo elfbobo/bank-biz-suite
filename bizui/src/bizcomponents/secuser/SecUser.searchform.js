@@ -206,7 +206,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-         <FormItem label="??">
+         <FormItem label="登录">
            {getFieldDecorator('login')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -261,7 +261,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="登录">
               {getFieldDecorator('login')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -269,7 +269,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="????">
+            <FormItem label="手机号码">
               {getFieldDecorator('mobile')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -277,7 +277,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="????">
+            <FormItem label="电子邮件">
               {getFieldDecorator('email')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -285,7 +285,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="密码">
               {getFieldDecorator('pwd')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -293,7 +293,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??openid">
+            <FormItem label="微信openid">
               {getFieldDecorator('weixinOpenid')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -301,7 +301,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??Appid">
+            <FormItem label="微信Appid">
               {getFieldDecorator('weixinAppid')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -309,18 +309,15 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="????">
+            <FormItem label="访问令牌">
               {getFieldDecorator('accessToken')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="?">
-                  {getFieldDecorator('domain', {
-                  ��initialValue: tryinit('domain'),
-                   
-                  })(
+                    <Form.Item label="域">
+                  {getFieldDecorator('domain', {initialValue: tryinit('domain')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('domain')}
@@ -332,7 +329,7 @@ componentDidMount() {
                 </Form.Item></Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="????">
+            <FormItem label="当前状态">
               {getFieldDecorator('currentStatus')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}

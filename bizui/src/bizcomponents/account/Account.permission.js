@@ -33,10 +33,10 @@ const internalSummaryOf = (account,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{account.id}</Description> 
-<Description term="??">{account.name}</Description> 
-<Description term="??">{account.balance}</Description> 
-<Description term="????">{ moment(account.createTime).format('YYYY-MM-DD')}</Description> 
-<Description term="????">{ moment(account.updateTime).format('YYYY-MM-DD')}</Description> 
+<Description term="名称">{account.name}</Description> 
+<Description term="余额">{account.balance}</Description> 
+<Description term="创建时间">{ moment(account.createTime).format('YYYY-MM-DD')}</Description> 
+<Description term="更新时间">{ moment(account.updateTime).format('YYYY-MM-DD')}</Description> 
 	
       </DescriptionList>
 	)
@@ -63,7 +63,7 @@ class AccountPermission extends Component {
     const  account = this.props.account
     const { id,displayName, transactionAsFromAccountCount, transactionAsToAccountCount, nameChangeEventCount, accountChangeCount } = account
     const  returnURL = `/account/${id}/dashboard`
-    const cardsData = {cardsName:"??",cardsFor: "account",cardsSource: account,displayName,returnURL,
+    const cardsData = {cardsName:"账户",cardsFor: "account",cardsSource: account,displayName,returnURL,
   		subItems: [
     
       	],

@@ -273,7 +273,7 @@ class AccountChangeUpdateForm extends Component {
                     initialValue: selectedRow.name,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                     
                   )}
                 </Form.Item>
@@ -285,7 +285,7 @@ class AccountChangeUpdateForm extends Component {
                     initialValue: selectedRow.previousBalance,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="????" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="初期余额" />
                     
                   )}
                 </Form.Item>
@@ -297,7 +297,7 @@ class AccountChangeUpdateForm extends Component {
                     initialValue: selectedRow.type,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="类型" />
                     
                   )}
                 </Form.Item>
@@ -309,7 +309,7 @@ class AccountChangeUpdateForm extends Component {
                     initialValue: selectedRow.amount,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="??" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="金额" />
                     
                   )}
                 </Form.Item>
@@ -321,7 +321,7 @@ class AccountChangeUpdateForm extends Component {
                     initialValue: selectedRow.currentBalance,
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="????" />
+                    <Input size="large" prefix={`${appLocaleName(userContext,"Currency")}`} placeholder="当前余额" />
                     
                   )}
                 </Form.Item>

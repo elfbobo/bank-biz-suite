@@ -758,7 +758,7 @@ public class UserAppForm extends BaseForm {
 	
  	public UserAppForm transferToAnotherSecUserAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherSecUser/userAppId/");
 		this.addFormAction(action);
@@ -769,7 +769,7 @@ public class UserAppForm extends BaseForm {
 
 	public UserAppForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

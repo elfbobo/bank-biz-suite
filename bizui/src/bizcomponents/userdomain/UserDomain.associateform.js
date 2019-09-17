@@ -18,7 +18,7 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '????',
+  name: '用户区域',
 }
 */
 
@@ -139,7 +139,7 @@ class UserDomainAssociateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>

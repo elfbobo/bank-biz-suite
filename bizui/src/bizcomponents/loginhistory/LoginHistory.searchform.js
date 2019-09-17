@@ -200,7 +200,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-         <FormItem label="??IP">
+         <FormItem label="来自IP">
            {getFieldDecorator('fromIp')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -255,7 +255,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??IP">
+            <FormItem label="来自IP">
               {getFieldDecorator('fromIp')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -263,18 +263,15 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="描述">
               {getFieldDecorator('description')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="????">
-                  {getFieldDecorator('secUser', {
-                  ��initialValue: tryinit('secUser'),
-                   
-                  })(
+                    <Form.Item label="安全用户">
+                  {getFieldDecorator('secUser', {initialValue: tryinit('secUser')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('secUser')}

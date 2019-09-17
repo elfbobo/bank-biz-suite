@@ -1213,7 +1213,7 @@ public class UserAppJDBCTemplateDAO extends BankBaseDAOImpl implements UserAppDA
 	}
 	
 	
-	// ?????????????enhance??:QuickLink?app?QuickLinkList
+	// 需要一个加载引用我的对象的enhance方法:QuickLink的app的QuickLinkList
 	public SmartList<QuickLink> loadOurQuickLinkList(BankUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -1236,7 +1236,7 @@ public class UserAppJDBCTemplateDAO extends BankBaseDAOImpl implements UserAppDA
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:ListAccess?app?ListAccessList
+	// 需要一个加载引用我的对象的enhance方法:ListAccess的app的ListAccessList
 	public SmartList<ListAccess> loadOurListAccessList(BankUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -1259,7 +1259,7 @@ public class UserAppJDBCTemplateDAO extends BankBaseDAOImpl implements UserAppDA
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:ObjectAccess?app?ObjectAccessList
+	// 需要一个加载引用我的对象的enhance方法:ObjectAccess的app的ObjectAccessList
 	public SmartList<ObjectAccess> loadOurObjectAccessList(BankUserContext userContext, List<UserApp> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();

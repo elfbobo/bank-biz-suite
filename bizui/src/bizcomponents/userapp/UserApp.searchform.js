@@ -204,7 +204,7 @@ componentDidMount() {
        </Col>
 
        <Col md={8} sm={24}>
-         <FormItem label="??">
+         <FormItem label="标题">
            {getFieldDecorator('title')(
              <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
@@ -259,18 +259,15 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="标题">
               {getFieldDecorator('title')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
  <Col md={8} sm={24}>
-                    <Form.Item label="????">
-                  {getFieldDecorator('secUser', {
-                  ��initialValue: tryinit('secUser'),
-                   
-                  })(
+                    <Form.Item label="安全用户">
+                  {getFieldDecorator('secUser', {initialValue: tryinit('secUser')})(
                   
                   <SelectObject 
                     disabled={!availableForEdit('secUser')}
@@ -282,7 +279,7 @@ componentDidMount() {
                 </Form.Item></Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??????">
+            <FormItem label="应用程序图标">
               {getFieldDecorator('appIcon')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -290,7 +287,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="许可">
               {getFieldDecorator('permission')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -298,7 +295,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??????">
+            <FormItem label="访问对象类型">
               {getFieldDecorator('objectType')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -306,7 +303,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??ID">
+            <FormItem label="对象ID">
               {getFieldDecorator('objectId')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
@@ -314,7 +311,7 @@ componentDidMount() {
           </Col>
 
           <Col md={8} sm={24}>
-            <FormItem label="??">
+            <FormItem label="位置">
               {getFieldDecorator('location')(
                 <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}

@@ -69,7 +69,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, ?????????????????????????????
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 
 		this.changed = true;
@@ -228,7 +228,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 		if(this.mChangeRequestList == null){
 			this.mChangeRequestList = new SmartList<ChangeRequest>();
 			this.mChangeRequestList.setListInternalName (CHANGE_REQUEST_LIST );
-			//???????????
+			//有名字，便于做权限控制
 		}
 		
 		return this.mChangeRequestList;	
@@ -283,7 +283,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//???
+	//断舍离
 	public  void breakWithChangeRequest(ChangeRequest changeRequest){
 		
 		if(changeRequest == null){
@@ -335,7 +335,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 		if(this.mAccountList == null){
 			this.mAccountList = new SmartList<Account>();
 			this.mAccountList.setListInternalName (ACCOUNT_LIST );
-			//???????????
+			//有名字，便于做权限控制
 		}
 		
 		return this.mAccountList;	
@@ -390,7 +390,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//???
+	//断舍离
 	public  void breakWithAccount(Account account){
 		
 		if(account == null){

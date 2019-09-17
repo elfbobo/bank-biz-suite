@@ -77,7 +77,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, ?????????????????????????????
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setPlatform( null );
 
@@ -305,7 +305,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		if(this.mTransactionList == null){
 			this.mTransactionList = new SmartList<Transaction>();
 			this.mTransactionList.setListInternalName (TRANSACTION_LIST );
-			//???????????
+			//有名字，便于做权限控制
 		}
 		
 		return this.mTransactionList;	
@@ -360,7 +360,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//???
+	//断舍离
 	public  void breakWithTransaction(Transaction transaction){
 		
 		if(transaction == null){
@@ -412,7 +412,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		if(this.mNameChangeEventList == null){
 			this.mNameChangeEventList = new SmartList<NameChangeEvent>();
 			this.mNameChangeEventList.setListInternalName (NAME_CHANGE_EVENT_LIST );
-			//???????????
+			//有名字，便于做权限控制
 		}
 		
 		return this.mNameChangeEventList;	
@@ -467,7 +467,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//???
+	//断舍离
 	public  void breakWithNameChangeEvent(NameChangeEvent nameChangeEvent){
 		
 		if(nameChangeEvent == null){
@@ -519,7 +519,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		if(this.mAccountChangeList == null){
 			this.mAccountChangeList = new SmartList<AccountChange>();
 			this.mAccountChangeList.setListInternalName (ACCOUNT_CHANGE_LIST );
-			//???????????
+			//有名字，便于做权限控制
 		}
 		
 		return this.mAccountChangeList;	
@@ -574,7 +574,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
         
 	
 	}
-	//???
+	//断舍离
 	public  void breakWithAccountChange(AccountChange accountChange){
 		
 		if(accountChange == null){

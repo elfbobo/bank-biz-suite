@@ -33,8 +33,8 @@ const internalSummaryOf = (listAccess,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{listAccess.id}</Description> 
-<Description term="??">{listAccess.name}</Description> 
-<Description term="????">{listAccess.internalName}</Description> 
+<Description term="名称">{listAccess.name}</Description> 
+<Description term="内部名称">{listAccess.internalName}</Description> 
 	
       </DescriptionList>
 	)
@@ -61,7 +61,7 @@ class ListAccessPermission extends Component {
     const  listAccess = this.props.listAccess
     const { id,displayName,  } = listAccess
     const  returnURL = `/listAccess/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "listAccess",cardsSource: listAccess,displayName,returnURL,
+    const cardsData = {cardsName:"访问列表",cardsFor: "listAccess",cardsSource: listAccess,displayName,returnURL,
   		subItems: [
     
       	],

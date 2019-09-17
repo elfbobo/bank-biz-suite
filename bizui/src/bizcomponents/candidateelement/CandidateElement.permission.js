@@ -33,8 +33,8 @@ const internalSummaryOf = (candidateElement,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{candidateElement.id}</Description> 
-<Description term="??">{candidateElement.name}</Description> 
-<Description term="??">{candidateElement.type}</Description> 
+<Description term="名称">{candidateElement.name}</Description> 
+<Description term="类型">{candidateElement.type}</Description> 
 	
       </DescriptionList>
 	)
@@ -61,7 +61,7 @@ class CandidateElementPermission extends Component {
     const  candidateElement = this.props.candidateElement
     const { id,displayName,  } = candidateElement
     const  returnURL = `/candidateElement/${id}/dashboard`
-    const cardsData = {cardsName:"?????",cardsFor: "candidateElement",cardsSource: candidateElement,displayName,returnURL,
+    const cardsData = {cardsName:"候选人元素",cardsFor: "candidateElement",cardsSource: candidateElement,displayName,returnURL,
   		subItems: [
     
       	],

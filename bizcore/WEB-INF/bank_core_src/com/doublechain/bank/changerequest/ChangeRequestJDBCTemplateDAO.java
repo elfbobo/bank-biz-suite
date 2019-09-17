@@ -582,7 +582,7 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
  
 		StatsItem createTimeStatsItem = new StatsItem();
 		//ChangeRequest.CREATE_TIME_PROPERTY
-		createTimeStatsItem.setDisplayName("????");
+		createTimeStatsItem.setDisplayName("变更请求");
 		createTimeStatsItem.setInternalName(formatKeyForDateLine(ChangeRequest.CREATE_TIME_PROPERTY));
 		createTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ChangeRequest.CREATE_TIME_PROPERTY),filterKey,emptyOptions));
 		info.addItem(createTimeStatsItem);
@@ -1397,7 +1397,7 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 	}
 	
 	
-	// ?????????????enhance??:Transaction?changeRequest?TransactionList
+	// 需要一个加载引用我的对象的enhance方法:Transaction的changeRequest的TransactionList
 	public SmartList<Transaction> loadOurTransactionList(BankUserContext userContext, List<ChangeRequest> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -1420,7 +1420,7 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:NameChangeEvent?changeRequest?NameChangeEventList
+	// 需要一个加载引用我的对象的enhance方法:NameChangeEvent的changeRequest的NameChangeEventList
 	public SmartList<NameChangeEvent> loadOurNameChangeEventList(BankUserContext userContext, List<ChangeRequest> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -1443,7 +1443,7 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:AccountChange?changeRequest?AccountChangeList
+	// 需要一个加载引用我的对象的enhance方法:AccountChange的changeRequest的AccountChangeList
 	public SmartList<AccountChange> loadOurAccountChangeList(BankUserContext userContext, List<ChangeRequest> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();

@@ -56,7 +56,7 @@ class ListAccessProfile extends Component {
     const  listAccess = this.props.listAccess;
     const { id,displayName,  } = listAccess
     const  returnURL = `/listAccess/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "listAccess",cardsSource: listAccess,displayName,returnURL,
+    const cardsData = {cardsName:"访问列表",cardsFor: "listAccess",cardsSource: listAccess,displayName,returnURL,
   		subItems: [
      
       	],

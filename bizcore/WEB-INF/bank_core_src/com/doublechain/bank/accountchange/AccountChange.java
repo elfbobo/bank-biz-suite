@@ -75,7 +75,7 @@ public class AccountChange extends BaseEntity implements  java.io.Serializable{
 		return withId(id);
 	}
 	
-	// disconnect from all, ?????????????????????????????
+	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
 		setAccount( null );
 		setChangeRequest( null );

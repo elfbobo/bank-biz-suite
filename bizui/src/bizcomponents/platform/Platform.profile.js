@@ -56,7 +56,7 @@ class PlatformProfile extends Component {
     const  platform = this.props.platform;
     const { id,displayName, changeRequestCount, accountCount } = platform
     const  returnURL = `/platform/${id}/dashboard`
-    const cardsData = {cardsName:"??",cardsFor: "platform",cardsSource: platform,displayName,returnURL,
+    const cardsData = {cardsName:"平台",cardsFor: "platform",cardsSource: platform,displayName,returnURL,
   		subItems: [
      
       	],

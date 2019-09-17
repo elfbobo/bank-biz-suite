@@ -862,7 +862,7 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 	}
 	
 	
-	// ?????????????enhance??:ChangeRequest?platform?ChangeRequestList
+	// 需要一个加载引用我的对象的enhance方法:ChangeRequest的platform的ChangeRequestList
 	public SmartList<ChangeRequest> loadOurChangeRequestList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -885,7 +885,7 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:Account?platform?AccountList
+	// 需要一个加载引用我的对象的enhance方法:Account的platform的AccountList
 	public SmartList<Account> loadOurAccountList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -985,7 +985,7 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		try {
 			result = this.getJdbcTemplateObject().queryForMap(sql, params);
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
-			// ??????null
+			// 空结果，返回null
 		}
 		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
 		return result;
@@ -996,7 +996,7 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		try {
 			result = this.getJdbcTemplateObject().queryForObject(sql, params, claxx);
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
-			// ??????null
+			// 空结果，返回null
 		}
 		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
 		return result;

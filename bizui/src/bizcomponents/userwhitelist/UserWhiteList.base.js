@@ -30,7 +30,14 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"?????", menuFor: "userWhiteList",
+const menuData = {menuName:"用户白名单", menuFor: "userWhiteList",
+  		subItems: [
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"用户白名单", menuFor: "userWhiteList",
   		subItems: [
   
   		],
@@ -38,9 +45,9 @@ const menuData = {menuName:"?????", menuFor: "userWhiteList",
 
 const fieldLabels = {
   id: 'ID',
-  userIdentity: '????',
-  userSpecialFunctions: '??????',
-  domain: '?',
+  userIdentity: '用户身份',
+  userSpecialFunctions: '用户特殊功能',
+  domain: '域',
 
 }
 
@@ -60,8 +67,8 @@ const renderItemOfList=(userWhiteList,targetComponent)=>{
 	
       <DescriptionList  key={userWhiteList.id} size="small" col="4">
         <Description term="ID">{userWhiteList.id}</Description> 
-        <Description term="????">{userWhiteList.userIdentity}</Description> 
-        <Description term="??????">{userWhiteList.userSpecialFunctions}</Description> 
+        <Description term="用户身份">{userWhiteList.userIdentity}</Description> 
+        <Description term="用户特殊功能">{userWhiteList.userSpecialFunctions}</Description> 
 	
         
       </DescriptionList>

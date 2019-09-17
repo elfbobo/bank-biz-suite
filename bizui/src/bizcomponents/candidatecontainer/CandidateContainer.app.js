@@ -159,11 +159,12 @@ class CandidateContainerBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "?????",
+      name: "候选人元素",
       role: "candidateElement",
       data: state._candidateContainer.candidateElementList,
       metaInfo: state._candidateContainer.candidateElementListMetaInfo,
       count: state._candidateContainer.candidateElementCount,
+      returnURL: `/candidateContainer/${state._candidateContainer.id}/dashboard`,
       currentPage: state._candidateContainer.candidateElementCurrentPageNumber,
       searchFormParameters: state._candidateContainer.candidateElementSearchFormParameters,
       searchParameters: {...state._candidateContainer.searchParameters},
@@ -240,7 +241,7 @@ class CandidateContainerBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

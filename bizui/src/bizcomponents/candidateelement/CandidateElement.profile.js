@@ -56,7 +56,7 @@ class CandidateElementProfile extends Component {
     const  candidateElement = this.props.candidateElement;
     const { id,displayName,  } = candidateElement
     const  returnURL = `/candidateElement/${id}/dashboard`
-    const cardsData = {cardsName:"?????",cardsFor: "candidateElement",cardsSource: candidateElement,displayName,returnURL,
+    const cardsData = {cardsName:"候选人元素",cardsFor: "candidateElement",cardsSource: candidateElement,displayName,returnURL,
   		subItems: [
      
       	],

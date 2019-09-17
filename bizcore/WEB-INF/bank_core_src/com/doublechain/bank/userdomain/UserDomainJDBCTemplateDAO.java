@@ -860,7 +860,7 @@ public class UserDomainJDBCTemplateDAO extends BankBaseDAOImpl implements UserDo
 	}
 	
 	
-	// ?????????????enhance??:UserWhiteList?domain?UserWhiteListList
+	// 需要一个加载引用我的对象的enhance方法:UserWhiteList的domain的UserWhiteListList
 	public SmartList<UserWhiteList> loadOurUserWhiteListList(BankUserContext userContext, List<UserDomain> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -883,7 +883,7 @@ public class UserDomainJDBCTemplateDAO extends BankBaseDAOImpl implements UserDo
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:SecUser?domain?SecUserList
+	// 需要一个加载引用我的对象的enhance方法:SecUser的domain的SecUserList
 	public SmartList<SecUser> loadOurSecUserList(BankUserContext userContext, List<UserDomain> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -983,7 +983,7 @@ public class UserDomainJDBCTemplateDAO extends BankBaseDAOImpl implements UserDo
 		try {
 			result = this.getJdbcTemplateObject().queryForMap(sql, params);
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
-			// ??????null
+			// 空结果，返回null
 		}
 		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
 		return result;
@@ -994,7 +994,7 @@ public class UserDomainJDBCTemplateDAO extends BankBaseDAOImpl implements UserDo
 		try {
 			result = this.getJdbcTemplateObject().queryForObject(sql, params, claxx);
 		} catch (org.springframework.dao.EmptyResultDataAccessException e) {
-			// ??????null
+			// 空结果，返回null
 		}
 		logSQLAndParameters("queryForObject", sql, params, result == null ? "not found" : String.valueOf(result));
 		return result;

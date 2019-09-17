@@ -1318,7 +1318,7 @@ public class GenericFormJDBCTemplateDAO extends BankBaseDAOImpl implements Gener
 	}
 	
 	
-	// ?????????????enhance??:FormMessage?form?FormMessageList
+	// 需要一个加载引用我的对象的enhance方法:FormMessage的form的FormMessageList
 	public SmartList<FormMessage> loadOurFormMessageList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -1341,7 +1341,7 @@ public class GenericFormJDBCTemplateDAO extends BankBaseDAOImpl implements Gener
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:FormFieldMessage?form?FormFieldMessageList
+	// 需要一个加载引用我的对象的enhance方法:FormFieldMessage的form的FormFieldMessageList
 	public SmartList<FormFieldMessage> loadOurFormFieldMessageList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -1364,7 +1364,7 @@ public class GenericFormJDBCTemplateDAO extends BankBaseDAOImpl implements Gener
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:FormField?form?FormFieldList
+	// 需要一个加载引用我的对象的enhance方法:FormField的form的FormFieldList
 	public SmartList<FormField> loadOurFormFieldList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();
@@ -1387,7 +1387,7 @@ public class GenericFormJDBCTemplateDAO extends BankBaseDAOImpl implements Gener
 		return loadedObjs;
 	}
 	
-	// ?????????????enhance??:FormAction?form?FormActionList
+	// 需要一个加载引用我的对象的enhance方法:FormAction的form的FormActionList
 	public SmartList<FormAction> loadOurFormActionList(BankUserContext userContext, List<GenericForm> us, Map<String,Object> options) throws Exception{
 		if (us == null || us.isEmpty()){
 			return new SmartList<>();

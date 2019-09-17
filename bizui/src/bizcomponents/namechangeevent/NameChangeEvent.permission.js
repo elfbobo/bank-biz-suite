@@ -33,7 +33,7 @@ const internalSummaryOf = (nameChangeEvent,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{nameChangeEvent.id}</Description> 
-<Description term="??">{nameChangeEvent.name}</Description> 
+<Description term="名称">{nameChangeEvent.name}</Description> 
 	
       </DescriptionList>
 	)
@@ -60,7 +60,7 @@ class NameChangeEventPermission extends Component {
     const  nameChangeEvent = this.props.nameChangeEvent
     const { id,displayName,  } = nameChangeEvent
     const  returnURL = `/nameChangeEvent/${id}/dashboard`
-    const cardsData = {cardsName:"??????",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,displayName,returnURL,
+    const cardsData = {cardsName:"名字更改事件",cardsFor: "nameChangeEvent",cardsSource: nameChangeEvent,displayName,returnURL,
   		subItems: [
     
       	],

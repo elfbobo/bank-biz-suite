@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
+import { Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
 import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -67,15 +67,27 @@ const internalSubListsOf = defaultSubListsOf
 
 const renderSettingDropDown = (cardsData,targetComponent)=>{
 
-  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
-        <Icon
-          type="setting"
-        />
-      </Dropdown>)
-
+  return (<div style={{float: 'right'}} >
+        <Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight" >
+       
+        <Button>
+        <Icon type="setting" theme="filled" twoToneColor="#00b" style={{color:'#3333b0'}}/> 设置  <Icon type="down"/>
+      </Button>
+      </Dropdown></div>)
 
 }
 
+const renderSettingMenuItem = (item,cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu.Item key={item.name}>
+      <Link to={`/objectAccess/${targetComponent.props.objectAccess.id}/list/${item.name}/${item.displayName}/`}>
+        <span>{item.displayName}</span>
+        </Link>
+        </Menu.Item>
+  )
+
+}
 const renderSettingMenu = (cardsData,targetComponent) =>{
 
   const userContext = null
@@ -83,9 +95,8 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
     	<Menu.Item key="profile">
   			<Link to={`/objectAccess/${targetComponent.props.objectAccess.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
 		</Menu.Item>
-		<Menu.Item key="permission">
-  			<Link to={`/objectAccess/${targetComponent.props.objectAccess.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
-			</Menu.Item>
+		<Menu.Divider />
+		{cardsData.subSettingItems.map(item=>renderSettingMenuItem(item,cardsData,targetComponent))}
 		</Menu>)
 
 }
@@ -107,20 +118,20 @@ const internalSummaryOf = (objectAccess,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{objectAccess.id}</Description> 
-<Description term="??">{objectAccess.name}</Description> 
-<Description term="??????">{objectAccess.objectType}</Description> 
-<Description term="??1">{objectAccess.list1}</Description> 
-<Description term="??2">{objectAccess.list2}</Description> 
-<Description term="??3">{objectAccess.list3}</Description> 
-<Description term="??4">{objectAccess.list4}</Description> 
-<Description term="??5">{objectAccess.list5}</Description> 
-<Description term="??6">{objectAccess.list6}</Description> 
-<Description term="??7">{objectAccess.list7}</Description> 
-<Description term="??8">{objectAccess.list8}</Description> 
-<Description term="??9">{objectAccess.list9}</Description> 
-<Description term="????">{objectAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${objectAccess.app.displayName}(${objectAccess.app.id})`}
+<Description term="名称">{objectAccess.name}</Description> 
+<Description term="访问对象类型">{objectAccess.objectType}</Description> 
+<Description term="列表1">{objectAccess.list1}</Description> 
+<Description term="列表2">{objectAccess.list2}</Description> 
+<Description term="列表3">{objectAccess.list3}</Description> 
+<Description term="列表4">{objectAccess.list4}</Description> 
+<Description term="列表5">{objectAccess.list5}</Description> 
+<Description term="列表6">{objectAccess.list6}</Description> 
+<Description term="列表7">{objectAccess.list7}</Description> 
+<Description term="列表8">{objectAccess.list8}</Description> 
+<Description term="列表9">{objectAccess.list9}</Description> 
+<Description term="应用程序">{objectAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${objectAccess.app.displayName}(${objectAccess.app.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"????","userApp",ObjectAccessService.requestCandidateApp,
+  showTransferModel(targetComponent,"应用程序","userApp",ObjectAccessService.requestCandidateApp,
 	      ObjectAccessService.transferToAnotherApp,"anotherAppId",objectAccess.app?objectAccess.app.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -161,11 +172,15 @@ class ObjectAccessDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"????",cardsFor: "objectAccess",
+    const cardsData = {cardsName:"对象访问",cardsFor: "objectAccess",
     	cardsSource: this.props.objectAccess,returnURL,displayName,
   		subItems: [
     
       	],
+   		subSettingItems: [
+    
+      	],     	
+      	
   	};
     
     const renderExtraHeader = this.props.renderExtraHeader || internalRenderExtraHeader

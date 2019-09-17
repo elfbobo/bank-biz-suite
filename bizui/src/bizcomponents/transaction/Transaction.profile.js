@@ -56,7 +56,7 @@ class TransactionProfile extends Component {
     const  transaction = this.props.transaction;
     const { id,displayName,  } = transaction
     const  returnURL = `/transaction/${id}/dashboard`
-    const cardsData = {cardsName:"??",cardsFor: "transaction",cardsSource: transaction,displayName,returnURL,
+    const cardsData = {cardsName:"事务",cardsFor: "transaction",cardsSource: transaction,displayName,returnURL,
   		subItems: [
      
       	],

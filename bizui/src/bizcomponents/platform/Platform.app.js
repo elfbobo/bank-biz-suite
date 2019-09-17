@@ -159,11 +159,12 @@ class PlatformBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "变更请求",
       role: "changeRequest",
       data: state._platform.changeRequestList,
       metaInfo: state._platform.changeRequestListMetaInfo,
       count: state._platform.changeRequestCount,
+      returnURL: `/platform/${state._platform.id}/dashboard`,
       currentPage: state._platform.changeRequestCurrentPageNumber,
       searchFormParameters: state._platform.changeRequestSearchFormParameters,
       searchParameters: {...state._platform.searchParameters},
@@ -208,11 +209,12 @@ class PlatformBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "??",
+      name: "账户",
       role: "account",
       data: state._platform.accountList,
       metaInfo: state._platform.accountListMetaInfo,
       count: state._platform.accountCount,
+      returnURL: `/platform/${state._platform.id}/dashboard`,
       currentPage: state._platform.accountCurrentPageNumber,
       searchFormParameters: state._platform.accountSearchFormParameters,
       searchParameters: {...state._platform.searchParameters},
@@ -293,7 +295,7 @@ class PlatformBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

@@ -17,8 +17,8 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '????????',
-  type: '????',
+  name: '搜索到的匹配字段',
+  type: '类型描述',
   containerId: 'CC000001',
 }
 */
@@ -196,8 +196,8 @@ class CandidateElementCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}?????`}
-        content={`${appLocaleName(userContext,"CreateNew")}?????`}
+        title={`${appLocaleName(userContext,"CreateNew")}候选人元素`}
+        content={`${appLocaleName(userContext,"CreateNew")}候选人元素`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -209,7 +209,7 @@ class CandidateElementCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -219,7 +219,7 @@ class CandidateElementCreateForm extends Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="类型" />
                   )}
                 </Form.Item>
               </Col>
@@ -245,7 +245,7 @@ class CandidateElementCreateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <ImageComponent
-                  buttonTitle="??"
+                  buttonTitle="图片"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'image')}
                   fileList={convertedImagesValues.image}

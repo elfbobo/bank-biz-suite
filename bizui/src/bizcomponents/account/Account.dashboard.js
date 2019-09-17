@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
+import { Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
 import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -67,15 +67,27 @@ const internalSubListsOf = defaultSubListsOf
 
 const renderSettingDropDown = (cardsData,targetComponent)=>{
 
-  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
-        <Icon
-          type="setting"
-        />
-      </Dropdown>)
-
+  return (<div style={{float: 'right'}} >
+        <Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight" >
+       
+        <Button>
+        <Icon type="setting" theme="filled" twoToneColor="#00b" style={{color:'#3333b0'}}/> 设置  <Icon type="down"/>
+      </Button>
+      </Dropdown></div>)
 
 }
 
+const renderSettingMenuItem = (item,cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu.Item key={item.name}>
+      <Link to={`/account/${targetComponent.props.account.id}/list/${item.name}/${item.displayName}/`}>
+        <span>{item.displayName}</span>
+        </Link>
+        </Menu.Item>
+  )
+
+}
 const renderSettingMenu = (cardsData,targetComponent) =>{
 
   const userContext = null
@@ -83,9 +95,8 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
     	<Menu.Item key="profile">
   			<Link to={`/account/${targetComponent.props.account.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
 		</Menu.Item>
-		<Menu.Item key="permission">
-  			<Link to={`/account/${targetComponent.props.account.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
-			</Menu.Item>
+		<Menu.Divider />
+		{cardsData.subSettingItems.map(item=>renderSettingMenuItem(item,cardsData,targetComponent))}
 		</Menu>)
 
 }
@@ -107,10 +118,10 @@ const internalSummaryOf = (account,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{account.id}</Description> 
-<Description term="??">{account.name}</Description> 
-<Description term="??">{account.balance}</Description> 
-<Description term="????">{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="????">{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="名称">{account.name}</Description> 
+<Description term="余额">{account.balance}</Description> 
+<Description term="创建时间">{ moment(account.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="更新时间">{ moment(account.updateTime).format('YYYY-MM-DD HH:mm')}</Description> 
 	
         {buildTransferModal(account,targetComponent)}
       </DescriptionList>
@@ -148,15 +159,19 @@ class AccountDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"??",cardsFor: "account",
+    const cardsData = {cardsName:"账户",cardsFor: "account",
     	cardsSource: this.props.account,returnURL,displayName,
   		subItems: [
-{name: 'transactionListAsFromAccount', displayName:'??(???????)',type:'transaction',count:transactionAsFromAccountCount,addFunction: true, role: 'transactionAsFromAccount', metaInfo: transactionListAsFromAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'transactionListAsToAccount', displayName:'??(????????)',type:'transaction',count:transactionAsToAccountCount,addFunction: true, role: 'transactionAsToAccount', metaInfo: transactionListAsToAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
-{name: 'nameChangeEventList', displayName:'??????',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
-{name: 'accountChangeList', displayName:'????',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
+{name: 'transactionListAsFromAccount', displayName:'事务(交易清单从帐户)',type:'transaction',count:transactionAsFromAccountCount,addFunction: true, role: 'transactionAsFromAccount', metaInfo: transactionListAsFromAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'transactionListAsToAccount', displayName:'事务(交易清单作为帐户)',type:'transaction',count:transactionAsToAccountCount,addFunction: true, role: 'transactionAsToAccount', metaInfo: transactionListAsToAccountMetaInfo, renderItem: GlobalComponents.TransactionBase.renderItemOfList},
+{name: 'nameChangeEventList', displayName:'名字更改事件',type:'nameChangeEvent',count:nameChangeEventCount,addFunction: true, role: 'nameChangeEvent', metaInfo: nameChangeEventListMetaInfo, renderItem: GlobalComponents.NameChangeEventBase.renderItemOfList},
+{name: 'accountChangeList', displayName:'账户变更',type:'accountChange',count:accountChangeCount,addFunction: true, role: 'accountChange', metaInfo: accountChangeListMetaInfo, renderItem: GlobalComponents.AccountChangeBase.renderItemOfList},
     
       	],
+   		subSettingItems: [
+    
+      	],     	
+      	
   	};
     
     const renderExtraHeader = this.props.renderExtraHeader || internalRenderExtraHeader

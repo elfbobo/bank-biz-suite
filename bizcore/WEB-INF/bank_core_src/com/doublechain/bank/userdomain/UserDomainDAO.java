@@ -62,10 +62,10 @@ public interface UserDomainDAO{
 	
 	public SmartList<UserDomain> queryList(String sql, Object ... parmeters);
 
-	// ?????????????enhance??:UserWhiteList?domain?UserWhiteListList
+	// 需要一个加载引用我的对象的enhance方法:UserWhiteList的domain的UserWhiteListList
 	public SmartList<UserWhiteList> loadOurUserWhiteListList(BankUserContext userContext, List<UserDomain> us, Map<String,Object> options) throws Exception;
 	
-	// ?????????????enhance??:SecUser?domain?SecUserList
+	// 需要一个加载引用我的对象的enhance方法:SecUser的domain的SecUserList
 	public SmartList<SecUser> loadOurSecUserList(BankUserContext userContext, List<UserDomain> us, Map<String,Object> options) throws Exception;
 	
 }

@@ -33,9 +33,9 @@ const internalSummaryOf = (loginHistory,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{loginHistory.id}</Description> 
-<Description term="????">{ moment(loginHistory.loginTime).format('YYYY-MM-DD')}</Description> 
-<Description term="??IP">{loginHistory.fromIp}</Description> 
-<Description term="??">{loginHistory.description}</Description> 
+<Description term="登录时间">{ moment(loginHistory.loginTime).format('YYYY-MM-DD')}</Description> 
+<Description term="来自IP">{loginHistory.fromIp}</Description> 
+<Description term="描述">{loginHistory.description}</Description> 
 	
       </DescriptionList>
 	)
@@ -62,7 +62,7 @@ class LoginHistoryPermission extends Component {
     const  loginHistory = this.props.loginHistory
     const { id,displayName,  } = loginHistory
     const  returnURL = `/loginHistory/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "loginHistory",cardsSource: loginHistory,displayName,returnURL,
+    const cardsData = {cardsName:"登录历史",cardsFor: "loginHistory",cardsSource: loginHistory,displayName,returnURL,
   		subItems: [
     
       	],

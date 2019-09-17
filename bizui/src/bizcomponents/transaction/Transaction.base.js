@@ -30,7 +30,14 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"??", menuFor: "transaction",
+const menuData = {menuName:"事务", menuFor: "transaction",
+  		subItems: [
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"事务", menuFor: "transaction",
   		subItems: [
   
   		],
@@ -38,12 +45,12 @@ const menuData = {menuName:"??", menuFor: "transaction",
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
-  fromAccount: '???',
-  toAccount: '????',
-  amount: '??',
-  type: '??',
-  changeRequest: '????',
+  name: '名称',
+  fromAccount: '从账户',
+  toAccount: '承担责任',
+  amount: '金额',
+  type: '类型',
+  changeRequest: '变更请求',
 
 }
 
@@ -66,14 +73,14 @@ const renderItemOfList=(transaction,targetComponent)=>{
 	
       <DescriptionList  key={transaction.id} size="small" col="4">
         <Description term="ID">{transaction.id}</Description> 
-        <Description term="??">{transaction.name}</Description> 
-        <Description term="???"><div>{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
+        <Description term="名称">{transaction.name}</Description> 
+        <Description term="从账户"><div>{transaction.fromAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.fromAccount.displayName}(${transaction.fromAccount.id})`}
         </div></Description>
-        <Description term="????"><div>{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
+        <Description term="承担责任"><div>{transaction.toAccount==null?appLocaleName(userContext,"NotAssigned"):`${transaction.toAccount.displayName}(${transaction.toAccount.id})`}
         </div></Description>
-        <Description term="??"><div style={{"color":"red"}}>{transaction.amount}</div></Description> 
-        <Description term="??">{transaction.type}</Description> 
-        <Description term="????"><div>{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
+        <Description term="金额"><div style={{"color":"red"}}>{transaction.amount}</div></Description> 
+        <Description term="类型">{transaction.type}</Description> 
+        <Description term="变更请求"><div>{transaction.changeRequest==null?appLocaleName(userContext,"NotAssigned"):`${transaction.changeRequest.displayName}(${transaction.changeRequest.id})`}
         </div></Description>
 	
         

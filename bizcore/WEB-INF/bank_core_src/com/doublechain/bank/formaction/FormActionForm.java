@@ -170,7 +170,7 @@ public class FormActionForm extends BaseForm {
 	
  	public FormActionForm transferToAnotherFormAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherForm/formActionId/");
 		this.addFormAction(action);
@@ -181,7 +181,7 @@ public class FormActionForm extends BaseForm {
 
 	public FormActionForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

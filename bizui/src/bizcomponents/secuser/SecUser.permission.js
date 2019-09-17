@@ -33,17 +33,17 @@ const internalSummaryOf = (secUser,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{secUser.id}</Description> 
-<Description term="??">{secUser.login}</Description> 
-<Description term="????">{secUser.mobile}</Description> 
-<Description term="????">{secUser.email}</Description> 
-<Description term="??">{secUser.pwd}</Description> 
-<Description term="??openid">{secUser.weixinOpenid}</Description> 
-<Description term="??Appid">{secUser.weixinAppid}</Description> 
-<Description term="????">{secUser.accessToken}</Description> 
-<Description term="???">{secUser.verificationCode}</Description> 
-<Description term="?????">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
-<Description term="??????">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</Description> 
-<Description term="????">{secUser.currentStatus}</Description> 
+<Description term="登录">{secUser.login}</Description> 
+<Description term="手机号码">{secUser.mobile}</Description> 
+<Description term="电子邮件">{secUser.email}</Description> 
+<Description term="密码">{secUser.pwd}</Description> 
+<Description term="微信openid">{secUser.weixinOpenid}</Description> 
+<Description term="微信Appid">{secUser.weixinAppid}</Description> 
+<Description term="访问令牌">{secUser.accessToken}</Description> 
+<Description term="验证码">{secUser.verificationCode}</Description> 
+<Description term="验证码过期">{ moment(secUser.verificationCodeExpire).format('YYYY-MM-DD')}</Description> 
+<Description term="最后登录时间">{ moment(secUser.lastLoginTime).format('YYYY-MM-DD')}</Description> 
+<Description term="当前状态">{secUser.currentStatus}</Description> 
 	
       </DescriptionList>
 	)
@@ -70,7 +70,7 @@ class SecUserPermission extends Component {
     const  secUser = this.props.secUser
     const { id,displayName, userAppCount, loginHistoryCount } = secUser
     const  returnURL = `/secUser/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "secUser",cardsSource: secUser,displayName,returnURL,
+    const cardsData = {cardsName:"安全用户",cardsFor: "secUser",cardsSource: secUser,displayName,returnURL,
   		subItems: [
     
       	],

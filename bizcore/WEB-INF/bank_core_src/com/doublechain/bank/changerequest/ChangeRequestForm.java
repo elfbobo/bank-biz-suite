@@ -408,7 +408,7 @@ public class ChangeRequestForm extends BaseForm {
 	
  	public ChangeRequestForm transferToAnotherPlatformAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherPlatform/changeRequestId/");
 		this.addFormAction(action);
@@ -419,7 +419,7 @@ public class ChangeRequestForm extends BaseForm {
 
 	public ChangeRequestForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

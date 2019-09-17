@@ -56,7 +56,7 @@ class AccountProfile extends Component {
     const  account = this.props.account;
     const { id,displayName, transactionAsFromAccountCount, transactionAsToAccountCount, nameChangeEventCount, accountChangeCount } = account
     const  returnURL = `/account/${id}/dashboard`
-    const cardsData = {cardsName:"??",cardsFor: "account",cardsSource: account,displayName,returnURL,
+    const cardsData = {cardsName:"账户",cardsFor: "account",cardsSource: account,displayName,returnURL,
   		subItems: [
      
       	],

@@ -33,8 +33,8 @@ const internalSummaryOf = (userWhiteList,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{userWhiteList.id}</Description> 
-<Description term="????">{userWhiteList.userIdentity}</Description> 
-<Description term="??????">{userWhiteList.userSpecialFunctions}</Description> 
+<Description term="用户身份">{userWhiteList.userIdentity}</Description> 
+<Description term="用户特殊功能">{userWhiteList.userSpecialFunctions}</Description> 
 	
       </DescriptionList>
 	)
@@ -61,7 +61,7 @@ class UserWhiteListPermission extends Component {
     const  userWhiteList = this.props.userWhiteList
     const { id,displayName,  } = userWhiteList
     const  returnURL = `/userWhiteList/${id}/dashboard`
-    const cardsData = {cardsName:"?????",cardsFor: "userWhiteList",cardsSource: userWhiteList,displayName,returnURL,
+    const cardsData = {cardsName:"用户白名单",cardsFor: "userWhiteList",cardsSource: userWhiteList,displayName,returnURL,
   		subItems: [
     
       	],

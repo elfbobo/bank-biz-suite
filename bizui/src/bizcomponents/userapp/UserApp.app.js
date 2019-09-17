@@ -159,11 +159,12 @@ class UserAppBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "快速链接",
       role: "quickLink",
       data: state._userApp.quickLinkList,
       metaInfo: state._userApp.quickLinkListMetaInfo,
       count: state._userApp.quickLinkCount,
+      returnURL: `/userApp/${state._userApp.id}/dashboard`,
       currentPage: state._userApp.quickLinkCurrentPageNumber,
       searchFormParameters: state._userApp.quickLinkSearchFormParameters,
       searchParameters: {...state._userApp.searchParameters},
@@ -208,11 +209,12 @@ class UserAppBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "访问列表",
       role: "listAccess",
       data: state._userApp.listAccessList,
       metaInfo: state._userApp.listAccessListMetaInfo,
       count: state._userApp.listAccessCount,
+      returnURL: `/userApp/${state._userApp.id}/dashboard`,
       currentPage: state._userApp.listAccessCurrentPageNumber,
       searchFormParameters: state._userApp.listAccessSearchFormParameters,
       searchParameters: {...state._userApp.searchParameters},
@@ -257,11 +259,12 @@ class UserAppBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "对象访问",
       role: "objectAccess",
       data: state._userApp.objectAccessList,
       metaInfo: state._userApp.objectAccessListMetaInfo,
       count: state._userApp.objectAccessCount,
+      returnURL: `/userApp/${state._userApp.id}/dashboard`,
       currentPage: state._userApp.objectAccessCurrentPageNumber,
       searchFormParameters: state._userApp.objectAccessSearchFormParameters,
       searchParameters: {...state._userApp.searchParameters},
@@ -346,7 +349,7 @@ class UserAppBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

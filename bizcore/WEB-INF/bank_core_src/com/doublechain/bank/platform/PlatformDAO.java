@@ -62,10 +62,10 @@ public interface PlatformDAO{
 	
 	public SmartList<Platform> queryList(String sql, Object ... parmeters);
 
-	// ?????????????enhance??:ChangeRequest?platform?ChangeRequestList
+	// 需要一个加载引用我的对象的enhance方法:ChangeRequest的platform的ChangeRequestList
 	public SmartList<ChangeRequest> loadOurChangeRequestList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception;
 	
-	// ?????????????enhance??:Account?platform?AccountList
+	// 需要一个加载引用我的对象的enhance方法:Account的platform的AccountList
 	public SmartList<Account> loadOurAccountList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception;
 	
 }

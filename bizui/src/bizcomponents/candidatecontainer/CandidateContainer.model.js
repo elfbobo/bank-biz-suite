@@ -137,7 +137,7 @@ export default {
       }
       const partialList = true
       const newState = {...data, partialList}
-      const location = { pathname: `/candidateContainer/${id}/list/CandidateElementList/?????+${appLocaleName(userContext,'List')}`, state: newState }
+      const location = { pathname: `/candidateContainer/${id}/list/CandidateElementList/候选人元素+${appLocaleName(userContext,'List')}`, state: newState }
       yield put(routerRedux.push(location))
     },
     *updateCandidateElement({ payload }, { call, put }) {
@@ -159,7 +159,7 @@ export default {
       if (continueNext) {
         return
       }
-      const location = { pathname: `/candidateContainer/${id}/list/CandidateElementList/???????`, state: newPlayload }
+      const location = { pathname: `/candidateContainer/${id}/list/CandidateElementList/候选人元素列表`, state: newPlayload }
       yield put(routerRedux.push(location))
     },
     *gotoNextCandidateElementUpdateRow({ payload }, { call, put }) {

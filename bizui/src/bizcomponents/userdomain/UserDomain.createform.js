@@ -17,7 +17,7 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '????',
+  name: '用户区域',
 }
 */
 
@@ -193,8 +193,8 @@ class UserDomainCreateForm extends Component {
     }
 	return (
       <PageHeaderLayout
-        title={`${appLocaleName(userContext,"CreateNew")}???`}
-        content={`${appLocaleName(userContext,"CreateNew")}???`}
+        title={`${appLocaleName(userContext,"CreateNew")}用户域`}
+        content={`${appLocaleName(userContext,"CreateNew")}用户域`}
         wrapperClassName={styles.advancedForm}
       >
         <Card title={appLocaleName(userContext,"BasicInfo")} className={styles.card} bordered={false}>
@@ -206,7 +206,7 @@ class UserDomainCreateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>

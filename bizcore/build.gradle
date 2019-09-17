@@ -32,10 +32,10 @@ sourceSets {
         java.outputDir = file('WEB-INF/classes')
         
         java {
-            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/bank_core_src', 'WEB-INF/bank_custom_src']
+            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/bank_core_src', 'WEB-INF/bank_custom_src','WEB-INF/bank_event_src']
         }
         resources {
-            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/bank_core_src', 'WEB-INF/bank_custom_src']
+            srcDirs = ['WEB-INF/caf_core_src', 'WEB-INF/caf_custom_src', 'WEB-INF/bank_core_src', 'WEB-INF/bank_custom_src','WEB-INF/bank_event_src']
         }
     }
     test {

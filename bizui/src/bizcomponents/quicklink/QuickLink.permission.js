@@ -33,10 +33,10 @@ const internalSummaryOf = (quickLink,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{quickLink.id}</Description> 
-<Description term="??">{quickLink.name}</Description> 
-<Description term="??">{quickLink.icon}</Description> 
-<Description term="?????">{quickLink.linkTarget}</Description> 
-<Description term="????">{ moment(quickLink.createTime).format('YYYY-MM-DD')}</Description> 
+<Description term="名称">{quickLink.name}</Description> 
+<Description term="图标">{quickLink.icon}</Description> 
+<Description term="链接的目标">{quickLink.linkTarget}</Description> 
+<Description term="创建时间">{ moment(quickLink.createTime).format('YYYY-MM-DD')}</Description> 
 	
       </DescriptionList>
 	)
@@ -63,7 +63,7 @@ class QuickLinkPermission extends Component {
     const  quickLink = this.props.quickLink
     const { id,displayName,  } = quickLink
     const  returnURL = `/quickLink/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "quickLink",cardsSource: quickLink,displayName,returnURL,
+    const cardsData = {cardsName:"快速链接",cardsFor: "quickLink",cardsSource: quickLink,displayName,returnURL,
   		subItems: [
     
       	],

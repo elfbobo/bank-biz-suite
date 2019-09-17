@@ -254,7 +254,7 @@ public class QuickLinkForm extends BaseForm {
 	
  	public QuickLinkForm transferToAnotherAppAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("transferToAnotherApp/quickLinkId/");
 		this.addFormAction(action);
@@ -265,7 +265,7 @@ public class QuickLinkForm extends BaseForm {
 
 	public QuickLinkForm showAction(){
 		FormAction action = new FormAction();
-		action.setLabel("??");
+		action.setLabel("显示");
 		action.setLocaleKey("show");
 		action.setUrl("genericFormManager/show/title/desc/");
 		this.addFormAction(action);

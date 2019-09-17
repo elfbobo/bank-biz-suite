@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
+import { Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
 import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -45,11 +45,11 @@ const imageList =(listAccess)=>{return [
 const internalImageListOf = (listAccess) =>defaultImageListOf(listAccess,imageList)
 
 const optionList =(listAccess)=>{return [ 
-	  {"title":'???',"value":listAccess.readPermission,"parameterName":"readPermission"},
-  {"title":'????',"value":listAccess.createPermission,"parameterName":"createPermission"},
-  {"title":'????',"value":listAccess.deletePermission,"parameterName":"deletePermission"},
-  {"title":'????',"value":listAccess.updatePermission,"parameterName":"updatePermission"},
-  {"title":'????',"value":listAccess.executionPermission,"parameterName":"executionPermission"},
+	  {"title":'读权限',"value":listAccess.readPermission,"parameterName":"readPermission"},
+  {"title":'创建权限',"value":listAccess.createPermission,"parameterName":"createPermission"},
+  {"title":'删除权限',"value":listAccess.deletePermission,"parameterName":"deletePermission"},
+  {"title":'更新权限',"value":listAccess.updatePermission,"parameterName":"updatePermission"},
+  {"title":'执行权限',"value":listAccess.executionPermission,"parameterName":"executionPermission"},
 ]}
 
 const buildTransferModal = defaultBuildTransferModal
@@ -72,15 +72,27 @@ const internalSubListsOf = defaultSubListsOf
 
 const renderSettingDropDown = (cardsData,targetComponent)=>{
 
-  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
-        <Icon
-          type="setting"
-        />
-      </Dropdown>)
-
+  return (<div style={{float: 'right'}} >
+        <Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight" >
+       
+        <Button>
+        <Icon type="setting" theme="filled" twoToneColor="#00b" style={{color:'#3333b0'}}/> 设置  <Icon type="down"/>
+      </Button>
+      </Dropdown></div>)
 
 }
 
+const renderSettingMenuItem = (item,cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu.Item key={item.name}>
+      <Link to={`/listAccess/${targetComponent.props.listAccess.id}/list/${item.name}/${item.displayName}/`}>
+        <span>{item.displayName}</span>
+        </Link>
+        </Menu.Item>
+  )
+
+}
 const renderSettingMenu = (cardsData,targetComponent) =>{
 
   const userContext = null
@@ -88,9 +100,8 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
     	<Menu.Item key="profile">
   			<Link to={`/listAccess/${targetComponent.props.listAccess.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
 		</Menu.Item>
-		<Menu.Item key="permission">
-  			<Link to={`/listAccess/${targetComponent.props.listAccess.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
-			</Menu.Item>
+		<Menu.Divider />
+		{cardsData.subSettingItems.map(item=>renderSettingMenuItem(item,cardsData,targetComponent))}
 		</Menu>)
 
 }
@@ -112,11 +123,11 @@ const internalSummaryOf = (listAccess,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{listAccess.id}</Description> 
-<Description term="??">{listAccess.name}</Description> 
-<Description term="????">{listAccess.internalName}</Description> 
-<Description term="????">{listAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${listAccess.app.displayName}(${listAccess.app.id})`}
+<Description term="名称">{listAccess.name}</Description> 
+<Description term="内部名称">{listAccess.internalName}</Description> 
+<Description term="应用程序">{listAccess.app==null?appLocaleName(userContext,"NotAssigned"):`${listAccess.app.displayName}(${listAccess.app.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"????","userApp",ListAccessService.requestCandidateApp,
+  showTransferModel(targetComponent,"应用程序","userApp",ListAccessService.requestCandidateApp,
 	      ListAccessService.transferToAnotherApp,"anotherAppId",listAccess.app?listAccess.app.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -157,11 +168,15 @@ class ListAccessDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"????",cardsFor: "listAccess",
+    const cardsData = {cardsName:"访问列表",cardsFor: "listAccess",
     	cardsSource: this.props.listAccess,returnURL,displayName,
   		subItems: [
     
       	],
+   		subSettingItems: [
+    
+      	],     	
+      	
   	};
     
     const renderExtraHeader = this.props.renderExtraHeader || internalRenderExtraHeader

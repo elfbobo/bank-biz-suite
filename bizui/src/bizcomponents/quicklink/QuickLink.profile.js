@@ -56,7 +56,7 @@ class QuickLinkProfile extends Component {
     const  quickLink = this.props.quickLink;
     const { id,displayName,  } = quickLink
     const  returnURL = `/quickLink/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "quickLink",cardsSource: quickLink,displayName,returnURL,
+    const cardsData = {cardsName:"快速链接",cardsFor: "quickLink",cardsSource: quickLink,displayName,returnURL,
   		subItems: [
      
       	],

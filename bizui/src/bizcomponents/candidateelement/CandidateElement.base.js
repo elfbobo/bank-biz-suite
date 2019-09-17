@@ -30,7 +30,14 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"?????", menuFor: "candidateElement",
+const menuData = {menuName:"候选人元素", menuFor: "candidateElement",
+  		subItems: [
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"候选人元素", menuFor: "candidateElement",
   		subItems: [
   
   		],
@@ -38,10 +45,10 @@ const menuData = {menuName:"?????", menuFor: "candidateElement",
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
-  type: '??',
-  image: '??',
-  container: '??',
+  name: '名称',
+  type: '类型',
+  image: '图片',
+  container: '容器',
 
 }
 
@@ -49,7 +56,7 @@ const displayColumns = [
   { title: fieldLabels.id, debugtype: 'string', dataIndex: 'id', width: '8', render: (text, record)=>renderTextCell(text,record,'candidateElement') , sorter: true },
   { title: fieldLabels.name, debugtype: 'string', dataIndex: 'name', width: '12',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.type, debugtype: 'string', dataIndex: 'type', width: '8',render: (text, record)=>renderTextCell(text,record)},
-  { title: fieldLabels.image, dataIndex: 'image', render: (text, record) => renderImageCell(text,record,'??') },
+  { title: fieldLabels.image, dataIndex: 'image', render: (text, record) => renderImageCell(text,record,'图片') },
   { title: fieldLabels.container, dataIndex: 'container', render: (text, record) => renderReferenceCell(text, record), sorter:true},
 
 ]
@@ -62,8 +69,8 @@ const renderItemOfList=(candidateElement,targetComponent)=>{
 	
       <DescriptionList  key={candidateElement.id} size="small" col="4">
         <Description term="ID">{candidateElement.id}</Description> 
-        <Description term="??">{candidateElement.name}</Description> 
-        <Description term="??">{candidateElement.type}</Description> 
+        <Description term="名称">{candidateElement.name}</Description> 
+        <Description term="类型">{candidateElement.type}</Description> 
 	
         
       </DescriptionList>

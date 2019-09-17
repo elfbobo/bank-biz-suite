@@ -35,7 +35,7 @@ public class BankBaseViewScope {
 		.field(Platform.NAME_PROPERTY)
 		.field(Platform.FOUNDED_PROPERTY)
 		;
-	/** ??Platform??????????????????? */
+	/** 用于Platform的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getPlatformSummaryScope() {
 		return PlatformBaseSummaryScope;
 	}
@@ -47,7 +47,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
 		.field(ChangeRequest.REMOTE_IP_PROPERTY)
 		;
-	/** ??ChangeRequest??????????????????? */
+	/** 用于ChangeRequest的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getChangeRequestSummaryScope() {
 		return ChangeRequestBaseSummaryScope;
 	}
@@ -59,7 +59,7 @@ public class BankBaseViewScope {
 		.field(Transaction.AMOUNT_PROPERTY)
 		.field(Transaction.TYPE_PROPERTY)
 		;
-	/** ??Transaction??????????????????? */
+	/** 用于Transaction的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getTransactionSummaryScope() {
 		return TransactionBaseSummaryScope;
 	}
@@ -69,7 +69,7 @@ public class BankBaseViewScope {
 		.field(NameChangeEvent.ID_PROPERTY)
 		.field(NameChangeEvent.NAME_PROPERTY)
 		;
-	/** ??NameChangeEvent??????????????????? */
+	/** 用于NameChangeEvent的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getNameChangeEventSummaryScope() {
 		return NameChangeEventBaseSummaryScope;
 	}
@@ -82,7 +82,7 @@ public class BankBaseViewScope {
 		.field(Account.CREATE_TIME_PROPERTY)
 		.field(Account.UPDATE_TIME_PROPERTY)
 		;
-	/** ??Account??????????????????? */
+	/** 用于Account的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getAccountSummaryScope() {
 		return AccountBaseSummaryScope;
 	}
@@ -96,7 +96,7 @@ public class BankBaseViewScope {
 		.field(AccountChange.AMOUNT_PROPERTY)
 		.field(AccountChange.CURRENT_BALANCE_PROPERTY)
 		;
-	/** ??AccountChange??????????????????? */
+	/** 用于AccountChange的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getAccountChangeSummaryScope() {
 		return AccountChangeBaseSummaryScope;
 	}
@@ -106,7 +106,7 @@ public class BankBaseViewScope {
 		.field(UserDomain.ID_PROPERTY)
 		.field(UserDomain.NAME_PROPERTY)
 		;
-	/** ??UserDomain??????????????????? */
+	/** 用于UserDomain的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserDomainSummaryScope() {
 		return UserDomainBaseSummaryScope;
 	}
@@ -117,7 +117,7 @@ public class BankBaseViewScope {
 		.field(UserWhiteList.USER_IDENTITY_PROPERTY)
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
 		;
-	/** ??UserWhiteList??????????????????? */
+	/** 用于UserWhiteList的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserWhiteListSummaryScope() {
 		return UserWhiteListBaseSummaryScope;
 	}
@@ -137,7 +137,7 @@ public class BankBaseViewScope {
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
 		.field(SecUser.CURRENT_STATUS_PROPERTY)
 		;
-	/** ??SecUser??????????????????? */
+	/** 用于SecUser的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSecUserSummaryScope() {
 		return SecUserBaseSummaryScope;
 	}
@@ -149,7 +149,7 @@ public class BankBaseViewScope {
 		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
 		.field(SecUserBlocking.COMMENTS_PROPERTY)
 		;
-	/** ??SecUserBlocking??????????????????? */
+	/** 用于SecUserBlocking的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSecUserBlockingSummaryScope() {
 		return SecUserBlockingBaseSummaryScope;
 	}
@@ -165,7 +165,7 @@ public class BankBaseViewScope {
 		.field(UserApp.OBJECT_ID_PROPERTY)
 		.field(UserApp.LOCATION_PROPERTY)
 		;
-	/** ??UserApp??????????????????? */
+	/** 用于UserApp的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserAppSummaryScope() {
 		return UserAppBaseSummaryScope;
 	}
@@ -179,7 +179,7 @@ public class BankBaseViewScope {
 		.field(QuickLink.LINK_TARGET_PROPERTY)
 		.field(QuickLink.CREATE_TIME_PROPERTY)
 		;
-	/** ??QuickLink??????????????????? */
+	/** 用于QuickLink的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getQuickLinkSummaryScope() {
 		return QuickLinkBaseSummaryScope;
 	}
@@ -195,7 +195,7 @@ public class BankBaseViewScope {
 		.field(ListAccess.UPDATE_PERMISSION_PROPERTY)
 		.field(ListAccess.EXECUTION_PERMISSION_PROPERTY)
 		;
-	/** ??ListAccess??????????????????? */
+	/** 用于ListAccess的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getListAccessSummaryScope() {
 		return ListAccessBaseSummaryScope;
 	}
@@ -215,7 +215,7 @@ public class BankBaseViewScope {
 		.field(ObjectAccess.LIST8_PROPERTY)
 		.field(ObjectAccess.LIST9_PROPERTY)
 		;
-	/** ??ObjectAccess??????????????????? */
+	/** 用于ObjectAccess的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getObjectAccessSummaryScope() {
 		return ObjectAccessBaseSummaryScope;
 	}
@@ -227,7 +227,7 @@ public class BankBaseViewScope {
 		.field(LoginHistory.FROM_IP_PROPERTY)
 		.field(LoginHistory.DESCRIPTION_PROPERTY)
 		;
-	/** ??LoginHistory??????????????????? */
+	/** 用于LoginHistory的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getLoginHistorySummaryScope() {
 		return LoginHistoryBaseSummaryScope;
 	}
@@ -238,7 +238,7 @@ public class BankBaseViewScope {
 		.field(GenericForm.TITLE_PROPERTY)
 		.field(GenericForm.DESCRIPTION_PROPERTY)
 		;
-	/** ??GenericForm??????????????????? */
+	/** 用于GenericForm的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getGenericFormSummaryScope() {
 		return GenericFormBaseSummaryScope;
 	}
@@ -249,7 +249,7 @@ public class BankBaseViewScope {
 		.field(FormMessage.TITLE_PROPERTY)
 		.field(FormMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormMessage??????????????????? */
+	/** 用于FormMessage的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormMessageSummaryScope() {
 		return FormMessageBaseSummaryScope;
 	}
@@ -261,7 +261,7 @@ public class BankBaseViewScope {
 		.field(FormFieldMessage.PARAMETER_NAME_PROPERTY)
 		.field(FormFieldMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormFieldMessage??????????????????? */
+	/** 用于FormFieldMessage的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldMessageSummaryScope() {
 		return FormFieldMessageBaseSummaryScope;
 	}
@@ -285,7 +285,7 @@ public class BankBaseViewScope {
 		.field(FormField.CANDIDATE_VALUES_PROPERTY)
 		.field(FormField.SUGGEST_VALUES_PROPERTY)
 		;
-	/** ??FormField??????????????????? */
+	/** 用于FormField的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldSummaryScope() {
 		return FormFieldBaseSummaryScope;
 	}
@@ -299,7 +299,7 @@ public class BankBaseViewScope {
 		.field(FormAction.LEVEL_PROPERTY)
 		.field(FormAction.URL_PROPERTY)
 		;
-	/** ??FormAction??????????????????? */
+	/** 用于FormAction的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormActionSummaryScope() {
 		return FormActionBaseSummaryScope;
 	}
@@ -309,7 +309,7 @@ public class BankBaseViewScope {
 		.field(CandidateContainer.ID_PROPERTY)
 		.field(CandidateContainer.NAME_PROPERTY)
 		;
-	/** ??CandidateContainer??????????????????? */
+	/** 用于CandidateContainer的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getCandidateContainerSummaryScope() {
 		return CandidateContainerBaseSummaryScope;
 	}
@@ -321,7 +321,7 @@ public class BankBaseViewScope {
 		.field(CandidateElement.TYPE_PROPERTY)
 		.field(CandidateElement.IMAGE_PROPERTY)
 		;
-	/** ??CandidateElement??????????????????? */
+	/** 用于CandidateElement的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getCandidateElementSummaryScope() {
 		return CandidateElementBaseSummaryScope;
 	}
@@ -332,7 +332,7 @@ public class BankBaseViewScope {
 		.field(Platform.NAME_PROPERTY)
 		.field(Platform.FOUNDED_PROPERTY)
 		;
-	/** ??Platform?????????????????? */
+	/** 用于Platform的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getPlatformSecondaryListItemScope() {
 		return PlatformBaseSecondaryListItemScope;
 	}
@@ -344,7 +344,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
 		.field(ChangeRequest.REMOTE_IP_PROPERTY)
 		;
-	/** ??ChangeRequest?????????????????? */
+	/** 用于ChangeRequest的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getChangeRequestSecondaryListItemScope() {
 		return ChangeRequestBaseSecondaryListItemScope;
 	}
@@ -356,7 +356,7 @@ public class BankBaseViewScope {
 		.field(Transaction.AMOUNT_PROPERTY)
 		.field(Transaction.TYPE_PROPERTY)
 		;
-	/** ??Transaction?????????????????? */
+	/** 用于Transaction的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getTransactionSecondaryListItemScope() {
 		return TransactionBaseSecondaryListItemScope;
 	}
@@ -366,7 +366,7 @@ public class BankBaseViewScope {
 		.field(NameChangeEvent.ID_PROPERTY)
 		.field(NameChangeEvent.NAME_PROPERTY)
 		;
-	/** ??NameChangeEvent?????????????????? */
+	/** 用于NameChangeEvent的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getNameChangeEventSecondaryListItemScope() {
 		return NameChangeEventBaseSecondaryListItemScope;
 	}
@@ -379,7 +379,7 @@ public class BankBaseViewScope {
 		.field(Account.CREATE_TIME_PROPERTY)
 		.field(Account.UPDATE_TIME_PROPERTY)
 		;
-	/** ??Account?????????????????? */
+	/** 用于Account的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getAccountSecondaryListItemScope() {
 		return AccountBaseSecondaryListItemScope;
 	}
@@ -393,7 +393,7 @@ public class BankBaseViewScope {
 		.field(AccountChange.AMOUNT_PROPERTY)
 		.field(AccountChange.CURRENT_BALANCE_PROPERTY)
 		;
-	/** ??AccountChange?????????????????? */
+	/** 用于AccountChange的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getAccountChangeSecondaryListItemScope() {
 		return AccountChangeBaseSecondaryListItemScope;
 	}
@@ -403,7 +403,7 @@ public class BankBaseViewScope {
 		.field(UserDomain.ID_PROPERTY)
 		.field(UserDomain.NAME_PROPERTY)
 		;
-	/** ??UserDomain?????????????????? */
+	/** 用于UserDomain的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserDomainSecondaryListItemScope() {
 		return UserDomainBaseSecondaryListItemScope;
 	}
@@ -414,7 +414,7 @@ public class BankBaseViewScope {
 		.field(UserWhiteList.USER_IDENTITY_PROPERTY)
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
 		;
-	/** ??UserWhiteList?????????????????? */
+	/** 用于UserWhiteList的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserWhiteListSecondaryListItemScope() {
 		return UserWhiteListBaseSecondaryListItemScope;
 	}
@@ -434,7 +434,7 @@ public class BankBaseViewScope {
 		.field(SecUser.LAST_LOGIN_TIME_PROPERTY)
 		.field(SecUser.CURRENT_STATUS_PROPERTY)
 		;
-	/** ??SecUser?????????????????? */
+	/** 用于SecUser的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSecUserSecondaryListItemScope() {
 		return SecUserBaseSecondaryListItemScope;
 	}
@@ -446,7 +446,7 @@ public class BankBaseViewScope {
 		.field(SecUserBlocking.BLOCK_TIME_PROPERTY)
 		.field(SecUserBlocking.COMMENTS_PROPERTY)
 		;
-	/** ??SecUserBlocking?????????????????? */
+	/** 用于SecUserBlocking的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSecUserBlockingSecondaryListItemScope() {
 		return SecUserBlockingBaseSecondaryListItemScope;
 	}
@@ -462,7 +462,7 @@ public class BankBaseViewScope {
 		.field(UserApp.OBJECT_ID_PROPERTY)
 		.field(UserApp.LOCATION_PROPERTY)
 		;
-	/** ??UserApp?????????????????? */
+	/** 用于UserApp的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserAppSecondaryListItemScope() {
 		return UserAppBaseSecondaryListItemScope;
 	}
@@ -476,7 +476,7 @@ public class BankBaseViewScope {
 		.field(QuickLink.LINK_TARGET_PROPERTY)
 		.field(QuickLink.CREATE_TIME_PROPERTY)
 		;
-	/** ??QuickLink?????????????????? */
+	/** 用于QuickLink的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getQuickLinkSecondaryListItemScope() {
 		return QuickLinkBaseSecondaryListItemScope;
 	}
@@ -492,7 +492,7 @@ public class BankBaseViewScope {
 		.field(ListAccess.UPDATE_PERMISSION_PROPERTY)
 		.field(ListAccess.EXECUTION_PERMISSION_PROPERTY)
 		;
-	/** ??ListAccess?????????????????? */
+	/** 用于ListAccess的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getListAccessSecondaryListItemScope() {
 		return ListAccessBaseSecondaryListItemScope;
 	}
@@ -512,7 +512,7 @@ public class BankBaseViewScope {
 		.field(ObjectAccess.LIST8_PROPERTY)
 		.field(ObjectAccess.LIST9_PROPERTY)
 		;
-	/** ??ObjectAccess?????????????????? */
+	/** 用于ObjectAccess的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getObjectAccessSecondaryListItemScope() {
 		return ObjectAccessBaseSecondaryListItemScope;
 	}
@@ -524,7 +524,7 @@ public class BankBaseViewScope {
 		.field(LoginHistory.FROM_IP_PROPERTY)
 		.field(LoginHistory.DESCRIPTION_PROPERTY)
 		;
-	/** ??LoginHistory?????????????????? */
+	/** 用于LoginHistory的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getLoginHistorySecondaryListItemScope() {
 		return LoginHistoryBaseSecondaryListItemScope;
 	}
@@ -535,7 +535,7 @@ public class BankBaseViewScope {
 		.field(GenericForm.TITLE_PROPERTY)
 		.field(GenericForm.DESCRIPTION_PROPERTY)
 		;
-	/** ??GenericForm?????????????????? */
+	/** 用于GenericForm的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getGenericFormSecondaryListItemScope() {
 		return GenericFormBaseSecondaryListItemScope;
 	}
@@ -546,7 +546,7 @@ public class BankBaseViewScope {
 		.field(FormMessage.TITLE_PROPERTY)
 		.field(FormMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormMessage?????????????????? */
+	/** 用于FormMessage的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormMessageSecondaryListItemScope() {
 		return FormMessageBaseSecondaryListItemScope;
 	}
@@ -558,7 +558,7 @@ public class BankBaseViewScope {
 		.field(FormFieldMessage.PARAMETER_NAME_PROPERTY)
 		.field(FormFieldMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormFieldMessage?????????????????? */
+	/** 用于FormFieldMessage的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldMessageSecondaryListItemScope() {
 		return FormFieldMessageBaseSecondaryListItemScope;
 	}
@@ -582,7 +582,7 @@ public class BankBaseViewScope {
 		.field(FormField.CANDIDATE_VALUES_PROPERTY)
 		.field(FormField.SUGGEST_VALUES_PROPERTY)
 		;
-	/** ??FormField?????????????????? */
+	/** 用于FormField的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldSecondaryListItemScope() {
 		return FormFieldBaseSecondaryListItemScope;
 	}
@@ -596,7 +596,7 @@ public class BankBaseViewScope {
 		.field(FormAction.LEVEL_PROPERTY)
 		.field(FormAction.URL_PROPERTY)
 		;
-	/** ??FormAction?????????????????? */
+	/** 用于FormAction的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormActionSecondaryListItemScope() {
 		return FormActionBaseSecondaryListItemScope;
 	}
@@ -606,7 +606,7 @@ public class BankBaseViewScope {
 		.field(CandidateContainer.ID_PROPERTY)
 		.field(CandidateContainer.NAME_PROPERTY)
 		;
-	/** ??CandidateContainer?????????????????? */
+	/** 用于CandidateContainer的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getCandidateContainerSecondaryListItemScope() {
 		return CandidateContainerBaseSecondaryListItemScope;
 	}
@@ -618,7 +618,7 @@ public class BankBaseViewScope {
 		.field(CandidateElement.TYPE_PROPERTY)
 		.field(CandidateElement.IMAGE_PROPERTY)
 		;
-	/** ??CandidateElement?????????????????? */
+	/** 用于CandidateElement的父对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getCandidateElementSecondaryListItemScope() {
 		return CandidateElementBaseSecondaryListItemScope;
 	}
@@ -631,7 +631,7 @@ public class BankBaseViewScope {
 		.field(Platform.CHANGE_REQUEST_LIST, getChangeRequestSecondaryListItemScope())
 		.field(Platform.ACCOUNT_LIST, getAccountSecondaryListItemScope())
 		;
-	/** ??Platform???????????????? */
+	/** 用于Platform对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getPlatformListItemScope() {
 		return PlatformBaseListItemScope;
 	}
@@ -647,7 +647,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventSecondaryListItemScope())
 		.field(ChangeRequest.ACCOUNT_CHANGE_LIST, getAccountChangeSecondaryListItemScope())
 		;
-	/** ??ChangeRequest???????????????? */
+	/** 用于ChangeRequest对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getChangeRequestListItemScope() {
 		return ChangeRequestBaseListItemScope;
 	}
@@ -662,7 +662,7 @@ public class BankBaseViewScope {
 		.field(Transaction.TYPE_PROPERTY)
 		.field(Transaction.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
 		;
-	/** ??Transaction???????????????? */
+	/** 用于Transaction对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getTransactionListItemScope() {
 		return TransactionBaseListItemScope;
 	}
@@ -674,7 +674,7 @@ public class BankBaseViewScope {
 		.field(NameChangeEvent.ACCOUNT_PROPERTY, getAccountSummaryScope())
 		.field(NameChangeEvent.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
 		;
-	/** ??NameChangeEvent???????????????? */
+	/** 用于NameChangeEvent对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getNameChangeEventListItemScope() {
 		return NameChangeEventBaseListItemScope;
 	}
@@ -692,7 +692,7 @@ public class BankBaseViewScope {
 		.field(Account.NAME_CHANGE_EVENT_LIST, getNameChangeEventSecondaryListItemScope())
 		.field(Account.ACCOUNT_CHANGE_LIST, getAccountChangeSecondaryListItemScope())
 		;
-	/** ??Account???????????????? */
+	/** 用于Account对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getAccountListItemScope() {
 		return AccountBaseListItemScope;
 	}
@@ -708,7 +708,7 @@ public class BankBaseViewScope {
 		.field(AccountChange.CURRENT_BALANCE_PROPERTY)
 		.field(AccountChange.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
 		;
-	/** ??AccountChange???????????????? */
+	/** 用于AccountChange对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getAccountChangeListItemScope() {
 		return AccountChangeBaseListItemScope;
 	}
@@ -720,7 +720,7 @@ public class BankBaseViewScope {
 		.field(UserDomain.USER_WHITE_LIST_LIST, getUserWhiteListSecondaryListItemScope())
 		.field(UserDomain.SEC_USER_LIST, getSecUserSecondaryListItemScope())
 		;
-	/** ??UserDomain???????????????? */
+	/** 用于UserDomain对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserDomainListItemScope() {
 		return UserDomainBaseListItemScope;
 	}
@@ -732,7 +732,7 @@ public class BankBaseViewScope {
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
 		.field(UserWhiteList.DOMAIN_PROPERTY, getUserDomainSummaryScope())
 		;
-	/** ??UserWhiteList???????????????? */
+	/** 用于UserWhiteList对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserWhiteListListItemScope() {
 		return UserWhiteListBaseListItemScope;
 	}
@@ -756,7 +756,7 @@ public class BankBaseViewScope {
 		.field(SecUser.USER_APP_LIST, getUserAppSecondaryListItemScope())
 		.field(SecUser.LOGIN_HISTORY_LIST, getLoginHistorySecondaryListItemScope())
 		;
-	/** ??SecUser???????????????? */
+	/** 用于SecUser对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSecUserListItemScope() {
 		return SecUserBaseListItemScope;
 	}
@@ -769,7 +769,7 @@ public class BankBaseViewScope {
 		.field(SecUserBlocking.COMMENTS_PROPERTY)
 		.field(SecUserBlocking.SEC_USER_LIST, getSecUserSecondaryListItemScope())
 		;
-	/** ??SecUserBlocking???????????????? */
+	/** 用于SecUserBlocking对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getSecUserBlockingListItemScope() {
 		return SecUserBlockingBaseListItemScope;
 	}
@@ -789,7 +789,7 @@ public class BankBaseViewScope {
 		.field(UserApp.LIST_ACCESS_LIST, getListAccessSecondaryListItemScope())
 		.field(UserApp.OBJECT_ACCESS_LIST, getObjectAccessSecondaryListItemScope())
 		;
-	/** ??UserApp???????????????? */
+	/** 用于UserApp对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getUserAppListItemScope() {
 		return UserAppBaseListItemScope;
 	}
@@ -804,7 +804,7 @@ public class BankBaseViewScope {
 		.field(QuickLink.CREATE_TIME_PROPERTY)
 		.field(QuickLink.APP_PROPERTY, getUserAppSummaryScope())
 		;
-	/** ??QuickLink???????????????? */
+	/** 用于QuickLink对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getQuickLinkListItemScope() {
 		return QuickLinkBaseListItemScope;
 	}
@@ -821,7 +821,7 @@ public class BankBaseViewScope {
 		.field(ListAccess.EXECUTION_PERMISSION_PROPERTY)
 		.field(ListAccess.APP_PROPERTY, getUserAppSummaryScope())
 		;
-	/** ??ListAccess???????????????? */
+	/** 用于ListAccess对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getListAccessListItemScope() {
 		return ListAccessBaseListItemScope;
 	}
@@ -842,7 +842,7 @@ public class BankBaseViewScope {
 		.field(ObjectAccess.LIST9_PROPERTY)
 		.field(ObjectAccess.APP_PROPERTY, getUserAppSummaryScope())
 		;
-	/** ??ObjectAccess???????????????? */
+	/** 用于ObjectAccess对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getObjectAccessListItemScope() {
 		return ObjectAccessBaseListItemScope;
 	}
@@ -855,7 +855,7 @@ public class BankBaseViewScope {
 		.field(LoginHistory.DESCRIPTION_PROPERTY)
 		.field(LoginHistory.SEC_USER_PROPERTY, getSecUserSummaryScope())
 		;
-	/** ??LoginHistory???????????????? */
+	/** 用于LoginHistory对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getLoginHistoryListItemScope() {
 		return LoginHistoryBaseListItemScope;
 	}
@@ -870,7 +870,7 @@ public class BankBaseViewScope {
 		.field(GenericForm.FORM_FIELD_LIST, getFormFieldSecondaryListItemScope())
 		.field(GenericForm.FORM_ACTION_LIST, getFormActionSecondaryListItemScope())
 		;
-	/** ??GenericForm???????????????? */
+	/** 用于GenericForm对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getGenericFormListItemScope() {
 		return GenericFormBaseListItemScope;
 	}
@@ -882,7 +882,7 @@ public class BankBaseViewScope {
 		.field(FormMessage.FORM_PROPERTY, getGenericFormSummaryScope())
 		.field(FormMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormMessage???????????????? */
+	/** 用于FormMessage对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormMessageListItemScope() {
 		return FormMessageBaseListItemScope;
 	}
@@ -895,7 +895,7 @@ public class BankBaseViewScope {
 		.field(FormFieldMessage.FORM_PROPERTY, getGenericFormSummaryScope())
 		.field(FormFieldMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormFieldMessage???????????????? */
+	/** 用于FormFieldMessage对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldMessageListItemScope() {
 		return FormFieldMessageBaseListItemScope;
 	}
@@ -920,7 +920,7 @@ public class BankBaseViewScope {
 		.field(FormField.CANDIDATE_VALUES_PROPERTY)
 		.field(FormField.SUGGEST_VALUES_PROPERTY)
 		;
-	/** ??FormField???????????????? */
+	/** 用于FormField对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldListItemScope() {
 		return FormFieldBaseListItemScope;
 	}
@@ -935,7 +935,7 @@ public class BankBaseViewScope {
 		.field(FormAction.URL_PROPERTY)
 		.field(FormAction.FORM_PROPERTY, getGenericFormSummaryScope())
 		;
-	/** ??FormAction???????????????? */
+	/** 用于FormAction对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getFormActionListItemScope() {
 		return FormActionBaseListItemScope;
 	}
@@ -946,7 +946,7 @@ public class BankBaseViewScope {
 		.field(CandidateContainer.NAME_PROPERTY)
 		.field(CandidateContainer.CANDIDATE_ELEMENT_LIST, getCandidateElementSecondaryListItemScope())
 		;
-	/** ??CandidateContainer???????????????? */
+	/** 用于CandidateContainer对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getCandidateContainerListItemScope() {
 		return CandidateContainerBaseListItemScope;
 	}
@@ -959,7 +959,7 @@ public class BankBaseViewScope {
 		.field(CandidateElement.IMAGE_PROPERTY)
 		.field(CandidateElement.CONTAINER_PROPERTY, getCandidateContainerSummaryScope())
 		;
-	/** ??CandidateElement???????????????? */
+	/** 用于CandidateElement对象的列表时需要序列化的属性列表 */
 	public static SerializeScope getCandidateElementListItemScope() {
 		return CandidateElementBaseListItemScope;
 	}
@@ -972,7 +972,7 @@ public class BankBaseViewScope {
 		.field(Platform.CHANGE_REQUEST_LIST, getChangeRequestListItemScope())
 		.field(Platform.ACCOUNT_LIST, getAccountListItemScope())
 		;
-	/** ??Platform????????????????? */
+	/** 用于Platform对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getPlatformDetailScope() {
 		return PlatformBaseDetailScope;
 	}
@@ -988,7 +988,7 @@ public class BankBaseViewScope {
 		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventListItemScope())
 		.field(ChangeRequest.ACCOUNT_CHANGE_LIST, getAccountChangeListItemScope())
 		;
-	/** ??ChangeRequest????????????????? */
+	/** 用于ChangeRequest对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getChangeRequestDetailScope() {
 		return ChangeRequestBaseDetailScope;
 	}
@@ -1003,7 +1003,7 @@ public class BankBaseViewScope {
 		.field(Transaction.TYPE_PROPERTY)
 		.field(Transaction.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
 		;
-	/** ??Transaction????????????????? */
+	/** 用于Transaction对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getTransactionDetailScope() {
 		return TransactionBaseDetailScope;
 	}
@@ -1015,7 +1015,7 @@ public class BankBaseViewScope {
 		.field(NameChangeEvent.ACCOUNT_PROPERTY, getAccountSummaryScope())
 		.field(NameChangeEvent.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
 		;
-	/** ??NameChangeEvent????????????????? */
+	/** 用于NameChangeEvent对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getNameChangeEventDetailScope() {
 		return NameChangeEventBaseDetailScope;
 	}
@@ -1033,7 +1033,7 @@ public class BankBaseViewScope {
 		.field(Account.NAME_CHANGE_EVENT_LIST, getNameChangeEventListItemScope())
 		.field(Account.ACCOUNT_CHANGE_LIST, getAccountChangeListItemScope())
 		;
-	/** ??Account????????????????? */
+	/** 用于Account对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getAccountDetailScope() {
 		return AccountBaseDetailScope;
 	}
@@ -1049,7 +1049,7 @@ public class BankBaseViewScope {
 		.field(AccountChange.CURRENT_BALANCE_PROPERTY)
 		.field(AccountChange.CHANGE_REQUEST_PROPERTY, getChangeRequestSummaryScope())
 		;
-	/** ??AccountChange????????????????? */
+	/** 用于AccountChange对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getAccountChangeDetailScope() {
 		return AccountChangeBaseDetailScope;
 	}
@@ -1061,7 +1061,7 @@ public class BankBaseViewScope {
 		.field(UserDomain.USER_WHITE_LIST_LIST, getUserWhiteListListItemScope())
 		.field(UserDomain.SEC_USER_LIST, getSecUserListItemScope())
 		;
-	/** ??UserDomain????????????????? */
+	/** 用于UserDomain对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserDomainDetailScope() {
 		return UserDomainBaseDetailScope;
 	}
@@ -1073,7 +1073,7 @@ public class BankBaseViewScope {
 		.field(UserWhiteList.USER_SPECIAL_FUNCTIONS_PROPERTY)
 		.field(UserWhiteList.DOMAIN_PROPERTY, getUserDomainSummaryScope())
 		;
-	/** ??UserWhiteList????????????????? */
+	/** 用于UserWhiteList对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserWhiteListDetailScope() {
 		return UserWhiteListBaseDetailScope;
 	}
@@ -1097,7 +1097,7 @@ public class BankBaseViewScope {
 		.field(SecUser.USER_APP_LIST, getUserAppListItemScope())
 		.field(SecUser.LOGIN_HISTORY_LIST, getLoginHistoryListItemScope())
 		;
-	/** ??SecUser????????????????? */
+	/** 用于SecUser对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSecUserDetailScope() {
 		return SecUserBaseDetailScope;
 	}
@@ -1110,7 +1110,7 @@ public class BankBaseViewScope {
 		.field(SecUserBlocking.COMMENTS_PROPERTY)
 		.field(SecUserBlocking.SEC_USER_LIST, getSecUserListItemScope())
 		;
-	/** ??SecUserBlocking????????????????? */
+	/** 用于SecUserBlocking对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getSecUserBlockingDetailScope() {
 		return SecUserBlockingBaseDetailScope;
 	}
@@ -1130,7 +1130,7 @@ public class BankBaseViewScope {
 		.field(UserApp.LIST_ACCESS_LIST, getListAccessListItemScope())
 		.field(UserApp.OBJECT_ACCESS_LIST, getObjectAccessListItemScope())
 		;
-	/** ??UserApp????????????????? */
+	/** 用于UserApp对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getUserAppDetailScope() {
 		return UserAppBaseDetailScope;
 	}
@@ -1145,7 +1145,7 @@ public class BankBaseViewScope {
 		.field(QuickLink.CREATE_TIME_PROPERTY)
 		.field(QuickLink.APP_PROPERTY, getUserAppSummaryScope())
 		;
-	/** ??QuickLink????????????????? */
+	/** 用于QuickLink对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getQuickLinkDetailScope() {
 		return QuickLinkBaseDetailScope;
 	}
@@ -1162,7 +1162,7 @@ public class BankBaseViewScope {
 		.field(ListAccess.EXECUTION_PERMISSION_PROPERTY)
 		.field(ListAccess.APP_PROPERTY, getUserAppSummaryScope())
 		;
-	/** ??ListAccess????????????????? */
+	/** 用于ListAccess对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getListAccessDetailScope() {
 		return ListAccessBaseDetailScope;
 	}
@@ -1183,7 +1183,7 @@ public class BankBaseViewScope {
 		.field(ObjectAccess.LIST9_PROPERTY)
 		.field(ObjectAccess.APP_PROPERTY, getUserAppSummaryScope())
 		;
-	/** ??ObjectAccess????????????????? */
+	/** 用于ObjectAccess对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getObjectAccessDetailScope() {
 		return ObjectAccessBaseDetailScope;
 	}
@@ -1196,7 +1196,7 @@ public class BankBaseViewScope {
 		.field(LoginHistory.DESCRIPTION_PROPERTY)
 		.field(LoginHistory.SEC_USER_PROPERTY, getSecUserSummaryScope())
 		;
-	/** ??LoginHistory????????????????? */
+	/** 用于LoginHistory对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getLoginHistoryDetailScope() {
 		return LoginHistoryBaseDetailScope;
 	}
@@ -1211,7 +1211,7 @@ public class BankBaseViewScope {
 		.field(GenericForm.FORM_FIELD_LIST, getFormFieldListItemScope())
 		.field(GenericForm.FORM_ACTION_LIST, getFormActionListItemScope())
 		;
-	/** ??GenericForm????????????????? */
+	/** 用于GenericForm对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getGenericFormDetailScope() {
 		return GenericFormBaseDetailScope;
 	}
@@ -1223,7 +1223,7 @@ public class BankBaseViewScope {
 		.field(FormMessage.FORM_PROPERTY, getGenericFormSummaryScope())
 		.field(FormMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormMessage????????????????? */
+	/** 用于FormMessage对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormMessageDetailScope() {
 		return FormMessageBaseDetailScope;
 	}
@@ -1236,7 +1236,7 @@ public class BankBaseViewScope {
 		.field(FormFieldMessage.FORM_PROPERTY, getGenericFormSummaryScope())
 		.field(FormFieldMessage.LEVEL_PROPERTY)
 		;
-	/** ??FormFieldMessage????????????????? */
+	/** 用于FormFieldMessage对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldMessageDetailScope() {
 		return FormFieldMessageBaseDetailScope;
 	}
@@ -1261,7 +1261,7 @@ public class BankBaseViewScope {
 		.field(FormField.CANDIDATE_VALUES_PROPERTY)
 		.field(FormField.SUGGEST_VALUES_PROPERTY)
 		;
-	/** ??FormField????????????????? */
+	/** 用于FormField对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormFieldDetailScope() {
 		return FormFieldBaseDetailScope;
 	}
@@ -1276,7 +1276,7 @@ public class BankBaseViewScope {
 		.field(FormAction.URL_PROPERTY)
 		.field(FormAction.FORM_PROPERTY, getGenericFormSummaryScope())
 		;
-	/** ??FormAction????????????????? */
+	/** 用于FormAction对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getFormActionDetailScope() {
 		return FormActionBaseDetailScope;
 	}
@@ -1287,7 +1287,7 @@ public class BankBaseViewScope {
 		.field(CandidateContainer.NAME_PROPERTY)
 		.field(CandidateContainer.CANDIDATE_ELEMENT_LIST, getCandidateElementListItemScope())
 		;
-	/** ??CandidateContainer????????????????? */
+	/** 用于CandidateContainer对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getCandidateContainerDetailScope() {
 		return CandidateContainerBaseDetailScope;
 	}
@@ -1300,7 +1300,7 @@ public class BankBaseViewScope {
 		.field(CandidateElement.IMAGE_PROPERTY)
 		.field(CandidateElement.CONTAINER_PROPERTY, getCandidateContainerSummaryScope())
 		;
-	/** ??CandidateElement????????????????? */
+	/** 用于CandidateElement对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getCandidateElementDetailScope() {
 		return CandidateElementBaseDetailScope;
 	}

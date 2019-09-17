@@ -12,11 +12,16 @@ public class CustomRelation extends BaseRelation{
 		//replaceGenericRelation("ChangeRequest"                         , BaseRelation.TRUST_CHAIN_ALL, "platform");
 		//replaceGenericRelation("Transaction"                           , BaseRelation.TRUST_CHAIN_ALL, "fromAccount");
 		//replaceGenericRelation("Transaction"                           , BaseRelation.TRUST_CHAIN_ALL, "toAccount");
+		//replaceGenericRelation("Transaction"                           , BaseRelation.TRUST_CHAIN_ALL, "changeRequest");
+		//replaceGenericRelation("NameChangeEvent"                       , BaseRelation.TRUST_CHAIN_ALL, "account");
+		//replaceGenericRelation("NameChangeEvent"                       , BaseRelation.TRUST_CHAIN_ALL, "changeRequest");
 		//replaceGenericRelation("Account"                               , BaseRelation.TRUST_CHAIN_ALL, "platform");
 		//replaceGenericRelation("AccountChange"                         , BaseRelation.TRUST_CHAIN_ALL, "account");
+		//replaceGenericRelation("AccountChange"                         , BaseRelation.TRUST_CHAIN_ALL, "changeRequest");
 		//replaceGenericRelation("UserWhiteList"                         , BaseRelation.TRUST_CHAIN_ALL, "domain");
 		//replaceGenericRelation("SecUser"                               , BaseRelation.TRUST_CHAIN_ALL, "domain");
 		//replaceGenericRelation("UserApp"                               , BaseRelation.TRUST_CHAIN_ALL, "secUser");
+		//replaceGenericRelation("QuickLink"                             , BaseRelation.TRUST_CHAIN_ALL, "app");
 		//replaceGenericRelation("ListAccess"                            , BaseRelation.TRUST_CHAIN_ALL, "app");
 		//replaceGenericRelation("ObjectAccess"                          , BaseRelation.TRUST_CHAIN_ALL, "app");
 		//replaceGenericRelation("LoginHistory"                          , BaseRelation.TRUST_CHAIN_ALL, "secUser");
@@ -24,6 +29,7 @@ public class CustomRelation extends BaseRelation{
 		//replaceGenericRelation("FormFieldMessage"                      , BaseRelation.TRUST_CHAIN_ALL, "form");
 		//replaceGenericRelation("FormField"                             , BaseRelation.TRUST_CHAIN_ALL, "form");
 		//replaceGenericRelation("FormAction"                            , BaseRelation.TRUST_CHAIN_ALL, "form");
+		//replaceGenericRelation("CandidateElement"                      , BaseRelation.TRUST_CHAIN_ALL, "container");
 
 	}
 	
@@ -39,13 +45,16 @@ public class CustomRelation extends BaseRelation{
 		//String [] changeRequestRelatedObjectNames = {"platform:Platform"};
 		//replaceRelationIndex("ChangeRequest",changeRequestRelatedObjectNames);
 
-		//String [] transactionRelatedObjectNames = {"from_account:Account","to_account:Account"};
+		//String [] transactionRelatedObjectNames = {"from_account:Account","to_account:Account","change_request:ChangeRequest"};
 		//replaceRelationIndex("Transaction",transactionRelatedObjectNames);
+
+		//String [] nameChangeEventRelatedObjectNames = {"account:Account","change_request:ChangeRequest"};
+		//replaceRelationIndex("NameChangeEvent",nameChangeEventRelatedObjectNames);
 
 		//String [] accountRelatedObjectNames = {"platform:Platform"};
 		//replaceRelationIndex("Account",accountRelatedObjectNames);
 
-		//String [] accountChangeRelatedObjectNames = {"account:Account"};
+		//String [] accountChangeRelatedObjectNames = {"account:Account","change_request:ChangeRequest"};
 		//replaceRelationIndex("AccountChange",accountChangeRelatedObjectNames);
 
 		//String [] userWhiteListRelatedObjectNames = {"domain:UserDomain"};
@@ -56,6 +65,9 @@ public class CustomRelation extends BaseRelation{
 
 		//String [] userAppRelatedObjectNames = {"sec_user:SecUser"};
 		//replaceRelationIndex("UserApp",userAppRelatedObjectNames);
+
+		//String [] quickLinkRelatedObjectNames = {"app:UserApp"};
+		//replaceRelationIndex("QuickLink",quickLinkRelatedObjectNames);
 
 		//String [] listAccessRelatedObjectNames = {"app:UserApp"};
 		//replaceRelationIndex("ListAccess",listAccessRelatedObjectNames);
@@ -77,6 +89,9 @@ public class CustomRelation extends BaseRelation{
 
 		//String [] formActionRelatedObjectNames = {"form:GenericForm"};
 		//replaceRelationIndex("FormAction",formActionRelatedObjectNames);
+
+		//String [] candidateElementRelatedObjectNames = {"container:CandidateContainer"};
+		//replaceRelationIndex("CandidateElement",candidateElementRelatedObjectNames);
 
 		
 		

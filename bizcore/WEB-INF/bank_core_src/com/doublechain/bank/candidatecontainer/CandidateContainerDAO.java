@@ -53,7 +53,7 @@ public interface CandidateContainerDAO{
 	
 	public SmartList<CandidateContainer> queryList(String sql, Object ... parmeters);
 
-	// ?????????????enhance??:CandidateElement?container?CandidateElementList
+	// 需要一个加载引用我的对象的enhance方法:CandidateElement的container的CandidateElementList
 	public SmartList<CandidateElement> loadOurCandidateElementList(BankUserContext userContext, List<CandidateContainer> us, Map<String,Object> options) throws Exception;
 	
 }

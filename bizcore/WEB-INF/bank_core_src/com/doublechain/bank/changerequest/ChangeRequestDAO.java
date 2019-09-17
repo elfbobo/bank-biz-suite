@@ -97,13 +97,13 @@ public interface ChangeRequestDAO{
 
  
  
-	// ?????????????enhance??:Transaction?changeRequest?TransactionList
+	// 需要一个加载引用我的对象的enhance方法:Transaction的changeRequest的TransactionList
 	public SmartList<Transaction> loadOurTransactionList(BankUserContext userContext, List<ChangeRequest> us, Map<String,Object> options) throws Exception;
 	
-	// ?????????????enhance??:NameChangeEvent?changeRequest?NameChangeEventList
+	// 需要一个加载引用我的对象的enhance方法:NameChangeEvent的changeRequest的NameChangeEventList
 	public SmartList<NameChangeEvent> loadOurNameChangeEventList(BankUserContext userContext, List<ChangeRequest> us, Map<String,Object> options) throws Exception;
 	
-	// ?????????????enhance??:AccountChange?changeRequest?AccountChangeList
+	// 需要一个加载引用我的对象的enhance方法:AccountChange的changeRequest的AccountChangeList
 	public SmartList<AccountChange> loadOurAccountChangeList(BankUserContext userContext, List<ChangeRequest> us, Map<String,Object> options) throws Exception;
 	
 }

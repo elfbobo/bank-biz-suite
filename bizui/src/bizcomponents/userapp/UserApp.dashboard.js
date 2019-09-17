@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
+import { Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
 import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -45,7 +45,7 @@ const imageList =(userApp)=>{return [
 const internalImageListOf = (userApp) =>defaultImageListOf(userApp,imageList)
 
 const optionList =(userApp)=>{return [ 
-	  {"title":'????',"value":userApp.fullAccess,"parameterName":"fullAccess"},
+	  {"title":'完全访问',"value":userApp.fullAccess,"parameterName":"fullAccess"},
 ]}
 
 const buildTransferModal = defaultBuildTransferModal
@@ -68,15 +68,27 @@ const internalSubListsOf = defaultSubListsOf
 
 const renderSettingDropDown = (cardsData,targetComponent)=>{
 
-  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
-        <Icon
-          type="setting"
-        />
-      </Dropdown>)
-
+  return (<div style={{float: 'right'}} >
+        <Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight" >
+       
+        <Button>
+        <Icon type="setting" theme="filled" twoToneColor="#00b" style={{color:'#3333b0'}}/> 设置  <Icon type="down"/>
+      </Button>
+      </Dropdown></div>)
 
 }
 
+const renderSettingMenuItem = (item,cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu.Item key={item.name}>
+      <Link to={`/userApp/${targetComponent.props.userApp.id}/list/${item.name}/${item.displayName}/`}>
+        <span>{item.displayName}</span>
+        </Link>
+        </Menu.Item>
+  )
+
+}
 const renderSettingMenu = (cardsData,targetComponent) =>{
 
   const userContext = null
@@ -84,9 +96,8 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
     	<Menu.Item key="profile">
   			<Link to={`/userApp/${targetComponent.props.userApp.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
 		</Menu.Item>
-		<Menu.Item key="permission">
-  			<Link to={`/userApp/${targetComponent.props.userApp.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
-			</Menu.Item>
+		<Menu.Divider />
+		{cardsData.subSettingItems.map(item=>renderSettingMenuItem(item,cardsData,targetComponent))}
 		</Menu>)
 
 }
@@ -108,18 +119,18 @@ const internalSummaryOf = (userApp,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{userApp.id}</Description> 
-<Description term="??">{userApp.title}</Description> 
-<Description term="????">{userApp.secUser==null?appLocaleName(userContext,"NotAssigned"):`${userApp.secUser.displayName}(${userApp.secUser.id})`}
+<Description term="标题">{userApp.title}</Description> 
+<Description term="安全用户">{userApp.secUser==null?appLocaleName(userContext,"NotAssigned"):`${userApp.secUser.displayName}(${userApp.secUser.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"????","secUser",UserAppService.requestCandidateSecUser,
+  showTransferModel(targetComponent,"安全用户","secUser",UserAppService.requestCandidateSecUser,
 	      UserAppService.transferToAnotherSecUser,"anotherSecUserId",userApp.secUser?userApp.secUser.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
-<Description term="??????">{userApp.appIcon}</Description> 
-<Description term="??">{userApp.permission}</Description> 
-<Description term="??????">{userApp.objectType}</Description> 
-<Description term="??ID">{userApp.objectId}</Description> 
-<Description term="??">{userApp.location}</Description> 
+<Description term="应用程序图标">{userApp.appIcon}</Description> 
+<Description term="许可">{userApp.permission}</Description> 
+<Description term="访问对象类型">{userApp.objectType}</Description> 
+<Description term="对象ID">{userApp.objectId}</Description> 
+<Description term="位置">{userApp.location}</Description> 
 	
         {buildTransferModal(userApp,targetComponent)}
       </DescriptionList>
@@ -157,14 +168,18 @@ class UserAppDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"??????",cardsFor: "userApp",
+    const cardsData = {cardsName:"用户应用程序",cardsFor: "userApp",
     	cardsSource: this.props.userApp,returnURL,displayName,
   		subItems: [
-{name: 'quickLinkList', displayName:'????',type:'quickLink',count:quickLinkCount,addFunction: true, role: 'quickLink', metaInfo: quickLinkListMetaInfo, renderItem: GlobalComponents.QuickLinkBase.renderItemOfList},
-{name: 'listAccessList', displayName:'????',type:'listAccess',count:listAccessCount,addFunction: true, role: 'listAccess', metaInfo: listAccessListMetaInfo, renderItem: GlobalComponents.ListAccessBase.renderItemOfList},
-{name: 'objectAccessList', displayName:'????',type:'objectAccess',count:objectAccessCount,addFunction: true, role: 'objectAccess', metaInfo: objectAccessListMetaInfo, renderItem: GlobalComponents.ObjectAccessBase.renderItemOfList},
+{name: 'quickLinkList', displayName:'快速链接',type:'quickLink',count:quickLinkCount,addFunction: true, role: 'quickLink', metaInfo: quickLinkListMetaInfo, renderItem: GlobalComponents.QuickLinkBase.renderItemOfList},
+{name: 'listAccessList', displayName:'访问列表',type:'listAccess',count:listAccessCount,addFunction: true, role: 'listAccess', metaInfo: listAccessListMetaInfo, renderItem: GlobalComponents.ListAccessBase.renderItemOfList},
+{name: 'objectAccessList', displayName:'对象访问',type:'objectAccess',count:objectAccessCount,addFunction: true, role: 'objectAccess', metaInfo: objectAccessListMetaInfo, renderItem: GlobalComponents.ObjectAccessBase.renderItemOfList},
     
       	],
+   		subSettingItems: [
+    
+      	],     	
+      	
   	};
     
     const renderExtraHeader = this.props.renderExtraHeader || internalRenderExtraHeader

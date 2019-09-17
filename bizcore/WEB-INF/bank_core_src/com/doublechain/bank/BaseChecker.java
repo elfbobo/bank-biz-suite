@@ -181,7 +181,7 @@ public class BaseChecker {
 		}
 		//this value is required but not null, this will produce a message
 		packMessage(messageList, "OBJECT_NOT_ALLOW_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, isRequired},
-					"???? ??'"+propertyKey+"' ??'"+value+"'?????.");
+					"您输入的 对象'"+propertyKey+"' 的值'"+value+"'不允许为空.");
 		
 		
 	}
@@ -191,11 +191,11 @@ public class BaseChecker {
 	
 		if(value == null){
 			if(minLength == 0 ){
-				//???????0???????NULL
+				//如果最小长度为0，则改值允许为NULL
 				return;
 			}
 			packMessage(messageList, "STRING_NOT_ALLOW_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minLength, maxLength},
-					"???? '"+propertyKey+"' ??'"+value+"'?????????"+minLength+"???.");
+					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度有误，该值最少"+minLength+"个字符.");
 			return;
 		}
 		
@@ -204,22 +204,22 @@ public class BaseChecker {
 		}
 		
 		if(minLength == maxLength){
-			//?????
+			//固定长度，
 			
-	 		//errorMsg.setBody("????"+propertyKey+":'"+value+"'????, ????? "+ value.length()+", ??????????"+minLength + "?????");
+	 		//errorMsg.setBody("您输入的"+propertyKey+":'"+value+"'长度有误, 该值长度为 "+ value.length()+", 系统预期是固定长度为"+minLength + "之间的文本");
 			packMessage(messageList, "STRING_NOT_FIXED_LENGTH",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"???? '"+propertyKey+"' ??'"+value+"'????, ????? "+ value.length()+", ?????????? "+minLength + " ??.");
+					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度不对, 该值长度为 "+ value.length()+", 系统预期是固定长度为 "+minLength + " 文本.");
 	 		return;
 		}
 		if(value.length()>maxLength){
 			packMessage(messageList, "STRING_TOO_LONG",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"???? '"+propertyKey+"' ??'"+value+"'????, ????? "+ value.length()+", ?????? "+maxLength+" ???.");
+					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度太长, 该值长度为 "+ value.length()+", 系统预期最多 "+maxLength+" 个字符.");
 	 		return;
 	 	}
 		if(value.length()<minLength){
 	 		
 			packMessage(messageList, "STRING_TOO_SHORT",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"???? '"+propertyKey+"' ??'"+value+"'????, ????? "+ value.length()+", ??????? "+minLength+" ???.");
+					"您输入的 '"+propertyKey+"' 的值'"+value+"'长度太短, 该值长度为 "+ value.length()+", 系统预期是最短 "+minLength+" 个字符.");
 	 		return;
 	 	}
 		
@@ -268,21 +268,21 @@ public class BaseChecker {
 	protected void checkChinaMobilePhone(String value, int minLength, int maxLength,
 			String propertyKey) {
 		//checkStringLengthRange(value, 11, 11, propertyKey);
-		//???????????11?,?????????13 15 17 18 ??
+		//中国的手机号目前都只有11位,全部数字，并且是以13 15 17 18 开头
 		
 		if(value == null){
 			if(minLength == 0 ){
-				//???????0???????NULL
+				//如果最小长度为0，则改值允许为NULL
 				return;
 			}
 			packMessage(messageList, "CHINA_MOBILE_NOT_ALLOW_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minLength, maxLength},
-					"???? '"+propertyKey+"' ?? '"+value+"' ????????11???????.");
+					"您输入的 '"+propertyKey+"' 的值 '"+value+"' 长度有误，该值为11个数字的手机号.");
 			return;
 		}
 
 		if(!integerValueInClosedRange(value.length(), 11, 11)){
 			packMessage(messageList, "CHINA_MOBILE_NOT_FIXED_LENGTH",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"???? '"+propertyKey+"' ?? '"+value+"' ????, ????? "+ value.length()+", ?????????? "+minLength + "????????????.");
+					"您输入的 '"+propertyKey+"' 的值 '"+value+"' 长度不对, 该值长度为 "+ value.length()+", 系统预期是固定长度为 "+minLength + "，而且全部为数字的手机号.");
 	 		
 			return;
 		}
@@ -291,9 +291,9 @@ public class BaseChecker {
 		
 		
 		if(!prefixedWith(value,prefixes)){
-			String errorForPrefixes = this.joinArray("?", prefixes);
+			String errorForPrefixes = this.joinArray("、", prefixes);
 			packMessage(messageList, "CHINA_MOBILE_FORMAT_ISSUE",propertyKey,new Object[]{propertyKey, value, minLength, maxLength, value.length()},
-					"???? '"+propertyKey+"' ?? '"+value+"' ????, ????"+errorForPrefixes+"???????????????.");
+					"您输入的 '"+propertyKey+"' 的值 '"+value+"' 格式错误, 开头应为"+errorForPrefixes+"而且全部为半角字符数字的手机号.");
 	 		return;
 		}
 		char digits[]=value.toCharArray();
@@ -302,7 +302,7 @@ public class BaseChecker {
 				continue;	
 			}
 			packMessage(messageList, "CHINA_MOBILE_CONTAIN_INVALID_CHAR",propertyKey,new Object[]{propertyKey, value, minLength, maxLength,ch+""},
-					"???? '"+propertyKey+"' ?? '"+value+"'??????? '"+ch+"', ??????????????.");
+					"您输入的 '"+propertyKey+"' 的值 '"+value+"'包含非数字字符 '"+ch+"', 系统预期是全部为数字的手机号.");
 	 		return;
 		}
 	}
@@ -341,19 +341,19 @@ public class BaseChecker {
 		if(value == null){
 			
 			packMessage(messageList, "DATE_NOT_ALLOWED_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ????????????.");
+					"您输入的 '"+propertyKey+"' 为空，系统预期为一个日期.");
 	 		return;
 		}
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 		if(minDate.after(value)){
 			packMessage(messageList, "DATE_BEFORE_START",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ???????"+formatter.format(minDate) +"??????");
+					"您输入的 '"+propertyKey+"' 在允许最早日期"+formatter.format(minDate) +"之前，请修正");
 	 		
 	 		return;
 	 	}
 		if(maxDate.before(value)){
 			packMessage(messageList, "DATE_AFTER_END",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ???????"+formatter.format(maxDate)+"??????");
+					"您输入的 '"+propertyKey+"' 在允许最晚日期"+formatter.format(maxDate)+"之后，请修正");
 	 		
 	 		return;
 	 	}
@@ -364,7 +364,7 @@ public class BaseChecker {
 		if(value == null){
 			
 			packMessage(messageList, "DATE_NOT_ALLOWED_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ????????????.");
+					"您输入的 '"+propertyKey+"' 为空，系统预期为一个时间.");
 	 		return;
 		}
 		Format formatter = new SimpleDateFormat("HH:mm:ss");
@@ -372,14 +372,14 @@ public class BaseChecker {
 		long minTime = minDate.getHours()*3600+minDate.getMinutes()*60+minDate.getSeconds();
 		if(minTime>valTime){
 			packMessage(messageList, "DATE_BEFORE_START",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ???????"+formatter.format(minDate) +"??????");
+					"您输入的 '"+propertyKey+"' 在允许最早时间"+formatter.format(minDate) +"之前，请修正");
 	 		
 	 		return;
 	 	}
 		long maxTime = maxDate.getHours()*3600+maxDate.getMinutes()*60+maxDate.getSeconds();
 		if(maxTime<valTime){
 			packMessage(messageList, "DATE_AFTER_END",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ???????"+formatter.format(maxDate)+"??????");
+					"您输入的 '"+propertyKey+"' 在允许最晚时间"+formatter.format(maxDate)+"之后，请修正");
 	 		
 	 		return;
 	 	}
@@ -391,19 +391,19 @@ public class BaseChecker {
 		if(value == null){
 			
 			packMessage(messageList, "DATE_NOT_ALLOWED_TO_BE_NULL",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ????????????.");
+					"您输入的 '"+propertyKey+"' 为空，系统预期为一个日期.");
 	 		return;
 		}
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 		if(minDate.after(value)){
 			packMessage(messageList, "DATE_BEFORE_START",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ??????"+formatter.format(minDate) +"??????");
+					"您输入的 '"+propertyKey+"' 在最早的日期"+formatter.format(minDate) +"之前，请修正");
 	 		
 	 		return;
 	 	}
 		if(maxDate.before(value)){
 			packMessage(messageList, "DATE_AFTER_END",propertyKey,new Object[]{propertyKey, value, minDate, maxDate},
-					"???? '"+propertyKey+"' ??????"+formatter.format(maxDate)+"??????");
+					"您输入的 '"+propertyKey+"' 在最晚的日期"+formatter.format(maxDate)+"之后，请修正");
 	 		
 	 		return;
 	 	}
@@ -433,13 +433,13 @@ public class BaseChecker {
 	}
 	/*
 	 * 
-??????????-?????????? 7 ????????2?6?????
+您输入的姓名阿布切诺-买买提有误，该值长度 7 ，系统预期是长度2到6之间的文本
 
-???????? ?100.00? ??? ?????????????????101.00?121.00??
+您输入的支付金额 ‘100.00’ 有误， 该值低于系统预期范围，系统期望是从101.00到121.00之间
 
-???????? ??100.00? ??? ?????????? 123.09 ???
+您输入的支付金额 ‘啊100.00’ 有误， 该输入正确的格式是像 123.09 的小数
 
-???????????????????????? 2017-09-09???
+您输入的出生日期格式有误，该输入正确的的格式是像 2017-09-09的日期
 	 * 
 	 * 
 	 * */
@@ -447,13 +447,13 @@ public class BaseChecker {
 			String propertyKey) {
 		if(value > max){
 			packMessage(messageList, "NUMBER_GREATER_THAN_MAX",propertyKey,new Object[]{propertyKey, value, min, max},
-					"???? '"+propertyKey+"' ????????"+max+"????????");
+					"您输入的 '"+propertyKey+"' 在比允许的最大值"+max+"还要大，请修正。");
 	 		
 	 		return;
 	 	}
 		if(value < min){
 			packMessage(messageList, "NUMBER_LESS_THAN_MIN",propertyKey,new Object[]{propertyKey, value, min, max},
-					"???? '"+propertyKey+"' ????????"+min+"????????");
+					"您输入的 '"+propertyKey+"' 在比允许的最小值"+min+"还要小，请修正。");
 	 		
 	 		return;
 	 	}
@@ -475,13 +475,13 @@ public class BaseChecker {
 			String propertyKey) {
 		if(value > max){
 			packMessage(messageList, "INTEGER_GREATER_THAN_MAX",propertyKey,new Object[]{propertyKey, value, min, max},
-					"????"+propertyKey+"????????"+max+"????????");
+					"您输入的"+propertyKey+"在比允许的最大值"+max+"还要大，请修正。");
 	 		
 	 		return;
 	 	}
 		if(value < min){
 			packMessage(messageList, "INTEGER_LESS_THAN_MIN",propertyKey,new Object[]{propertyKey, value, min, max},
-					"????"+propertyKey+"????????"+min+"????????");
+					"您输入的"+propertyKey+"在比允许的最小值"+min+"还要小，请修正。");
 	 		
 	 		return;
 	 	}
@@ -497,13 +497,13 @@ public class BaseChecker {
 		if (value > max) {
 			packMessage(messageList, "LONG_GREATER_THAN_MAX", propertyKey,
 					new Object[] { propertyKey, value, min, max },
-					"????" + propertyKey + "????????" + max + "????????");
+					"您输入的" + propertyKey + "在比允许的最大值" + max + "还要大，请修正。");
 
 			return;
 		}
 		if (value < min) {
 			packMessage(messageList, "LONG_LESS_THAN_MIN", propertyKey, new Object[] { propertyKey, value, min, max },
-					"????" + propertyKey + "????????" + min + "????????");
+					"您输入的" + propertyKey + "在比允许的最小值" + min + "还要小，请修正。");
 
 			return;
 		}

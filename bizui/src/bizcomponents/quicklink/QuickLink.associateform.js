@@ -18,9 +18,9 @@ const { TextArea } = Input
 const testValues = {};
 /*
 const testValues = {
-  name: '??',
+  name: '列表',
   icon: 'facebook',
-  linkTarget: '??',
+  linkTarget: '列表',
   appId: 'UA000001',
 }
 */
@@ -141,7 +141,7 @@ class QuickLinkAssociateForm extends Component {
                   {getFieldDecorator('name', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="名称" />
                   )}
                 </Form.Item>
               </Col>
@@ -151,7 +151,7 @@ class QuickLinkAssociateForm extends Component {
                   {getFieldDecorator('icon', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="??" />
+                    <Input size="large" placeholder="图标" />
                   )}
                 </Form.Item>
               </Col>
@@ -161,7 +161,7 @@ class QuickLinkAssociateForm extends Component {
                   {getFieldDecorator('linkTarget', {
                     rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
                   })(
-                    <Input size="large" placeholder="?????" />
+                    <Input size="large" placeholder="链接的目标" />
                   )}
                 </Form.Item>
               </Col>
@@ -183,7 +183,7 @@ class QuickLinkAssociateForm extends Component {
 
               <Col lg={6} md={12} sm={24}>
                 <ImageComponent
-                  buttonTitle="????"
+                  buttonTitle="图片路径"
                   handlePreview={this.handlePreview}
                   handleChange={event => this.handleChange(event, 'imagePath')}
                   fileList={convertedImagesValues.imagePath}

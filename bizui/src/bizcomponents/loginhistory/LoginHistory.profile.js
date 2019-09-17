@@ -56,7 +56,7 @@ class LoginHistoryProfile extends Component {
     const  loginHistory = this.props.loginHistory;
     const { id,displayName,  } = loginHistory
     const  returnURL = `/loginHistory/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "loginHistory",cardsSource: loginHistory,displayName,returnURL,
+    const cardsData = {cardsName:"登录历史",cardsFor: "loginHistory",cardsSource: loginHistory,displayName,returnURL,
   		subItems: [
      
       	],

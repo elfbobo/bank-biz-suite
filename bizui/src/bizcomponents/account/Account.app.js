@@ -159,11 +159,12 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "??(???????)",
+      name: "事务(交易清单从帐户)",
       role: "transactionAsFromAccount",
       data: state._account.transactionListAsFromAccount,
       metaInfo: state._account.transactionListAsFromAccountMetaInfo,
       count: state._account.transactionAsFromAccountCount,
+      returnURL: `/account/${state._account.id}/dashboard`,
       currentPage: state._account.transactionAsFromAccountCurrentPageNumber,
       searchFormParameters: state._account.transactionAsFromAccountSearchFormParameters,
       searchParameters: {...state._account.searchParameters},
@@ -208,11 +209,12 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "??(????????)",
+      name: "事务(交易清单作为帐户)",
       role: "transactionAsToAccount",
       data: state._account.transactionListAsToAccount,
       metaInfo: state._account.transactionListAsToAccountMetaInfo,
       count: state._account.transactionAsToAccountCount,
+      returnURL: `/account/${state._account.id}/dashboard`,
       currentPage: state._account.transactionAsToAccountCurrentPageNumber,
       searchFormParameters: state._account.transactionAsToAccountSearchFormParameters,
       searchParameters: {...state._account.searchParameters},
@@ -257,11 +259,12 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "??????",
+      name: "名字更改事件",
       role: "nameChangeEvent",
       data: state._account.nameChangeEventList,
       metaInfo: state._account.nameChangeEventListMetaInfo,
       count: state._account.nameChangeEventCount,
+      returnURL: `/account/${state._account.id}/dashboard`,
       currentPage: state._account.nameChangeEventCurrentPageNumber,
       searchFormParameters: state._account.nameChangeEventSearchFormParameters,
       searchParameters: {...state._account.searchParameters},
@@ -306,11 +309,12 @@ class AccountBizApp extends React.PureComponent {
     const userContext = null
     return connect(state => ({
       rule: state.rule,
-      name: "????",
+      name: "账户变更",
       role: "accountChange",
       data: state._account.accountChangeList,
       metaInfo: state._account.accountChangeListMetaInfo,
       count: state._account.accountChangeCount,
+      returnURL: `/account/${state._account.id}/dashboard`,
       currentPage: state._account.accountChangeCurrentPageNumber,
       searchFormParameters: state._account.accountChangeSearchFormParameters,
       searchParameters: {...state._account.searchParameters},
@@ -399,7 +403,7 @@ class AccountBizApp extends React.PureComponent {
   getPageTitle = () => {
     // const { location } = this.props
     // const { pathname } = location
-    const title = '??????'
+    const title = '银行模拟平台'
     return title
   }
  

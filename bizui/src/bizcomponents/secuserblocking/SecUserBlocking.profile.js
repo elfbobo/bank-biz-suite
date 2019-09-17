@@ -56,7 +56,7 @@ class SecUserBlockingProfile extends Component {
     const  secUserBlocking = this.props.secUserBlocking;
     const { id,displayName, secUserCount } = secUserBlocking
     const  returnURL = `/secUserBlocking/${id}/dashboard`
-    const cardsData = {cardsName:"????",cardsFor: "secUserBlocking",cardsSource: secUserBlocking,displayName,returnURL,
+    const cardsData = {cardsName:"用户屏蔽",cardsFor: "secUserBlocking",cardsSource: secUserBlocking,displayName,returnURL,
   		subItems: [
      
       	],

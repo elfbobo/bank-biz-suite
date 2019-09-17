@@ -65,7 +65,7 @@ public class BankBaseUtils {
 	public static String checkChinaMobile(String mobile) throws Exception {
 		String cleanMobile = formatChinaMobile(mobile);
 		if (cleanMobile == null) {
-			throw new Exception("????"+mobile+"????????????");
+			throw new Exception("您输入的"+mobile+"不是有效的中国大陆手机号");
 		}
 		return cleanMobile;
 	}
@@ -172,7 +172,7 @@ public class BankBaseUtils {
 	
 	public static boolean isDivisible(BigDecimal divisor, BigDecimal dividend) throws Exception {
 		if (dividend.signum() == 0) {
-			throw new Exception("?????0");
+			throw new Exception("请不要输入0");
 		}
 		BigDecimal[] quotient = divisor.divideAndRemainder(dividend);
 		if (quotient.length == 1) {
@@ -223,7 +223,7 @@ public class BankBaseUtils {
 	private static final NumberFormat cashFormat = new DecimalFormat("#,##0.00");
 	private static final NumberFormat exRateFormat = new DecimalFormat("#,##0.00#");
 	public static String formatCash(BigDecimal amount) {
-		return cashFormat.format(amount)+"?";
+		return cashFormat.format(amount)+"元";
 	}
 	public static String formatExchangeRate(BigDecimal amount) {
 		return exRateFormat.format(amount);

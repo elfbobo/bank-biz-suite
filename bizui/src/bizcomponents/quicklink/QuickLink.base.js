@@ -30,7 +30,14 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"????", menuFor: "quickLink",
+const menuData = {menuName:"快速链接", menuFor: "quickLink",
+  		subItems: [
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"快速链接", menuFor: "quickLink",
   		subItems: [
   
   		],
@@ -38,12 +45,12 @@ const menuData = {menuName:"????", menuFor: "quickLink",
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
-  icon: '??',
-  imagePath: '????',
-  linkTarget: '?????',
-  createTime: '????',
-  app: '????',
+  name: '名称',
+  icon: '图标',
+  imagePath: '图片路径',
+  linkTarget: '链接的目标',
+  createTime: '创建时间',
+  app: '应用程序',
 
 }
 
@@ -51,7 +58,7 @@ const displayColumns = [
   { title: fieldLabels.id, debugtype: 'string', dataIndex: 'id', width: '8', render: (text, record)=>renderTextCell(text,record,'quickLink') , sorter: true },
   { title: fieldLabels.name, debugtype: 'string', dataIndex: 'name', width: '6',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.icon, debugtype: 'string', dataIndex: 'icon', width: '12',render: (text, record)=>renderTextCell(text,record)},
-  { title: fieldLabels.imagePath, dataIndex: 'imagePath', render: (text, record) => renderImageCell(text,record,'????') },
+  { title: fieldLabels.imagePath, dataIndex: 'imagePath', render: (text, record) => renderImageCell(text,record,'图片路径') },
   { title: fieldLabels.linkTarget, debugtype: 'string', dataIndex: 'linkTarget', width: '6',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.createTime, dataIndex: 'createTime', render: (text, record) =>renderDateTimeCell(text,record), sorter: true},
   { title: fieldLabels.app, dataIndex: 'app', render: (text, record) => renderReferenceCell(text, record), sorter:true},
@@ -66,11 +73,11 @@ const renderItemOfList=(quickLink,targetComponent)=>{
 	
       <DescriptionList  key={quickLink.id} size="small" col="4">
         <Description term="ID">{quickLink.id}</Description> 
-        <Description term="??">{quickLink.name}</Description> 
-        <Description term="??">{quickLink.icon}</Description> 
-        <Description term="?????">{quickLink.linkTarget}</Description> 
-        <Description term="????"><div>{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
-        <Description term="????"><div>{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
+        <Description term="名称">{quickLink.name}</Description> 
+        <Description term="图标">{quickLink.icon}</Description> 
+        <Description term="链接的目标">{quickLink.linkTarget}</Description> 
+        <Description term="创建时间"><div>{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="应用程序"><div>{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
         </div></Description>
 	
         

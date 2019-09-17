@@ -30,18 +30,25 @@ const renderBooleanCell=defaultRenderBooleanCell
 const renderReferenceCell=defaultRenderReferenceCell
 
 
-const menuData = {menuName:"??", menuFor: "platform",
+const menuData = {menuName:"平台", menuFor: "platform",
   		subItems: [
-  {name: 'changeRequestList', displayName:'????', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
-  {name: 'accountList', displayName:'??', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'changeRequestList', displayName:'变更请求', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'accountList', displayName:'账户', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  
+  		],
+}
+
+
+const settingMenuData = {menuName:"平台", menuFor: "platform",
+  		subItems: [
   
   		],
 }
 
 const fieldLabels = {
   id: 'ID',
-  name: '??',
-  founded: '??',
+  name: '名称',
+  founded: '成立',
 
 }
 
@@ -60,8 +67,8 @@ const renderItemOfList=(platform,targetComponent)=>{
 	
       <DescriptionList  key={platform.id} size="small" col="4">
         <Description term="ID">{platform.id}</Description> 
-        <Description term="??">{platform.name}</Description> 
-        <Description term="??"><div>{ moment(platform.founded).format('YYYY-MM-DD HH:mm')}</div></Description> 
+        <Description term="名称">{platform.name}</Description> 
+        <Description term="成立"><div>{ moment(platform.founded).format('YYYY-MM-DD HH:mm')}</div></Description> 
 	
         
       </DescriptionList>

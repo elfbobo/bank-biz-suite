@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
+import { Button, Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown,Badge, Switch,Select,Form,AutoComplete,Modal } from 'antd'
 import { Link, Route, Redirect} from 'dva/router'
 import numeral from 'numeral'
 import {
@@ -40,7 +40,7 @@ const { Option } = Select
 
 
 const imageList =(quickLink)=>{return [
-	   {"title":'????',"imageLocation":quickLink.imagePath},
+	   {"title":'图片路径',"imageLocation":quickLink.imagePath},
 ]}
 
 const internalImageListOf = (quickLink) =>defaultImageListOf(quickLink,imageList)
@@ -68,15 +68,27 @@ const internalSubListsOf = defaultSubListsOf
 
 const renderSettingDropDown = (cardsData,targetComponent)=>{
 
-  return (<Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight">
-        <Icon
-          type="setting"
-        />
-      </Dropdown>)
-
+  return (<div style={{float: 'right'}} >
+        <Dropdown overlay={renderSettingMenu(cardsData,targetComponent)} placement="bottomRight" >
+       
+        <Button>
+        <Icon type="setting" theme="filled" twoToneColor="#00b" style={{color:'#3333b0'}}/> 设置  <Icon type="down"/>
+      </Button>
+      </Dropdown></div>)
 
 }
 
+const renderSettingMenuItem = (item,cardsData,targetComponent) =>{
+
+  const userContext = null
+  return (<Menu.Item key={item.name}>
+      <Link to={`/quickLink/${targetComponent.props.quickLink.id}/list/${item.name}/${item.displayName}/`}>
+        <span>{item.displayName}</span>
+        </Link>
+        </Menu.Item>
+  )
+
+}
 const renderSettingMenu = (cardsData,targetComponent) =>{
 
   const userContext = null
@@ -84,9 +96,8 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
     	<Menu.Item key="profile">
   			<Link to={`/quickLink/${targetComponent.props.quickLink.id}/permission`}><Icon type="safety-certificate" theme="twoTone" twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Permission")}</span></Link>
 		</Menu.Item>
-		<Menu.Item key="permission">
-  			<Link to={`/quickLink/${targetComponent.props.quickLink.id}/profile`}><Icon type="cluster"  twoToneColor="#52c41a"/><span>{appLocaleName(userContext,"Profile")}</span></Link>
-			</Menu.Item>
+		<Menu.Divider />
+		{cardsData.subSettingItems.map(item=>renderSettingMenuItem(item,cardsData,targetComponent))}
 		</Menu>)
 
 }
@@ -108,13 +119,13 @@ const internalSummaryOf = (quickLink,targetComponent) =>{
 	return (
 	<DescriptionList className={styles.headerList} size="small" col="4">
 <Description term="ID">{quickLink.id}</Description> 
-<Description term="??">{quickLink.name}</Description> 
-<Description term="??">{quickLink.icon}</Description> 
-<Description term="?????">{quickLink.linkTarget}</Description> 
-<Description term="????">{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
-<Description term="????">{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
+<Description term="名称">{quickLink.name}</Description> 
+<Description term="图标">{quickLink.icon}</Description> 
+<Description term="链接的目标">{quickLink.linkTarget}</Description> 
+<Description term="创建时间">{ moment(quickLink.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
+<Description term="应用程序">{quickLink.app==null?appLocaleName(userContext,"NotAssigned"):`${quickLink.app.displayName}(${quickLink.app.id})`}
  <Icon type="swap" onClick={()=>
-  showTransferModel(targetComponent,"????","userApp",QuickLinkService.requestCandidateApp,
+  showTransferModel(targetComponent,"应用程序","userApp",QuickLinkService.requestCandidateApp,
 	      QuickLinkService.transferToAnotherApp,"anotherAppId",quickLink.app?quickLink.app.id:"")} 
   style={{fontSize: 20,color:"red"}} />
 </Description>
@@ -155,11 +166,15 @@ class QuickLinkDashboard extends Component {
     }
     const returnURL = this.props.returnURL
     
-    const cardsData = {cardsName:"????",cardsFor: "quickLink",
+    const cardsData = {cardsName:"快速链接",cardsFor: "quickLink",
     	cardsSource: this.props.quickLink,returnURL,displayName,
   		subItems: [
     
       	],
+   		subSettingItems: [
+    
+      	],     	
+      	
   	};
     
     const renderExtraHeader = this.props.renderExtraHeader || internalRenderExtraHeader

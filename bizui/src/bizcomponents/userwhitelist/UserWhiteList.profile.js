@@ -56,7 +56,7 @@ class UserWhiteListProfile extends Component {
     const  userWhiteList = this.props.userWhiteList;
     const { id,displayName,  } = userWhiteList
     const  returnURL = `/userWhiteList/${id}/dashboard`
-    const cardsData = {cardsName:"?????",cardsFor: "userWhiteList",cardsSource: userWhiteList,displayName,returnURL,
+    const cardsData = {cardsName:"用户白名单",cardsFor: "userWhiteList",cardsSource: userWhiteList,displayName,returnURL,
   		subItems: [
      
       	],
