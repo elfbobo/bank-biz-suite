@@ -275,6 +275,20 @@ public class AccountChangeForm extends BaseForm {
 	}
 
 
+	public AccountChangeForm requestTypeIdFieldOfChangeRequest(String parameterName, String initValue){
+		FormField field =  requestTypeIdFromChangeRequest(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public AccountChangeForm requestTypeIdFieldOfChangeRequest(String initValue){
+		return requestTypeIdFieldOfChangeRequest("requestTypeId",initValue);
+	}
+	public AccountChangeForm requestTypeIdFieldOfChangeRequest(){
+		return requestTypeIdFieldOfChangeRequest("requestTypeId","");
+	}
+
+
 	public AccountChangeForm platformIdFieldOfChangeRequest(String parameterName, String initValue){
 		FormField field =  platformIdFromChangeRequest(parameterName, initValue);
 		this.addFormField(field);	

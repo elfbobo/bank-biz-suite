@@ -3,6 +3,7 @@ package com.doublechain.bank;
 import java.util.Map;
 
 import com.doublechain.bank.platform.Platform;
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.transaction.Transaction;
 import com.doublechain.bank.namechangeevent.NameChangeEvent;
@@ -30,6 +31,11 @@ public class BeanFactoryImpl{
 
 	public Platform createPlatform(Map<String,Object> options){
 		return new Platform();
+	}
+
+
+	public ChangeRequestType createChangeRequestType(Map<String,Object> options){
+		return new ChangeRequestType();
 	}
 
 

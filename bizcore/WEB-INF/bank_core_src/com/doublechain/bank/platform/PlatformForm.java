@@ -68,6 +68,62 @@ public class PlatformForm extends BaseForm {
 
 
 
+	public PlatformForm changeRequestTypeIdFieldForChangeRequestType(String parameterName, String initValue){
+		FormField field =  idFromChangeRequestType(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public PlatformForm changeRequestTypeIdFieldForChangeRequestType(String initValue){
+		return changeRequestTypeIdFieldForChangeRequestType("changeRequestTypeId",initValue);
+	}
+	public PlatformForm changeRequestTypeIdFieldForChangeRequestType(){
+		return changeRequestTypeIdFieldForChangeRequestType("changeRequestTypeId","");
+	}
+
+
+	public PlatformForm nameFieldForChangeRequestType(String parameterName, String initValue){
+		FormField field =  nameFromChangeRequestType(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public PlatformForm nameFieldForChangeRequestType(String initValue){
+		return nameFieldForChangeRequestType("name",initValue);
+	}
+	public PlatformForm nameFieldForChangeRequestType(){
+		return nameFieldForChangeRequestType("name","");
+	}
+
+
+	public PlatformForm codeFieldForChangeRequestType(String parameterName, String initValue){
+		FormField field =  codeFromChangeRequestType(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public PlatformForm codeFieldForChangeRequestType(String initValue){
+		return codeFieldForChangeRequestType("code",initValue);
+	}
+	public PlatformForm codeFieldForChangeRequestType(){
+		return codeFieldForChangeRequestType("code","");
+	}
+
+
+	public PlatformForm platformIdFieldForChangeRequestType(String parameterName, String initValue){
+		FormField field =  platformIdFromChangeRequestType(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public PlatformForm platformIdFieldForChangeRequestType(String initValue){
+		return platformIdFieldForChangeRequestType("platformId",initValue);
+	}
+	public PlatformForm platformIdFieldForChangeRequestType(){
+		return platformIdFieldForChangeRequestType("platformId","");
+	}
+
+
 	public PlatformForm changeRequestIdFieldForChangeRequest(String parameterName, String initValue){
 		FormField field =  idFromChangeRequest(parameterName, initValue);		
 		this.addFormField(field);
@@ -121,6 +177,20 @@ public class PlatformForm extends BaseForm {
 	}
 	public PlatformForm remoteIpFieldForChangeRequest(){
 		return remoteIpFieldForChangeRequest("remoteIp","");
+	}
+
+
+	public PlatformForm requestTypeIdFieldForChangeRequest(String parameterName, String initValue){
+		FormField field =  requestTypeIdFromChangeRequest(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public PlatformForm requestTypeIdFieldForChangeRequest(String initValue){
+		return requestTypeIdFieldForChangeRequest("requestTypeId",initValue);
+	}
+	public PlatformForm requestTypeIdFieldForChangeRequest(){
+		return requestTypeIdFieldForChangeRequest("requestTypeId","");
 	}
 
 

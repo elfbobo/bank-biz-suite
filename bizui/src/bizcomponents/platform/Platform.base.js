@@ -32,7 +32,7 @@ const renderReferenceCell=defaultRenderReferenceCell
 
 const menuData = {menuName:"平台", menuFor: "platform",
   		subItems: [
-  {name: 'changeRequestList', displayName:'变更请求', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
+  {name: 'changeRequestList', displayName:'变更请求', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '变更'},
   {name: 'accountList', displayName:'账户', icon:'500px',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
@@ -41,6 +41,7 @@ const menuData = {menuName:"平台", menuFor: "platform",
 
 const settingMenuData = {menuName:"平台", menuFor: "platform",
   		subItems: [
+  {name: 'changeRequestTypeList', displayName:'变更请求类型', icon:'exchange-alt',readPermission: false,createPermission: false,deletePermission: false,updatePermission: false,executionPermission: false, viewGroup: '__no_group'},
   
   		],
 }

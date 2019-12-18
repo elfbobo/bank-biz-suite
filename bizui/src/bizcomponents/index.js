@@ -16,6 +16,20 @@ import PlatformPermission from './platform/Platform.permission';
 import PlatformProfile from './platform/Platform.profile';
 import PlatformService from './platform/Platform.service';
 import PlatformUpdateForm from './platform/Platform.updateform';
+import ChangeRequestTypeBase from './changerequesttype/ChangeRequestType.base';
+import ChangeRequestTypeBizApp from './changerequesttype/ChangeRequestType.app';
+import ChangeRequestTypeModel from './changerequesttype/ChangeRequestType.model';
+import ChangeRequestTypeDashboard from './changerequesttype/ChangeRequestType.dashboard';
+import ChangeRequestTypeModalTable from './changerequesttype/ChangeRequestType.modaltable';
+import ChangeRequestTypeSearch from './changerequesttype/ChangeRequestType.search';
+import ChangeRequestTypeSearchForm from './changerequesttype/ChangeRequestType.searchform';
+import ChangeRequestTypeCreateForm from './changerequesttype/ChangeRequestType.createform';
+import ChangeRequestTypeAssociateForm from './changerequesttype/ChangeRequestType.associateform';
+import ChangeRequestTypeTable from './changerequesttype/ChangeRequestType.table';
+import ChangeRequestTypePermission from './changerequesttype/ChangeRequestType.permission';
+import ChangeRequestTypeProfile from './changerequesttype/ChangeRequestType.profile';
+import ChangeRequestTypeService from './changerequesttype/ChangeRequestType.service';
+import ChangeRequestTypeUpdateForm from './changerequesttype/ChangeRequestType.updateform';
 import ChangeRequestBase from './changerequest/ChangeRequest.base';
 import ChangeRequestBizApp from './changerequest/ChangeRequest.app';
 import ChangeRequestModel from './changerequest/ChangeRequest.model';
@@ -244,6 +258,7 @@ import CandidateElementUpdateForm from './candidateelement/CandidateElement.upda
 
 const BizModels = [
 	PlatformModel,
+	ChangeRequestTypeModel,
 	ChangeRequestModel,
 	TransactionModel,
 	NameChangeEventModel,
@@ -278,6 +293,7 @@ const unbindBizModels = (app) =>{
 const menuLibrary = []
 
 menuLibrary['platform'] = PlatformBase.menuData
+menuLibrary['changeRequestType'] = ChangeRequestTypeBase.menuData
 menuLibrary['changeRequest'] = ChangeRequestBase.menuData
 menuLibrary['transaction'] = TransactionBase.menuData
 menuLibrary['nameChangeEvent'] = NameChangeEventBase.menuData
@@ -315,6 +331,7 @@ const ViewMapping = {
 
 
   'com.doublechain.bank.platform.Platform': {name:'platform'},
+  'com.doublechain.bank.changerequesttype.ChangeRequestType': {name:'changeRequestType'},
   'com.doublechain.bank.changerequest.ChangeRequest': {name:'changeRequest'},
   'com.doublechain.bank.transaction.Transaction': {name:'transaction'},
   'com.doublechain.bank.namechangeevent.NameChangeEvent': {name:'nameChangeEvent'},
@@ -390,6 +407,20 @@ const OOTBComponents={
     PlatformProfile,
     PlatformService,
     PlatformUpdateForm,
+    ChangeRequestTypeBase,
+    ChangeRequestTypeBizApp,
+    ChangeRequestTypeModel,
+    ChangeRequestTypeDashboard,
+    ChangeRequestTypeModalTable,
+    ChangeRequestTypeSearch,
+    ChangeRequestTypeSearchForm,
+    ChangeRequestTypeCreateForm,
+    ChangeRequestTypeAssociateForm,
+    ChangeRequestTypeTable,
+    ChangeRequestTypePermission,
+    ChangeRequestTypeProfile,
+    ChangeRequestTypeService,
+    ChangeRequestTypeUpdateForm,
     ChangeRequestBase,
     ChangeRequestBizApp,
     ChangeRequestModel,

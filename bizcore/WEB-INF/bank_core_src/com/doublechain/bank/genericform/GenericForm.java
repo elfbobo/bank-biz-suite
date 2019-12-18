@@ -68,7 +68,7 @@ public class GenericForm extends BaseEntity implements  java.io.Serializable{
 	public 	static GenericForm withId(String id){
 		GenericForm genericForm = new GenericForm();
 		genericForm.setId(id);
-		// genericForm.setVersion(Integer.MAX_VALUE);
+		genericForm.setVersion(Integer.MAX_VALUE);
 		return genericForm;
 	}
 	public 	static GenericForm refById(String id){

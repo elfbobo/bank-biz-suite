@@ -77,7 +77,7 @@ public class ObjectAccess extends BaseEntity implements  java.io.Serializable{
 	public 	static ObjectAccess withId(String id){
 		ObjectAccess objectAccess = new ObjectAccess();
 		objectAccess.setId(id);
-		// objectAccess.setVersion(Integer.MAX_VALUE);
+		objectAccess.setVersion(Integer.MAX_VALUE);
 		return objectAccess;
 	}
 	public 	static ObjectAccess refById(String id){

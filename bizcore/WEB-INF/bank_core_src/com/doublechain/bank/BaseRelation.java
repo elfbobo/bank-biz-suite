@@ -109,7 +109,10 @@ public class BaseRelation{
 	{
 		
 		
-		String [] changeRequestRelatedObjectNames = {"platform:Platform"};
+		String [] changeRequestTypeRelatedObjectNames = {"platform:Platform"};
+		addRelationIndex("ChangeRequestType",changeRequestTypeRelatedObjectNames);
+
+		String [] changeRequestRelatedObjectNames = {"request_type:ChangeRequestType","platform:Platform"};
 		addRelationIndex("ChangeRequest",changeRequestRelatedObjectNames);
 
 		String [] transactionRelatedObjectNames = {"from_account:Account","to_account:Account","change_request:ChangeRequest"};
@@ -180,6 +183,8 @@ public class BaseRelation{
 	//default for reading trust chain, the default sequence are MXWR, the order is not affect the result
 	protected void prepareRelation()
 	{
+		addGenericRelation("ChangeRequestType"                     ,TRUST_CHAIN_READ,"platform");
+		addGenericRelation("ChangeRequest"                         ,TRUST_CHAIN_READ,"requestType");
 		addGenericRelation("ChangeRequest"                         ,TRUST_CHAIN_READ,"platform");
 		addGenericRelation("Transaction"                           ,TRUST_CHAIN_READ,"fromAccount");
 		addGenericRelation("Transaction"                           ,TRUST_CHAIN_READ,"toAccount");

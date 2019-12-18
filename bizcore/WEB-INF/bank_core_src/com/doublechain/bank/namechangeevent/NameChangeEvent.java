@@ -60,7 +60,7 @@ public class NameChangeEvent extends BaseEntity implements  java.io.Serializable
 	public 	static NameChangeEvent withId(String id){
 		NameChangeEvent nameChangeEvent = new NameChangeEvent();
 		nameChangeEvent.setId(id);
-		// nameChangeEvent.setVersion(Integer.MAX_VALUE);
+		nameChangeEvent.setVersion(Integer.MAX_VALUE);
 		return nameChangeEvent;
 	}
 	public 	static NameChangeEvent refById(String id){

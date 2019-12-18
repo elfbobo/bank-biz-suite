@@ -51,6 +51,7 @@ const fieldLabels = {
   name: '名称',
   createTime: '创建时间',
   remoteIp: '远程Ip',
+  requestType: '请求类型',
   platform: '平台',
 
 }
@@ -60,6 +61,7 @@ const displayColumns = [
   { title: fieldLabels.name, debugtype: 'string', dataIndex: 'name', width: '6',render: (text, record)=>renderTextCell(text,record)},
   { title: fieldLabels.createTime, dataIndex: 'createTime', render: (text, record) =>renderDateTimeCell(text,record), sorter: true},
   { title: fieldLabels.remoteIp, debugtype: 'string_client_ip', dataIndex: 'remoteIp', width: '14',render: (text, record)=>renderTextCell(text,record)},
+  { title: fieldLabels.requestType, dataIndex: 'requestType', render: (text, record) => renderReferenceCell(text, record), sorter:true},
   { title: fieldLabels.platform, dataIndex: 'platform', render: (text, record) => renderReferenceCell(text, record), sorter:true},
 
 ]
@@ -75,6 +77,8 @@ const renderItemOfList=(changeRequest,targetComponent)=>{
         <Description term="名称">{changeRequest.name}</Description> 
         <Description term="创建时间"><div>{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</div></Description> 
         <Description term="远程Ip">{changeRequest.remoteIp}</Description> 
+        <Description term="请求类型"><div>{changeRequest.requestType==null?appLocaleName(userContext,"NotAssigned"):`${changeRequest.requestType.displayName}(${changeRequest.requestType.id})`}
+        </div></Description>
 	
         
       </DescriptionList>

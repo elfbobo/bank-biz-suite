@@ -617,7 +617,7 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 				
 				Object ret[]=parse(maxId);
 				currentMax.set((Long)ret[1]+1);
-				System.out.println(this.getClass().getName()+this.hashCode()+":getNextId(start from "+maxId+")="+currentMax);
+				//System.out.println(this.getClass().getName()+this.hashCode()+":getNextId(start from "+maxId+")="+currentMax);
 				return String.format(getIdFormat(),currentMax.get());
 				
 			} catch (EmptyResultDataAccessException e) {
@@ -673,13 +673,13 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 		stringBuilder.append(join());
 		stringBuilder.append(", version)values(?, ");
 		stringBuilder.append(getCreateParametersPlaceHolders());
-		stringBuilder.append(", 1);");
+		stringBuilder.append(", 1)");
 		
 		return stringBuilder.toString();
 	}
 	
 	protected String getDeleteSQL() {
-		// TODO Auto-generated method stub
+		
 		//return new String[]{"name","bize_order","card_number","billing_address"};
 		StringBuilder stringBuilder=new StringBuilder();
 		stringBuilder.append("delete from  ");
@@ -691,7 +691,7 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 	}
 
 	protected String getUpdateSQL() {
-		// TODO Auto-generated method stub
+		
 		//return new String[]{"name","bize_order","card_number","billing_address"};
 		StringBuilder stringBuilder=new StringBuilder();
 		stringBuilder.append("update ");
@@ -707,7 +707,7 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 	}
 	
 	protected String getDeleteWithVerionSQL() {
-		// TODO Auto-generated method stub
+		
 		//return new String[]{"name","bize_order","card_number","billing_address"};
 		StringBuilder stringBuilder=new StringBuilder();
 		stringBuilder.append("delete from ");
@@ -764,7 +764,7 @@ public abstract class CommonJDBCTemplateDAO extends BaseEntity{
 	}
 	
 	protected String getDeleteAllSQL() {
-		// TODO Auto-generated method stub
+		
 		//return new String[]{"name","bize_order","card_number","billing_address"};
 		StringBuilder stringBuilder=new StringBuilder();
 		stringBuilder.append("delete from  ");
@@ -1341,7 +1341,7 @@ class CountingResultMap extends HashMap<String, Integer> {
 
 	@Override
 	public Integer get(Object key) {
-		// TODO Auto-generated method stub
+		
 		Integer  value = super.get(key);
 		if(value==null){
 			return 0;

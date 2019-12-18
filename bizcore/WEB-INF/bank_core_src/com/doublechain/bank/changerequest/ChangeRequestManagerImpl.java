@@ -20,11 +20,13 @@ import com.doublechain.bank.BankUserContext;
 import com.doublechain.bank.BankCheckerManager;
 import com.doublechain.bank.CustomBankCheckerManager;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
 import com.doublechain.bank.accountchange.AccountChange;
 
+import com.doublechain.bank.changerequesttype.CandidateChangeRequestType;
 import com.doublechain.bank.platform.CandidatePlatform;
 
 import com.doublechain.bank.changerequest.ChangeRequest;
@@ -153,6 +155,7 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 		addAction(userContext, changeRequest, tokens,"@update","updateChangeRequest","updateChangeRequest/"+changeRequest.getId()+"/","main","primary");
 		addAction(userContext, changeRequest, tokens,"@copy","cloneChangeRequest","cloneChangeRequest/"+changeRequest.getId()+"/","main","primary");
 		
+		addAction(userContext, changeRequest, tokens,"change_request.transfer_to_request_type","transferToAnotherRequestType","transferToAnotherRequestType/"+changeRequest.getId()+"/","main","primary");
 		addAction(userContext, changeRequest, tokens,"change_request.transfer_to_platform","transferToAnotherPlatform","transferToAnotherPlatform/"+changeRequest.getId()+"/","main","primary");
 		addAction(userContext, changeRequest, tokens,"change_request.addTransaction","addTransaction","addTransaction/"+changeRequest.getId()+"/","transactionList","primary");
 		addAction(userContext, changeRequest, tokens,"change_request.removeTransaction","removeTransaction","removeTransaction/"+changeRequest.getId()+"/","transactionList","primary");
@@ -178,7 +181,7 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
  	
 
 
-	public ChangeRequest createChangeRequest(BankUserContext userContext,String name, String platformId) throws Exception
+	public ChangeRequest createChangeRequest(BankUserContext userContext,String name, String requestTypeId, String platformId) throws Exception
 	{
 		
 		
@@ -195,6 +198,11 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 		changeRequest.setName(name);
 		changeRequest.setCreateTime(userContext.now());
 		changeRequest.setRemoteIp(userContext.getRemoteIP());
+			
+		ChangeRequestType requestType = loadChangeRequestType(userContext, requestTypeId,emptyOptions());
+		changeRequest.setRequestType(requestType);
+		
+		
 			
 		Platform platform = loadPlatform(userContext, platformId,emptyOptions());
 		changeRequest.setPlatform(platform);
@@ -227,6 +235,8 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 		if(ChangeRequest.NAME_PROPERTY.equals(property)){
 			userContext.getChecker().checkNameOfChangeRequest(parseString(newValueExpr));
 		}		
+
+				
 
 		
 	
@@ -337,7 +347,56 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 		return ChangeRequestTokens.mergeAll(tokens).done();
 	}
 	
-	protected void checkParamsForTransferingAnotherPlatform(BankUserContext userContext, String changeRequestId, String anotherPlatformId) throws Exception
+	protected void checkParamsForTransferingAnotherRequestType(BankUserContext userContext, String changeRequestId, String anotherRequestTypeId) throws Exception
+ 	{
+ 		
+ 		userContext.getChecker().checkIdOfChangeRequest(changeRequestId);
+ 		userContext.getChecker().checkIdOfChangeRequestType(anotherRequestTypeId);//check for optional reference
+ 		userContext.getChecker().throwExceptionIfHasErrors(ChangeRequestManagerException.class);
+ 		
+ 	}
+ 	public ChangeRequest transferToAnotherRequestType(BankUserContext userContext, String changeRequestId, String anotherRequestTypeId) throws Exception
+ 	{
+ 		checkParamsForTransferingAnotherRequestType(userContext, changeRequestId,anotherRequestTypeId);
+ 
+		ChangeRequest changeRequest = loadChangeRequest(userContext, changeRequestId, allTokens());	
+		synchronized(changeRequest){
+			//will be good when the changeRequest loaded from this JVM process cache.
+			//also good when there is a ram based DAO implementation
+			ChangeRequestType requestType = loadChangeRequestType(userContext, anotherRequestTypeId, emptyOptions());		
+			changeRequest.updateRequestType(requestType);		
+			changeRequest = saveChangeRequest(userContext, changeRequest, emptyOptions());
+			
+			return present(userContext,changeRequest, allTokens());
+			
+		}
+
+ 	}
+ 	
+	 	
+ 	
+ 	
+	public CandidateChangeRequestType requestCandidateRequestType(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo) throws Exception {
+
+		CandidateChangeRequestType result = new CandidateChangeRequestType();
+		result.setOwnerClass(ownerClass);
+		result.setOwnerId(id);
+		result.setFilterKey(filterKey==null?"":filterKey.trim());
+		result.setPageNo(pageNo);
+		result.setValueFieldName("id");
+		result.setDisplayFieldName("name");
+		
+		pageNo = Math.max(1, pageNo);
+		int pageSize = 20;
+		//requestCandidateProductForSkuAsOwner
+		SmartList<ChangeRequestType> candidateList = userContext.getDAOGroup().getChangeRequestTypeDAO().requestCandidateChangeRequestTypeForChangeRequest(userContext,ownerClass, id, filterKey, pageNo, pageSize);
+		result.setCandidates(candidateList);
+		int totalCount = candidateList.getTotalCount();
+		result.setTotalPage(Math.max(1, (totalCount + pageSize -1)/pageSize ));
+		return result;
+	}
+ 	
+ 	protected void checkParamsForTransferingAnotherPlatform(BankUserContext userContext, String changeRequestId, String anotherPlatformId) throws Exception
  	{
  		
  		userContext.getChecker().checkIdOfChangeRequest(changeRequestId);
@@ -387,6 +446,16 @@ public class ChangeRequestManagerImpl extends CustomBankCheckerManager implement
 	}
  	
  //--------------------------------------------------------------
+	
+	 	
+ 	protected ChangeRequestType loadChangeRequestType(BankUserContext userContext, String newRequestTypeId, Map<String,Object> options) throws Exception
+ 	{
+		
+ 		return userContext.getDAOGroup().getChangeRequestTypeDAO().load(newRequestTypeId, options);
+ 	}
+ 	
+ 	
+ 	
 	
 	 	
  	protected Platform loadPlatform(BankUserContext userContext, String newPlatformId, Map<String,Object> options) throws Exception

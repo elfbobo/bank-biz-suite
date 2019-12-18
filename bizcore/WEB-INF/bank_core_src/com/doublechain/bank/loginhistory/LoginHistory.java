@@ -61,7 +61,7 @@ public class LoginHistory extends BaseEntity implements  java.io.Serializable{
 	public 	static LoginHistory withId(String id){
 		LoginHistory loginHistory = new LoginHistory();
 		loginHistory.setId(id);
-		// loginHistory.setVersion(Integer.MAX_VALUE);
+		loginHistory.setVersion(Integer.MAX_VALUE);
 		return loginHistory;
 	}
 	public 	static LoginHistory refById(String id){

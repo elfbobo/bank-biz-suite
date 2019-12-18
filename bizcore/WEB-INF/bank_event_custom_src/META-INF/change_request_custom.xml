@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<import resource="classpath*:/META-INF/change_request_core.xml" />
+	<bean id="changeRequestService" class="com.doublechain.bank.changerequest.ChangeRequestCustomService" >
+		<property name="defaultHandler" ref="changeRequestBaseHandler"/>
+	</bean>
+	<bean id="depositeHandler" class="com.doublechain.bank.changerequest.DepositeCustomHandler" ></bean>
+	<bean id="transfterHandler" class="com.doublechain.bank.changerequest.TransfterCustomHandler" ></bean>
+	<bean id="withdrawHandler" class="com.doublechain.bank.changerequest.WithdrawCustomHandler" ></bean>
+	<bean id="createAccountHandler" class="com.doublechain.bank.changerequest.CreateAccountCustomHandler" ></bean>
+	<bean id="changeNameHandler" class="com.doublechain.bank.changerequest.ChangeNameCustomHandler" ></bean>
+	<bean id="transactionProcessor" class="com.doublechain.bank.changerequest.TransactionCustomProcessor" ></bean>
+	<bean id="nameChangeEventProcessor" class="com.doublechain.bank.changerequest.NameChangeEventCustomProcessor" ></bean>
+
+</beans>
+

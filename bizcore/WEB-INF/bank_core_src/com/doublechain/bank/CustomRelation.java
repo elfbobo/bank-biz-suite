@@ -9,6 +9,8 @@ public class CustomRelation extends BaseRelation{
 	{
 		super.prepareRelation();
 		//Uncomment to make any change to the relation type
+		//replaceGenericRelation("ChangeRequestType"                     , BaseRelation.TRUST_CHAIN_ALL, "platform");
+		//replaceGenericRelation("ChangeRequest"                         , BaseRelation.TRUST_CHAIN_ALL, "requestType");
 		//replaceGenericRelation("ChangeRequest"                         , BaseRelation.TRUST_CHAIN_ALL, "platform");
 		//replaceGenericRelation("Transaction"                           , BaseRelation.TRUST_CHAIN_ALL, "fromAccount");
 		//replaceGenericRelation("Transaction"                           , BaseRelation.TRUST_CHAIN_ALL, "toAccount");
@@ -42,7 +44,10 @@ public class CustomRelation extends BaseRelation{
 		Just uncomment the definition line and replaceRelationIndex line to replace existing one.
 		
 		*/
-		//String [] changeRequestRelatedObjectNames = {"platform:Platform"};
+		//String [] changeRequestTypeRelatedObjectNames = {"platform:Platform"};
+		//replaceRelationIndex("ChangeRequestType",changeRequestTypeRelatedObjectNames);
+
+		//String [] changeRequestRelatedObjectNames = {"request_type:ChangeRequestType","platform:Platform"};
 		//replaceRelationIndex("ChangeRequest",changeRequestRelatedObjectNames);
 
 		//String [] transactionRelatedObjectNames = {"from_account:Account","to_account:Account","change_request:ChangeRequest"};

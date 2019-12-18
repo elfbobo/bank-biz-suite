@@ -219,6 +219,20 @@ public class NameChangeEventForm extends BaseForm {
 	}
 
 
+	public NameChangeEventForm requestTypeIdFieldOfChangeRequest(String parameterName, String initValue){
+		FormField field =  requestTypeIdFromChangeRequest(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public NameChangeEventForm requestTypeIdFieldOfChangeRequest(String initValue){
+		return requestTypeIdFieldOfChangeRequest("requestTypeId",initValue);
+	}
+	public NameChangeEventForm requestTypeIdFieldOfChangeRequest(){
+		return requestTypeIdFieldOfChangeRequest("requestTypeId","");
+	}
+
+
 	public NameChangeEventForm platformIdFieldOfChangeRequest(String parameterName, String initValue){
 		FormField field =  platformIdFromChangeRequest(parameterName, initValue);
 		this.addFormField(field);	

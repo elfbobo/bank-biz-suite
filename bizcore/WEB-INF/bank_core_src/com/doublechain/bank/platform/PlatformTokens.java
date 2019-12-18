@@ -72,6 +72,7 @@ public class PlatformTokens extends CommonTokens{
 	protected static PlatformTokens allTokens(){
 		
 		return start()
+			.withChangeRequestTypeList()
 			.withChangeRequestList()
 			.withAccountList();
 	
@@ -97,6 +98,72 @@ public class PlatformTokens extends CommonTokens{
 		return this;
 	}
 
+	protected static final String CHANGE_REQUEST_TYPE_LIST = "changeRequestTypeList";
+	public String getChangeRequestTypeList(){
+		return CHANGE_REQUEST_TYPE_LIST;
+	}
+	public PlatformTokens withChangeRequestTypeList(){		
+		addSimpleOptions(CHANGE_REQUEST_TYPE_LIST);
+		return this;
+	}
+	public PlatformTokens analyzeChangeRequestTypeList(){		
+		addSimpleOptions(CHANGE_REQUEST_TYPE_LIST+".anaylze");
+		return this;
+	}
+	public boolean analyzeChangeRequestTypeListEnabled(){		
+		
+		if(checkOptions(this.options(), CHANGE_REQUEST_TYPE_LIST+".anaylze")){
+			return true; //most of the case, should call here
+		}
+		//if not true, then query for global setting
+		return checkOptions(this.options(), ALL_LISTS_ANALYZE);
+	}
+	public PlatformTokens extractMoreFromChangeRequestTypeList(String idsSeperatedWithComma){		
+		addSimpleOptions(CHANGE_REQUEST_TYPE_LIST+".extractIds", idsSeperatedWithComma);
+		return this;
+	}
+	
+	
+	
+	
+	private int changeRequestTypeListSortCounter = 0;
+	public PlatformTokens sortChangeRequestTypeListWith(String field, String descOrAsc){		
+		addSortMoreOptions(CHANGE_REQUEST_TYPE_LIST,changeRequestTypeListSortCounter++, field, descOrAsc);
+		return this;
+	}
+	private int changeRequestTypeListSearchCounter = 0;
+	public PlatformTokens searchChangeRequestTypeListWith(String field, String verb, String value){		
+		addSearchMoreOptions(CHANGE_REQUEST_TYPE_LIST,changeRequestTypeListSearchCounter++, field, verb, value);
+		return this;
+	}
+	
+	public PlatformTokens searchAllTextOfChangeRequestTypeList(String verb, String value){	
+		String field = "id|name|code";
+		addSearchMoreOptions(CHANGE_REQUEST_TYPE_LIST,changeRequestTypeListSearchCounter++, field, verb, value);
+		return this;
+	}
+	
+	
+	
+	public PlatformTokens rowsPerPageOfChangeRequestTypeList(int rowsPerPage){		
+		addSimpleOptions(CHANGE_REQUEST_TYPE_LIST+"RowsPerPage",rowsPerPage);
+		return this;
+	}
+	public PlatformTokens currentPageNumberOfChangeRequestTypeList(int currentPageNumber){		
+		addSimpleOptions(CHANGE_REQUEST_TYPE_LIST+"CurrentPage",currentPageNumber);
+		return this;
+	}
+	public PlatformTokens retainColumnsOfChangeRequestTypeList(String[] columns){		
+		addSimpleOptions(CHANGE_REQUEST_TYPE_LIST+"RetainColumns",columns);
+		return this;
+	}
+	public PlatformTokens excludeColumnsOfChangeRequestTypeList(String[] columns){		
+		addSimpleOptions(CHANGE_REQUEST_TYPE_LIST+"ExcludeColumns",columns);
+		return this;
+	}
+	
+	
+		
 	protected static final String CHANGE_REQUEST_LIST = "changeRequestList";
 	public String getChangeRequestList(){
 		return CHANGE_REQUEST_LIST;
@@ -232,6 +299,7 @@ public class PlatformTokens extends CommonTokens{
 	
 	public  PlatformTokens searchEntireObjectText(String verb, String value){
 		
+		searchAllTextOfChangeRequestTypeList(verb, value);	
 		searchAllTextOfChangeRequestList(verb, value);	
 		searchAllTextOfAccountList(verb, value);	
 		return this;

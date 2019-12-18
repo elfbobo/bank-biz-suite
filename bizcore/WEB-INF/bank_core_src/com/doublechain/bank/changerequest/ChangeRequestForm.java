@@ -76,6 +76,20 @@ public class ChangeRequestForm extends BaseForm {
 	}
 
 
+	public ChangeRequestForm requestTypeIdField(String parameterName, String initValue){
+		FormField field = requestTypeIdFromChangeRequest(parameterName, initValue);		
+		this.addFormField(field);
+		return this;
+	}
+	
+	public ChangeRequestForm requestTypeIdField(String initValue){
+		return requestTypeIdField("requestTypeId",initValue);
+	}
+	public ChangeRequestForm requestTypeIdField(){
+		return requestTypeIdField("requestTypeId","");
+	}
+
+
 	public ChangeRequestForm platformIdField(String parameterName, String initValue){
 		FormField field = platformIdFromChangeRequest(parameterName, initValue);		
 		this.addFormField(field);
@@ -91,6 +105,62 @@ public class ChangeRequestForm extends BaseForm {
 
 	
 	
+
+
+	public ChangeRequestForm changeRequestTypeIdFieldOfChangeRequestType(String parameterName, String initValue){
+		FormField field =  idFromChangeRequestType(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public ChangeRequestForm changeRequestTypeIdFieldOfChangeRequestType(String initValue){
+		return changeRequestTypeIdFieldOfChangeRequestType("changeRequestTypeId",initValue);
+	}
+	public ChangeRequestForm changeRequestTypeIdFieldOfChangeRequestType(){
+		return changeRequestTypeIdFieldOfChangeRequestType("changeRequestTypeId","");
+	}
+
+
+	public ChangeRequestForm nameFieldOfChangeRequestType(String parameterName, String initValue){
+		FormField field =  nameFromChangeRequestType(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public ChangeRequestForm nameFieldOfChangeRequestType(String initValue){
+		return nameFieldOfChangeRequestType("name",initValue);
+	}
+	public ChangeRequestForm nameFieldOfChangeRequestType(){
+		return nameFieldOfChangeRequestType("name","");
+	}
+
+
+	public ChangeRequestForm codeFieldOfChangeRequestType(String parameterName, String initValue){
+		FormField field =  codeFromChangeRequestType(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public ChangeRequestForm codeFieldOfChangeRequestType(String initValue){
+		return codeFieldOfChangeRequestType("code",initValue);
+	}
+	public ChangeRequestForm codeFieldOfChangeRequestType(){
+		return codeFieldOfChangeRequestType("code","");
+	}
+
+
+	public ChangeRequestForm platformIdFieldOfChangeRequestType(String parameterName, String initValue){
+		FormField field =  platformIdFromChangeRequestType(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public ChangeRequestForm platformIdFieldOfChangeRequestType(String initValue){
+		return platformIdFieldOfChangeRequestType("platformId",initValue);
+	}
+	public ChangeRequestForm platformIdFieldOfChangeRequestType(){
+		return platformIdFieldOfChangeRequestType("platformId","");
+	}
 
 
 	public ChangeRequestForm platformIdFieldOfPlatform(String parameterName, String initValue){
@@ -406,6 +476,16 @@ public class ChangeRequestForm extends BaseForm {
 	
 
 	
+ 	public ChangeRequestForm transferToAnotherRequestTypeAction(){
+		FormAction action = new FormAction();
+		action.setLabel("显示");
+		action.setLocaleKey("show");
+		action.setUrl("transferToAnotherRequestType/changeRequestId/");
+		this.addFormAction(action);
+		return this;
+	}
+
+ 	
  	public ChangeRequestForm transferToAnotherPlatformAction(){
 		FormAction action = new FormAction();
 		action.setLabel("显示");

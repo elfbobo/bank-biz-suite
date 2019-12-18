@@ -118,6 +118,58 @@ public class BaseForm extends GenericForm{
 		return field;
 	}
 
+	protected FormField idFromChangeRequestType(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("ID");
+		field.setLocaleKey("change_request_type.id");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写ID");
+		return field;
+	}
+
+	protected FormField nameFromChangeRequestType(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("名称");
+		field.setLocaleKey("change_request_type.name");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写名称");
+		return field;
+	}
+
+	protected FormField codeFromChangeRequestType(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("代码");
+		field.setLocaleKey("change_request_type.code");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("text");
+		field.setRequired(true);
+		field.setPlaceholder("请填写代码");
+		return field;
+	}
+
+	protected FormField platformIdFromChangeRequestType(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("平台");
+		field.setLocaleKey("change_request_type.platform");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("Platform");
+		field.setRequired(true);
+		field.setPlaceholder("请填写平台");
+		return field;
+	}
+
 	protected FormField idFromChangeRequest(String parameterName, String initValue){
 		FormField field = new FormField();
 		field.setLabel("ID");
@@ -167,6 +219,19 @@ public class BaseForm extends GenericForm{
 		field.setType("text");
 		field.setRequired(true);
 		field.setPlaceholder("请填写远程Ip");
+		return field;
+	}
+
+	protected FormField requestTypeIdFromChangeRequest(String parameterName, String initValue){
+		FormField field = new FormField();
+		field.setLabel("请求类型");
+		field.setLocaleKey("change_request.request_type");
+		field.setParameterName(parameterName);
+		field.setDefaultValue(initValue);
+		field.setFieldGroup("基本信息");
+		field.setType("ChangeRequestType");
+		field.setRequired(true);
+		field.setPlaceholder("请填写请求类型");
 		return field;
 	}
 

@@ -1,14 +1,29 @@
 
 
 
-=================Execute Report (Model Time 190826T1611) @Tue Sep 17 14:44:16 CST 2019, 22 objects and 165 fields===========================
+=================Execute Report (Model Time 190929T2220) @Fri Oct 04 18:08:26 CST 2019, 23 objects and 171 fields===========================
 
 
 
  processing: platform
 
 
+ processing: change_request_type
+
+
+ processing: change_request_type.platform.platform
+
+Info: Add virtual field [change_request_types(es)] to <platform>
+	change_request_type.platform
+
+
  processing: change_request
+
+
+ processing: change_request.change_request_type.request_type
+
+Info: Add virtual field [change_requests(es)] to <change_request_type>
+	change_request.request_type
 
 
  processing: change_request.platform.platform
@@ -86,18 +101,33 @@ platform{
 		date_time_now	founded('now()'), verb: false, required: true;
 		int	version('2147483647'), verb: false, required: true;
 	}
-	references field(2){
-		changeRequestList	platform(__no_group)--platform;
+	references field(3){
+		changeRequestTypeList	platform(__no_group)--platform;
+		changeRequestList	platform(变更)--platform;
 		accountList	platform(__no_group)--platform;
 	}
 } depth=0; isRoot = true
 
+change_request_type{
+	fields(5){
+		string	id('ABCD'), verb: false, required: true;
+		string	name('存款|转账|取款|开户|改名'), verb: false, required: true;
+		string	code('DEPOSITE|TRANSFTER|WITHDRAW|CREATE_ACCOUNT|CHANGE_NAME'), verb: false, required: true;
+		platform	platform('$(object)'), verb: false, required: true, referenceBy: changeRequestTypeList;
+		int	version('2147483647'), verb: false, required: true;
+	}
+	references field(1){
+		changeRequestList	request_type(__no_group)--request_type;
+	}
+} depth=1; isRoot = false
+
 change_request{
-	fields(6){
+	fields(7){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('存款|转账|取款'), verb: false, required: true;
 		date_time_create	create_time('createTime()'), verb: false, required: true;
 		string_client_ip	remote_ip('remoteIp()'), verb: false, required: true;
+		change_request_type	request_type('$(object)'), verb: false, required: true, referenceBy: changeRequestList;
 		platform	platform('$(object)'), verb: false, required: true, referenceBy: changeRequestList;
 		int	version('2147483647'), verb: false, required: true;
 	}
@@ -106,7 +136,7 @@ change_request{
 		nameChangeEventList	change_request(__no_group)--change_request;
 		accountChangeList	change_request(__no_group)--change_request;
 	}
-} depth=1; isRoot = false
+} depth=2; isRoot = false
 
 transaction{
 	fields(8){
@@ -121,7 +151,7 @@ transaction{
 	}
 	references field(0){
 	}
-} depth=2; isRoot = false
+} depth=3; isRoot = false
 
 name_change_event{
 	fields(5){
@@ -133,13 +163,13 @@ name_change_event{
 	}
 	references field(0){
 	}
-} depth=2; isRoot = false
+} depth=3; isRoot = false
 
 account{
 	fields(7){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('张三账户|李四账户|银行账户'), verb: false, required: true;
-		money	balance('$123.00'), verb: false, required: true;
+		money	balance('$123000.00'), verb: false, required: true;
 		date_time_create	create_time('createTime()'), verb: false, required: true;
 		date_time_update	update_time('updateTime()'), verb: false, required: true;
 		platform	platform('$(object)'), verb: false, required: true, referenceBy: accountList;
@@ -160,14 +190,14 @@ account_change{
 		account	account('$(object)'), verb: false, required: true, referenceBy: accountChangeList;
 		money	previous_balance('$1312.00'), verb: false, required: true;
 		string	type('存款|存款|取款'), verb: false, required: true;
-		money	amount('$123.00'), verb: false, required: true;
+		money	amount('$12300.00'), verb: false, required: true;
 		money	current_balance('$1312.00'), verb: false, required: true;
 		change_request	change_request('$(object)'), verb: false, required: true, referenceBy: accountChangeList;
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
 	}
-} depth=2; isRoot = false
+} depth=3; isRoot = false
 
 platform{
 	fields(4){
@@ -176,18 +206,33 @@ platform{
 		date_time_now	founded('now()'), verb: false, required: true;
 		int	version('2147483647'), verb: false, required: true;
 	}
-	references field(2){
-		changeRequestList	platform(__no_group)--platform;
+	references field(3){
+		changeRequestTypeList	platform(__no_group)--platform;
+		changeRequestList	platform(变更)--platform;
 		accountList	platform(__no_group)--platform;
 	}
 } depth=0; isRoot = true
 
+change_request_type{
+	fields(5){
+		string	id('ABCD'), verb: false, required: true;
+		string	name('存款|转账|取款|开户|改名'), verb: false, required: true;
+		string	code('DEPOSITE|TRANSFTER|WITHDRAW|CREATE_ACCOUNT|CHANGE_NAME'), verb: false, required: true;
+		platform	platform('$(object)'), verb: false, required: true, referenceBy: changeRequestTypeList;
+		int	version('2147483647'), verb: false, required: true;
+	}
+	references field(1){
+		changeRequestList	request_type(__no_group)--request_type;
+	}
+} depth=1; isRoot = false
+
 change_request{
-	fields(6){
+	fields(7){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('存款|转账|取款'), verb: false, required: true;
 		date_time_create	create_time('createTime()'), verb: false, required: true;
 		string_client_ip	remote_ip('remoteIp()'), verb: false, required: true;
+		change_request_type	request_type('$(object)'), verb: false, required: true, referenceBy: changeRequestList;
 		platform	platform('$(object)'), verb: false, required: true, referenceBy: changeRequestList;
 		int	version('2147483647'), verb: false, required: true;
 	}
@@ -196,7 +241,7 @@ change_request{
 		nameChangeEventList	change_request(__no_group)--change_request;
 		accountChangeList	change_request(__no_group)--change_request;
 	}
-} depth=1; isRoot = false
+} depth=2; isRoot = false
 
 transaction{
 	fields(8){
@@ -211,7 +256,7 @@ transaction{
 	}
 	references field(0){
 	}
-} depth=2; isRoot = false
+} depth=3; isRoot = false
 
 name_change_event{
 	fields(5){
@@ -223,13 +268,13 @@ name_change_event{
 	}
 	references field(0){
 	}
-} depth=2; isRoot = false
+} depth=3; isRoot = false
 
 account{
 	fields(7){
 		string	id('ABCD'), verb: false, required: true;
 		string	name('张三账户|李四账户|银行账户'), verb: false, required: true;
-		money	balance('$123.00'), verb: false, required: true;
+		money	balance('$123000.00'), verb: false, required: true;
 		date_time_create	create_time('createTime()'), verb: false, required: true;
 		date_time_update	update_time('updateTime()'), verb: false, required: true;
 		platform	platform('$(object)'), verb: false, required: true, referenceBy: accountList;
@@ -250,14 +295,14 @@ account_change{
 		account	account('$(object)'), verb: false, required: true, referenceBy: accountChangeList;
 		money	previous_balance('$1312.00'), verb: false, required: true;
 		string	type('存款|存款|取款'), verb: false, required: true;
-		money	amount('$123.00'), verb: false, required: true;
+		money	amount('$12300.00'), verb: false, required: true;
 		money	current_balance('$1312.00'), verb: false, required: true;
 		change_request	change_request('$(object)'), verb: false, required: true, referenceBy: accountChangeList;
 		int	version('2147483647'), verb: false, required: true;
 	}
 	references field(0){
 	}
-} depth=2; isRoot = false
+} depth=3; isRoot = false
 
 user_domain{
 	fields(3){

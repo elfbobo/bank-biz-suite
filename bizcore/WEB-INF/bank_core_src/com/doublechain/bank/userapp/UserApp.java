@@ -78,7 +78,7 @@ public class UserApp extends BaseEntity implements  java.io.Serializable{
 	public 	static UserApp withId(String id){
 		UserApp userApp = new UserApp();
 		userApp.setId(id);
-		// userApp.setVersion(Integer.MAX_VALUE);
+		userApp.setVersion(Integer.MAX_VALUE);
 		return userApp;
 	}
 	public 	static UserApp refById(String id){

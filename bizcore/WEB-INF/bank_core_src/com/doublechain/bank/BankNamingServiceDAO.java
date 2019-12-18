@@ -20,6 +20,7 @@ public class BankNamingServiceDAO extends CommonJDBCTemplateDAO {
 	static {
 		namingTableMap = new HashMap<String, String[]>();
 		namingTableMap.put("Platform", new String[]{"platform_data","name"});
+		namingTableMap.put("ChangeRequestType", new String[]{"change_request_type_data","name"});
 		namingTableMap.put("ChangeRequest", new String[]{"change_request_data","name"});
 		namingTableMap.put("Transaction", new String[]{"transaction_data","name"});
 		namingTableMap.put("NameChangeEvent", new String[]{"name_change_event_data","name"});

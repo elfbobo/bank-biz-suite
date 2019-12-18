@@ -1,7 +1,6 @@
 
 
 import React, { Component } from 'react'
-import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
@@ -104,7 +103,7 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
-  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <Icon type="double-left" style={{marginRight:"10px"}} /> </Link>:null
   return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
@@ -121,6 +120,12 @@ const internalSummaryOf = (changeRequest,targetComponent) =>{
 <Description term="名称">{changeRequest.name}</Description> 
 <Description term="创建时间">{ moment(changeRequest.createTime).format('YYYY-MM-DD HH:mm')}</Description> 
 <Description term="远程Ip">{changeRequest.remoteIp}</Description> 
+<Description term="请求类型">{changeRequest.requestType==null?appLocaleName(userContext,"NotAssigned"):`${changeRequest.requestType.displayName}(${changeRequest.requestType.id})`}
+ <Icon type="swap" onClick={()=>
+  showTransferModel(targetComponent,"请求类型","changeRequestType",ChangeRequestService.requestCandidateRequestType,
+	      ChangeRequestService.transferToAnotherRequestType,"anotherRequestTypeId",changeRequest.requestType?changeRequest.requestType.id:"")} 
+  style={{fontSize: 20,color:"red"}} />
+</Description>
 	
         {buildTransferModal(changeRequest,targetComponent)}
       </DescriptionList>

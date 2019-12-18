@@ -261,6 +261,20 @@ public class TransactionForm extends BaseForm {
 	}
 
 
+	public TransactionForm requestTypeIdFieldOfChangeRequest(String parameterName, String initValue){
+		FormField field =  requestTypeIdFromChangeRequest(parameterName, initValue);
+		this.addFormField(field);	
+		return this;
+	}
+	
+	public TransactionForm requestTypeIdFieldOfChangeRequest(String initValue){
+		return requestTypeIdFieldOfChangeRequest("requestTypeId",initValue);
+	}
+	public TransactionForm requestTypeIdFieldOfChangeRequest(){
+		return requestTypeIdFieldOfChangeRequest("requestTypeId","");
+	}
+
+
 	public TransactionForm platformIdFieldOfChangeRequest(String parameterName, String initValue){
 		FormField field =  platformIdFromChangeRequest(parameterName, initValue);
 		this.addFormField(field);	

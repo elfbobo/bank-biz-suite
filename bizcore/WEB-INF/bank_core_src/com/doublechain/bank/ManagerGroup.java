@@ -3,6 +3,8 @@ package com.doublechain.bank;
 
 import com.doublechain.bank.platform.PlatformManager;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestTypeManager;
+
 import com.doublechain.bank.changerequest.ChangeRequestManager;
 
 import com.doublechain.bank.transaction.TransactionManager;
@@ -49,6 +51,8 @@ import com.doublechain.bank.candidateelement.CandidateElementManager;
 public class ManagerGroup {
 
 	protected PlatformManager platformManager;
+
+	protected ChangeRequestTypeManager changeRequestTypeManager;
 
 	protected ChangeRequestManager changeRequestManager;
 
@@ -99,6 +103,14 @@ public class ManagerGroup {
 	}
 	public void setPlatformManager(PlatformManager manager){
 		this.platformManager = manager;
+	}
+
+
+	public ChangeRequestTypeManager getChangeRequestTypeManager(){
+		return this.changeRequestTypeManager;
+	}
+	public void setChangeRequestTypeManager(ChangeRequestTypeManager manager){
+		this.changeRequestTypeManager = manager;
 	}
 
 

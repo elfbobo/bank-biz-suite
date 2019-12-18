@@ -195,7 +195,7 @@ componentDidMount() {
        <Col md={8} sm={24}>
          <FormItem label="ID">
            {getFieldDecorator('id')(
-             <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+             <Input size="default" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
          </FormItem>
        </Col>
@@ -203,7 +203,7 @@ componentDidMount() {
        <Col md={8} sm={24}>
          <FormItem label="名称">
            {getFieldDecorator('name')(
-             <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+             <Input size="default" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
          </FormItem>
        </Col>
@@ -250,7 +250,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -258,7 +258,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="名称">
               {getFieldDecorator('name')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -269,8 +269,8 @@ componentDidMount() {
                   <SelectObject 
                     disabled={!availableForEdit('account')}
                     targetType={"account"} 
-                    requestFunction={AccountChangeService.requestCandidateAccount}/>
-                  
+                    requestFunction={AccountChangeService.requestCandidateAccount} useForSearch />
+                  	
                  
                   )}
                 </Form.Item></Col>
@@ -278,7 +278,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="类型">
               {getFieldDecorator('type')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -289,8 +289,8 @@ componentDidMount() {
                   <SelectObject 
                     disabled={!availableForEdit('changeRequest')}
                     targetType={"changeRequest"} 
-                    requestFunction={AccountChangeService.requestCandidateChangeRequest}/>
-                  
+                    requestFunction={AccountChangeService.requestCandidateChangeRequest} useForSearch />
+                  	
                  
                   )}
                 </Form.Item></Col>

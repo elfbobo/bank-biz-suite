@@ -41,6 +41,51 @@ public class BankChecker extends BaseChecker{
 		return this;
 	}	
 
+	public static final String  ID_OF_CHANGE_REQUEST_TYPE ="change_request_type.id";
+	public BankChecker checkIdOfChangeRequestType(String id)
+	{
+		
+	 	checkStringLengthRange(id,2, 64,ID_OF_CHANGE_REQUEST_TYPE ); 		
+		
+		return this;
+	}	
+
+	public static final String  NAME_OF_CHANGE_REQUEST_TYPE ="change_request_type.name";
+	public BankChecker checkNameOfChangeRequestType(String name)
+	{
+		
+	 	checkStringLengthRange(name,1, 8,NAME_OF_CHANGE_REQUEST_TYPE ); 		
+		
+		return this;
+	}	
+
+	public static final String  CODE_OF_CHANGE_REQUEST_TYPE ="change_request_type.code";
+	public BankChecker checkCodeOfChangeRequestType(String code)
+	{
+		
+	 	checkStringLengthRange(code,4, 56,CODE_OF_CHANGE_REQUEST_TYPE ); 		
+		
+		return this;
+	}	
+
+	public static final String  PLATFORM_OF_CHANGE_REQUEST_TYPE ="change_request_type.platform";
+	public BankChecker checkPlatformIdOfChangeRequestType(String platformId)
+	{
+		
+	 	checkIdOfChangeRequestType(platformId ); 		
+		
+		return this;
+	}	
+
+	public static final String  VERSION_OF_CHANGE_REQUEST_TYPE ="change_request_type.version";
+	public BankChecker checkVersionOfChangeRequestType(int version)
+	{
+		
+	 	checkIntegerRange(version,0, Integer.MAX_VALUE,VERSION_OF_CHANGE_REQUEST_TYPE ); 		
+		
+		return this;
+	}	
+
 	public static final String  ID_OF_CHANGE_REQUEST ="change_request.id";
 	public BankChecker checkIdOfChangeRequest(String id)
 	{
@@ -55,6 +100,15 @@ public class BankChecker extends BaseChecker{
 	{
 		
 	 	checkStringLengthRange(name,1, 50,NAME_OF_CHANGE_REQUEST ); 		
+		
+		return this;
+	}	
+
+	public static final String  REQUEST_TYPE_OF_CHANGE_REQUEST ="change_request.request_type";
+	public BankChecker checkRequestTypeIdOfChangeRequest(String requestTypeId)
+	{
+		
+	 	checkIdOfChangeRequest(requestTypeId ); 		
 		
 		return this;
 	}	
@@ -216,7 +270,7 @@ public class BankChecker extends BaseChecker{
 	public BankChecker checkBalanceOfAccount(BigDecimal balance)
 	{
 		
-	 	checkMoneyAmount(balance,0.00, 123.00,BALANCE_OF_ACCOUNT ); 		
+	 	checkMoneyAmount(balance,0.00, 123000.00,BALANCE_OF_ACCOUNT ); 		
 		
 		return this;
 	}	
@@ -288,7 +342,7 @@ public class BankChecker extends BaseChecker{
 	public BankChecker checkAmountOfAccountChange(BigDecimal amount)
 	{
 		
-	 	checkMoneyAmount(amount,0.00, 123.00,AMOUNT_OF_ACCOUNT_CHANGE ); 		
+	 	checkMoneyAmount(amount,0.00, 12300.00,AMOUNT_OF_ACCOUNT_CHANGE ); 		
 		
 		return this;
 	}	

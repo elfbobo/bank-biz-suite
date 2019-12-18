@@ -196,7 +196,7 @@ componentDidMount() {
        <Col md={8} sm={24}>
          <FormItem label="ID">
            {getFieldDecorator('id')(
-             <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+             <Input size="default" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
          </FormItem>
        </Col>
@@ -204,7 +204,7 @@ componentDidMount() {
        <Col md={8} sm={24}>
          <FormItem label="名称">
            {getFieldDecorator('name')(
-             <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+             <Input size="default" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
          </FormItem>
        </Col>
@@ -251,7 +251,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -259,7 +259,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="名称">
               {getFieldDecorator('name')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -270,8 +270,8 @@ componentDidMount() {
                   <SelectObject 
                     disabled={!availableForEdit('fromAccount')}
                     targetType={"fromAccount"} 
-                    requestFunction={TransactionService.requestCandidateFromAccount}/>
-                  
+                    requestFunction={TransactionService.requestCandidateFromAccount} useForSearch />
+                  	
                  
                   )}
                 </Form.Item></Col>
@@ -282,8 +282,8 @@ componentDidMount() {
                   <SelectObject 
                     disabled={!availableForEdit('toAccount')}
                     targetType={"toAccount"} 
-                    requestFunction={TransactionService.requestCandidateToAccount}/>
-                  
+                    requestFunction={TransactionService.requestCandidateToAccount} useForSearch />
+                  	
                  
                   )}
                 </Form.Item></Col>
@@ -291,7 +291,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="类型">
               {getFieldDecorator('type')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -302,8 +302,8 @@ componentDidMount() {
                   <SelectObject 
                     disabled={!availableForEdit('changeRequest')}
                     targetType={"changeRequest"} 
-                    requestFunction={TransactionService.requestCandidateChangeRequest}/>
-                  
+                    requestFunction={TransactionService.requestCandidateChangeRequest} useForSearch />
+                  	
                  
                   )}
                 </Form.Item></Col>

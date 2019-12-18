@@ -19,6 +19,7 @@ const testValues = {};
 /*
 const testValues = {
   name: '存款',
+  requestTypeId: 'DEPOSITE',
   platformId: 'P000001',
 }
 */
@@ -162,6 +163,21 @@ class ChangeRequestAssociateForm extends Component {
 
        
             <Row gutter={16}>
+
+              <Col lg={12} md={12} sm={24}>
+                <Form.Item label={fieldLabels.requestType} {...formItemLayout}>
+                  {getFieldDecorator('requestTypeId', {
+                  	initialValue: tryinit('requestType'),
+                    rules: [{ required: true, message: appLocaleName(userContext,"PleaseInput") }],
+                  })(
+                <SelectObject 
+                    disabled={!availableForEdit('requestType')}
+                    targetType={"requestType"} 
+                    requestFunction={ChangeRequestService.requestCandidateRequestType}/>
+  
+                  )}
+                </Form.Item>
+              </Col>
 
               <Col lg={12} md={12} sm={24}>
                 <Form.Item label={fieldLabels.platform} {...formItemLayout}>

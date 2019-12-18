@@ -101,6 +101,7 @@
 	  <li class="active"><a data-toggle="tab" href="#summary" class="disabled"><i class="fa  fa-home"></i> ${userContext.localeMap['@summary']}</a></li>
 	 
 	<% Platform result = (Platform)request.getAttribute("result");  %>
+			<li><a data-toggle="tab" href="#changeRequestTypeList" class="disabled"> ${userContext.localeMap['change_request_type']}</a></li>
 			<li><a data-toggle="tab" href="#changeRequestList" class="disabled"> ${userContext.localeMap['change_request']}</a></li>
 			<li><a data-toggle="tab" href="#accountList" class="disabled"> ${userContext.localeMap['account']}</a></li>
  
@@ -146,7 +147,15 @@
 
 	
 
-		<c:if test='${not empty userContext.accessTokens["changeRequestList"] or ignoreListAccessControl}'>
+		<c:if test='${not empty userContext.accessTokens["changeRequestTypeList"] or ignoreListAccessControl}'>
+		<c:set var="changeRequestTypeList" value="${result.changeRequestTypeList}" scope="request"/>
+		<c:set var="changeRequestTypeListName" value="changeRequestTypeList" scope="request"/>
+		<div id="changeRequestTypeList" class="tab-pane fade sublist" refer-name="platform">
+			<sky:include page="com/doublechain/bank/changerequesttype/ChangeRequestType$List.jsp"
+					referName="platform"/>
+		</div>
+	</c:if>
+	<c:if test='${not empty userContext.accessTokens["changeRequestList"] or ignoreListAccessControl}'>
 		<c:set var="changeRequestList" value="${result.changeRequestList}" scope="request"/>
 		<c:set var="changeRequestListName" value="changeRequestList" scope="request"/>
 		<div id="changeRequestList" class="tab-pane fade sublist" refer-name="platform">

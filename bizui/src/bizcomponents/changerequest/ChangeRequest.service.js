@@ -18,6 +18,22 @@ const load = (targetObjectId, parameters) => {
 
 
 
+const requestCandidateRequestType = (ownerClass, id, filterKey, pageNo) => {
+ 
+  const url = `${PREFIX}changeRequestManager/requestCandidateRequestType/ownerClass/id/filterKey/pageNo/`
+  const requestParameters = {id, ownerClass,filterKey, pageNo}
+  return postForm({url,requestParameters})
+}	
+
+const transferToAnotherRequestType = (id, parameters) => {
+  //const parametersExpr = joinParameters(parameters)
+  const url = `${PREFIX}changeRequestManager/transferToAnotherRequestType/id/anotherRequestTypeId/`
+  const requestParameters = {id, ...parameters}
+  return postForm({url,requestParameters})
+}
+
+
+
 const requestCandidatePlatform = (ownerClass, id, filterKey, pageNo) => {
  
   const url = `${PREFIX}changeRequestManager/requestCandidatePlatform/ownerClass/id/filterKey/pageNo/`
@@ -114,7 +130,9 @@ const ChangeRequestService = { view,
   removeTransactionList,
   removeNameChangeEventList,
   removeAccountChangeList,
+  requestCandidateRequestType,
   requestCandidatePlatform,
+  transferToAnotherRequestType,
   transferToAnotherPlatform }
 export default ChangeRequestService
 

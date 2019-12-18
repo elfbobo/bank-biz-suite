@@ -65,7 +65,7 @@ public class FormAction extends BaseEntity implements  java.io.Serializable{
 	public 	static FormAction withId(String id){
 		FormAction formAction = new FormAction();
 		formAction.setId(id);
-		// formAction.setVersion(Integer.MAX_VALUE);
+		formAction.setVersion(Integer.MAX_VALUE);
 		return formAction;
 	}
 	public 	static FormAction refById(String id){

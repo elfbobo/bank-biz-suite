@@ -60,7 +60,7 @@ public class UserDomain extends BaseEntity implements  java.io.Serializable{
 	public 	static UserDomain withId(String id){
 		UserDomain userDomain = new UserDomain();
 		userDomain.setId(id);
-		// userDomain.setVersion(Integer.MAX_VALUE);
+		userDomain.setVersion(Integer.MAX_VALUE);
 		return userDomain;
 	}
 	public 	static UserDomain refById(String id){

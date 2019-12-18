@@ -12,6 +12,7 @@ import com.doublechain.bank.SmartList;
 import com.doublechain.bank.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.account.Account;
 
@@ -24,6 +25,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 	public static final String FOUNDED_PROPERTY               = "founded"           ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
+	public static final String CHANGE_REQUEST_TYPE_LIST                 = "changeRequestTypeList";
 	public static final String CHANGE_REQUEST_LIST                      = "changeRequestList" ;
 	public static final String ACCOUNT_LIST                             = "accountList"       ;
 
@@ -52,6 +54,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 	protected		int                 	mVersion            ;
 	
 	
+	protected		SmartList<ChangeRequestType>	mChangeRequestTypeList;
 	protected		SmartList<ChangeRequest>	mChangeRequestList  ;
 	protected		SmartList<Account>  	mAccountList        ;
 	
@@ -62,7 +65,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 	public 	static Platform withId(String id){
 		Platform platform = new Platform();
 		platform.setId(id);
-		// platform.setVersion(Integer.MAX_VALUE);
+		platform.setVersion(Integer.MAX_VALUE);
 		return platform;
 	}
 	public 	static Platform refById(String id){
@@ -80,6 +83,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 		setName(name);
 		setFounded(founded);
 
+		this.mChangeRequestTypeList = new SmartList<ChangeRequestType>();
 		this.mChangeRequestList = new SmartList<ChangeRequest>();
 		this.mAccountList = new SmartList<Account>();	
 	}
@@ -139,6 +143,10 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 		}
 		if(FOUNDED_PROPERTY.equals(property)){
 			return getFounded();
+		}
+		if(CHANGE_REQUEST_TYPE_LIST.equals(property)){
+			List<BaseEntity> list = getChangeRequestTypeList().stream().map(item->item).collect(Collectors.toList());
+			return list;
 		}
 		if(CHANGE_REQUEST_LIST.equals(property)){
 			List<BaseEntity> list = getChangeRequestList().stream().map(item->item).collect(Collectors.toList());
@@ -223,6 +231,113 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 	}
 	
 	
+
+	public  SmartList<ChangeRequestType> getChangeRequestTypeList(){
+		if(this.mChangeRequestTypeList == null){
+			this.mChangeRequestTypeList = new SmartList<ChangeRequestType>();
+			this.mChangeRequestTypeList.setListInternalName (CHANGE_REQUEST_TYPE_LIST );
+			//有名字，便于做权限控制
+		}
+		
+		return this.mChangeRequestTypeList;	
+	}
+	public  void setChangeRequestTypeList(SmartList<ChangeRequestType> changeRequestTypeList){
+		for( ChangeRequestType changeRequestType:changeRequestTypeList){
+			changeRequestType.setPlatform(this);
+		}
+
+		this.mChangeRequestTypeList = changeRequestTypeList;
+		this.mChangeRequestTypeList.setListInternalName (CHANGE_REQUEST_TYPE_LIST );
+		
+	}
+	
+	public  void addChangeRequestType(ChangeRequestType changeRequestType){
+		changeRequestType.setPlatform(this);
+		getChangeRequestTypeList().add(changeRequestType);
+	}
+	public  void addChangeRequestTypeList(SmartList<ChangeRequestType> changeRequestTypeList){
+		for( ChangeRequestType changeRequestType:changeRequestTypeList){
+			changeRequestType.setPlatform(this);
+		}
+		getChangeRequestTypeList().addAll(changeRequestTypeList);
+	}
+	public  void mergeChangeRequestTypeList(SmartList<ChangeRequestType> changeRequestTypeList){
+		if(changeRequestTypeList==null){
+			return;
+		}
+		if(changeRequestTypeList.isEmpty()){
+			return;
+		}
+		addChangeRequestTypeList( changeRequestTypeList );
+		
+	}
+	public  ChangeRequestType removeChangeRequestType(ChangeRequestType changeRequestTypeIndex){
+		
+		int index = getChangeRequestTypeList().indexOf(changeRequestTypeIndex);
+        if(index < 0){
+        	String message = "ChangeRequestType("+changeRequestTypeIndex.getId()+") with version='"+changeRequestTypeIndex.getVersion()+"' NOT found!";
+            throw new IllegalStateException(message);
+        }
+        ChangeRequestType changeRequestType = getChangeRequestTypeList().get(index);        
+        // changeRequestType.clearPlatform(); //disconnect with Platform
+        changeRequestType.clearFromAll(); //disconnect with Platform
+		
+		boolean result = getChangeRequestTypeList().planToRemove(changeRequestType);
+        if(!result){
+        	String message = "ChangeRequestType("+changeRequestTypeIndex.getId()+") with version='"+changeRequestTypeIndex.getVersion()+"' NOT found!";
+            throw new IllegalStateException(message);
+        }
+        return changeRequestType;
+        
+	
+	}
+	//断舍离
+	public  void breakWithChangeRequestType(ChangeRequestType changeRequestType){
+		
+		if(changeRequestType == null){
+			return;
+		}
+		changeRequestType.setPlatform(null);
+		//getChangeRequestTypeList().remove();
+	
+	}
+	
+	public  boolean hasChangeRequestType(ChangeRequestType changeRequestType){
+	
+		return getChangeRequestTypeList().contains(changeRequestType);
+  
+	}
+	
+	public void copyChangeRequestTypeFrom(ChangeRequestType changeRequestType) {
+
+		ChangeRequestType changeRequestTypeInList = findTheChangeRequestType(changeRequestType);
+		ChangeRequestType newChangeRequestType = new ChangeRequestType();
+		changeRequestTypeInList.copyTo(newChangeRequestType);
+		newChangeRequestType.setVersion(0);//will trigger copy
+		getChangeRequestTypeList().add(newChangeRequestType);
+		addItemToFlexiableObject(COPIED_CHILD, newChangeRequestType);
+	}
+	
+	public  ChangeRequestType findTheChangeRequestType(ChangeRequestType changeRequestType){
+		
+		int index =  getChangeRequestTypeList().indexOf(changeRequestType);
+		//The input parameter must have the same id and version number.
+		if(index < 0){
+ 			String message = "ChangeRequestType("+changeRequestType.getId()+") with version='"+changeRequestType.getVersion()+"' NOT found!";
+			throw new IllegalStateException(message);
+		}
+		
+		return  getChangeRequestTypeList().get(index);
+		//Performance issue when using LinkedList, but it is almost an ArrayList for sure!
+	}
+	
+	public  void cleanUpChangeRequestTypeList(){
+		getChangeRequestTypeList().clear();
+	}
+	
+	
+	
+
 
 	public  SmartList<ChangeRequest> getChangeRequestList(){
 		if(this.mChangeRequestList == null){
@@ -447,6 +562,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 	public List<BaseEntity>  collectRefercencesFromLists(String internalType){
 		
 		List<BaseEntity> entityList = new ArrayList<BaseEntity>();
+		collectFromList(this, entityList, getChangeRequestTypeList(), internalType);
 		collectFromList(this, entityList, getChangeRequestList(), internalType);
 		collectFromList(this, entityList, getAccountList(), internalType);
 
@@ -456,6 +572,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 	public  List<SmartList<?>> getAllRelatedLists() {
 		List<SmartList<?>> listOfList = new ArrayList<SmartList<?>>();
 		
+		listOfList.add( getChangeRequestTypeList());
 		listOfList.add( getChangeRequestList());
 		listOfList.add( getAccountList());
 			
@@ -471,6 +588,11 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, NAME_PROPERTY, getName());
 		appendKeyValuePair(result, FOUNDED_PROPERTY, getFounded());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
+		appendKeyValuePair(result, CHANGE_REQUEST_TYPE_LIST, getChangeRequestTypeList());
+		if(!getChangeRequestTypeList().isEmpty()){
+			appendKeyValuePair(result, "changeRequestTypeCount", getChangeRequestTypeList().getTotalCount());
+			appendKeyValuePair(result, "changeRequestTypeCurrentPageNumber", getChangeRequestTypeList().getCurrentPageNumber());
+		}
 		appendKeyValuePair(result, CHANGE_REQUEST_LIST, getChangeRequestList());
 		if(!getChangeRequestList().isEmpty()){
 			appendKeyValuePair(result, "changeRequestCount", getChangeRequestList().getTotalCount());
@@ -499,6 +621,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 			dest.setName(getName());
 			dest.setFounded(getFounded());
 			dest.setVersion(getVersion());
+			dest.setChangeRequestTypeList(getChangeRequestTypeList());
 			dest.setChangeRequestList(getChangeRequestList());
 			dest.setAccountList(getAccountList());
 
@@ -518,6 +641,7 @@ public class Platform extends BaseEntity implements  java.io.Serializable{
 			dest.mergeName(getName());
 			dest.mergeFounded(getFounded());
 			dest.mergeVersion(getVersion());
+			dest.mergeChangeRequestTypeList(getChangeRequestTypeList());
 			dest.mergeChangeRequestList(getChangeRequestList());
 			dest.mergeAccountList(getAccountList());
 

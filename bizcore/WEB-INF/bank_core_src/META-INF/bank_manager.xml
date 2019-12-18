@@ -11,6 +11,9 @@
 	<bean id="platformManagerBase" class="com.doublechain.bank.platform.PlatformManagerImpl"/>
 	<bean id="platformManager" class="com.doublechain.bank.platform.PlatformCustomManagerImpl" parent="platformManagerBase" ></bean>
 	
+	<bean id="changeRequestTypeManagerBase" class="com.doublechain.bank.changerequesttype.ChangeRequestTypeManagerImpl"/>
+	<bean id="changeRequestTypeManager" class="com.doublechain.bank.changerequesttype.ChangeRequestTypeManagerImpl" parent="changeRequestTypeManagerBase" ></bean>
+	
 	<bean id="changeRequestManagerBase" class="com.doublechain.bank.changerequest.ChangeRequestManagerImpl"/>
 	<bean id="changeRequestManager" class="com.doublechain.bank.changerequest.ChangeRequestCustomManagerImpl" parent="changeRequestManagerBase" ></bean>
 	
@@ -77,6 +80,7 @@
 
 	<bean id="managerGroupBase" class="com.doublechain.bank.ManagerGroup">
 		<property name="platformManager" ref="platformManager"/>
+		<property name="changeRequestTypeManager" ref="changeRequestTypeManager"/>
 		<property name="changeRequestManager" ref="changeRequestManager"/>
 		<property name="transactionManager" ref="transactionManager"/>
 		<property name="nameChangeEventManager" ref="nameChangeEventManager"/>

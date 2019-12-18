@@ -8,9 +8,11 @@ import com.doublechain.bank.SmartList;
 import com.doublechain.bank.MultipleAccessKey;
 import com.doublechain.bank.BankUserContext;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.account.Account;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestTypeDAO;
 import com.doublechain.bank.changerequest.ChangeRequestDAO;
 import com.doublechain.bank.account.AccountDAO;
 
@@ -43,25 +45,39 @@ public interface PlatformDAO{
 	public Platform disconnectFromAll(String platformId, int version) throws Exception;
 	public int deleteAll() throws Exception;
 
+	public ChangeRequestTypeDAO getChangeRequestTypeDAO();
+		
 	public ChangeRequestDAO getChangeRequestDAO();
 		
 	public AccountDAO getAccountDAO();
 		
 	
+ 	public SmartList<Platform> requestCandidatePlatformForChangeRequestType(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
+		
  	public SmartList<Platform> requestCandidatePlatformForChangeRequest(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
  	public SmartList<Platform> requestCandidatePlatformForAccount(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception;
 		
 	
+	public Platform planToRemoveChangeRequestTypeList(Platform platform, String changeRequestTypeIds[], Map<String,Object> options)throws Exception;
+
+
 	public Platform planToRemoveChangeRequestList(Platform platform, String changeRequestIds[], Map<String,Object> options)throws Exception;
 
 
+	//disconnect Platform with request_type in ChangeRequest
+	public Platform planToRemoveChangeRequestListWithRequestType(Platform platform, String requestTypeId, Map<String,Object> options)throws Exception;
+	public int countChangeRequestListWithRequestType(String platformId, String requestTypeId, Map<String,Object> options)throws Exception;
+	
 	public Platform planToRemoveAccountList(Platform platform, String accountIds[], Map<String,Object> options)throws Exception;
 
 
 	
 	public SmartList<Platform> queryList(String sql, Object ... parmeters);
 
+	// 需要一个加载引用我的对象的enhance方法:ChangeRequestType的platform的ChangeRequestTypeList
+	public SmartList<ChangeRequestType> loadOurChangeRequestTypeList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception;
+	
 	// 需要一个加载引用我的对象的enhance方法:ChangeRequest的platform的ChangeRequestList
 	public SmartList<ChangeRequest> loadOurChangeRequestList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception;
 	

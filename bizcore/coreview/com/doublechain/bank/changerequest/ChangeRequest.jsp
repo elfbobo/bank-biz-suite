@@ -130,6 +130,10 @@
 	
 
 	<div class="row">
+<c:set var="changeRequestType" value="${ result.requestType}" scope="request" />
+<c:set var="referName" value="(requestType)" scope="request" />
+<sky:include page="com/doublechain/bank/changerequesttype/ChangeRequestType$Info.jsp" />
+
 <c:set var="platform" value="${ result.platform}" scope="request" />
 <c:set var="referName" value="" scope="request" />
 <sky:include page="com/doublechain/bank/platform/Platform$Info.jsp" />

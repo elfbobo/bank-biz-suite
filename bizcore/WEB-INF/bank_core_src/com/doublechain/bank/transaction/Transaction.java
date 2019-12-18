@@ -66,7 +66,7 @@ public class Transaction extends BaseEntity implements  java.io.Serializable{
 	public 	static Transaction withId(String id){
 		Transaction transaction = new Transaction();
 		transaction.setId(id);
-		// transaction.setVersion(Integer.MAX_VALUE);
+		transaction.setVersion(Integer.MAX_VALUE);
 		return transaction;
 	}
 	public 	static Transaction refById(String id){

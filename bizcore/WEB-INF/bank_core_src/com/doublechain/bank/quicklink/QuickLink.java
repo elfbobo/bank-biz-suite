@@ -65,7 +65,7 @@ public class QuickLink extends BaseEntity implements  java.io.Serializable{
 	public 	static QuickLink withId(String id){
 		QuickLink quickLink = new QuickLink();
 		quickLink.setId(id);
-		// quickLink.setVersion(Integer.MAX_VALUE);
+		quickLink.setVersion(Integer.MAX_VALUE);
 		return quickLink;
 	}
 	public 	static QuickLink refById(String id){

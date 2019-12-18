@@ -74,7 +74,7 @@ public class Account extends BaseEntity implements  java.io.Serializable{
 	public 	static Account withId(String id){
 		Account account = new Account();
 		account.setId(id);
-		// account.setVersion(Integer.MAX_VALUE);
+		account.setVersion(Integer.MAX_VALUE);
 		return account;
 	}
 	public 	static Account refById(String id){

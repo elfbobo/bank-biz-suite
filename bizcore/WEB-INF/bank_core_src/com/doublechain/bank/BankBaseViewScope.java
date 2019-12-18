@@ -4,6 +4,7 @@ package com.doublechain.bank;
 import com.terapico.caf.viewpage.SerializeScope;
 
 import com.doublechain.bank.platform.Platform;
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.transaction.Transaction;
 import com.doublechain.bank.namechangeevent.NameChangeEvent;
@@ -38,6 +39,17 @@ public class BankBaseViewScope {
 	/** 用于Platform的子对象的详情页时需要序列化的属性列表 */
 	public static SerializeScope getPlatformSummaryScope() {
 		return PlatformBaseSummaryScope;
+	}
+
+	protected static SerializeScope ChangeRequestTypeBaseSummaryScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(ChangeRequestType.ID_PROPERTY)
+		.field(ChangeRequestType.NAME_PROPERTY)
+		.field(ChangeRequestType.CODE_PROPERTY)
+		;
+	/** 用于ChangeRequestType的子对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getChangeRequestTypeSummaryScope() {
+		return ChangeRequestTypeBaseSummaryScope;
 	}
 
 	protected static SerializeScope ChangeRequestBaseSummaryScope = SerializeScope.INCLUDE()
@@ -337,6 +349,17 @@ public class BankBaseViewScope {
 		return PlatformBaseSecondaryListItemScope;
 	}
 
+	protected static SerializeScope ChangeRequestTypeBaseSecondaryListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(ChangeRequestType.ID_PROPERTY)
+		.field(ChangeRequestType.NAME_PROPERTY)
+		.field(ChangeRequestType.CODE_PROPERTY)
+		;
+	/** 用于ChangeRequestType的父对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getChangeRequestTypeSecondaryListItemScope() {
+		return ChangeRequestTypeBaseSecondaryListItemScope;
+	}
+
 	protected static SerializeScope ChangeRequestBaseSecondaryListItemScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(ChangeRequest.ID_PROPERTY)
@@ -628,6 +651,7 @@ public class BankBaseViewScope {
 		.field(Platform.ID_PROPERTY)
 		.field(Platform.NAME_PROPERTY)
 		.field(Platform.FOUNDED_PROPERTY)
+		.field(Platform.CHANGE_REQUEST_TYPE_LIST, getChangeRequestTypeSecondaryListItemScope())
 		.field(Platform.CHANGE_REQUEST_LIST, getChangeRequestSecondaryListItemScope())
 		.field(Platform.ACCOUNT_LIST, getAccountSecondaryListItemScope())
 		;
@@ -636,12 +660,26 @@ public class BankBaseViewScope {
 		return PlatformBaseListItemScope;
 	}
 
+	protected static SerializeScope ChangeRequestTypeBaseListItemScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(ChangeRequestType.ID_PROPERTY)
+		.field(ChangeRequestType.NAME_PROPERTY)
+		.field(ChangeRequestType.CODE_PROPERTY)
+		.field(ChangeRequestType.PLATFORM_PROPERTY, getPlatformSummaryScope())
+		.field(ChangeRequestType.CHANGE_REQUEST_LIST, getChangeRequestSecondaryListItemScope())
+		;
+	/** 用于ChangeRequestType对象的列表时需要序列化的属性列表 */
+	public static SerializeScope getChangeRequestTypeListItemScope() {
+		return ChangeRequestTypeBaseListItemScope;
+	}
+
 	protected static SerializeScope ChangeRequestBaseListItemScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(ChangeRequest.ID_PROPERTY)
 		.field(ChangeRequest.NAME_PROPERTY)
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
 		.field(ChangeRequest.REMOTE_IP_PROPERTY)
+		.field(ChangeRequest.REQUEST_TYPE_PROPERTY, getChangeRequestTypeSummaryScope())
 		.field(ChangeRequest.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(ChangeRequest.TRANSACTION_LIST, getTransactionSecondaryListItemScope())
 		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventSecondaryListItemScope())
@@ -969,6 +1007,7 @@ public class BankBaseViewScope {
 		.field(Platform.ID_PROPERTY)
 		.field(Platform.NAME_PROPERTY)
 		.field(Platform.FOUNDED_PROPERTY)
+		.field(Platform.CHANGE_REQUEST_TYPE_LIST, getChangeRequestTypeListItemScope())
 		.field(Platform.CHANGE_REQUEST_LIST, getChangeRequestListItemScope())
 		.field(Platform.ACCOUNT_LIST, getAccountListItemScope())
 		;
@@ -977,12 +1016,26 @@ public class BankBaseViewScope {
 		return PlatformBaseDetailScope;
 	}
 
+	protected static SerializeScope ChangeRequestTypeBaseDetailScope = SerializeScope.INCLUDE()
+		.field(BankBaseConstants.X_LINK_TO_URL)
+		.field(ChangeRequestType.ID_PROPERTY)
+		.field(ChangeRequestType.NAME_PROPERTY)
+		.field(ChangeRequestType.CODE_PROPERTY)
+		.field(ChangeRequestType.PLATFORM_PROPERTY, getPlatformSummaryScope())
+		.field(ChangeRequestType.CHANGE_REQUEST_LIST, getChangeRequestListItemScope())
+		;
+	/** 用于ChangeRequestType对象的详情页时需要序列化的属性列表 */
+	public static SerializeScope getChangeRequestTypeDetailScope() {
+		return ChangeRequestTypeBaseDetailScope;
+	}
+
 	protected static SerializeScope ChangeRequestBaseDetailScope = SerializeScope.INCLUDE()
 		.field(BankBaseConstants.X_LINK_TO_URL)
 		.field(ChangeRequest.ID_PROPERTY)
 		.field(ChangeRequest.NAME_PROPERTY)
 		.field(ChangeRequest.CREATE_TIME_PROPERTY)
 		.field(ChangeRequest.REMOTE_IP_PROPERTY)
+		.field(ChangeRequest.REQUEST_TYPE_PROPERTY, getChangeRequestTypeSummaryScope())
 		.field(ChangeRequest.PLATFORM_PROPERTY, getPlatformSummaryScope())
 		.field(ChangeRequest.TRANSACTION_LIST, getTransactionListItemScope())
 		.field(ChangeRequest.NAME_CHANGE_EVENT_LIST, getNameChangeEventListItemScope())

@@ -27,9 +27,19 @@ public interface PlatformManager{
 	/*======================================================DATA MAINTENANCE===========================================================*/
 	
 
-	//public  ChangeRequestManager getChangeRequestManager(BankUserContext userContext, String platformId, String name ,String [] tokensExpr)  throws Exception;
+	//public  ChangeRequestTypeManager getChangeRequestTypeManager(BankUserContext userContext, String platformId, String name, String code ,String [] tokensExpr)  throws Exception;
 	
-	public  Platform addChangeRequest(BankUserContext userContext, String platformId, String name , String [] tokensExpr)  throws Exception;
+	public  Platform addChangeRequestType(BankUserContext userContext, String platformId, String name, String code , String [] tokensExpr)  throws Exception;
+	public  Platform removeChangeRequestType(BankUserContext userContext, String platformId, String changeRequestTypeId, int changeRequestTypeVersion,String [] tokensExpr)  throws Exception;
+	public  Platform updateChangeRequestType(BankUserContext userContext, String platformId, String changeRequestTypeId, int changeRequestTypeVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
+
+	/*
+
+	*/
+
+	//public  ChangeRequestManager getChangeRequestManager(BankUserContext userContext, String platformId, String name, String requestTypeId ,String [] tokensExpr)  throws Exception;
+	
+	public  Platform addChangeRequest(BankUserContext userContext, String platformId, String name, String requestTypeId , String [] tokensExpr)  throws Exception;
 	public  Platform removeChangeRequest(BankUserContext userContext, String platformId, String changeRequestId, int changeRequestVersion,String [] tokensExpr)  throws Exception;
 	public  Platform updateChangeRequest(BankUserContext userContext, String platformId, String changeRequestId, int changeRequestVersion, String property, String newValueExpr,String [] tokensExpr)  throws Exception;
 

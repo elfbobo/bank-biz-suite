@@ -20,11 +20,13 @@ import com.doublechain.bank.MultipleAccessKey;
 import com.doublechain.bank.BankUserContext;
 
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
 import com.doublechain.bank.accountchange.AccountChange;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestTypeDAO;
 import com.doublechain.bank.transaction.TransactionDAO;
 import com.doublechain.bank.namechangeevent.NameChangeEventDAO;
 import com.doublechain.bank.platform.PlatformDAO;
@@ -38,6 +40,15 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 
 
 public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements ChangeRequestDAO{
+ 
+ 	
+ 	private  ChangeRequestTypeDAO  changeRequestTypeDAO;
+ 	public void setChangeRequestTypeDAO(ChangeRequestTypeDAO changeRequestTypeDAO){
+	 	this.changeRequestTypeDAO = changeRequestTypeDAO;
+ 	}
+ 	public ChangeRequestTypeDAO getChangeRequestTypeDAO(){
+	 	return this.changeRequestTypeDAO;
+ 	}
  
  	
  	private  PlatformDAO  platformDAO;
@@ -264,6 +275,20 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 
  
 
+ 	protected boolean isExtractRequestTypeEnabled(Map<String,Object> options){
+ 		
+	 	return checkOptions(options, ChangeRequestTokens.REQUESTTYPE);
+ 	}
+
+ 	protected boolean isSaveRequestTypeEnabled(Map<String,Object> options){
+	 	
+ 		return checkOptions(options, ChangeRequestTokens.REQUESTTYPE);
+ 	}
+ 	
+
+ 	
+  
+
  	protected boolean isExtractPlatformEnabled(Map<String,Object> options){
  		
 	 	return checkOptions(options, ChangeRequestTokens.PLATFORM);
@@ -346,6 +371,10 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 		
 		ChangeRequest changeRequest = extractChangeRequest(accessKey, loadOptions);
  	
+ 		if(isExtractRequestTypeEnabled(loadOptions)){
+	 		extractRequestType(changeRequest, loadOptions);
+ 		}
+  	
  		if(isExtractPlatformEnabled(loadOptions)){
 	 		extractPlatform(changeRequest, loadOptions);
  		}
@@ -380,6 +409,26 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 	}
 
 	 
+
+ 	protected ChangeRequest extractRequestType(ChangeRequest changeRequest, Map<String,Object> options) throws Exception{
+
+		if(changeRequest.getRequestType() == null){
+			return changeRequest;
+		}
+		String requestTypeId = changeRequest.getRequestType().getId();
+		if( requestTypeId == null){
+			return changeRequest;
+		}
+		ChangeRequestType requestType = getChangeRequestTypeDAO().load(requestTypeId,options);
+		if(requestType != null){
+			changeRequest.setRequestType(requestType);
+		}
+		
+ 		
+ 		return changeRequest;
+ 	}
+ 		
+  
 
  	protected ChangeRequest extractPlatform(ChangeRequest changeRequest, Map<String,Object> options) throws Exception{
 
@@ -552,6 +601,56 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 	
 		
 		
+  	
+ 	public SmartList<ChangeRequest> findChangeRequestByRequestType(String changeRequestTypeId,Map<String,Object> options){
+ 	
+  		SmartList<ChangeRequest> resultList = queryWith(ChangeRequestTable.COLUMN_REQUEST_TYPE, changeRequestTypeId, options, getChangeRequestMapper());
+		// analyzeChangeRequestByRequestType(resultList, changeRequestTypeId, options);
+		return resultList;
+ 	}
+ 	 
+ 
+ 	public SmartList<ChangeRequest> findChangeRequestByRequestType(String changeRequestTypeId, int start, int count,Map<String,Object> options){
+ 		
+ 		SmartList<ChangeRequest> resultList =  queryWithRange(ChangeRequestTable.COLUMN_REQUEST_TYPE, changeRequestTypeId, options, getChangeRequestMapper(), start, count);
+ 		//analyzeChangeRequestByRequestType(resultList, changeRequestTypeId, options);
+ 		return resultList;
+ 		
+ 	}
+ 	public void analyzeChangeRequestByRequestType(SmartList<ChangeRequest> resultList, String changeRequestTypeId, Map<String,Object> options){
+		if(resultList==null){
+			return;//do nothing when the list is null.
+		}
+		
+ 		MultipleAccessKey filterKey = new MultipleAccessKey();
+ 		filterKey.put(ChangeRequest.REQUEST_TYPE_PROPERTY, changeRequestTypeId);
+ 		Map<String,Object> emptyOptions = new HashMap<String,Object>();
+ 		
+ 		StatsInfo info = new StatsInfo();
+ 		
+ 
+		StatsItem createTimeStatsItem = new StatsItem();
+		//ChangeRequest.CREATE_TIME_PROPERTY
+		createTimeStatsItem.setDisplayName("变更请求");
+		createTimeStatsItem.setInternalName(formatKeyForDateLine(ChangeRequest.CREATE_TIME_PROPERTY));
+		createTimeStatsItem.setResult(statsWithGroup(DateKey.class,wrapWithDate(ChangeRequest.CREATE_TIME_PROPERTY),filterKey,emptyOptions));
+		info.addItem(createTimeStatsItem);
+ 				
+ 		resultList.setStatsInfo(info);
+
+ 	
+ 		
+ 	}
+ 	@Override
+ 	public int countChangeRequestByRequestType(String changeRequestTypeId,Map<String,Object> options){
+
+ 		return countWith(ChangeRequestTable.COLUMN_REQUEST_TYPE, changeRequestTypeId, options);
+ 	}
+ 	@Override
+	public Map<String, Integer> countChangeRequestByRequestTypeIds(String[] ids, Map<String, Object> options) {
+		return countWithIds(ChangeRequestTable.COLUMN_REQUEST_TYPE, ids, options);
+	}
+ 	
   	
  	public SmartList<ChangeRequest> findChangeRequestByPlatform(String platformId,Map<String,Object> options){
  	
@@ -744,23 +843,27 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
  		return prepareChangeRequestCreateParameters(changeRequest);
  	}
  	protected Object[] prepareChangeRequestUpdateParameters(ChangeRequest changeRequest){
- 		Object[] parameters = new Object[7];
+ 		Object[] parameters = new Object[8];
  
  		parameters[0] = changeRequest.getName();
  		parameters[1] = changeRequest.getCreateTime();
  		parameters[2] = changeRequest.getRemoteIp(); 	
+ 		if(changeRequest.getRequestType() != null){
+ 			parameters[3] = changeRequest.getRequestType().getId();
+ 		}
+  	
  		if(changeRequest.getPlatform() != null){
- 			parameters[3] = changeRequest.getPlatform().getId();
+ 			parameters[4] = changeRequest.getPlatform().getId();
  		}
  		
- 		parameters[4] = changeRequest.nextVersion();
- 		parameters[5] = changeRequest.getId();
- 		parameters[6] = changeRequest.getVersion();
+ 		parameters[5] = changeRequest.nextVersion();
+ 		parameters[6] = changeRequest.getId();
+ 		parameters[7] = changeRequest.getVersion();
  				
  		return parameters;
  	}
  	protected Object[] prepareChangeRequestCreateParameters(ChangeRequest changeRequest){
-		Object[] parameters = new Object[5];
+		Object[] parameters = new Object[6];
 		String newChangeRequestId=getNextId();
 		changeRequest.setId(newChangeRequestId);
 		parameters[0] =  changeRequest.getId();
@@ -768,8 +871,13 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
  		parameters[1] = changeRequest.getName();
  		parameters[2] = changeRequest.getCreateTime();
  		parameters[3] = changeRequest.getRemoteIp(); 	
+ 		if(changeRequest.getRequestType() != null){
+ 			parameters[4] = changeRequest.getRequestType().getId();
+ 		
+ 		}
+ 		 	
  		if(changeRequest.getPlatform() != null){
- 			parameters[4] = changeRequest.getPlatform().getId();
+ 			parameters[5] = changeRequest.getPlatform().getId();
  		
  		}
  				
@@ -781,6 +889,10 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 		
 		saveChangeRequest(changeRequest);
  	
+ 		if(isSaveRequestTypeEnabled(options)){
+	 		saveRequestType(changeRequest, options);
+ 		}
+  	
  		if(isSavePlatformEnabled(options)){
 	 		savePlatform(changeRequest, options);
  		}
@@ -815,6 +927,23 @@ public class ChangeRequestJDBCTemplateDAO extends BankBaseDAOImpl implements Cha
 	
 	//======================================================================================
 	 
+ 
+ 	protected ChangeRequest saveRequestType(ChangeRequest changeRequest, Map<String,Object> options){
+ 		//Call inject DAO to execute this method
+ 		if(changeRequest.getRequestType() == null){
+ 			return changeRequest;//do nothing when it is null
+ 		}
+ 		
+ 		getChangeRequestTypeDAO().save(changeRequest.getRequestType(),options);
+ 		return changeRequest;
+ 		
+ 	}
+ 	
+ 	
+ 	
+ 	 
+	
+  
  
  	protected ChangeRequest savePlatform(ChangeRequest changeRequest, Map<String,Object> options){
  		//Call inject DAO to execute this method

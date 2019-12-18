@@ -57,7 +57,7 @@ public class CandidateContainer extends BaseEntity implements  java.io.Serializa
 	public 	static CandidateContainer withId(String id){
 		CandidateContainer candidateContainer = new CandidateContainer();
 		candidateContainer.setId(id);
-		// candidateContainer.setVersion(Integer.MAX_VALUE);
+		candidateContainer.setVersion(Integer.MAX_VALUE);
 		return candidateContainer;
 	}
 	public 	static CandidateContainer refById(String id){

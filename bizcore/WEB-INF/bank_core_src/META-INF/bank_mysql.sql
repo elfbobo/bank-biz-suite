@@ -1,4 +1,4 @@
--- BUILD WITH MODEL TIME 190826T1611
+-- BUILD WITH MODEL TIME 190929T2220
 
 
 
@@ -18,12 +18,23 @@ create table platform_data (
 	primary key(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = "平台";
 
+drop table  if exists change_request_type_data;
+create table change_request_type_data (
+	id                            	varchar(48)          not null            comment 'ID',
+	name                          	varchar(8)                               comment '名称',
+	code                          	varchar(56)                              comment '代码',
+	platform                      	varchar(48)                              comment '平台',
+	version                       	int                                      comment '版本',
+	primary key(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = "变更请求类型";
+
 drop table  if exists change_request_data;
 create table change_request_data (
 	id                            	varchar(48)          not null            comment 'ID',
 	name                          	varchar(50)                              comment '名称',
 	create_time                   	datetime                                 comment '创建时间',
 	remote_ip                     	varchar(40)                              comment '远程Ip',
+	request_type                  	varchar(48)                              comment '请求类型',
 	platform                      	varchar(48)                              comment '平台',
 	version                       	int                                      comment '版本',
 	primary key(id)
@@ -56,7 +67,7 @@ drop table  if exists account_data;
 create table account_data (
 	id                            	varchar(48)          not null            comment 'ID',
 	name                          	varchar(50)                              comment '名称',
-	balance                       	numeric(7,2)                             comment '余额',
+	balance                       	numeric(10,2)                            comment '余额',
 	create_time                   	datetime                                 comment '创建时间',
 	update_time                   	datetime                                 comment '更新时间',
 	platform                      	varchar(48)                              comment '平台',
@@ -71,7 +82,7 @@ create table account_change_data (
 	account                       	varchar(48)                              comment '账户',
 	previous_balance              	numeric(8,2)                             comment '初期余额',
 	type                          	varchar(8)                               comment '类型',
-	amount                        	numeric(7,2)                             comment '金额',
+	amount                        	numeric(9,2)                             comment '金额',
 	current_balance               	numeric(8,2)                             comment '当前余额',
 	change_request                	varchar(48)                              comment '变更请求',
 	version                       	int                                      comment '版本',
@@ -288,33 +299,54 @@ create table candidate_element_data (
 
 
 insert into platform_data values
-	('P000001','银行模拟平台','2019-08-31 00:21:46','1');
+	('P000001','银行模拟平台','2019-09-18 16:18:22','1');
+
+insert into change_request_type_data values
+	('DEPOSITE','存款','DEPOSITE','P000001','1'),
+	('TRANSFTER','转账','TRANSFTER','P000001','1'),
+	('WITHDRAW','取款','WITHDRAW','P000001','1'),
+	('CREATE_ACCOUNT','开户','CREATE_ACCOUNT','P000001','1'),
+	('CHANGE_NAME','改名','CHANGE_NAME','P000001','1');
 
 insert into change_request_data values
-	('CR000001','存款','2019-09-03 14:26:20','8.8.8.8','P000001','1'),
-	('CR000002','转账','2019-09-01 03:28:33','8.8.8.8','P000001','1');
+	('CR000001','存款','2019-09-27 11:38:43','8.8.8.8','DEPOSITE','P000001','1'),
+	('CR000002','转账','2019-09-30 03:30:11','8.8.8.8','TRANSFTER','P000001','1'),
+	('CR000003','取款','2019-09-14 23:34:45','8.8.8.8','WITHDRAW','P000001','1'),
+	('CR000004','存款','2019-09-21 20:57:27','8.8.8.8','CREATE_ACCOUNT','P000001','1');
 
 insert into transaction_data values
-	('T000001','存款交易','A000001','A000001','114.35','存款','CR000001','1'),
-	('T000002','存款交易','A000001','A000001','114.33','存款','CR000001','1'),
-	('T000003','取款交易','A000002','A000002','109.41','取款','CR000002','1'),
-	('T000004','存款交易','A000002','A000002','106.37','存款','CR000002','1');
+	('T000001','存款交易','A000001','A000001','116.52','存款','CR000001','1'),
+	('T000002','存款交易','A000001','A000001','111.27','存款','CR000001','1'),
+	('T000003','取款交易','A000001','A000001','98.41','取款','CR000002','1'),
+	('T000004','存款交易','A000001','A000001','113.47','存款','CR000002','1'),
+	('T000005','存款交易','A000002','A000002','118.43','存款','CR000003','1'),
+	('T000006','取款交易','A000002','A000002','87.65','取款','CR000003','1'),
+	('T000007','存款交易','A000002','A000002','96.72','存款','CR000004','1'),
+	('T000008','存款交易','A000002','A000002','87.74','存款','CR000004','1');
 
 insert into name_change_event_data values
 	('NCE000001','new name','A000001','CR000001','1'),
 	('NCE000002','new name0002','A000001','CR000001','1'),
-	('NCE000003','new name0003','A000002','CR000002','1'),
-	('NCE000004','new name0004','A000002','CR000002','1');
+	('NCE000003','new name0003','A000001','CR000002','1'),
+	('NCE000004','new name0004','A000001','CR000002','1'),
+	('NCE000005','new name0005','A000002','CR000003','1'),
+	('NCE000006','new name0006','A000002','CR000003','1'),
+	('NCE000007','new name0007','A000002','CR000004','1'),
+	('NCE000008','new name0008','A000002','CR000004','1');
 
 insert into account_data values
-	('A000001','张三账户','98.81','2019-09-09 07:05:31','2019-09-13 06:54:35','P000001','1'),
-	('A000002','李四账户','111.39','2019-09-10 01:15:39','2019-09-01 05:10:05','P000001','1');
+	('A000001','张三账户','118597.62','2019-09-18 12:02:54','2019-09-24 14:56:14','P000001','1'),
+	('A000002','李四账户','120501.65','2019-09-18 05:16:15','2019-09-19 02:07:18','P000001','1');
 
 insert into account_change_data values
-	('AC000001','存款交易','A000001','1019.07','存款','115.35','1067.77','CR000001','1'),
-	('AC000002','存款交易','A000001','1006.72','存款','103.97','1075.82','CR000001','1'),
-	('AC000003','取款交易','A000002','973.09','取款','99.27','973.66','CR000002','1'),
-	('AC000004','存款交易','A000002','1269.89','存款','99.78','976.12','CR000002','1');
+	('AC000001','存款交易','A000001','995.43','存款','10748.71','1137.11','CR000001','1'),
+	('AC000002','存款交易','A000001','1219.88','存款','10565.91','1076.66','CR000001','1'),
+	('AC000003','取款交易','A000001','985.39','取款','10416.43','1083.20','CR000002','1'),
+	('AC000004','存款交易','A000001','1121.89','存款','10886.22','993.19','CR000002','1'),
+	('AC000005','存款交易','A000002','1207.47','存款','11899.94','1151.41','CR000003','1'),
+	('AC000006','取款交易','A000002','1137.53','取款','11980.42','967.21','CR000003','1'),
+	('AC000007','存款交易','A000002','1258.65','存款','11380.49','1139.44','CR000004','1'),
+	('AC000008','存款交易','A000002','960.86','存款','11984.12','929.64','CR000004','1');
 
 insert into user_domain_data values
 	('UD000001','用户区域','1');
@@ -324,11 +356,11 @@ insert into user_white_list_data values
 	('UWL000002','13808188512','tester;ios-spokesperson0002','UD000001','1');
 
 insert into sec_user_data values
-	('SU000001','login','13900000001','','C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95','wx123456789abcdefghijklmn','wxapp12098410239840','jwt_token_12345678','0','2019-09-12 03:00:34','2019-08-29 01:01:07','UD000001',NULL,'BLOCKED','1'),
-	('SU000002','login0002','13900000002','suddy_chang@163.com','AC2F95628244C6975EB2C36942EA879ED93D93F5895EF3157733E4629FA86B92','wx123456789abcdefghijklmn0002','wxapp120984102398400002','jwt_token_123456780002','9999999','2019-09-05 05:58:05','2019-09-01 16:31:52','UD000001',NULL,'BLOCKED0002','1');
+	('SU000001','login','13900000001','','C183EC89F92A462CF45B95504792EC4625E847C90536EEFE512D1C9DB8602E95','wx123456789abcdefghijklmn','wxapp12098410239840','jwt_token_12345678','0','2019-09-30 08:18:57','2019-09-29 15:25:05','UD000001',NULL,'BLOCKED','1'),
+	('SU000002','login0002','13900000002','suddy_chang@163.com','AC2F95628244C6975EB2C36942EA879ED93D93F5895EF3157733E4629FA86B92','wx123456789abcdefghijklmn0002','wxapp120984102398400002','jwt_token_123456780002','9999999','2019-09-15 23:07:43','2019-10-02 12:01:06','UD000001',NULL,'BLOCKED0002','1');
 
 insert into sec_user_blocking_data values
-	('SUB000001','currentUser()','2019-08-28 00:35:59','这个用户多次发送违反社区的帖子，现在把他给屏蔽了','1');
+	('SUB000001','currentUser()','2019-09-23 06:29:42','这个用户多次发送违反社区的帖子，现在把他给屏蔽了','1');
 
 insert into user_app_data values
 	('UA000001','审车平台','SU000001','users','1','MXWR','CarInspectionPlatform','CIP000001','/link/to/app','1'),
@@ -337,14 +369,14 @@ insert into user_app_data values
 	('UA000004','审车公司','SU000002','bar-chart','1','MXWR','CarInspectionServiceCompany','CISC000001','/link/to/app0004','1');
 
 insert into quick_link_data values
-	('QL000001','列表','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表','2019-09-03 11:26:31','UA000001','1'),
-	('QL000002','列表0002','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0002','2019-09-08 09:12:09','UA000001','1'),
-	('QL000003','列表0003','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0003','2019-09-05 13:21:37','UA000002','1'),
-	('QL000004','列表0004','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0004','2019-09-01 14:54:53','UA000002','1'),
-	('QL000005','列表0005','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0005','2019-09-09 16:09:24','UA000003','1'),
-	('QL000006','列表0006','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0006','2019-09-05 21:04:15','UA000003','1'),
-	('QL000007','列表0007','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0007','2019-09-02 11:53:59','UA000004','1'),
-	('QL000008','列表0008','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0008','2019-09-16 13:53:33','UA000004','1');
+	('QL000001','列表','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表','2019-09-28 18:11:16','UA000001','1'),
+	('QL000002','列表0002','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0002','2019-09-30 15:50:13','UA000001','1'),
+	('QL000003','列表0003','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0003','2019-10-02 07:16:32','UA000002','1'),
+	('QL000004','列表0004','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0004','2019-10-03 14:02:14','UA000002','1'),
+	('QL000005','列表0005','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0005','2019-09-19 14:12:50','UA000003','1'),
+	('QL000006','列表0006','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0006','2019-09-30 18:50:21','UA000003','1'),
+	('QL000007','列表0007','facebook','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0007','2019-09-27 16:50:46','UA000004','1'),
+	('QL000008','列表0008','google','https://demo.doublechaintech.com/demodata/imageManager/genImage/y00/200/200/red/','列表0008','2019-09-13 01:41:17','UA000004','1');
 
 insert into list_access_data values
 	('LA000001','列表','levelOneCategoryList','1','1','1','1','1','UA000001','1'),
@@ -367,10 +399,10 @@ insert into object_access_data values
 	('OA000008','控制访问列表10008','AccountSet','levelOneCategoryList','levelOneCategoryList','levelOneCategoryList','levelOneCategoryList','levelOneCategoryList','levelOneCategoryList','levelOneCategoryList','levelOneCategoryList','levelOneCategoryList','UA000004','1');
 
 insert into login_history_data values
-	('LH000001','2019-08-27 13:26:53','192.168.1.1','登陆成功','SU000001','1'),
-	('LH000002','2019-08-28 07:14:18','192.168.1.2','登陆成功0002','SU000001','1'),
-	('LH000003','2019-09-17 08:41:40','192.168.1.1','登陆成功0003','SU000002','1'),
-	('LH000004','2019-08-28 02:53:31','192.168.1.2','登陆成功0004','SU000002','1');
+	('LH000001','2019-09-17 10:06:11','192.168.1.1','登陆成功','SU000001','1'),
+	('LH000002','2019-10-04 01:27:12','192.168.1.2','登陆成功0002','SU000001','1'),
+	('LH000003','2019-09-22 16:31:52','192.168.1.1','登陆成功0003','SU000002','1'),
+	('LH000004','2019-09-29 05:39:01','192.168.1.2','登陆成功0004','SU000002','1');
 
 insert into generic_form_data values
 	('GF000001','登记输入单','姓名就是你身份证上的名字','1');
@@ -407,8 +439,14 @@ Mysql innodb's foreign key has index automatically
 
 create unique index idx_platform_version on platform_data(id, version);
 
+create unique index idx_change_request_type_version on change_request_type_data(id, version);
+
+alter table change_request_type_data add constraint change_request_type4platform_fk
+	foreign key(platform) references platform_data(id) on delete cascade on update cascade;
 create unique index idx_change_request_version on change_request_data(id, version);
 
+alter table change_request_data add constraint change_request4request_type_fk
+	foreign key(request_type) references change_request_type_data(id) on delete cascade on update cascade;
 alter table change_request_data add constraint change_request4platform_fk
 	foreign key(platform) references platform_data(id) on delete cascade on update cascade;
 create unique index idx_transaction_version on transaction_data(id, version);
@@ -497,6 +535,7 @@ alter table candidate_element_data add constraint candidate_element4container_fk
 
 create index platform4founded_idx on platform_data(founded);
 create index platform4version_idx on platform_data(version);
+create index change_request_type4version_idx on change_request_type_data(version);
 create index change_request4create_time_idx on change_request_data(create_time);
 create index change_request4version_idx on change_request_data(version);
 create index transaction4amount_idx on transaction_data(amount);

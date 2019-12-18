@@ -61,7 +61,7 @@ public class CandidateElement extends BaseEntity implements  java.io.Serializabl
 	public 	static CandidateElement withId(String id){
 		CandidateElement candidateElement = new CandidateElement();
 		candidateElement.setId(id);
-		// candidateElement.setVersion(Integer.MAX_VALUE);
+		candidateElement.setVersion(Integer.MAX_VALUE);
 		return candidateElement;
 	}
 	public 	static CandidateElement refById(String id){

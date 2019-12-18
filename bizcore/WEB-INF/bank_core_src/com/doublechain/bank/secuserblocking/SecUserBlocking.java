@@ -61,7 +61,7 @@ public class SecUserBlocking extends BaseEntity implements  java.io.Serializable
 	public 	static SecUserBlocking withId(String id){
 		SecUserBlocking secUserBlocking = new SecUserBlocking();
 		secUserBlocking.setId(id);
-		// secUserBlocking.setVersion(Integer.MAX_VALUE);
+		secUserBlocking.setVersion(Integer.MAX_VALUE);
 		return secUserBlocking;
 	}
 	public 	static SecUserBlocking refById(String id){

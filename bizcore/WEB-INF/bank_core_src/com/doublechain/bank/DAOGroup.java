@@ -7,6 +7,9 @@ import java.util.List;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.platform.PlatformDAO;
 import com.doublechain.bank.platform.PlatformTokens;
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
+import com.doublechain.bank.changerequesttype.ChangeRequestTypeDAO;
+import com.doublechain.bank.changerequesttype.ChangeRequestTypeTokens;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.changerequest.ChangeRequestDAO;
 import com.doublechain.bank.changerequest.ChangeRequestTokens;
@@ -75,6 +78,8 @@ public class DAOGroup {
 
 	protected PlatformDAO platformDAO;
 
+	protected ChangeRequestTypeDAO changeRequestTypeDAO;
+
 	protected ChangeRequestDAO changeRequestDAO;
 
 	protected TransactionDAO transactionDAO;
@@ -124,6 +129,14 @@ public class DAOGroup {
 	}
 	public void setPlatformDAO(PlatformDAO dao){
 		this.platformDAO = dao;
+	}
+
+
+	public ChangeRequestTypeDAO getChangeRequestTypeDAO(){
+		return this.changeRequestTypeDAO;
+	}
+	public void setChangeRequestTypeDAO(ChangeRequestTypeDAO dao){
+		this.changeRequestTypeDAO = dao;
 	}
 
 
@@ -321,6 +334,25 @@ public class DAOGroup {
 			@Override
 			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
 				return daoGoup.getPlatformDAO().present((Platform)data, tokens);
+			}
+		});
+
+		internalLoaderMap.put("ChangeRequestType", new BasicLoader() {
+			@Override
+			public BaseEntity loadBasicData(DAOGroup daoGoup, String id) throws Exception {
+				return daoGoup.getChangeRequestTypeDAO().load(id, ChangeRequestTypeTokens.withoutLists());
+			}
+			@Override
+			public void enhanceList(DAOGroup daoGoup, List list) throws Exception {
+				daoGoup.getChangeRequestTypeDAO().enhanceList((List<ChangeRequestType>)list);
+			}
+			@Override
+			public BaseEntity loadBasicDataWithToken(DAOGroup daoGoup, String id, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getChangeRequestTypeDAO().load(id, tokens);
+			}
+			@Override
+			public BaseEntity present(DAOGroup daoGoup, BaseEntity data, Map<String, Object> tokens) throws Exception {
+				return daoGoup.getChangeRequestTypeDAO().present((ChangeRequestType)data, tokens);
 			}
 		});
 

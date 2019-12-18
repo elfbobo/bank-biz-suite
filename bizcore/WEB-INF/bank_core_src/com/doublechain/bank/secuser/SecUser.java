@@ -86,7 +86,7 @@ public class SecUser extends BaseEntity implements  java.io.Serializable{
 	public 	static SecUser withId(String id){
 		SecUser secUser = new SecUser();
 		secUser.setId(id);
-		// secUser.setVersion(Integer.MAX_VALUE);
+		secUser.setVersion(Integer.MAX_VALUE);
 		return secUser;
 	}
 	public 	static SecUser refById(String id){

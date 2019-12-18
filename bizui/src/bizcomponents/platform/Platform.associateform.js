@@ -72,6 +72,7 @@ class PlatformAssociateForm extends Component {
     const {PlatformService} = GlobalComponents
     const userContext = null
     
+ const {ChangeRequestTypeModalTable} = GlobalComponents;
  const {ChangeRequestModalTable} = GlobalComponents;
  const {AccountModalTable} = GlobalComponents;
 
@@ -165,6 +166,7 @@ class PlatformAssociateForm extends Component {
 			
         </Card>
         
+	<ChangeRequestTypeModalTable data={data.changeRequestTypeList} owner={owner} />
 	<ChangeRequestModalTable data={data.changeRequestList} owner={owner} />
 	<AccountModalTable data={data.accountList} owner={owner} />
         

@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import com.terapico.caf.form.ImageInfo;
 import com.terapico.utils.TextUtil;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 
 public class BankBaseUtils {
 	protected static final Map<String, Object> emptyOptions = new HashMap<>();
@@ -227,6 +228,18 @@ public class BankBaseUtils {
 	}
 	public static String formatExchangeRate(BigDecimal amount) {
 		return exRateFormat.format(amount);
+	}
+
+
+	public static ChangeRequestType getChangeRequestType(BankUserContext userContext, String code) throws Exception {
+		String key = "enum:" + ChangeRequestType.INTERNAL_TYPE + ":" + code;
+		ChangeRequestType data = (ChangeRequestType) userContext.getFromContextLocalStorage(key);
+		if (data != null) {
+			return data;
+		}
+		data = userContext.getDAOGroup().getChangeRequestTypeDAO().loadByCode(code, emptyOptions);
+		userContext.putIntoContextLocalStorage(key, data);
+		return data;
 	}
 
 	public static <T> T loadBaseEntityById(BankUserContext ctx, String type, String id) throws Exception {

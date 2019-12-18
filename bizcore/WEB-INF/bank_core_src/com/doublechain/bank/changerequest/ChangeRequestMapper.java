@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.doublechain.bank.BaseRowMapper;
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.platform.Platform;
 
 public class ChangeRequestMapper extends BaseRowMapper<ChangeRequest>{
@@ -16,6 +17,7 @@ public class ChangeRequestMapper extends BaseRowMapper<ChangeRequest>{
  		setName(changeRequest, rs, rowNumber); 		
  		setCreateTime(changeRequest, rs, rowNumber); 		
  		setRemoteIp(changeRequest, rs, rowNumber); 		
+ 		setRequestType(changeRequest, rs, rowNumber); 		
  		setPlatform(changeRequest, rs, rowNumber); 		
  		setVersion(changeRequest, rs, rowNumber);
 
@@ -74,6 +76,24 @@ public class ChangeRequestMapper extends BaseRowMapper<ChangeRequest>{
 		changeRequest.setRemoteIp(remoteIp);
 	}
 		 		
+ 	protected void setRequestType(ChangeRequest changeRequest, ResultSet rs, int rowNumber) throws SQLException{
+ 		String changeRequestTypeId = rs.getString(ChangeRequestTable.COLUMN_REQUEST_TYPE);
+ 		if( changeRequestTypeId == null){
+ 			return;
+ 		}
+ 		if( changeRequestTypeId.isEmpty()){
+ 			return;
+ 		}
+ 		ChangeRequestType changeRequestType = changeRequest.getRequestType();
+ 		if( changeRequestType != null ){
+ 			//if the root object 'changeRequest' already have the property, just set the id for it;
+ 			changeRequestType.setId(changeRequestTypeId);
+ 			
+ 			return;
+ 		}
+ 		changeRequest.setRequestType(createEmptyRequestType(changeRequestTypeId));
+ 	}
+ 	 		
  	protected void setPlatform(ChangeRequest changeRequest, ResultSet rs, int rowNumber) throws SQLException{
  		String platformId = rs.getString(ChangeRequestTable.COLUMN_PLATFORM);
  		if( platformId == null){
@@ -106,6 +126,13 @@ public class ChangeRequestMapper extends BaseRowMapper<ChangeRequest>{
 		
 		
 
+ 	protected ChangeRequestType  createEmptyRequestType(String changeRequestTypeId){
+ 		ChangeRequestType changeRequestType = new ChangeRequestType();
+ 		changeRequestType.setId(changeRequestTypeId);
+ 		changeRequestType.setVersion(Integer.MAX_VALUE);
+ 		return changeRequestType;
+ 	}
+ 	
  	protected Platform  createEmptyPlatform(String platformId){
  		Platform platform = new Platform();
  		platform.setId(platformId);

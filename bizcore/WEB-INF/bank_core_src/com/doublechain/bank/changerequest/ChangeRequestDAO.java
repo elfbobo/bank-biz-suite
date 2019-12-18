@@ -8,11 +8,13 @@ import com.doublechain.bank.SmartList;
 import com.doublechain.bank.MultipleAccessKey;
 import com.doublechain.bank.BankUserContext;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
 import com.doublechain.bank.accountchange.AccountChange;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestTypeDAO;
 import com.doublechain.bank.transaction.TransactionDAO;
 import com.doublechain.bank.namechangeevent.NameChangeEventDAO;
 import com.doublechain.bank.platform.PlatformDAO;
@@ -89,6 +91,14 @@ public interface ChangeRequestDAO{
 	
 	public SmartList<ChangeRequest> queryList(String sql, Object ... parmeters);
  
+ 	public SmartList<ChangeRequest> findChangeRequestByRequestType(String changeRequestTypeId, Map<String,Object> options);
+ 	public int countChangeRequestByRequestType(String changeRequestTypeId, Map<String,Object> options);
+ 	public Map<String, Integer> countChangeRequestByRequestTypeIds(String[] ids, Map<String,Object> options);
+ 	public SmartList<ChangeRequest> findChangeRequestByRequestType(String changeRequestTypeId, int start, int count, Map<String,Object> options);
+ 	public void analyzeChangeRequestByRequestType(SmartList<ChangeRequest> resultList, String changeRequestTypeId, Map<String,Object> options);
+
+ 
+  
  	public SmartList<ChangeRequest> findChangeRequestByPlatform(String platformId, Map<String,Object> options);
  	public int countChangeRequestByPlatform(String platformId, Map<String,Object> options);
  	public Map<String, Integer> countChangeRequestByPlatformIds(String[] ids, Map<String,Object> options);

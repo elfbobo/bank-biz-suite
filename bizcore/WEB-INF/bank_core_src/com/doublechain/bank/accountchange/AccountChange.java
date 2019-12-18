@@ -68,7 +68,7 @@ public class AccountChange extends BaseEntity implements  java.io.Serializable{
 	public 	static AccountChange withId(String id){
 		AccountChange accountChange = new AccountChange();
 		accountChange.setId(id);
-		// accountChange.setVersion(Integer.MAX_VALUE);
+		accountChange.setVersion(Integer.MAX_VALUE);
 		return accountChange;
 	}
 	public 	static AccountChange refById(String id){

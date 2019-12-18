@@ -61,7 +61,7 @@ public class FormFieldMessage extends BaseEntity implements  java.io.Serializabl
 	public 	static FormFieldMessage withId(String id){
 		FormFieldMessage formFieldMessage = new FormFieldMessage();
 		formFieldMessage.setId(id);
-		// formFieldMessage.setVersion(Integer.MAX_VALUE);
+		formFieldMessage.setVersion(Integer.MAX_VALUE);
 		return formFieldMessage;
 	}
 	public 	static FormFieldMessage refById(String id){

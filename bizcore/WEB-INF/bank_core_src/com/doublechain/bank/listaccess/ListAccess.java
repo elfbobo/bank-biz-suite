@@ -69,7 +69,7 @@ public class ListAccess extends BaseEntity implements  java.io.Serializable{
 	public 	static ListAccess withId(String id){
 		ListAccess listAccess = new ListAccess();
 		listAccess.setId(id);
-		// listAccess.setVersion(Integer.MAX_VALUE);
+		listAccess.setVersion(Integer.MAX_VALUE);
 		return listAccess;
 	}
 	public 	static ListAccess refById(String id){

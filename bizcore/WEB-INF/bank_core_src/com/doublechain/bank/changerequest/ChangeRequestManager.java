@@ -12,13 +12,14 @@ public interface ChangeRequestManager{
 
 		
 
-	public ChangeRequest createChangeRequest(BankUserContext userContext, String name, String platformId) throws Exception;	
+	public ChangeRequest createChangeRequest(BankUserContext userContext, String name, String requestTypeId, String platformId) throws Exception;	
 	public ChangeRequest updateChangeRequest(BankUserContext userContext,String changeRequestId, int changeRequestVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception;
 	public ChangeRequest loadChangeRequest(BankUserContext userContext, String changeRequestId, String [] tokensExpr) throws Exception;
 	public ChangeRequest internalSaveChangeRequest(BankUserContext userContext, ChangeRequest changeRequest) throws Exception;
 	public ChangeRequest internalSaveChangeRequest(BankUserContext userContext, ChangeRequest changeRequest,Map<String,Object>option) throws Exception;
 	
-	public ChangeRequest transferToAnotherPlatform(BankUserContext userContext, String changeRequestId, String anotherPlatformId)  throws Exception;
+	public ChangeRequest transferToAnotherRequestType(BankUserContext userContext, String changeRequestId, String anotherRequestTypeId)  throws Exception;
+ 	public ChangeRequest transferToAnotherPlatform(BankUserContext userContext, String changeRequestId, String anotherPlatformId)  throws Exception;
  
 
 	public void delete(BankUserContext userContext, String changeRequestId, int version) throws Exception;

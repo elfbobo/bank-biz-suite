@@ -747,7 +747,7 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 		return this.getId();
 	}
 	protected boolean equalsTimestamp(Date oldValue, Date newValue) {
-		// TODO Auto-generated method stub
+		
 		return equalsDate(oldValue,newValue);
 	}
 
@@ -815,7 +815,7 @@ public class BaseEntity implements Serializable, RemoteInitiable{
 	
 	protected void collectFromList(BaseEntity owner, List<BaseEntity> entityList,
 			SmartList<? extends BaseEntity> targetEntityList, String internalType) {
-		// TODO Auto-generated method stub
+		
 		if(targetEntityList==null){
 			return;
 		}

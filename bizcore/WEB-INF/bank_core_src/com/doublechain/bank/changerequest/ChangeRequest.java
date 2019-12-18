@@ -12,6 +12,7 @@ import com.doublechain.bank.SmartList;
 import com.doublechain.bank.KeyValuePair;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.namechangeevent.NameChangeEvent;
 import com.doublechain.bank.platform.Platform;
 import com.doublechain.bank.transaction.Transaction;
@@ -25,6 +26,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 	public static final String NAME_PROPERTY                  = "name"              ;
 	public static final String CREATE_TIME_PROPERTY           = "createTime"        ;
 	public static final String REMOTE_IP_PROPERTY             = "remoteIp"          ;
+	public static final String REQUEST_TYPE_PROPERTY          = "requestType"       ;
 	public static final String PLATFORM_PROPERTY              = "platform"          ;
 	public static final String VERSION_PROPERTY               = "version"           ;
 
@@ -55,6 +57,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 	protected		String              	mName               ;
 	protected		DateTime            	mCreateTime         ;
 	protected		String              	mRemoteIp           ;
+	protected		ChangeRequestType   	mRequestType        ;
 	protected		Platform            	mPlatform           ;
 	protected		int                 	mVersion            ;
 	
@@ -70,7 +73,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 	public 	static ChangeRequest withId(String id){
 		ChangeRequest changeRequest = new ChangeRequest();
 		changeRequest.setId(id);
-		// changeRequest.setVersion(Integer.MAX_VALUE);
+		changeRequest.setVersion(Integer.MAX_VALUE);
 		return changeRequest;
 	}
 	public 	static ChangeRequest refById(String id){
@@ -79,16 +82,18 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 	
 	// disconnect from all, 中文就是一了百了，跟所有一切尘世断绝往来藏身于茫茫数据海洋
 	public 	void clearFromAll(){
+		setRequestType( null );
 		setPlatform( null );
 
 		this.changed = true;
 	}
 	
-	public 	ChangeRequest(String name, DateTime createTime, String remoteIp, Platform platform)
+	public 	ChangeRequest(String name, DateTime createTime, String remoteIp, ChangeRequestType requestType, Platform platform)
 	{
 		setName(name);
 		setCreateTime(createTime);
 		setRemoteIp(remoteIp);
+		setRequestType(requestType);
 		setPlatform(platform);
 
 		this.mTransactionList = new SmartList<Transaction>();
@@ -172,6 +177,9 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		}
 		if(REMOTE_IP_PROPERTY.equals(property)){
 			return getRemoteIp();
+		}
+		if(REQUEST_TYPE_PROPERTY.equals(property)){
+			return getRequestType();
 		}
 		if(PLATFORM_PROPERTY.equals(property)){
 			return getPlatform();
@@ -262,6 +270,27 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		if(remoteIp != null) { setRemoteIp(remoteIp);}
 	}
 	
+	
+	public void setRequestType(ChangeRequestType requestType){
+		this.mRequestType = requestType;;
+	}
+	public ChangeRequestType getRequestType(){
+		return this.mRequestType;
+	}
+	public ChangeRequest updateRequestType(ChangeRequestType requestType){
+		this.mRequestType = requestType;;
+		this.changed = true;
+		return this;
+	}
+	public void mergeRequestType(ChangeRequestType requestType){
+		if(requestType != null) { setRequestType(requestType);}
+	}
+	
+	
+	public void clearRequestType(){
+		setRequestType ( null );
+		this.changed = true;
+	}
 	
 	public void setPlatform(Platform platform){
 		this.mPlatform = platform;;
@@ -624,6 +653,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 
 	public void collectRefercences(BaseEntity owner, List<BaseEntity> entityList, String internalType){
 
+		addToEntityList(this, entityList, getRequestType(), internalType);
 		addToEntityList(this, entityList, getPlatform(), internalType);
 
 		
@@ -658,6 +688,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		appendKeyValuePair(result, NAME_PROPERTY, getName());
 		appendKeyValuePair(result, CREATE_TIME_PROPERTY, getCreateTime());
 		appendKeyValuePair(result, REMOTE_IP_PROPERTY, getRemoteIp());
+		appendKeyValuePair(result, REQUEST_TYPE_PROPERTY, getRequestType());
 		appendKeyValuePair(result, PLATFORM_PROPERTY, getPlatform());
 		appendKeyValuePair(result, VERSION_PROPERTY, getVersion());
 		appendKeyValuePair(result, TRANSACTION_LIST, getTransactionList());
@@ -693,6 +724,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 			dest.setName(getName());
 			dest.setCreateTime(getCreateTime());
 			dest.setRemoteIp(getRemoteIp());
+			dest.setRequestType(getRequestType());
 			dest.setPlatform(getPlatform());
 			dest.setVersion(getVersion());
 			dest.setTransactionList(getTransactionList());
@@ -715,6 +747,7 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 			dest.mergeName(getName());
 			dest.mergeCreateTime(getCreateTime());
 			dest.mergeRemoteIp(getRemoteIp());
+			dest.mergeRequestType(getRequestType());
 			dest.mergePlatform(getPlatform());
 			dest.mergeVersion(getVersion());
 			dest.mergeTransactionList(getTransactionList());
@@ -752,6 +785,9 @@ public class ChangeRequest extends BaseEntity implements  java.io.Serializable{
 		stringBuilder.append("\tname='"+getName()+"';");
 		stringBuilder.append("\tcreateTime='"+getCreateTime()+"';");
 		stringBuilder.append("\tremoteIp='"+getRemoteIp()+"';");
+		if(getRequestType() != null ){
+ 			stringBuilder.append("\trequestType='ChangeRequestType("+getRequestType().getId()+")';");
+ 		}
 		if(getPlatform() != null ){
  			stringBuilder.append("\tplatform='Platform("+getPlatform().getId()+")';");
  		}

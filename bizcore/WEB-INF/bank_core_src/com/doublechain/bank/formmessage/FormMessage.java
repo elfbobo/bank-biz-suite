@@ -59,7 +59,7 @@ public class FormMessage extends BaseEntity implements  java.io.Serializable{
 	public 	static FormMessage withId(String id){
 		FormMessage formMessage = new FormMessage();
 		formMessage.setId(id);
-		// formMessage.setVersion(Integer.MAX_VALUE);
+		formMessage.setVersion(Integer.MAX_VALUE);
 		return formMessage;
 	}
 	public 	static FormMessage refById(String id){

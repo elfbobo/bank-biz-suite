@@ -20,9 +20,11 @@ import com.doublechain.bank.MultipleAccessKey;
 import com.doublechain.bank.BankUserContext;
 
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.account.Account;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestTypeDAO;
 import com.doublechain.bank.changerequest.ChangeRequestDAO;
 import com.doublechain.bank.account.AccountDAO;
 
@@ -36,6 +38,25 @@ import org.springframework.jdbc.core.RowCallbackHandler;
 public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements PlatformDAO{
 
 
+			
+		
+	
+  	private  ChangeRequestTypeDAO  changeRequestTypeDAO;
+ 	public void setChangeRequestTypeDAO(ChangeRequestTypeDAO pChangeRequestTypeDAO){
+ 	
+ 		if(pChangeRequestTypeDAO == null){
+ 			throw new IllegalStateException("Do not try to set changeRequestTypeDAO to null.");
+ 		}
+	 	this.changeRequestTypeDAO = pChangeRequestTypeDAO;
+ 	}
+ 	public ChangeRequestTypeDAO getChangeRequestTypeDAO(){
+ 		if(this.changeRequestTypeDAO == null){
+ 			throw new IllegalStateException("The changeRequestTypeDAO is not configured yet, please config it some where.");
+ 		}
+ 		
+	 	return this.changeRequestTypeDAO;
+ 	}	
+ 	
 			
 		
 	
@@ -119,6 +140,13 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		Platform newPlatform = loadInternalPlatform(accessKey, options);
 		newPlatform.setVersion(0);
 		
+		
+ 		
+ 		if(isSaveChangeRequestTypeListEnabled(options)){
+ 			for(ChangeRequestType item: newPlatform.getChangeRequestTypeList()){
+ 				item.setVersion(0);
+ 			}
+ 		}
 		
  		
  		if(isSaveChangeRequestListEnabled(options)){
@@ -226,6 +254,20 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 
 		
 	
+	protected boolean isExtractChangeRequestTypeListEnabled(Map<String,Object> options){		
+ 		return checkOptions(options,PlatformTokens.CHANGE_REQUEST_TYPE_LIST);
+ 	}
+ 	protected boolean isAnalyzeChangeRequestTypeListEnabled(Map<String,Object> options){		 		
+ 		return PlatformTokens.of(options).analyzeChangeRequestTypeListEnabled();
+ 	}
+	
+	protected boolean isSaveChangeRequestTypeListEnabled(Map<String,Object> options){
+		return checkOptions(options, PlatformTokens.CHANGE_REQUEST_TYPE_LIST);
+		
+ 	}
+ 	
+		
+	
 	protected boolean isExtractChangeRequestListEnabled(Map<String,Object> options){		
  		return checkOptions(options,PlatformTokens.CHANGE_REQUEST_LIST);
  	}
@@ -280,6 +322,14 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		Platform platform = extractPlatform(accessKey, loadOptions);
 
 		
+		if(isExtractChangeRequestTypeListEnabled(loadOptions)){
+	 		extractChangeRequestTypeList(platform, loadOptions);
+ 		}	
+ 		if(isAnalyzeChangeRequestTypeListEnabled(loadOptions)){
+	 		analyzeChangeRequestTypeList(platform, loadOptions);
+ 		}
+ 		
+		
 		if(isExtractChangeRequestListEnabled(loadOptions)){
 	 		extractChangeRequestList(platform, loadOptions);
  		}	
@@ -300,6 +350,56 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		
 	}
 
+	
+		
+	protected void enhanceChangeRequestTypeList(SmartList<ChangeRequestType> changeRequestTypeList,Map<String,Object> options){
+		//extract multiple list from difference sources
+		//Trying to use a single SQL to extract all data from database and do the work in java side, java is easier to scale to N ndoes;
+	}
+	
+	protected Platform extractChangeRequestTypeList(Platform platform, Map<String,Object> options){
+		
+		
+		if(platform == null){
+			return null;
+		}
+		if(platform.getId() == null){
+			return platform;
+		}
+
+		
+		
+		SmartList<ChangeRequestType> changeRequestTypeList = getChangeRequestTypeDAO().findChangeRequestTypeByPlatform(platform.getId(),options);
+		if(changeRequestTypeList != null){
+			enhanceChangeRequestTypeList(changeRequestTypeList,options);
+			platform.setChangeRequestTypeList(changeRequestTypeList);
+		}
+		
+		return platform;
+	
+	}	
+	
+	protected Platform analyzeChangeRequestTypeList(Platform platform, Map<String,Object> options){
+		
+		
+		if(platform == null){
+			return null;
+		}
+		if(platform.getId() == null){
+			return platform;
+		}
+
+		
+		
+		SmartList<ChangeRequestType> changeRequestTypeList = platform.getChangeRequestTypeList();
+		if(changeRequestTypeList != null){
+			getChangeRequestTypeDAO().analyzeChangeRequestTypeByPlatform(changeRequestTypeList, platform.getId(), options);
+			
+		}
+		
+		return platform;
+	
+	}	
 	
 		
 	protected void enhanceChangeRequestList(SmartList<ChangeRequest> changeRequestList,Map<String,Object> options){
@@ -572,6 +672,13 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		savePlatform(platform);
 
 		
+		if(isSaveChangeRequestTypeListEnabled(options)){
+	 		saveChangeRequestTypeList(platform, options);
+	 		//removeChangeRequestTypeList(platform, options);
+	 		//Not delete the record
+	 		
+ 		}		
+		
 		if(isSaveChangeRequestListEnabled(options)){
 	 		saveChangeRequestList(platform, options);
 	 		//removeChangeRequestList(platform, options);
@@ -596,6 +703,34 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 	
 
 	
+	public Platform planToRemoveChangeRequestTypeList(Platform platform, String changeRequestTypeIds[], Map<String,Object> options)throws Exception{
+	
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ChangeRequestType.PLATFORM_PROPERTY, platform.getId());
+		key.put(ChangeRequestType.ID_PROPERTY, changeRequestTypeIds);
+		
+		SmartList<ChangeRequestType> externalChangeRequestTypeList = getChangeRequestTypeDAO().
+				findChangeRequestTypeWithKey(key, options);
+		if(externalChangeRequestTypeList == null){
+			return platform;
+		}
+		if(externalChangeRequestTypeList.isEmpty()){
+			return platform;
+		}
+		
+		for(ChangeRequestType changeRequestTypeItem: externalChangeRequestTypeList){
+
+			changeRequestTypeItem.clearFromAll();
+		}
+		
+		
+		SmartList<ChangeRequestType> changeRequestTypeList = platform.getChangeRequestTypeList();		
+		changeRequestTypeList.addAllToRemoveList(externalChangeRequestTypeList);
+		return platform;	
+	
+	}
+
+
 	public Platform planToRemoveChangeRequestList(Platform platform, String changeRequestIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();
@@ -624,6 +759,50 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 	}
 
 
+	//disconnect Platform with request_type in ChangeRequest
+	public Platform planToRemoveChangeRequestListWithRequestType(Platform platform, String requestTypeId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+		
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ChangeRequest.PLATFORM_PROPERTY, platform.getId());
+		key.put(ChangeRequest.REQUEST_TYPE_PROPERTY, requestTypeId);
+		
+		SmartList<ChangeRequest> externalChangeRequestList = getChangeRequestDAO().
+				findChangeRequestWithKey(key, options);
+		if(externalChangeRequestList == null){
+			return platform;
+		}
+		if(externalChangeRequestList.isEmpty()){
+			return platform;
+		}
+		
+		for(ChangeRequest changeRequestItem: externalChangeRequestList){
+			changeRequestItem.clearRequestType();
+			changeRequestItem.clearPlatform();
+			
+		}
+		
+		
+		SmartList<ChangeRequest> changeRequestList = platform.getChangeRequestList();		
+		changeRequestList.addAllToRemoveList(externalChangeRequestList);
+		return platform;
+	}
+	
+	public int countChangeRequestListWithRequestType(String platformId, String requestTypeId, Map<String,Object> options)throws Exception{
+				//SmartList<ThreadLike> toRemoveThreadLikeList = threadLikeList.getToRemoveList();
+		//the list will not be null here, empty, maybe
+		//getThreadLikeDAO().removeThreadLikeList(toRemoveThreadLikeList,options);
+
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ChangeRequest.PLATFORM_PROPERTY, platformId);
+		key.put(ChangeRequest.REQUEST_TYPE_PROPERTY, requestTypeId);
+		
+		int count = getChangeRequestDAO().countChangeRequestWithKey(key, options);
+		return count;
+	}
+	
 	public Platform planToRemoveAccountList(Platform platform, String accountIds[], Map<String,Object> options)throws Exception{
 	
 		MultipleAccessKey key = new MultipleAccessKey();
@@ -653,6 +832,72 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 
 
 
+		
+	protected Platform saveChangeRequestTypeList(Platform platform, Map<String,Object> options){
+		
+		
+		
+		
+		SmartList<ChangeRequestType> changeRequestTypeList = platform.getChangeRequestTypeList();
+		if(changeRequestTypeList == null){
+			//null list means nothing
+			return platform;
+		}
+		SmartList<ChangeRequestType> mergedUpdateChangeRequestTypeList = new SmartList<ChangeRequestType>();
+		
+		
+		mergedUpdateChangeRequestTypeList.addAll(changeRequestTypeList); 
+		if(changeRequestTypeList.getToRemoveList() != null){
+			//ensures the toRemoveList is not null
+			mergedUpdateChangeRequestTypeList.addAll(changeRequestTypeList.getToRemoveList());
+			changeRequestTypeList.removeAll(changeRequestTypeList.getToRemoveList());
+			//OK for now, need fix later
+		}
+
+		//adding new size can improve performance
+	
+		getChangeRequestTypeDAO().saveChangeRequestTypeList(mergedUpdateChangeRequestTypeList,options);
+		
+		if(changeRequestTypeList.getToRemoveList() != null){
+			changeRequestTypeList.removeAll(changeRequestTypeList.getToRemoveList());
+		}
+		
+		
+		return platform;
+	
+	}
+	
+	protected Platform removeChangeRequestTypeList(Platform platform, Map<String,Object> options){
+	
+	
+		SmartList<ChangeRequestType> changeRequestTypeList = platform.getChangeRequestTypeList();
+		if(changeRequestTypeList == null){
+			return platform;
+		}	
+	
+		SmartList<ChangeRequestType> toRemoveChangeRequestTypeList = changeRequestTypeList.getToRemoveList();
+		
+		if(toRemoveChangeRequestTypeList == null){
+			return platform;
+		}
+		if(toRemoveChangeRequestTypeList.isEmpty()){
+			return platform;// Does this mean delete all from the parent object?
+		}
+		//Call DAO to remove the list
+		
+		getChangeRequestTypeDAO().removeChangeRequestTypeList(toRemoveChangeRequestTypeList,options);
+		
+		return platform;
+	
+	}
+	
+	
+
+ 	
+ 	
+	
+	
+	
 		
 	protected Platform saveChangeRequestList(Platform platform, Map<String,Object> options){
 		
@@ -789,12 +1034,33 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 
 	public Platform present(Platform platform,Map<String, Object> options){
 	
+		presentChangeRequestTypeList(platform,options);
 		presentChangeRequestList(platform,options);
 		presentAccountList(platform,options);
 
 		return platform;
 	
 	}
+		
+	//Using java8 feature to reduce the code significantly
+ 	protected Platform presentChangeRequestTypeList(
+			Platform platform,
+			Map<String, Object> options) {
+
+		SmartList<ChangeRequestType> changeRequestTypeList = platform.getChangeRequestTypeList();		
+				SmartList<ChangeRequestType> newList= presentSubList(platform.getId(),
+				changeRequestTypeList,
+				options,
+				getChangeRequestTypeDAO()::countChangeRequestTypeByPlatform,
+				getChangeRequestTypeDAO()::findChangeRequestTypeByPlatform
+				);
+
+		
+		platform.setChangeRequestTypeList(newList);
+		
+
+		return platform;
+	}			
 		
 	//Using java8 feature to reduce the code significantly
  	protected Platform presentChangeRequestList(
@@ -838,6 +1104,12 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		
 
 	
+    public SmartList<Platform> requestCandidatePlatformForChangeRequestType(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
+        // NOTE: by default, ignore owner info, just return all by filter key.
+		// You need override this method if you have different candidate-logic
+		return findAllCandidateByFilter(PlatformTable.COLUMN_NAME, filterKey, pageNo, pageSize, getPlatformMapper());
+    }
+		
     public SmartList<Platform> requestCandidatePlatformForChangeRequest(BankUserContext userContext, String ownerClass, String id, String filterKey, int pageNo, int pageSize) throws Exception {
         // NOTE: by default, ignore owner info, just return all by filter key.
 		// You need override this method if you have different candidate-logic
@@ -861,6 +1133,29 @@ public class PlatformJDBCTemplateDAO extends BankBaseDAOImpl implements Platform
 		this.enhanceListInternal(platformList, this.getPlatformMapper());
 	}
 	
+	
+	// 需要一个加载引用我的对象的enhance方法:ChangeRequestType的platform的ChangeRequestTypeList
+	public SmartList<ChangeRequestType> loadOurChangeRequestTypeList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception{
+		if (us == null || us.isEmpty()){
+			return new SmartList<>();
+		}
+		Set<String> ids = us.stream().map(it->it.getId()).collect(Collectors.toSet());
+		MultipleAccessKey key = new MultipleAccessKey();
+		key.put(ChangeRequestType.PLATFORM_PROPERTY, ids.toArray(new String[ids.size()]));
+		SmartList<ChangeRequestType> loadedObjs = userContext.getDAOGroup().getChangeRequestTypeDAO().findChangeRequestTypeWithKey(key, options);
+		Map<String, List<ChangeRequestType>> loadedMap = loadedObjs.stream().collect(Collectors.groupingBy(it->it.getPlatform().getId()));
+		us.forEach(it->{
+			String id = it.getId();
+			List<ChangeRequestType> loadedList = loadedMap.get(id);
+			if (loadedList == null || loadedList.isEmpty()) {
+				return;
+			}
+			SmartList<ChangeRequestType> loadedSmartList = new SmartList<>();
+			loadedSmartList.addAll(loadedList);
+			it.setChangeRequestTypeList(loadedSmartList);
+		});
+		return loadedObjs;
+	}
 	
 	// 需要一个加载引用我的对象的enhance方法:ChangeRequest的platform的ChangeRequestList
 	public SmartList<ChangeRequest> loadOurChangeRequestList(BankUserContext userContext, List<Platform> us, Map<String,Object> options) throws Exception{

@@ -22,8 +22,30 @@ const load = (targetObjectId, parameters) => {
 
 
 
+const addChangeRequestType = (targetObjectId, parameters) => {
+  const url = `${PREFIX}platformManager/addChangeRequestType/platformId/name/code/tokensExpr/`
+  const platformId = targetObjectId
+  const requestParameters = { ...parameters, platformId, tokensExpr: 'none' }
+  return postForm({ url,requestParameters})
+}
+
+const updateChangeRequestType = (targetObjectId, parameters) => {
+  const url = `${PREFIX}platformManager/updateChangeRequestTypeProperties/platformId/id/name/code/tokensExpr/`
+  const platformId = targetObjectId
+  const requestParameters = { ...parameters, platformId, tokensExpr: 'none' }
+  return postForm({ url,requestParameters})
+}
+
+const removeChangeRequestTypeList = (targetObjectId, parameters) => {
+  const url = `${PREFIX}platformManager/removeChangeRequestTypeList/platformId/changeRequestTypeIds/tokensExpr/`
+  const requestParameters = { ...parameters, platformId: targetObjectId, tokensExpr: 'none' }
+  return postForm({ url,requestParameters})
+}
+
+
+
 const addChangeRequest = (targetObjectId, parameters) => {
-  const url = `${PREFIX}platformManager/addChangeRequest/platformId/name/tokensExpr/`
+  const url = `${PREFIX}platformManager/addChangeRequest/platformId/name/requestTypeId/tokensExpr/`
   const platformId = targetObjectId
   const requestParameters = { ...parameters, platformId, tokensExpr: 'none' }
   return postForm({ url,requestParameters})
@@ -67,10 +89,13 @@ const removeAccountList = (targetObjectId, parameters) => {
 
 const PlatformService = { view,
   load,
+  addChangeRequestType,
   addChangeRequest,
   addAccount,
+  updateChangeRequestType,
   updateChangeRequest,
   updateAccount,
+  removeChangeRequestTypeList,
   removeChangeRequestList,
   removeAccountList }
 export default PlatformService

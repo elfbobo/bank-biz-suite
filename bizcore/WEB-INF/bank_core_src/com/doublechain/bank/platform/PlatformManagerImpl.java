@@ -20,10 +20,12 @@ import com.doublechain.bank.BankUserContext;
 import com.doublechain.bank.BankCheckerManager;
 import com.doublechain.bank.CustomBankCheckerManager;
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.changerequest.ChangeRequest;
 import com.doublechain.bank.account.Account;
 
 
+import com.doublechain.bank.changerequesttype.ChangeRequestType;
 import com.doublechain.bank.platform.Platform;
 
 
@@ -149,6 +151,10 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 		addAction(userContext, platform, tokens,"@update","updatePlatform","updatePlatform/"+platform.getId()+"/","main","primary");
 		addAction(userContext, platform, tokens,"@copy","clonePlatform","clonePlatform/"+platform.getId()+"/","main","primary");
 		
+		addAction(userContext, platform, tokens,"platform.addChangeRequestType","addChangeRequestType","addChangeRequestType/"+platform.getId()+"/","changeRequestTypeList","primary");
+		addAction(userContext, platform, tokens,"platform.removeChangeRequestType","removeChangeRequestType","removeChangeRequestType/"+platform.getId()+"/","changeRequestTypeList","primary");
+		addAction(userContext, platform, tokens,"platform.updateChangeRequestType","updateChangeRequestType","updateChangeRequestType/"+platform.getId()+"/","changeRequestTypeList","primary");
+		addAction(userContext, platform, tokens,"platform.copyChangeRequestTypeFrom","copyChangeRequestTypeFrom","copyChangeRequestTypeFrom/"+platform.getId()+"/","changeRequestTypeList","primary");
 		addAction(userContext, platform, tokens,"platform.addChangeRequest","addChangeRequest","addChangeRequest/"+platform.getId()+"/","changeRequestList","primary");
 		addAction(userContext, platform, tokens,"platform.removeChangeRequest","removeChangeRequest","removeChangeRequest/"+platform.getId()+"/","changeRequestList","primary");
 		addAction(userContext, platform, tokens,"platform.updateChangeRequest","updateChangeRequest","updateChangeRequest/"+platform.getId()+"/","changeRequestList","primary");
@@ -310,6 +316,7 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 	}
 	protected Map<String,Object> viewTokens(){
 		return tokens().allTokens()
+		.sortChangeRequestTypeListWith("id","desc")
 		.sortChangeRequestListWith("id","desc")
 		.sortAccountListWith("id","desc")
 		.analyzeAllLists().done();
@@ -360,13 +367,274 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 	}
 
 
+	//disconnect Platform with request_type in ChangeRequest
+	protected Platform breakWithChangeRequestByRequestType(BankUserContext userContext, String platformId, String requestTypeId,  String [] tokensExpr)
+		 throws Exception{
+			
+			//TODO add check code here
+			
+			Platform platform = loadPlatform(userContext, platformId, allTokens());
+
+			synchronized(platform){ 
+				//Will be good when the thread loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				
+				userContext.getDAOGroup().getPlatformDAO().planToRemoveChangeRequestListWithRequestType(platform, requestTypeId, this.emptyOptions());
+
+				platform = savePlatform(userContext, platform, tokens().withChangeRequestList().done());
+				return platform;
+			}
+	}
 	
 	
 	
 	
 	
 
-	protected void checkParamsForAddingChangeRequest(BankUserContext userContext, String platformId, String name,String [] tokensExpr) throws Exception{
+	protected void checkParamsForAddingChangeRequestType(BankUserContext userContext, String platformId, String name, String code,String [] tokensExpr) throws Exception{
+		
+		
+
+		
+		
+		userContext.getChecker().checkIdOfPlatform(platformId);
+
+		
+		userContext.getChecker().checkNameOfChangeRequestType(name);
+		
+		userContext.getChecker().checkCodeOfChangeRequestType(code);
+	
+		userContext.getChecker().throwExceptionIfHasErrors(PlatformManagerException.class);
+
+	
+	}
+	public  Platform addChangeRequestType(BankUserContext userContext, String platformId, String name, String code, String [] tokensExpr) throws Exception
+	{	
+		
+		checkParamsForAddingChangeRequestType(userContext,platformId,name, code,tokensExpr);
+		
+		ChangeRequestType changeRequestType = createChangeRequestType(userContext,name, code);
+		
+		Platform platform = loadPlatform(userContext, platformId, allTokens());
+		synchronized(platform){ 
+			//Will be good when the platform loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			platform.addChangeRequestType( changeRequestType );		
+			platform = savePlatform(userContext, platform, tokens().withChangeRequestTypeList().done());
+			
+			userContext.getManagerGroup().getChangeRequestTypeManager().onNewInstanceCreated(userContext, changeRequestType);
+			return present(userContext,platform, mergedAllTokens(tokensExpr));
+		}
+	}
+	protected void checkParamsForUpdatingChangeRequestTypeProperties(BankUserContext userContext, String platformId,String id,String name,String code,String [] tokensExpr) throws Exception {
+		
+		userContext.getChecker().checkIdOfPlatform(platformId);
+		userContext.getChecker().checkIdOfChangeRequestType(id);
+		
+		userContext.getChecker().checkNameOfChangeRequestType( name);
+		userContext.getChecker().checkCodeOfChangeRequestType( code);
+
+		userContext.getChecker().throwExceptionIfHasErrors(PlatformManagerException.class);
+		
+	}
+	public  Platform updateChangeRequestTypeProperties(BankUserContext userContext, String platformId, String id,String name,String code, String [] tokensExpr) throws Exception
+	{	
+		checkParamsForUpdatingChangeRequestTypeProperties(userContext,platformId,id,name,code,tokensExpr);
+
+		Map<String, Object> options = tokens()
+				.allTokens()
+				//.withChangeRequestTypeListList()
+				.searchChangeRequestTypeListWith(ChangeRequestType.ID_PROPERTY, "is", id).done();
+		
+		Platform platformToUpdate = loadPlatform(userContext, platformId, options);
+		
+		if(platformToUpdate.getChangeRequestTypeList().isEmpty()){
+			throw new PlatformManagerException("ChangeRequestType is NOT FOUND with id: '"+id+"'");
+		}
+		
+		ChangeRequestType item = platformToUpdate.getChangeRequestTypeList().first();
+		
+		item.updateName( name );
+		item.updateCode( code );
+
+		
+		//checkParamsForAddingChangeRequestType(userContext,platformId,name, code, used,tokensExpr);
+		Platform platform = savePlatform(userContext, platformToUpdate, tokens().withChangeRequestTypeList().done());
+		synchronized(platform){ 
+			return present(userContext,platform, mergedAllTokens(tokensExpr));
+		}
+	}
+	
+	
+	protected ChangeRequestType createChangeRequestType(BankUserContext userContext, String name, String code) throws Exception{
+
+		ChangeRequestType changeRequestType = new ChangeRequestType();
+		
+		
+		changeRequestType.setName(name);		
+		changeRequestType.setCode(code);
+	
+		
+		return changeRequestType;
+	
+		
+	}
+	
+	protected ChangeRequestType createIndexedChangeRequestType(String id, int version){
+
+		ChangeRequestType changeRequestType = new ChangeRequestType();
+		changeRequestType.setId(id);
+		changeRequestType.setVersion(version);
+		return changeRequestType;			
+		
+	}
+	
+	protected void checkParamsForRemovingChangeRequestTypeList(BankUserContext userContext, String platformId, 
+			String changeRequestTypeIds[],String [] tokensExpr) throws Exception {
+		
+		userContext.getChecker().checkIdOfPlatform(platformId);
+		for(String changeRequestTypeIdItem: changeRequestTypeIds){
+			userContext.getChecker().checkIdOfChangeRequestType(changeRequestTypeIdItem);
+		}
+		
+		userContext.getChecker().throwExceptionIfHasErrors(PlatformManagerException.class);
+		
+	}
+	public  Platform removeChangeRequestTypeList(BankUserContext userContext, String platformId, 
+			String changeRequestTypeIds[],String [] tokensExpr) throws Exception{
+			
+			checkParamsForRemovingChangeRequestTypeList(userContext, platformId,  changeRequestTypeIds, tokensExpr);
+			
+			
+			Platform platform = loadPlatform(userContext, platformId, allTokens());
+			synchronized(platform){ 
+				//Will be good when the platform loaded from this JVM process cache.
+				//Also good when there is a RAM based DAO implementation
+				userContext.getDAOGroup().getPlatformDAO().planToRemoveChangeRequestTypeList(platform, changeRequestTypeIds, allTokens());
+				platform = savePlatform(userContext, platform, tokens().withChangeRequestTypeList().done());
+				deleteRelationListInGraph(userContext, platform.getChangeRequestTypeList());
+				return present(userContext,platform, mergedAllTokens(tokensExpr));
+			}
+	}
+	
+	protected void checkParamsForRemovingChangeRequestType(BankUserContext userContext, String platformId, 
+		String changeRequestTypeId, int changeRequestTypeVersion,String [] tokensExpr) throws Exception{
+		
+		userContext.getChecker().checkIdOfPlatform( platformId);
+		userContext.getChecker().checkIdOfChangeRequestType(changeRequestTypeId);
+		userContext.getChecker().checkVersionOfChangeRequestType(changeRequestTypeVersion);
+		userContext.getChecker().throwExceptionIfHasErrors(PlatformManagerException.class);
+	
+	}
+	public  Platform removeChangeRequestType(BankUserContext userContext, String platformId, 
+		String changeRequestTypeId, int changeRequestTypeVersion,String [] tokensExpr) throws Exception{
+		
+		checkParamsForRemovingChangeRequestType(userContext,platformId, changeRequestTypeId, changeRequestTypeVersion,tokensExpr);
+		
+		ChangeRequestType changeRequestType = createIndexedChangeRequestType(changeRequestTypeId, changeRequestTypeVersion);
+		Platform platform = loadPlatform(userContext, platformId, allTokens());
+		synchronized(platform){ 
+			//Will be good when the platform loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			platform.removeChangeRequestType( changeRequestType );		
+			platform = savePlatform(userContext, platform, tokens().withChangeRequestTypeList().done());
+			deleteRelationInGraph(userContext, changeRequestType);
+			return present(userContext,platform, mergedAllTokens(tokensExpr));
+		}
+		
+		
+	}
+	protected void checkParamsForCopyingChangeRequestType(BankUserContext userContext, String platformId, 
+		String changeRequestTypeId, int changeRequestTypeVersion,String [] tokensExpr) throws Exception{
+		
+		userContext.getChecker().checkIdOfPlatform( platformId);
+		userContext.getChecker().checkIdOfChangeRequestType(changeRequestTypeId);
+		userContext.getChecker().checkVersionOfChangeRequestType(changeRequestTypeVersion);
+		userContext.getChecker().throwExceptionIfHasErrors(PlatformManagerException.class);
+	
+	}
+	public  Platform copyChangeRequestTypeFrom(BankUserContext userContext, String platformId, 
+		String changeRequestTypeId, int changeRequestTypeVersion,String [] tokensExpr) throws Exception{
+		
+		checkParamsForCopyingChangeRequestType(userContext,platformId, changeRequestTypeId, changeRequestTypeVersion,tokensExpr);
+		
+		ChangeRequestType changeRequestType = createIndexedChangeRequestType(changeRequestTypeId, changeRequestTypeVersion);
+		Platform platform = loadPlatform(userContext, platformId, allTokens());
+		synchronized(platform){ 
+			//Will be good when the platform loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			
+			
+			
+			platform.copyChangeRequestTypeFrom( changeRequestType );		
+			platform = savePlatform(userContext, platform, tokens().withChangeRequestTypeList().done());
+			
+			userContext.getManagerGroup().getChangeRequestTypeManager().onNewInstanceCreated(userContext, (ChangeRequestType)platform.getFlexiableObjects().get(BaseEntity.COPIED_CHILD));
+			return present(userContext,platform, mergedAllTokens(tokensExpr));
+		}
+		
+	}
+	
+	protected void checkParamsForUpdatingChangeRequestType(BankUserContext userContext, String platformId, String changeRequestTypeId, int changeRequestTypeVersion, String property, String newValueExpr,String [] tokensExpr) throws Exception{
+		
+
+		
+		userContext.getChecker().checkIdOfPlatform(platformId);
+		userContext.getChecker().checkIdOfChangeRequestType(changeRequestTypeId);
+		userContext.getChecker().checkVersionOfChangeRequestType(changeRequestTypeVersion);
+		
+
+		if(ChangeRequestType.NAME_PROPERTY.equals(property)){
+			userContext.getChecker().checkNameOfChangeRequestType(parseString(newValueExpr));
+		}
+		
+		if(ChangeRequestType.CODE_PROPERTY.equals(property)){
+			userContext.getChecker().checkCodeOfChangeRequestType(parseString(newValueExpr));
+		}
+		
+	
+		userContext.getChecker().throwExceptionIfHasErrors(PlatformManagerException.class);
+	
+	}
+	
+	public  Platform updateChangeRequestType(BankUserContext userContext, String platformId, String changeRequestTypeId, int changeRequestTypeVersion, String property, String newValueExpr,String [] tokensExpr)
+			throws Exception{
+		
+		checkParamsForUpdatingChangeRequestType(userContext, platformId, changeRequestTypeId, changeRequestTypeVersion, property, newValueExpr,  tokensExpr);
+		
+		Map<String,Object> loadTokens = this.tokens().withChangeRequestTypeList().searchChangeRequestTypeListWith(ChangeRequestType.ID_PROPERTY, "eq", changeRequestTypeId).done();
+		
+		
+		
+		Platform platform = loadPlatform(userContext, platformId, loadTokens);
+		
+		synchronized(platform){ 
+			//Will be good when the platform loaded from this JVM process cache.
+			//Also good when there is a RAM based DAO implementation
+			//platform.removeChangeRequestType( changeRequestType );	
+			//make changes to AcceleraterAccount.
+			ChangeRequestType changeRequestTypeIndex = createIndexedChangeRequestType(changeRequestTypeId, changeRequestTypeVersion);
+		
+			ChangeRequestType changeRequestType = platform.findTheChangeRequestType(changeRequestTypeIndex);
+			if(changeRequestType == null){
+				throw new PlatformManagerException(changeRequestType+" is NOT FOUND" );
+			}
+			
+			changeRequestType.changeProperty(property, newValueExpr);
+			
+			platform = savePlatform(userContext, platform, tokens().withChangeRequestTypeList().done());
+			return present(userContext,platform, mergedAllTokens(tokensExpr));
+		}
+
+	}
+	/*
+
+	*/
+	
+
+
+
+	protected void checkParamsForAddingChangeRequest(BankUserContext userContext, String platformId, String name, String requestTypeId,String [] tokensExpr) throws Exception{
 		
 		
 
@@ -376,17 +644,19 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 
 		
 		userContext.getChecker().checkNameOfChangeRequest(name);
+		
+		userContext.getChecker().checkRequestTypeIdOfChangeRequest(requestTypeId);
 	
 		userContext.getChecker().throwExceptionIfHasErrors(PlatformManagerException.class);
 
 	
 	}
-	public  Platform addChangeRequest(BankUserContext userContext, String platformId, String name, String [] tokensExpr) throws Exception
+	public  Platform addChangeRequest(BankUserContext userContext, String platformId, String name, String requestTypeId, String [] tokensExpr) throws Exception
 	{	
 		
-		checkParamsForAddingChangeRequest(userContext,platformId,name,tokensExpr);
+		checkParamsForAddingChangeRequest(userContext,platformId,name, requestTypeId,tokensExpr);
 		
-		ChangeRequest changeRequest = createChangeRequest(userContext,name);
+		ChangeRequest changeRequest = createChangeRequest(userContext,name, requestTypeId);
 		
 		Platform platform = loadPlatform(userContext, platformId, allTokens());
 		synchronized(platform){ 
@@ -437,14 +707,17 @@ public class PlatformManagerImpl extends CustomBankCheckerManager implements Pla
 	}
 	
 	
-	protected ChangeRequest createChangeRequest(BankUserContext userContext, String name) throws Exception{
+	protected ChangeRequest createChangeRequest(BankUserContext userContext, String name, String requestTypeId) throws Exception{
 
 		ChangeRequest changeRequest = new ChangeRequest();
 		
 		
 		changeRequest.setName(name);		
 		changeRequest.setCreateTime(userContext.now());		
-		changeRequest.setRemoteIp(userContext.getRemoteIP());
+		changeRequest.setRemoteIp(userContext.getRemoteIP());		
+		ChangeRequestType  requestType = new ChangeRequestType();
+		requestType.setId(requestTypeId);		
+		changeRequest.setRequestType(requestType);
 	
 		
 		return changeRequest;

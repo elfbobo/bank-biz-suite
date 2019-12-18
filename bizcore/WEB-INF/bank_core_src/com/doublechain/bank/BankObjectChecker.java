@@ -133,8 +133,25 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(platformAsBaseEntity,"name",this::checkNameOfPlatform);
 		commonObjectPropertyAssign(platformAsBaseEntity,"founded",this::assignFoundedOfPlatform);
 		commonObjectPropertyCheck(platformAsBaseEntity,"version",this::checkVersionOfPlatform);
+		commonObjectPropertyCheck(platformAsBaseEntity,"changeRequestTypeList",this::checkChangeRequestTypeListOfPlatform);
 		commonObjectPropertyCheck(platformAsBaseEntity,"changeRequestList",this::checkChangeRequestListOfPlatform);
 		commonObjectPropertyCheck(platformAsBaseEntity,"accountList",this::checkAccountListOfPlatform);
+		return this;
+
+	}
+
+	public BankObjectChecker checkAndFixChangeRequestType(BaseEntity changeRequestTypeAsBaseEntity){
+
+		if( isChecked(changeRequestTypeAsBaseEntity) ){
+			return this;
+		}
+		markAsChecked(changeRequestTypeAsBaseEntity);
+		commonObjectPropertyCheck(changeRequestTypeAsBaseEntity,"id",this::checkIdOfChangeRequestType);
+		commonObjectPropertyCheck(changeRequestTypeAsBaseEntity,"name",this::checkNameOfChangeRequestType);
+		commonObjectPropertyCheck(changeRequestTypeAsBaseEntity,"code",this::checkCodeOfChangeRequestType);
+		commonObjectPropertyCheck(changeRequestTypeAsBaseEntity,"platform",this::checkPlatformOfChangeRequestType);
+		commonObjectPropertyCheck(changeRequestTypeAsBaseEntity,"version",this::checkVersionOfChangeRequestType);
+		commonObjectPropertyCheck(changeRequestTypeAsBaseEntity,"changeRequestList",this::checkChangeRequestListOfChangeRequestType);
 		return this;
 
 	}
@@ -149,6 +166,7 @@ public class BankObjectChecker extends BankChecker{
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"name",this::checkNameOfChangeRequest);
 		commonObjectPropertyAssign(changeRequestAsBaseEntity,"createTime",this::assignCreateTimeOfChangeRequest);
 		commonObjectPropertyAssign(changeRequestAsBaseEntity,"remoteIp",this::assignRemoteIpOfChangeRequest);
+		commonObjectPropertyCheck(changeRequestAsBaseEntity,"requestType",this::checkRequestTypeOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"platform",this::checkPlatformOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"version",this::checkVersionOfChangeRequest);
 		commonObjectPropertyCheck(changeRequestAsBaseEntity,"transactionList",this::checkTransactionListOfChangeRequest);
@@ -530,6 +548,13 @@ public class BankObjectChecker extends BankChecker{
 	}
 
 
+	public BankObjectChecker checkChangeRequestTypeListOfPlatform(List<BaseEntity> changeRequestTypeList){
+		AtomicInteger index = new AtomicInteger();
+		changeRequestTypeList.stream().forEach(changeRequestType->
+			commonObjectElementCheck(changeRequestType,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixChangeRequestType));
+		return this;
+	}
+
 	public BankObjectChecker checkChangeRequestListOfPlatform(List<BaseEntity> changeRequestList){
 		AtomicInteger index = new AtomicInteger();
 		changeRequestList.stream().forEach(changeRequest->
@@ -543,6 +568,27 @@ public class BankObjectChecker extends BankChecker{
 			commonObjectElementCheck(account,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixAccount));
 		return this;
 	}
+
+	public BankObjectChecker checkChangeRequestListOfChangeRequestType(List<BaseEntity> changeRequestList){
+		AtomicInteger index = new AtomicInteger();
+		changeRequestList.stream().forEach(changeRequest->
+			commonObjectElementCheck(changeRequest,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixChangeRequest));
+		return this;
+	}
+
+	public static final String PLATFORM_OF_CHANGE_REQUEST_TYPE = "change_request_type.platform";
+
+
+	public BankObjectChecker checkPlatformOfChangeRequestType(BaseEntity platformAsBaseEntity){
+
+		if(platformAsBaseEntity == null){
+			checkBaseEntityReference(platformAsBaseEntity,true,PLATFORM_OF_CHANGE_REQUEST_TYPE);
+			return this;
+		}
+		checkAndFixPlatform(platformAsBaseEntity);
+		return this;
+	}
+
 
 	public BankObjectChecker checkTransactionListOfChangeRequest(List<BaseEntity> transactionList){
 		AtomicInteger index = new AtomicInteger();
@@ -564,6 +610,20 @@ public class BankObjectChecker extends BankChecker{
 			commonObjectElementCheck(accountChange,wrapArrayIndex(index.getAndIncrement()),this::checkAndFixAccountChange));
 		return this;
 	}
+
+	public static final String REQUEST_TYPE_OF_CHANGE_REQUEST = "change_request.request_type";
+
+
+	public BankObjectChecker checkRequestTypeOfChangeRequest(BaseEntity requestTypeAsBaseEntity){
+
+		if(requestTypeAsBaseEntity == null){
+			checkBaseEntityReference(requestTypeAsBaseEntity,true,REQUEST_TYPE_OF_CHANGE_REQUEST);
+			return this;
+		}
+		checkAndFixChangeRequestType(requestTypeAsBaseEntity);
+		return this;
+	}
+
 
 	public static final String PLATFORM_OF_CHANGE_REQUEST = "change_request.platform";
 

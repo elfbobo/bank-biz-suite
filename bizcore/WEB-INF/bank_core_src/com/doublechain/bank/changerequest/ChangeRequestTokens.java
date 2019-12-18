@@ -72,6 +72,7 @@ public class ChangeRequestTokens extends CommonTokens{
 	protected static ChangeRequestTokens allTokens(){
 		
 		return start()
+			.withRequestType()
 			.withPlatform()
 			.withTransactionList()
 			.withNameChangeEventList()
@@ -81,6 +82,7 @@ public class ChangeRequestTokens extends CommonTokens{
 	public static ChangeRequestTokens withoutListsTokens(){
 		
 		return start()
+			.withRequestType()
 			.withPlatform();
 	
 	}
@@ -100,6 +102,16 @@ public class ChangeRequestTokens extends CommonTokens{
 		return this;
 	}
 
+	protected static final String REQUESTTYPE = "requestType";
+	public String getRequestType(){
+		return REQUESTTYPE;
+	}
+	public ChangeRequestTokens withRequestType(){		
+		addSimpleOptions(REQUESTTYPE);
+		return this;
+	}
+	
+	
 	protected static final String PLATFORM = "platform";
 	public String getPlatform(){
 		return PLATFORM;

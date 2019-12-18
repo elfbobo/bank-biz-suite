@@ -133,6 +133,7 @@ componentDidMount() {
 		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'contains', 'id'))
 		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'contains', 'name'))
 		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'contains', 'remoteIp'))
+		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'eq', 'requestType'))
 		pushIfNotNull(paramList,this.buildStringSearchParameters(listName, fieldsValue,'eq', 'platform'))
 
      
@@ -190,19 +191,23 @@ componentDidMount() {
     return (
       <Form onSubmit={this.handleSearch} layout="inline">
         <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+ <Col md={8} sm={24}>
+                 <Form.Item label="请求类型">
+               {getFieldDecorator('requestType', {initialValue: tryinit('requestType')})(
+               
+               <SelectObject 
+                 disabled={!availableForEdit('requestType')}
+                 targetType={"requestType"} 
+                 requestFunction={ChangeRequestService.requestCandidateRequestType} useForSearch />
+               	 
+       
+               )}
+             </Form.Item></Col>
 
        <Col md={8} sm={24}>
          <FormItem label="ID">
            {getFieldDecorator('id')(
-             <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
-           )}
-         </FormItem>
-       </Col>
-
-       <Col md={8} sm={24}>
-         <FormItem label="名称">
-           {getFieldDecorator('name')(
-             <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+             <Input size="default" placeholder={appLocaleName(userContext,"PleaseInput")} />
            )}
          </FormItem>
        </Col>
@@ -249,7 +254,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="ID">
               {getFieldDecorator('id')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -257,7 +262,7 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="名称">
               {getFieldDecorator('name')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
@@ -265,10 +270,22 @@ componentDidMount() {
           <Col md={8} sm={24}>
             <FormItem label="远程Ip">
               {getFieldDecorator('remoteIp')(
-                <Input size="large" placeholder={appLocaleName(userContext,"PleaseInput")} />
+                <Input placeholder={appLocaleName(userContext,"PleaseInput")} />
               )}
             </FormItem>
           </Col>
+ <Col md={8} sm={24}>
+                    <Form.Item label="请求类型">
+                  {getFieldDecorator('requestType', {initialValue: tryinit('requestType')})(
+                  
+                  <SelectObject 
+                    disabled={!availableForEdit('requestType')}
+                    targetType={"requestType"} 
+                    requestFunction={ChangeRequestService.requestCandidateRequestType} useForSearch />
+                  	
+                 
+                  )}
+                </Form.Item></Col>
  <Col md={8} sm={24}>
                     <Form.Item label="平台">
                   {getFieldDecorator('platform', {initialValue: tryinit('platform')})(
@@ -276,8 +293,8 @@ componentDidMount() {
                   <SelectObject 
                     disabled={!availableForEdit('platform')}
                     targetType={"platform"} 
-                    requestFunction={ChangeRequestService.requestCandidatePlatform}/>
-                  
+                    requestFunction={ChangeRequestService.requestCandidatePlatform} useForSearch />
+                  	
                  
                   )}
                 </Form.Item></Col>

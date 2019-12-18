@@ -59,7 +59,7 @@ public class UserWhiteList extends BaseEntity implements  java.io.Serializable{
 	public 	static UserWhiteList withId(String id){
 		UserWhiteList userWhiteList = new UserWhiteList();
 		userWhiteList.setId(id);
-		// userWhiteList.setVersion(Integer.MAX_VALUE);
+		userWhiteList.setVersion(Integer.MAX_VALUE);
 		return userWhiteList;
 	}
 	public 	static UserWhiteList refById(String id){

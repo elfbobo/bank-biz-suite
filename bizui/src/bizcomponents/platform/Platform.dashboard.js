@@ -1,7 +1,6 @@
 
 
 import React, { Component } from 'react'
-import FontAwesome from 'react-fontawesome';
 import { connect } from 'dva'
 import moment from 'moment'
 import BooleanOption from '../../components/BooleanOption';
@@ -104,7 +103,7 @@ const renderSettingMenu = (cardsData,targetComponent) =>{
 const internalRenderTitle = (cardsData,targetComponent) =>{
   
   
-  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <FontAwesome name="arrow-left"  /> </Link>:null
+  const linkComp=cardsData.returnURL?<Link to={cardsData.returnURL}> <Icon type="double-left" style={{marginRight:"10px"}} /> </Link>:null
   return (<div>{linkComp}{cardsData.cardsName}: {cardsData.displayName} {renderSettingDropDown(cardsData,targetComponent)}</div>)
 
 }
@@ -151,7 +150,7 @@ class PlatformDashboard extends Component {
 
   render() {
     // eslint-disable-next-line max-len
-    const { id,displayName, changeRequestListMetaInfo, accountListMetaInfo, changeRequestCount, accountCount } = this.props.platform
+    const { id,displayName, changeRequestTypeListMetaInfo, changeRequestListMetaInfo, accountListMetaInfo, changeRequestTypeCount, changeRequestCount, accountCount } = this.props.platform
     if(!this.props.platform.class){
       return null
     }
@@ -165,6 +164,7 @@ class PlatformDashboard extends Component {
     
       	],
    		subSettingItems: [
+{name: 'changeRequestTypeList', displayName:'变更请求类型',type:'changeRequestType',count:changeRequestTypeCount,addFunction: false, role: 'changeRequestType', metaInfo: changeRequestTypeListMetaInfo, renderItem: GlobalComponents.ChangeRequestTypeBase.renderItemOfList},
     
       	],     	
       	

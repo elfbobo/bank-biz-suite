@@ -91,6 +91,12 @@ public class BankCheckerManager extends BaseManagerImpl {
 	public com.doublechain.bank.platform.PlatformDAO platformDaoOf(BankUserContext userContext){
 		return userContext.getDAOGroup().getPlatformDAO();
 	}
+	public com.doublechain.bank.changerequesttype.ChangeRequestTypeManager changeRequestTypeManagerOf(BankUserContext userContext){
+		return userContext.getManagerGroup().getChangeRequestTypeManager();
+	}
+	public com.doublechain.bank.changerequesttype.ChangeRequestTypeDAO changeRequestTypeDaoOf(BankUserContext userContext){
+		return userContext.getDAOGroup().getChangeRequestTypeDAO();
+	}
 	public com.doublechain.bank.changerequest.ChangeRequestManager changeRequestManagerOf(BankUserContext userContext){
 		return userContext.getManagerGroup().getChangeRequestManager();
 	}
